@@ -21,7 +21,7 @@ import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardS
 
 import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo-white.svg";
-
+import data from '../variables/data'
 
 var ps;
 const pages = 
@@ -48,7 +48,7 @@ const dash = [
 },
 {
     collapse: false,
-    path: "/settings",
+    path: "/login",
     name: "Settings",
     state: "openPages",
     icon: Image,
@@ -56,7 +56,7 @@ const dash = [
   },
   {
     collapse: false,
-    path: "/Notifications",
+    path: "/register",
     name: "Notifications",
     state: "openPages",
     icon: Image,
@@ -68,7 +68,7 @@ const dash = [
     name: "Messages",
     state: "openPages",
     icon: Image,
-    views: pages
+   // views: pages
   },
   {
     collapse: false,
@@ -146,7 +146,7 @@ class Dashboard extends React.Component {
         <Sidebar
           // routes={dashboardRoutes}
           routes={dash}
-          logoText={"Creative Tim"}
+          logoText={"PYC"}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}

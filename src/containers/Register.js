@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { registerUser } from '../redux/actions/authActions'
+import { connect} from 'react-redux'
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -21,7 +22,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import logoo from '../assets/img/login.jpeg'
+import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 
 class LoginPage extends React.Component {
@@ -64,10 +65,11 @@ class LoginPage extends React.Component {
       password2:this.state.confirm_password,
     }
     console.log("DATA", data)
+    this.props.registerUser(data)
   }
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props.classes)
+    console.log("PROPERTIES",this.props)
     console.log("NAME",this.state)
     return (
       <div className={classes.container}>
@@ -80,17 +82,19 @@ class LoginPage extends React.Component {
                   className={`${classes.cardHeader} ${classes.textCenter}`}
                   color="rose"
                 > */}
+                <div className={"center-style"}>
                 <a href="/dashboard">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"
                     alt="100%x180"
-                    style={{ height: "180px", width: "100%", display: "block" }}
+                    style={{ height: "180px", width: "180px", position:"center center" }}
                     src={logoo}
                     data-holder-rendered="true"
                   />
                   <h4 className={classes.cardTitle}>Sign Up</h4>
                 </a>
+                </div>
                 {/* </CardHeader> */}
                 <CardBody>
                   <CustomInput
@@ -186,4 +190,10 @@ LoginPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(loginPageStyle)(LoginPage);
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps, {registerUser})(withStyles(loginPageStyle)(LoginPage));

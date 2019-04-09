@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{Component} from "react";
 import cx from "classnames";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -16,7 +16,7 @@ import Footer from "./Footer";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import Gridd from './Gridd'
 import dashboardRoutes from "routes/dashboard.jsx";
-
+import data from '../variables/data'
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
 
 import image from "assets/img/sidebar-2.jpg";
@@ -24,12 +24,17 @@ import logo from "assets/img/logo-white.svg";
 
 class Members extends Component {
   render() {
+    const { classes } = this.props
+    console.log("MEMBERS", data)
+    console.log("LOCATION", this.props)
     return (
-      <div>
-        
+      <div className={classes.wrapper}>
+        {/* <Header
+          routes={data.dash}
+        /> */}
       </div>
     )
   }
 }
 
-export default Members
+export default withStyles(appStyle)(Members)

@@ -27,47 +27,7 @@ class Landing extends Component {
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={12} >
-          {/* <Table
-                      tableData={[
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "USA",
-                          "2.920",
-                          "53.23%"
-                        ],
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "Germany",
-                          "1.300",
-                          "20.43%"
-                        ],
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "Australia",
-                          "760",
-                          "10.35%"
-                        ],
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "United Kingdom",
-                          "690",
-                          "7.87%"
-                        ],
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "Romania",
-                          "600",
-                          "5.94%"
-                        ],
-                        [
-                          <img src={imagee} alt="us_flag" />,
-                          "Brasil",
-                          "550",
-                          "4.34%"
-                        ]
-                      ]}
-                    />  */}
-                    <Table/>
+            <Table/>
           </GridItem>
         </GridContainer>
       </div>

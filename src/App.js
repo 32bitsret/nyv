@@ -16,6 +16,7 @@ import RegisterPage from "views/Pages/RegisterPage.jsx";
 import LockScreenPage from "views/Pages/LockScreenPage.jsx";
 import Register from './containers/Register'
 import Landing from './containers/Landing'
+import Members from './containers/Members'
 
 const hist = createBrowserHistory();
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Router history={hist}>
                 <div>
                     <Route exact path="/Landing" component={Landing}/>
+                    <Route exact path="/members" component={Members}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/dashboard" component={Dashboard}/>

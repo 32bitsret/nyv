@@ -20,7 +20,8 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import logoo from '../assets/img/login.jpeg'
+
+import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 
 class Login extends React.Component {
@@ -70,17 +71,19 @@ class Login extends React.Component {
           <GridItem xs={12} sm={6} md={4}>
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
+                <div className="center-style">
                 <a href="/dashboard">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"
                     alt="100%x180"
-                    style={{ height: "180px", width: "100%", display: "block" }}
+                    style={{ height: "180px", width: "180px", display: "block" }}
                     src={logoo}
                     data-holder-rendered="true"
                   />
                   <h4 className={classes.cardTitle}>Log in</h4>
                 </a>
+                </div>
                 <CardBody>
                   <CustomInput
                     labelText="Email..."
