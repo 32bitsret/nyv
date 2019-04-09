@@ -15,19 +15,18 @@ import Login from "./containers/Login";
 import RegisterPage from "views/Pages/RegisterPage.jsx";
 import LockScreenPage from "views/Pages/LockScreenPage.jsx";
 import Register from './containers/Register'
-import Landing from './containers/Landing'
+import Home from './containers/Home'
 import Members from './containers/Members'
 
 const hist = createBrowserHistory();
 
 class App extends Component {
   render() {
-      console.log("Router HISTORY", hist);
     return (
         <Provider store={store}>
             <Router history={hist}>
                 <div>
-                    <Route exact path="/Landing" component={Landing}/>
+                    <Route exact path="/" component={Home}/>
                     <Route exact path="/members" component={Members}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register} />

@@ -97,6 +97,23 @@ class LoginPage extends React.Component {
                 </div>
                 {/* </CardHeader> */}
                 <CardBody>
+                <CustomInput
+                    labelText="Surname"
+                    id="firstname"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"text",
+                      name: "first_name",
+                      onChange: this.onChange,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Face className={classes.inputAdornmentIcon} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
                   <CustomInput
                     labelText="First Name"
                     id="firstname"
@@ -176,7 +193,7 @@ class LoginPage extends React.Component {
                   </Button>
                 </CardFooter>
                 <br/>
-                  <p style={{textAlign:"center", paddingBottom: "5px"}}>have an already? <a href="/login">Log in</a></p>
+                  <p style={{textAlign:"center", paddingBottom: "5px"}}>have an account already? <a href="/login">Log in</a></p>
               </Card>
             </form>
           </GridItem>

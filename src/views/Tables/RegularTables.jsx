@@ -75,7 +75,6 @@ function RegularTables({ ...props }) {
           <CardBody plain>
             <Table
               hover
-              tableHead={["ID", "Name", "Salary", "Country", "City"]}
               tableData={[
                 ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
                 ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
@@ -96,6 +95,7 @@ function RegularTables({ ...props }) {
                 ],
                 ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
               ]}
+              tableHead={["ID", "Name", "Salary", "Country", "City"]}
             />
           </CardBody>
         </Card>

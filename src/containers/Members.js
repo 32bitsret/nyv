@@ -29,7 +29,7 @@ class Members extends Component {
     console.log("LOCATION", this.props)
     return (
       <div className={classes.wrapper}>
-        {/* <Header
+        {/*<Header
           routes={data.dash}
         /> */}
       </div>

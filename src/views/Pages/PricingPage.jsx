@@ -24,7 +24,7 @@ class PricingPage extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.container}>
+      <div className={classes.container} style={{backgroundColor:"green"}}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={6}>
             <h2 className={classes.title}>Pick the best plan for you</h2>
