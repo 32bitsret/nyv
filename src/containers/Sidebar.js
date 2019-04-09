@@ -79,6 +79,7 @@ class Sidebar extends React.Component {
     this.setState(st);
   }
   render() {
+    console.log("SIDEBAR", this.state)
     const {
       classes,
       color,
