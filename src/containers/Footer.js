@@ -32,22 +32,22 @@ function Footer({ ...props }) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a href="#home" className={block}>
-                {rtlActive ? "الصفحة الرئيسية" : "Home"}
+                {"Home"}
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a href="#company" className={block}>
-                {rtlActive ? "شركة" : "Company"}
+                {"Company"}
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a href="#portfolio" className={block}>
-                {rtlActive ? "بعدسة" : "Portfolio"}
+                {"Portfolio"}
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a href="#blog" className={block}>
-                {rtlActive ? "مدونة" : "Blog"}
+                {"Blog"}
               </a>
             </ListItem>
           </List>
@@ -55,11 +55,9 @@ function Footer({ ...props }) {
         <p className={classes.right}>
           &copy; {1900 + new Date().getYear()}{" "}
           <a href="https://www.creative-tim.com" className={anchor}>
-            {rtlActive ? "توقيت الإبداعية" : "Creative Tim"}
+            { "Created by PICTDA"}
           </a>
-          {rtlActive
-            ? ", مصنوعة مع الحب لشبكة الإنترنت أفضل"
-            : ", made with love for a better web"}
+          { ", plateau state youth council"}
         </p>
       </div>
     </footer>

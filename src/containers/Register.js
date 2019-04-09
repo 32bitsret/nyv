@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
                   color="rose"
                 > */}
                 <div className={"center-style"}>
-                <a href="/dashboard">
+                <a href="/">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"

@@ -2,19 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-// @material-ui/core components
-
-// core components
-import PagesHeader from "components/Header/PagesHeader.jsx";
-import Footer from "components/Footer/Footer.jsx";
-
-import pagesRoutes from "routes/pages.jsx";
-
-import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
-
-import bgImage from "assets/img/register.jpeg";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 
@@ -40,10 +27,9 @@ class Landing extends React.Component {
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={6}>
-            <h2 className={classes.title}>Pick the best plan for you</h2>
+            <h2 className={classes.title}>PLATEAU YOUTH COUNCIL</h2>
             <h5 className={classes.description}>
-              You have Free Unlimited Updates and Premium Support on each
-              package.
+             reducing unemployment....
             </h5>
           </GridItem>
         </GridContainer>

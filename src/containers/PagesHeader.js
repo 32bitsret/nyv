@@ -13,17 +13,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Menu from "@material-ui/icons/Menu";
-
 // core components
 import Button from "components/CustomButtons/Button";
-
-import pagesRoutes from "routes/pages.jsx";
-
 import pagesHeaderStyle from "assets/jss/material-dashboard-pro-react/components/pagesHeaderStyle.jsx";
+import logo from '../assets/img/logo.jpg'
 
 class PagesHeader extends React.Component {
   constructor(props) {
@@ -49,64 +45,53 @@ class PagesHeader extends React.Component {
     const appBarClasses = cx({
       [" " + classes[color]]: color
     });
-    var list = (
-      <List className={classes.list}>
-        <ListItem className={classes.listItem}>
-          <NavLink to={"/dashboard"} className={classes.navLink}>
-            <ListItemIcon className={classes.listItemIcon}>
-              <Dashboard />
-            </ListItemIcon>
-            <ListItemText
-              primary={"Dashboard"}
-              disableTypography={true}
-              className={classes.listItemText}
-            />
-          </NavLink>
-        </ListItem>
-        {pagesRoutes.map((prop, key) => {
-          if (prop.redirect) {
-            return null;
-          }
-          const navLink =
-            classes.navLink +
-            cx({
-              [" " + classes.navLinkActive]: this.activeRoute(prop.path)
-            });
-          return (
-            <ListItem key={key} className={classes.listItem}>
-              <NavLink to={prop.path} className={navLink}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <prop.icon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={prop.short}
-                  disableTypography={true}
-                  className={classes.listItemText}
-                />
-              </NavLink>
-            </ListItem>
-          );
-        })}
-      </List>
-    );
+    const trial = (
+        <List className={classes.list}>
+          <ListItem className={classes.listItem}>
+            <NavLink to={"/login"} className={classes.navLink}>
+              <ListItemIcon className={classes.listItemIcon}>
+                <Dashboard />
+              </ListItemIcon>
+              <ListItemText
+                primary={"Login"}
+                disableTypography={true}
+                className={classes.listItemText}
+              />
+            </NavLink>
+          </ListItem>
+
+          <ListItem className={classes.listItem}>
+            <NavLink to={"/register"} className={classes.navLink}>
+              <ListItemIcon className={classes.listItemIcon}>
+                <Dashboard />
+              </ListItemIcon>
+              <ListItemText
+                primary={"Sign Up"}
+                disableTypography={true}
+                className={classes.listItemText}
+              />
+            </NavLink>
+          </ListItem>
+        </List>
+    )
     return (
       <AppBar position="static" className={classes.appBar + appBarClasses}>
         <Toolbar className={classes.container}>
           <Hidden smDown>
             <div className={classes.flex}>
               <Button href="#" className={classes.title} color="transparent">
-                Material Dashboard Pro React
+                PLATEAU YOUTH COUNCIL
               </Button>
             </div>
           </Hidden>
           <Hidden mdUp>
             <div className={classes.flex}>
               <Button href="#" className={classes.title} color="transparent">
-                MD Pro React
+                PYC
               </Button>
             </div>
           </Hidden>
-          <Hidden smDown>{list}</Hidden>
+          <Hidden smDown>{trial}</Hidden>
           <Hidden mdUp>
             <Button
               className={classes.sidebarButton}
@@ -132,7 +117,7 @@ class PagesHeader extends React.Component {
                   keepMounted: true // Better open performance on mobile.
                 }}
               >
-                {list}
+                {trial}
               </Drawer>
             </Hidden>
           </Hidden>

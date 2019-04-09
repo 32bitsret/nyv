@@ -23,8 +23,8 @@ import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo-white.svg";
 import data from '../variables/data'
 
-
 import Tablex from '../views/Tables/ReactTables'
+
 var ps;
 const pages = 
   {
@@ -70,7 +70,6 @@ const dash = [
     name: "Messages",
     state: "openPages",
     icon: Image,
-   // views: pages
   },
   {
     collapse: false,
@@ -81,6 +80,7 @@ const dash = [
     views: pages
   }
 ]
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -115,7 +115,6 @@ class Dashboard extends React.Component {
     }
   }
 
-
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
@@ -146,7 +145,6 @@ class Dashboard extends React.Component {
     return (
       <div className={classes.wrapper}>
         <Sidebar
-          // routes={dashboardRoutes}
           routes={dash}
           logoText={"PYC"}
           logo={logo}
@@ -168,8 +166,7 @@ class Dashboard extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-             {/* <Gridd/> */}
-             <Tablex/>
+             <Gridd/>
             </div>
         </div>
         </div>

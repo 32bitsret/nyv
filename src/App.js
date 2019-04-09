@@ -12,8 +12,6 @@ import Pages from './layouts/Pages'
 import Dashboard from './containers/Dashboard'
 import PricingPage from "views/Pages/PricingPage.jsx";
 import Login from "./containers/Login";
-import RegisterPage from "views/Pages/RegisterPage.jsx";
-import LockScreenPage from "views/Pages/LockScreenPage.jsx";
 import Register from './containers/Register'
 import Home from './containers/Home'
 import Members from './containers/Members'
