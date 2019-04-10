@@ -15,7 +15,8 @@ import Login from "./containers/Login";
 import Register from './containers/Register'
 import Home from './containers/Home'
 import Members from './containers/Members'
-
+import Messages from './containers/Messages'
+import Notifications from './containers/Notifications'
 const hist = createBrowserHistory();
 
 class App extends Component {
@@ -26,7 +27,9 @@ class App extends Component {
                 <div>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/members" component={Members}/>
+                    <Route exact path="/messages" component={Messages}/>
                     <Route exact path="/login" component={Login}/>
+                    <Route exact path="/notifications" component={Notifications}/>
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/dashboard" component={Dashboard}/>
                 </div>

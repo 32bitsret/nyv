@@ -16,13 +16,6 @@ const dashAdmin = [
   },
   {
     collapse: false,
-    path: "/notifications",
-    name: "Notifications",
-    state: "openPages",
-    icon: Image
-  },
-  {
-    collapse: false,
     path: "/messages",
     name: "Messages",
     state: "openPages",
@@ -52,17 +45,10 @@ const dashUser = [
   name: "Dashboard",
   state: "openPages",
   icon: Image
-},
-{
-    collapse: false,
-    path: "/login",
-    name: "Settings",
-    state: "openPages",
-    icon: Image
   },
   {
     collapse: false,
-    path: "/register",
+    path: "/notifications",
     name: "Notifications",
     state: "openPages",
     icon: Image
@@ -74,13 +60,6 @@ const dashUser = [
     state: "openPages",
     icon: Image,
    // views: pages
-  },
-  {
-    collapse: false,
-    path: "/filter",
-    name: "Filter Members",
-    state: "openPages",
-    icon: Image
   }
 ]
 

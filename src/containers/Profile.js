@@ -84,7 +84,7 @@ class UserProfile extends Component {
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="First Name"
                     id="first_name"
@@ -99,7 +99,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="other_name"
                     id="other_name"
@@ -114,16 +114,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Email address"
-                    id="email-address"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Email address"
                     id="email-address"
@@ -134,7 +125,7 @@ class UserProfile extends Component {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="First Name"
                     id="first-name"
@@ -143,7 +134,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Last Name"
                     id="last-name"
@@ -155,19 +146,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Last Name"
-                    id="last-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      value: this.state.name
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Last Name"
                     id="last-name"
@@ -181,7 +160,7 @@ class UserProfile extends Component {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="City"
                     id="city"
@@ -190,7 +169,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Country"
                     id="country"
@@ -199,7 +178,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Postal Code"
                     id="postal-code"
@@ -208,7 +187,27 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+              </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={4}>
+                  <CustomInput
+                    labelText="City"
+                    id="city"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
+                  <CustomInput
+                    labelText="Country"
+                    id="country"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Postal Code"
                     id="postal-code"
