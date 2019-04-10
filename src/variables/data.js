@@ -1,42 +1,71 @@
-import TimelinePage from "views/Pages/Timeline.jsx";
+import Image from "@material-ui/icons/Image";
+//import 
 
-const pages = 
+const dashAdmin = [
   {
-    path: "/timeline-page",
-    name: "Timeline Page",
-    mini: "TP",
-    component: TimelinePage
+    path: "/dashboard",
+    name: "Dashboard",
+    state: "openPages",
+    icon: Image
+  },
+  {
+    path: "/members",
+    name: "Members",
+    state: "openPages",
+    icon: Image
+  },
+  {
+    collapse: false,
+    path: "/notifications",
+    name: "Notifications",
+    state: "openPages",
+    icon: Image
+  },
+  {
+    collapse: false,
+    path: "/messages",
+    name: "Messages",
+    state: "openPages",
+    icon: Image
+  },
+  {
+    collapse: false,
+    path: "/filter",
+    name: "Filter Members",
+    state: "openPages",
+    icon: Image
+  },
+  {
+    collapse: false,
+    path: "/filter",
+    name: "Members",
+    state: "openPages",
+    icon: Image
   }
+]
 
-const dash = [    
+
+const dashUser = [    
   {
   collapse: false,
-  path: "/",
-  name: "Home",
+  path: "/dashboard",
+  name: "Dashboard",
   state: "openPages",
-  icon: Image,
-  views:  {
-    path: "/timeline-page",
-    name: "Timeline Page",
-    mini: "TP",
-    component: TimelinePage
-  }
+  icon: Image
 },
 {
     collapse: false,
     path: "/login",
     name: "Settings",
     state: "openPages",
-    icon: Image,
-    views: pages
+    icon: Image
   },
   {
     collapse: false,
     path: "/register",
     name: "Notifications",
     state: "openPages",
-    icon: Image,
-    views: pages
+    icon: Image
   },
   {
     collapse: false,
@@ -51,12 +80,11 @@ const dash = [
     path: "/filter",
     name: "Filter Members",
     state: "openPages",
-    icon: Image,
-    views: pages
+    icon: Image
   }
 ]
 
 export default {
-    dash,
-    pages
+    dashUser,
+    dashAdmin
 }

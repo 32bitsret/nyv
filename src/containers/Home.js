@@ -25,7 +25,7 @@ class Pages extends React.Component {
                   style={{ backgroundImage: "url(" + bgImage + ")" }}
               >
               <Landing />
-              <Footer white />
+              <Footer white/>
             </div>
           </div>
       </div>

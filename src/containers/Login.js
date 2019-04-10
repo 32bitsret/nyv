@@ -47,6 +47,7 @@ class Login extends React.Component {
     clearTimeout(this.timeOutFunction);
     this.timeOutFunction = null;
   }
+  
   change = (e) => {
     e.preventDefault()
     this.setState({[e.target.name]: e.target.value})

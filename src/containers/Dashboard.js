@@ -6,7 +6,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-import TimelinePage from "views/Pages/Timeline.jsx";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Image from "@material-ui/icons/Image";
@@ -15,72 +14,23 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import Gridd from './Gridd'
-import dashboardRoutes from "routes/dashboard.jsx";
 import ProtectedRoute from '../utils/ProtectedRoute'
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
-
 import image from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/mask.png";
+import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
 
 var ps;
-const pages = 
-  {
-    path: "/timeline-page",
-    name: "Timeline Page",
-    mini: "TP",
-    component: TimelinePage
-  }
-
-const dash = [    
-  {
-  collapse: false,
-  path: "/",
-  name: "Home",
-  state: "openPages",
-  icon: Image,
-},
-{
-    collapse: false,
-    path: "/login",
-    name: "Settings",
-    state: "openPages",
-    icon: Image,
-    views: pages
-  },
-  {
-    collapse: false,
-    path: "/register",
-    name: "Notifications",
-    state: "openPages",
-    icon: Image,
-    views: pages
-  },
-  {
-    collapse: false,
-    path: "/messages",
-    name: "Messages",
-    state: "openPages",
-    icon: Image,
-  },
-  {
-    collapse: false,
-    path: "/filter",
-    name: "Filter Members",
-    state: "openPages",
-    icon: Image,
-    views: pages
-  }
-]
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       mobileOpen: false,
-      miniActive: false
+      miniActive: false,
+      isAdmin: true
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
@@ -109,6 +59,7 @@ class Dashboard extends React.Component {
     }
   }
 
+
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
@@ -136,10 +87,13 @@ class Dashboard extends React.Component {
         [classes.mainPanelWithPerfectScrollbar]:
           navigator.platform.indexOf("Win") > -1
       });
+    
+    const route = this.state.isAdmin?data.dashAdmin:data.dashUser
+    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={data.dashUser}/>)
     return (
       <div className={classes.wrapper}>
         <Sidebar
-          routes={dash}
+          routes={route}
           logoText={"PYC"}
           logo={logo}
           // image={image}
@@ -154,17 +108,14 @@ class Dashboard extends React.Component {
           <Header
             sidebarMinimize={this.sidebarMinimize.bind(this)}
             miniActive={this.state.miniActive}
-            routes={dashboardRoutes}
+            routes={route}
             handleDrawerToggle={this.handleDrawerToggle}
             {...rest}
           />
         <div className={classes.content}>
             <div className={classes.container}>
-             {/* <Switch>
-               <ProtectedRoute path={`${match.path}`+"/summary"} component/>
-             </Switch> */}
-             {/* <Gridd /> */}
-              <Profile />
+              {/* <Profile dash={data.dashUser}/> */}
+              {display}
             </div>
         </div>
         </div>

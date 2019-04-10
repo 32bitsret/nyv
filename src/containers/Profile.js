@@ -25,16 +25,50 @@ import avatar from "assets/img/faces/marc.jpg";
 
 class UserProfile extends Component {
   state = {
-    name:""
+    first_name:"",
+    other_name:"",
+    enable: true,
+    editing: this.onButtonClick
   }
 
   componentDidMount(){
     //getUserData();
   }
 
+  onchange = (e) => {
+    e.preventDefault()
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  onButtonClick = (e) => {
+    e.preventDefault()
+    this.setState({editing: !this.state.editing})
+  }
+
   render(){
-  const { classes } = this.props;
-  console.log("INSIDE PROFILE")
+    const { classes } = this.props;
+    console.log("INSIDE  PROFILE", this.state.editing)
+    console.log("INSIDE PROFILE", this.state.other_name)
+    
+    const butt = this.state.editing ? 
+    (
+      <Button 
+        color="success" 
+        className="UserProfile-updateProfileButton-330"
+        onClick={this.onButtonClick}
+      >
+        Save Profile
+      </Button>
+      ) : (
+      <Button 
+        color="success" 
+        className="UserProfile-updateProfileButton-330"
+        onClick={this.onButtonClick}
+      >
+        Update Profile
+      </Button>    
+    )
+
   return (
     <div>
       <GridContainer>
@@ -50,28 +84,46 @@ class UserProfile extends Component {
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={5}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Company (disabled)"
-                    id="company-disabled"
+                    labelText="First Name"
+                    id="first_name"
                     formControlProps={{
                       fullWidth: true
                     }}
                     inputProps={{
-                      disabled: false
+                      name:"first_name",
+                      value: this.state.first_name,
+                      disabled: !this.state.enable,
+                      onChange: this.onchange
                     }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Username"
-                    id="username"
+                    labelText="other_name"
+                    id="other_name"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      name:"other_name",
+                      value: this.state.other_name,
+                      disabled: !this.state.enable,
+                      onChange: this.onchange
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Email address"
+                    id="email-address"
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="Email address"
                     id="email-address"
@@ -82,7 +134,7 @@ class UserProfile extends Component {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="First Name"
                     id="first-name"
@@ -91,7 +143,31 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Last Name"
+                    id="last-name"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      value: this.state.name
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Last Name"
+                    id="last-name"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      value: this.state.name
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="Last Name"
                     id="last-name"
@@ -105,7 +181,7 @@ class UserProfile extends Component {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="City"
                     id="city"
@@ -114,7 +190,7 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="Country"
                     id="country"
@@ -123,7 +199,16 @@ class UserProfile extends Component {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Postal Code"
+                    id="postal-code"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
                     labelText="Postal Code"
                     id="postal-code"
@@ -133,25 +218,7 @@ class UserProfile extends Component {
                   />
                 </GridItem>
               </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
-                  <CustomInput
-                    labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                    id="about-me"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5,
-                    }}
-                  />
-                </GridItem>
-              </GridContainer>
-              <Button color="success" className={classes.updateProfileButton}>
-                Update Profile
-              </Button>
+               {butt}
               <Clearfix />
             </CardBody>
           </Card>
@@ -166,13 +233,8 @@ class UserProfile extends Component {
             <CardBody profile>
               <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
               <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <p className={classes.description}>
-                Don't be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
-              </p>
               <Button color="success" round>
-                Follow
+                Upload
               </Button>
             </CardBody>
           </Card>

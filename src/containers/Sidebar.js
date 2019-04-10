@@ -25,10 +25,6 @@ import avatar from "assets/img/faces/marc.jpg";
 
 var ps;
 
-// We've created this component so we can have a ref to the wrapper of the links that appears in our sidebar.
-// This was necessary so that we could initialize PerfectScrollbar on the links.
-// There might be something with the Hidden component from material-ui, and we didn't have access to
-// the links, and couldn't initialize the plugin.
 class SidebarWrapper extends React.Component {
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -48,7 +44,7 @@ class SidebarWrapper extends React.Component {
     return (
       <div className={className} ref="sidebarWrapper">
         {user}
-        {/* {headerLinks} */}
+        {headerLinks}
         {links}
       </div>
     );
@@ -65,7 +61,9 @@ class Sidebar extends React.Component {
       openTables: this.activeRoute("/tables"),
       openMaps: this.activeRoute("/maps"),
       openPages: this.activeRoute("-page"),
-      miniActive: true
+      miniActive: true,
+      isAdmin: true,
+      name:"church"
     };
     this.activeRoute.bind(this);
   }
@@ -146,79 +144,16 @@ class Sidebar extends React.Component {
         </div>
         <List className={classes.list}>
           <ListItem className={classes.item + " " + classes.userItem}>
-            <NavLink
-              to={"#"}
-              className={classes.itemLink + " " + classes.userCollapseButton}
-              onClick={() => this.openCollapse("openAvatar")}
-            >
               <ListItemText
-                primary="Tania Andrew"
-                // secondary={
-                //   <b
-                //     className={
-                //       caret +
-                //       " " +
-                //       classes.userCaret +
-                //       " " +
-                //       (this.state.openAvatar ? classes.caretActive : "")
-                //     }
-                //   />
-                // }
+                primary={this.state.name}
                 disableTypography={true}
                 className={itemText + " " + classes.userItemText}
               />
-            </NavLink>
-            {/* <Collapse in={this.state.openAvatar} unmountOnExit>
-              <List className={classes.list + " " + classes.collapseList}>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="/dashboard/profile"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <ListItemText
-                      primary= "My Profile"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="/edit_profile"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <ListItemText
-                      primary = "Edit Profile"
-                    
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="#"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <ListItemText
-                      primary="Settings"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-              </List>
-            </Collapse> */}
           </ListItem>
         </List>
       </div>
     );
+    
     var links = (
       <List className={classes.list}>
         {routes.map((prop, key) => {
@@ -249,7 +184,7 @@ class Sidebar extends React.Component {
             });
           return (
             <ListItem key={key} className={classes.item}>
-              <NavLink to={prop.path} className={navLinkClasses}>
+              <a href={prop.path} className={navLinkClasses}>
                 <ListItemIcon className={itemIcon}>
                   {typeof prop.icon === "string" ? (
                     <Icon>{prop.icon}</Icon>
@@ -262,7 +197,7 @@ class Sidebar extends React.Component {
                   disableTypography={true}
                   className={itemText}
                 />
-              </NavLink>
+              </a>
             </ListItem>
           );
         })}

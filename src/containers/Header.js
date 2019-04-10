@@ -36,6 +36,7 @@ function Header({ ...props }) {
       }
       return null;
     });
+
     if(name){
       return name;
     } else {
@@ -43,6 +44,7 @@ function Header({ ...props }) {
     }
   }
   const { classes, color, rtlActive } = props;
+ 
   const appBarClasses = cx({
     [" " + classes[color]]: color
   });
@@ -51,7 +53,8 @@ function Header({ ...props }) {
     " " +
     cx({
       [classes.sidebarMinimizeRTL]: rtlActive
-    });
+  });
+  
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
@@ -85,7 +88,7 @@ function Header({ ...props }) {
           </Button>
         </div>
         <Hidden smDown implementation="css">
-          <HeaderLinks rtlActive={rtlActive} />
+          <HeaderLinks  />
         </Hidden>
         <Hidden mdUp implementation="css">
           <Button

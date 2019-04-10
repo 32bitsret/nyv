@@ -83,7 +83,7 @@ class HeaderLinks extends React.Component {
             className={classes.headerLinksSvg + " " + classes.searchIcon}
           />
         </Button>
-        <Button
+        {/* <Button
           color="transparent"
           simple
           aria-label="Dashboard"
@@ -107,7 +107,7 @@ class HeaderLinks extends React.Component {
               {rtlActive ? "لوحة القيادة" : "Dashboard"}
             </span>
           </Hidden>
-        </Button>
+        </Button> */}
         <div className={managerClasses}>
           <Button
             color="transparent"
