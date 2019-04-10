@@ -16,13 +16,13 @@ import Footer from "./Footer";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import Gridd from './Gridd'
 import dashboardRoutes from "routes/dashboard.jsx";
-
+import ProtectedRoute from '../utils/ProtectedRoute'
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
 
 import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo-white.svg";
 import data from '../variables/data'
-
+import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
 
 var ps;
@@ -131,8 +131,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { classes, ...rest } = this.props;
-    console.log(classes)
+    const { classes, match, ...rest } = this.props;
+    console.log(`${match.path}`+"/home")
     console.log(classes)
     const mainPanel =
       classes.mainPanel +
@@ -166,7 +166,11 @@ class Dashboard extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-             <Gridd/>
+             <Switch>
+               <ProtectedRoute path={`${match.path}`+"/summary"} component/>
+             </Switch>
+             {/* <Gridd /> */}
+              <Profile />
             </div>
         </div>
         </div>

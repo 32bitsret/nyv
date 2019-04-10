@@ -47,9 +47,12 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 
 class Gridd extends Component {
-    state = {
-        value: 0
-      };
+  constructor(props){
+    super(props)
+    this.state = {
+      value: 0
+    }
+  }
     handleChange = (event, value) => {
         this.setState({ value });
     };

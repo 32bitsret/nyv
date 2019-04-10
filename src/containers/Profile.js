@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -23,15 +23,23 @@ import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/use
 
 import avatar from "assets/img/faces/marc.jpg";
 
-function UserProfile(props) {
-  const { classes } = props;
+class UserProfile extends Component {
+  state = {
+
+  }
+  componentDidMount(){
+
+  }
+
+  render(){
+  const { classes } = this.props;
   return (
     <div>
       <GridContainer>
         <GridItem xs={12} sm={12} md={8}>
           <Card>
-            <CardHeader color="rose" icon>
-              <CardIcon color="rose">
+            <CardHeader color="success" icon>
+              <CardIcon color="success">
                 <PermIdentity />
               </CardIcon>
               <h4 className={classes.cardIconTitle}>
@@ -136,7 +144,7 @@ function UserProfile(props) {
                   />
                 </GridItem>
               </GridContainer>
-              <Button color="rose" className={classes.updateProfileButton}>
+              <Button color="success" className={classes.updateProfileButton}>
                 Update Profile
               </Button>
               <Clearfix />
@@ -158,7 +166,7 @@ function UserProfile(props) {
                 human foundation in truth And I love you like Kanye loves Kanye
                 I love Rick Owens’ bed design but the back is...
               </p>
-              <Button color="rose" round>
+              <Button color="success" round>
                 Follow
               </Button>
             </CardBody>
@@ -167,6 +175,7 @@ function UserProfile(props) {
       </GridContainer>
     </div>
   );
+  }
 }
 
 export default withStyles(userProfileStyles)(UserProfile);
