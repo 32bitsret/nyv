@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
     this.state = {
       mobileOpen: false,
       miniActive: false,
-      isAdmin: true
+      isAdmin: false
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
