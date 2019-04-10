@@ -13,14 +13,14 @@ import Image from "@material-ui/icons/Image";
 // core components
 import Header from "./Header";
 import Footer from "./Footer";
-import Sidebar from "components/Sidebar/Sidebar.jsx";
+import Sidebar from "./Sidebar";
 import Gridd from './Gridd'
 import dashboardRoutes from "routes/dashboard.jsx";
 import ProtectedRoute from '../utils/ProtectedRoute'
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
 
 import image from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/logo-white.svg";
+import logo from "assets/img/mask.png";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
@@ -41,12 +41,6 @@ const dash = [
   name: "Home",
   state: "openPages",
   icon: Image,
-  views:  {
-    path: "/timeline-page",
-    name: "Timeline Page",
-    mini: "TP",
-    component: TimelinePage
-  }
 },
 {
     collapse: false,
@@ -133,7 +127,7 @@ class Dashboard extends React.Component {
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log(classes)
+    console.log("DASHBOARD",classes)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -148,10 +142,10 @@ class Dashboard extends React.Component {
           routes={dash}
           logoText={"PYC"}
           logo={logo}
-          image={image}
+          // image={image}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
-          color="blue"
+          color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
           {...rest}
@@ -166,9 +160,9 @@ class Dashboard extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-             <Switch>
+             {/* <Switch>
                <ProtectedRoute path={`${match.path}`+"/summary"} component/>
-             </Switch>
+             </Switch> */}
              {/* <Gridd /> */}
               <Profile />
             </div>

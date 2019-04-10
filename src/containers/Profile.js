@@ -25,14 +25,16 @@ import avatar from "assets/img/faces/marc.jpg";
 
 class UserProfile extends Component {
   state = {
-
+    name:""
   }
-  componentDidMount(){
 
+  componentDidMount(){
+    //getUserData();
   }
 
   render(){
   const { classes } = this.props;
+  console.log("INSIDE PROFILE")
   return (
     <div>
       <GridContainer>
@@ -43,7 +45,7 @@ class UserProfile extends Component {
                 <PermIdentity />
               </CardIcon>
               <h4 className={classes.cardIconTitle}>
-                Edit Profile - <small>Complete your profile</small>
+                Profile - <small>Complete your profile</small>
               </h4>
             </CardHeader>
             <CardBody>
@@ -56,7 +58,7 @@ class UserProfile extends Component {
                       fullWidth: true
                     }}
                     inputProps={{
-                      disabled: true
+                      disabled: false
                     }}
                   />
                 </GridItem>
@@ -95,6 +97,9 @@ class UserProfile extends Component {
                     id="last-name"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      value: this.state.name
                     }}
                   />
                 </GridItem>
@@ -139,7 +144,7 @@ class UserProfile extends Component {
                     }}
                     inputProps={{
                       multiline: true,
-                      rows: 5
+                      rows: 5,
                     }}
                   />
                 </GridItem>

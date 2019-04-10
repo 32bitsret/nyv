@@ -17,7 +17,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
 
 // core components
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
+import HeaderLinks from "./HeaderLinks";
 
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
 
@@ -47,9 +47,9 @@ class SidebarWrapper extends React.Component {
     const { className, user, headerLinks, links } = this.props;
     return (
       <div className={className} ref="sidebarWrapper">
-        {/* {user}
-        {headerLinks}
-        {links} */}
+        {user}
+        {/* {headerLinks} */}
+        {links}
       </div>
     );
   }
@@ -69,6 +69,9 @@ class Sidebar extends React.Component {
     };
     this.activeRoute.bind(this);
   }
+  componentDidMount(){
+    console.log("IN SIDE SIDEBAR")
+  }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
@@ -78,6 +81,7 @@ class Sidebar extends React.Component {
     st[collapse] = !this.state[collapse];
     this.setState(st);
   }
+
   render() {
     console.log("SIDEBAR", this.state)
     const {
@@ -140,7 +144,7 @@ class Sidebar extends React.Component {
         <div className={photo}>
           <img src={avatar} className={classes.avatarImg} alt="..." />
         </div>
-        {/* <List className={classes.list}>
+        <List className={classes.list}>
           <ListItem className={classes.item + " " + classes.userItem}>
             <NavLink
               to={"#"}
@@ -149,26 +153,26 @@ class Sidebar extends React.Component {
             >
               <ListItemText
                 primary="Tania Andrew"
-                secondary={
-                  <b
-                    className={
-                      caret +
-                      " " +
-                      classes.userCaret +
-                      " " +
-                      (this.state.openAvatar ? classes.caretActive : "")
-                    }
-                  />
-                }
+                // secondary={
+                //   <b
+                //     className={
+                //       caret +
+                //       " " +
+                //       classes.userCaret +
+                //       " " +
+                //       (this.state.openAvatar ? classes.caretActive : "")
+                //     }
+                //   />
+                // }
                 disableTypography={true}
                 className={itemText + " " + classes.userItemText}
               />
             </NavLink>
-            <Collapse in={this.state.openAvatar} unmountOnExit>
+            {/* <Collapse in={this.state.openAvatar} unmountOnExit>
               <List className={classes.list + " " + classes.collapseList}>
                 <ListItem className={classes.collapseItem}>
                   <NavLink
-                    to="/profile"
+                    to="/dashboard/profile"
                     className={
                       classes.itemLink + " " + classes.userCollapseLinks
                     }
@@ -210,9 +214,9 @@ class Sidebar extends React.Component {
                   </NavLink>
                 </ListItem>
               </List>
-            </Collapse>
+            </Collapse> */}
           </ListItem>
-        </List> */}
+        </List>
       </div>
     );
     var links = (
@@ -319,7 +323,7 @@ class Sidebar extends React.Component {
         <Hidden mdUp implementation="css">
           <Drawer
             variant="temporary"
-            anchor={rtlActive ? "left" : "right"}
+            anchor="right"
             open={this.props.open}
             classes={{
               paper: drawerPaper + " " + classes[bgColor + "Background"]
