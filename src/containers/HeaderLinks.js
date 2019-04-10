@@ -17,6 +17,7 @@ import Popper from "@material-ui/core/Popper";
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
 import Dashboard from "@material-ui/icons/Dashboard";
+import SettingsPower from "@material-ui/icons/SettingsPower";
 import Search from "@material-ui/icons/Search";
 
 // core components
@@ -213,7 +214,7 @@ class HeaderLinks extends React.Component {
             label: rtlActive ? classes.labelRTL : ""
           }}
         >
-          <Person
+          <SettingsPower
             className={
               classes.headerLinksSvg +
               " " +
