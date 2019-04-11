@@ -17,7 +17,7 @@ const user = [
         course:"Android Engineering",
         institution:" Maxi University",
         yearOfGrad:"2000",
-        userRole:"user",
+        userRole:"Admin",
         id:"1234567890"
     }
 ]
