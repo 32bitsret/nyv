@@ -53,14 +53,14 @@ const dashUser = [
     state: "openPages",
     icon: Image
   },
-  {
-    collapse: false,
-    path: "/messages",
-    name: "Messages",
-    state: "openPages",
-    icon: Image,
-   // views: pages
-  }
+  // {
+  //   collapse: false,
+  //   path: "/messages",
+  //   name: "Messages",
+  //   state: "openPages",
+  //   icon: Image,
+  //  // views: pages
+  // }
 ]
 
 export default {

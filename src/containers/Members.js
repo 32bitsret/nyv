@@ -22,6 +22,8 @@ import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
 
+import User from '../variables/UserData'
+
 var ps;
 
 class Members extends React.Component {
@@ -102,6 +104,7 @@ class Members extends React.Component {
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
+          userData={User}
           {...rest}
         />
         <div className={mainPanel} ref="mainPanel">

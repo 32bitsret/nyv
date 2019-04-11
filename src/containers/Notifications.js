@@ -24,6 +24,8 @@ import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
 import Tablex from '../views/Tables/ReactTables'
 import Snackbar from "components/Snackbar/Snackbar.jsx";
 import AddAlert from "@material-ui/icons/AddAlert";
+import NotificationItem from './notificationItem'
+import User from '../variables/UserData'
 
 var ps;
 
@@ -105,6 +107,7 @@ class Notifications extends React.Component {
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
+          userData={User}
           {...rest}
         />
         <div className={mainPanel} ref="mainPanel">
@@ -116,8 +119,7 @@ class Notifications extends React.Component {
             {...rest}
           />
         <div className={classes.content}>
-            <div className={classes.container}>
-               {/* {display} */}
+            {/* <div className={classes.container}>
                <SnackbarContent
                     message={
                       'INFO - This is a regular notification made with color="info"'
@@ -134,8 +136,8 @@ class Notifications extends React.Component {
                     closeNotification={() => this.setState({ tl: false })}
                     close
                     />
-            </div>
-        </div>
+            </div> */}      
+          </div>
         </div>
       </div>
     );

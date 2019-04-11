@@ -22,6 +22,9 @@ import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
 
+
+import User from '../variables/UserData'
+
 var ps;
 
 class Dashboard extends React.Component {
@@ -42,6 +45,7 @@ class Dashboard extends React.Component {
       });
       document.body.style.overflow = "hidden";
     }
+    this.setState({isAdmin: this.checkUserRole(User)[0]})
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
@@ -75,10 +79,24 @@ class Dashboard extends React.Component {
     }
   }
 
+  checkUserRole = User => {
+    console.log("CONSOLE", User)
+    let status = User.map(user => {
+      if(user.userRole === "Admin" || user.userRole === "admin"){
+        return true
+      }
+      else if(user.userRole === "User" || user.userRole === "user" ){
+        return false
+      }
+    })
+    console.log("CONSOLE STATUS", status)
+    return status
+  }
+
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("DASHBOARD",classes)
+    console.log("DASHBOARD",this.state.isAdmin)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -89,7 +107,7 @@ class Dashboard extends React.Component {
       });
     
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
-    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={data.dashUser}/>)
+    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={User}/>)
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -102,6 +120,7 @@ class Dashboard extends React.Component {
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
+          userData={User}
           {...rest}
         />
         <div className={mainPanel} ref="mainPanel">
@@ -114,7 +133,6 @@ class Dashboard extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              {/* <Profile dash={data.dashUser}/> */}
               {display}
             </div>
         </div>

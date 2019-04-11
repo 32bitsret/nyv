@@ -225,7 +225,7 @@ class HeaderLinks extends React.Component {
           />
           <Hidden mdUp implementation="css">
             <span className={classes.linkText}>
-              {rtlActive ? "الملف الشخصي" : "Profile"}
+               Logout
             </span>
           </Hidden>
         </Button>

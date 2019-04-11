@@ -2,10 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-import { NavLink } from "react-router-dom";
 import cx from "classnames";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -15,16 +12,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Hidden from "@material-ui/core/Hidden";
 import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
-
-// core components
 import HeaderLinks from "./HeaderLinks";
-
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
-
 import avatar from "assets/img/faces/marc.jpg";
 
-var ps;
 
+var ps;
 class SidebarWrapper extends React.Component {
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -63,7 +56,8 @@ class Sidebar extends React.Component {
       openPages: this.activeRoute("-page"),
       miniActive: true,
       isAdmin: true,
-      name:"church"
+      name:"church",
+      user:{}
     };
     this.activeRoute.bind(this);
   }
@@ -80,8 +74,11 @@ class Sidebar extends React.Component {
     this.setState(st);
   }
 
+  // extractUser = (arr) => {
+  //   this.setState({})
+  // }
   render() {
-    console.log("SIDEBAR", this.state)
+    console.log("SIDEBAR", this.props)
     const {
       classes,
       color,
@@ -90,8 +87,11 @@ class Sidebar extends React.Component {
       logoText,
       routes,
       bgColor,
-      rtlActive
+      rtlActive,
+      userData
     } = this.props;
+
+    // this.extractUser(user)
     const itemText =
       classes.itemText +
       " " +
@@ -137,22 +137,39 @@ class Sidebar extends React.Component {
       });
 
       
-    var user = (
-      <div className={userWrapperClass}>
-        <div className={photo}>
-          <img src={avatar} className={classes.avatarImg} alt="..." />
-        </div>
-        <List className={classes.list}>
-          <ListItem className={classes.item + " " + classes.userItem}>
-              <ListItemText
-                primary={this.state.name}
-                disableTypography={true}
-                className={itemText + " " + classes.userItemText}
-              />
-          </ListItem>
-        </List>
+    // var user = (
+    //   <div className={userWrapperClass}>
+    //     <div className={photo}>
+    //       <img src={user.avatar} className={classes.avatarImg} alt="..." />
+    //     </div>
+    //     <List className={classes.list}>
+    //       <ListItem className={classes.item + " " + classes.userItem}>
+    //           <ListItemText
+    //             primary={user.name + '' + user.otherNames}
+    //             disableTypography={true}
+    //             className={itemText + " " + classes.userItemText}
+    //           />
+    //       </ListItem>
+    //     </List>
+    //   </div>
+    // );
+
+    const user = userData.map( (useR, key )=> (
+      <div className={userWrapperClass} key={key}>
+      <div className={photo}>
+        <img src={useR.avatar} className={classes.avatarImg} alt="..." />
       </div>
-    );
+      <List className={classes.list}>
+        <ListItem className={classes.item + " " + classes.userItem}>
+            <ListItemText
+              primary={useR.name+ ' ' + useR.otherNames}
+              disableTypography={true}
+              className={itemText + " " + classes.userItemText}
+            />
+        </ListItem>
+      </List>
+    </div>
+    ))
     
     var links = (
       <List className={classes.list}>
@@ -333,7 +350,8 @@ Sidebar.propTypes = {
   logo: PropTypes.string,
   logoText: PropTypes.string,
   image: PropTypes.string,
-  routes: PropTypes.arrayOf(PropTypes.object)
+  routes: PropTypes.arrayOf(PropTypes.object),
+  userData: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withStyles(sidebarStyle)(Sidebar);
