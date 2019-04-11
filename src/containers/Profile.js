@@ -1,13 +1,7 @@
 import React, {Component} from "react";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
-
-// @material-ui/icons
 import PermIdentity from "@material-ui/icons/PermIdentity";
-
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -20,6 +14,7 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardAvatar from "components/Card/CardAvatar.jsx";
 import ImageUpload from "components/CustomUpload/ImageUpload.jsx";
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
+import { connect } from "react-redux"
 
 class UserProfile extends Component {
   state = {
@@ -27,7 +22,7 @@ class UserProfile extends Component {
     other_name:"",
     disable: true,
     editing: this.onButtonClick,
-    isLoading: false
+    isLoading:  false
   }
 
   componentDidMount(){
@@ -43,7 +38,7 @@ class UserProfile extends Component {
     e.preventDefault()
     this.setState({
       editing: !this.state.editing,
-      disable: !this.state.editing
+      disable: this.state.editing
     })
   }
 
@@ -223,7 +218,7 @@ class UserProfile extends Component {
               </Card>
             </GridItem>
           )
-    const    profile = this.props.dash.map((prof, key) => (
+    const  profile = this.props.dash.map((prof, key) => (
           <GridContainer>
           {profilePanel(prof)}
         <GridItem xs={12} sm={12} md={4}>
@@ -253,7 +248,12 @@ class UserProfile extends Component {
   }
 }
 
-export default withStyles(userProfileStyles)(UserProfile);
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps, {})(withStyles(userProfileStyles)(UserProfile));
 
 
 /**

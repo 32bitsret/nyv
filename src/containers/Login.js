@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-
+import {connect} from "react-redux"
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
@@ -143,4 +143,9 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(loginPageStyle)(Login);
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps, {})(withStyles(loginPageStyle)(Login));

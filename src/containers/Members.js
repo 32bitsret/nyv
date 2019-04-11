@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-
+import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -131,4 +131,10 @@ Members.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(appStyle)(Members);
+const mapStateToProps = state => {
+  return{
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {})(withStyles(appStyle)(Members));

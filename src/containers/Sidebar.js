@@ -14,8 +14,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
 import HeaderLinks from "./HeaderLinks";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
-import avatar from "assets/img/faces/marc.jpg";
-
+import { connect } from "react-redux"
 
 var ps;
 class SidebarWrapper extends React.Component {
@@ -354,4 +353,9 @@ Sidebar.propTypes = {
   userData: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default withStyles(sidebarStyle)(Sidebar);
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps, {})(withStyles(sidebarStyle)(Sidebar));

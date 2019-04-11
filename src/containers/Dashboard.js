@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-
+import { connect} from 'react-redux'
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -96,7 +96,7 @@ class Dashboard extends React.Component {
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("DASHBOARD",this.state.isAdmin)
+    console.log("DASHBOARD",this.props)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -146,4 +146,10 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(appStyle)(Dashboard);
+const mapStateToProps = (state) => {
+  return{
+      ...state
+  }
+}
+
+export default connect(mapStateToProps,{})(withStyles(appStyle)(Dashboard));

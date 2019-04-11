@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Hidden from "@material-ui/core/Hidden";
-
+import { connect } from "react-redux"
 // material-ui icons
 import Menu from "@material-ui/icons/Menu";
 import MoreVert from "@material-ui/icons/MoreVert";
@@ -21,6 +21,7 @@ import headerStyle from "assets/jss/material-dashboard-pro-react/components/head
 
 function Header({ ...props }) {
   function makeBrand() {
+    console.log("HEADER", props)
     var name;
     props.routes.map((prop, key) => {
       if (prop.collapse) {
@@ -112,4 +113,9 @@ Header.propTypes = {
   rtlActive: PropTypes.bool
 };
 
-export default withStyles(headerStyle)(Header);
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(null, {})(withStyles(headerStyle)(Header));

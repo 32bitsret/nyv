@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@material-ui/core/Icon";
-
+import { connect } from "react-redux"
 import Store from "@material-ui/icons/Store";
 // import InfoOutline from "@material-ui/icons/InfoOutline";
 import Warning from "@material-ui/icons/Warning";
@@ -55,8 +55,8 @@ class Gridd extends Component {
         <GridContainer>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card >
-              <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
                   <Icon>content_copy</Icon>
                 </CardIcon>
                 <h1 className={classes.cardCategory}>EDUCATION</h1>
@@ -64,6 +64,11 @@ class Gridd extends Component {
                   Category
                 </h3>
               </CardHeader>
+              <CardBody>
+                <div >
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="/dashboard/education-summary" >
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -87,6 +92,11 @@ class Gridd extends Component {
                 <p className={classes.cardCategory}>GENDER</p>
                 <h3 className={classes.cardTitle}>Category</h3>
               </CardHeader>
+              <CardBody>
+                <div>
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -101,13 +111,18 @@ class Gridd extends Component {
           </GridItem>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card>
-              <CardHeader color="danger" stats icon>
-                <CardIcon color="danger">
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
                   <Icon>info_outline</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>EMPLOYMENT STATUS</p>
                 <h3 className={classes.cardTitle}>Category</h3>
               </CardHeader>
+              <CardBody>
+                <div >
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -122,13 +137,18 @@ class Gridd extends Component {
           </GridItem>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
                   <i className="fab fa-twitter" />
                 </CardIcon>
                 <p className={classes.cardCategory}>APPLICANTS</p>
                 <h3 className={classes.cardTitle}>Category</h3>
               </CardHeader>
+              <CardBody>
+                <div >
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -143,13 +163,19 @@ class Gridd extends Component {
           </GridItem>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
                   <i className="fab fa-twitter" />
                 </CardIcon>
+
                 <p className={classes.cardCategory}>APPLICANTS</p>
                 <h3 className={classes.cardTitle}>Category</h3>
               </CardHeader>
+              <CardBody>
+                <div>
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="#pablo" >
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -164,13 +190,18 @@ class Gridd extends Component {
           </GridItem>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
                   <i className="fab fa-twitter" />
                 </CardIcon>
-                <p className={classes.cardCategory}>APPLICANTS</p>
-                <h3 className={classes.cardTitle}>Category</h3>
+                <h1 className={classes.cardCategory}>APPLICANTS</h1>
+                <h4 className={classes.cardTitle}>Category</h4>
               </CardHeader>
+              <CardBody>
+                <div >
+                  <h1>431</h1>
+                </div>
+              </CardBody>
               <a href="#pablo" >
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -189,4 +220,10 @@ class Gridd extends Component {
   }
 }
 
-export default withStyles(dashboardStyle)(Gridd)
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {})(withStyles(dashboardStyle)(Gridd))

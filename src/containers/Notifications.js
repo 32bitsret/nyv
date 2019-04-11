@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-
+import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -83,7 +83,7 @@ class Notifications extends React.Component {
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("Notifications",classes)
+    console.log("Notifications",this.props)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -148,4 +148,9 @@ Notifications.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(appStyle)(Notifications);
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps, {})(withStyles(appStyle)(Notifications));
