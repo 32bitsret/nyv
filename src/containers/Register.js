@@ -6,7 +6,7 @@ import { connect} from 'react-redux'
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-
+import { withRouter} from "react-router-dom"
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
@@ -31,10 +31,12 @@ class LoginPage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      first_name:'',
+      surname:'',
       email: '',
       password: '',
-      confirm_password:''
+      confirm_password:'',
+      othernames:'',
+      phone:''
     };
   }
   componentDidMount() {
@@ -59,10 +61,12 @@ class LoginPage extends React.Component {
     e.preventDefault();
 
     const data = {
-      name: this.state.first_name,
-      email:this.state.email,
-      password:this.state.password,
-      password2:this.state.confirm_password,
+      surname: "church",//this.state.surname,
+      email: "church@yahoo.com",//this.state.email,
+      password:"123456789",//this.state.password,
+      phone: "08102345671",//this.state.phone,
+      othernames:"Lali"// ,//this.state.othernames
+      // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
     }
     console.log("DATA", data)
     this.props.registerUser(data)
@@ -105,7 +109,7 @@ class LoginPage extends React.Component {
                     }}
                     inputProps={{
                       type:"text",
-                      name: "first_name",
+                      name: "surname",
                       onChange: this.onChange,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -149,6 +153,25 @@ class LoginPage extends React.Component {
                     }}
                   />
                   <CustomInput
+                    labelText="Phone number"
+                    id="phone"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"text",
+                      name: "password",
+                      onChange: this.onChange,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Icon className={classes.inputAdornmentIcon}>
+                            lock_outline
+                          </Icon>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                 <CustomInput
                     labelText="Password"
                     id="password"
                     formControlProps={{
@@ -213,4 +236,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {registerUser})(withStyles(loginPageStyle)(LoginPage));
+export default connect(mapStateToProps, {registerUser})(withRouter(withStyles(loginPageStyle)(LoginPage)));

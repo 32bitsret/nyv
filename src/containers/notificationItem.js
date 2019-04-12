@@ -116,7 +116,8 @@ class Notifications extends React.Component {
                           Notifications Places
                         </h4>
                         <p className={classes.cardSubtitle}>
-                          Click to view notifications
+                          Cl
+// @material-ui/core componentsick to view notifications
                         </p>
                       </div>
                     </GridItem>
@@ -146,7 +147,7 @@ class Notifications extends React.Component {
                         color="primary"
                         onClick={() => this.showNotification("tc")}
                       >
-                        Top Center
+                         Top Center
                       </Button>
                       <Snackbar
                         place="tc"

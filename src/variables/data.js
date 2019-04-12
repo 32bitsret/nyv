@@ -3,6 +3,8 @@ import Dashboard from "@material-ui/icons/Dashboard"
 import Group from "@material-ui/icons/Group"
 import Email from "@material-ui/icons/Email"
 import Notifications from "@material-ui/icons/Notifications"
+import Settings from "@material-ui/icons/Settings"
+
 
 const dashAdmin = [
   {
@@ -24,20 +26,14 @@ const dashAdmin = [
     state: "openPages",
     icon: Email
   },
-  // {
-  //   collapse: false,
-  //   path: "/filter",
-  //   name: "Filter Members",
-  //   state: "openPages",
-  //   icon: Image
-  // },
-  // {
-  //   collapse: false,
-  //   path: "/filter",
-  //   name: "Members",
-  //   state: "openPages",
-  //   icon: Image
-  // }
+  {
+    collapse: false,
+    path: "/settings",
+    name: "Settings",
+    state: "openPages",
+    icon: Settings
+  },
+ 
 ]
 
 

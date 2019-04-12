@@ -1,44 +1,55 @@
 import axios from 'axios';
 //import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-
+import {loginURL, registerURL} from "../../api/apiURL"
 import { TEST_REGISTER, GET_ERRORS, SET_CURRENT_USER } from '../Constants';
-
+//import fetch from "fetch"
 // Register User
-export const registerUser = (userData, history) => dispatch => {
-  axios
-    .post('/api/users/register', userData)
-    .then(res => history.push('/login'))
-    .catch(err =>
-      dispatch({
-        type: TEST_REGISTER,
-        payload: 'err.response.data'
-      })
-    );
+export const registerUser = (userData) => dispatch => {
+  console.log("DATA", userData)
+  return fetch (registerURL , {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // 'x-access-token' : token,
+    },
+    body : JSON.stringify(userData)
+    })
+    .then((res) => {
+      alert("FROM REGISTRATION ACTION")
+      return res.json();
+
+      console.log()
+    })
+    .catch((error) => {
+      alert("FATAL FAILURE")
+      return error;
+    });
+ // history.push('/login')
 };
 
 // Login - Get User Token
-export const loginUser = userData => dispatch => {
-  axios
-    .post('/api/users/login', userData)
-    .then(res => {
-      // Save to localStorage
-      const { token } = res.data;
-      // Set token to ls
-      localStorage.setItem('jwtToken', token);
-      // Set token to Auth header
-    //   setAuthToken(token);
-      // Decode token to get user data
-      const decoded = jwt_decode(token);
-      // Set current user
-      dispatch(setCurrentUser(decoded));
+export const loginUser = (userData) => dispatch => {
+  const result = fetch (loginURL , {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      // 'x-access-token' : token,
+    },
+    body : JSON.stringify(userData)
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .then((res) => {
+      alert("FROM LOGIN ACTION")
+      return res.json();
+      console.log("FROM INSDE FETCH")
+    })
+    .catch((err) => {
+      alert("FATAL FAILURE")
+      return err;
+    });
+
+    console.log("AFTER FETCH", result)
+ 
 };
 
 // Set logged in user
@@ -50,11 +61,12 @@ export const setCurrentUser = decoded => {
 };
 
 // Log user out
-export const logoutUser = () => dispatch => {
+export const logoutUser = (history) => dispatch => {
   // Remove token from localStorage
-  localStorage.removeItem('jwtToken');
+  // localStorage.removeItem('jwtToken');
   // Remove auth header for future requests
   // Set current user to {} which will set isAuthenticated to false
   //   setAuthToken(false);
-  dispatch(setCurrentUser({}));
+  // dispatch(setCurrentUser({}));
+  history.push("/login")
 };

@@ -2,7 +2,7 @@ import isEmpty from  '../../utils/isEmpty'
 import { SET_CURRENT_USER ,TEST_REGISTER} from '../Constants';
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: {}
 };
 

@@ -19,19 +19,57 @@ import Messages from './containers/Messages'
 import Notifications from './containers/Notifications'
 const hist = createBrowserHistory();
 
+
+
 class App extends Component {
   render() {
     return (
         <Provider store={store}>
             <Router history={hist}>
                 <div>
-                    <Route exact path="/" component={Home}/>
-                    <Route exact path="/members" component={Members}/>
-                    <Route exact path="/messages" component={Messages}/>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/notifications" component={Notifications}/>
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/dashboard" component={Dashboard}/>
+                    <Route 
+                        exact 
+                        path="/" 
+                        component={Home}
+                    />
+                    <Route
+                         exact 
+                         path="/login" 
+                         component={Login}
+                    />
+                    <Route 
+                        exact 
+                        path="/register" 
+                        component={Register} 
+                    />
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/members" 
+                            component={Members}
+                        />
+                    </Switch>
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/messages" 
+                            component={Messages}
+                        />
+                    </Switch>
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/notifications" 
+                            component={Notifications}
+                        />                    
+                    </Switch>
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/dashboard" 
+                            component={Dashboard}
+                        />
+                    </Switch>
                 </div>
             </Router>
         </Provider>

@@ -35,12 +35,12 @@ const styles = {
   }
 };
 
-class Panels extends React.Component {
+class Summary extends React.Component {
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <GridContainer>
+        {/* <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <Card>
               <CardHeader>
@@ -292,7 +292,7 @@ class Panels extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-        </GridContainer>
+        </GridContainer> */}
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12}>
             <h3 className={classes.pageSubcategoriesTitle}>
@@ -413,4 +413,4 @@ class Panels extends React.Component {
   }
 }
 
-export default withStyles(styles)(Panels);
+export default withStyles(styles)(Summary);

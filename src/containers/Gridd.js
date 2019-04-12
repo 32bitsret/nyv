@@ -146,7 +146,7 @@ class Gridd extends Component {
               </CardHeader>
               <CardBody>
                 <div >
-                  <h1>431</h1>
+                  <h1>431 people</h1>
                 </div>
               </CardBody>
               <a href="#pablo">

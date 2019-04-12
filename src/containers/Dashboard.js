@@ -95,8 +95,8 @@ class Dashboard extends React.Component {
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("DASHBOARD",this.props)
+    // console.log(`${match.path}`+"/home")
+    // console.log("DASHBOARD",this.props)
     const mainPanel =
       classes.mainPanel +
       " " +

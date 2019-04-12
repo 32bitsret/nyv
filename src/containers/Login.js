@@ -5,13 +5,9 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-import {connect} from "react-redux"
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
-// import LockOutline from "@material-ui/icons/LockOutline";
-
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
@@ -20,9 +16,11 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
+import { connect } from "react-redux"
 import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
+import { loginUser } from  "../redux/actions/authActions"
+import { withRouter } from "react-router-dom"
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,8 +28,8 @@ class Login extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      email: '',
-      password: ''
+      email:"church@yahoo.com",
+      password: "123456789"
     };
   }
   componentDidMount() {
@@ -51,20 +49,21 @@ class Login extends React.Component {
   change = (e) => {
     e.preventDefault()
     this.setState({[e.target.name]: e.target.value})
-  }
 
+  }
   submit = (e) => {
     e.preventDefault();
+    
     const userData = {
       email: this.state.email,
       password: this.state.password
     }
 
-    console.log("LOGGING IN DATA", userData)
+    this.props.loginUser(userData)
   }
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props.classes)
+    console.log("PROPERTIES",this.props)
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
@@ -145,7 +144,7 @@ Login.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    ...state
+    state
   }
 }
-export default connect(mapStateToProps, {})(withStyles(loginPageStyle)(Login));
+export default connect(mapStateToProps, {loginUser})(withRouter(withStyles(loginPageStyle)(Login)));

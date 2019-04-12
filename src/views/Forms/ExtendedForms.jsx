@@ -204,7 +204,7 @@ class ExtendedForms extends React.Component {
                             htmlFor="simple-select"
                             className={classes.selectLabel}
                           >
-                            Choose City
+                            LGA
                           </InputLabel>
                           <Select
                             MenuProps={{

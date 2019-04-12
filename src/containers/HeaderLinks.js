@@ -12,19 +12,17 @@ import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import Hidden from "@material-ui/core/Hidden";
 import Popper from "@material-ui/core/Popper";
-
-// @material-ui/icons
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
 import Dashboard from "@material-ui/icons/Dashboard";
 import SettingsPower from "@material-ui/icons/SettingsPower";
 import Search from "@material-ui/icons/Search";
-
-// core components
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-
 import headerLinksStyle from "assets/jss/material-dashboard-pro-react/components/headerLinksStyle";
+import { withRouter } from "react-router-dom"
+import { connect } from "react-redux"
+import {logoutUser} from "../redux/actions/authActions"
 
 class HeaderLinks extends React.Component {
   state = {
@@ -36,6 +34,10 @@ class HeaderLinks extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  onlogoutClick = () => {
+    this.props.logoutUser(this.props.history)
+  }
   render() {
     const { classes, rtlActive } = this.props;
     const { open } = this.state;
@@ -60,55 +62,7 @@ class HeaderLinks extends React.Component {
     });
     return (
       <div className={wrapper}>
-        {/* <CustomInput
-          rtlActive={rtlActive}
-          formControlProps={{
-            className: classes.top + " " + classes.search
-          }}
-          inputProps={{
-            placeholder: rtlActive ? "بحث" : "Search",
-            inputProps: {
-              "aria-label": rtlActive ? "بحث" : "Search",
-              className: classes.searchInput
-            }
-          }}
-        />
-        <Button
-          color="white"
-          aria-label="edit"
-          justIcon
-          round
-          className={searchButton}
-        >
-          <Search
-            className={classes.headerLinksSvg + " " + classes.searchIcon}
-          />
-        </Button> */}
-        {/* <Button
-          color="transparent"
-          simple
-          aria-label="Dashboard"
-          justIcon
-          className={rtlActive ? classes.buttonLinkRTL : classes.buttonLink}
-          muiClasses={{
-            label: rtlActive ? classes.labelRTL : ""
-          }}
-        >
-          <Dashboard
-            className={
-              classes.headerLinksSvg +
-              " " +
-              (rtlActive
-                ? classes.links + " " + classes.linksRTL
-                : classes.links)
-            }
-          />
-          <Hidden mdUp implementation="css">
-            <span className={classes.linkText}>
-              {rtlActive ? "لوحة القيادة" : "Dashboard"}
-            </span>
-          </Hidden>
-        </Button> */}
+
         <div className={managerClasses}>
           <Button
             color="transparent"
@@ -134,7 +88,7 @@ class HeaderLinks extends React.Component {
                   : classes.links)
               }
             />
-            <span className={classes.notifications}>5</span>
+            <span className={classes.notifications}>3</span>
             <Hidden mdUp implementation="css">
               <span onClick={this.handleClick} className={classes.linkText}>
                 {rtlActive ? "إعلام" : "Notification"}
@@ -213,6 +167,7 @@ class HeaderLinks extends React.Component {
           muiClasses={{
             label: rtlActive ? classes.labelRTL : ""
           }}
+          onClick={this.onlogoutClick}
         >
           <SettingsPower
             className={
@@ -239,4 +194,4 @@ HeaderLinks.propTypes = {
   rtlActive: PropTypes.bool
 };
 
-export default withStyles(headerLinksStyle)(HeaderLinks);
+export default connect(null, {logoutUser})(withRouter(withStyles(headerLinksStyle)(HeaderLinks)));

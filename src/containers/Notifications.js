@@ -122,7 +122,7 @@ class Notifications extends React.Component {
             {/* <div className={classes.container}>
                <SnackbarContent
                     message={
-                      'INFO - This is a regular notification made with color="info"'
+                       'INFO - This is a regular notification made with color="info"'
                     }
                     close
                     color="info"
