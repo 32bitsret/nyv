@@ -54,13 +54,7 @@ class MemberDetail extends React.Component {
                         </p>
                       </CardHeader>
                       <CardBody>
-                        Collaboratively administrate empowered markets via
-                        plug-and-play networks. Dynamically procrastinate B2C
-                        users after installed base benefits.
-                        <br />
-                        <br />
-                        Dramatically visualize customer directed convergence
-                        without revolutionary ROI.
+                        <Table />
                       </CardBody>
                     </Card>
                   )
@@ -137,57 +131,6 @@ class MemberDetail extends React.Component {
                       </CardHeader>
                       <CardBody>
                         <Table />
-                      </CardBody>
-                    </Card>
-                  )
-                },
-                {
-                  tabButton: "Legal Info",
-                  tabIcon: Gavel,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          Legal info of the product
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                        Completely synergize resource taxing relationships via
-                        premier niche markets. Professionally cultivate
-                        one-to-one customer service with robust ideas.
-                        <br />
-                        <br />
-                        Dynamically innovate resource-leveling customer service
-                        for state of the art customer service.
-                      </CardBody>
-                    </Card>
-                  )
-                },
-                {
-                  tabButton: "Help Center",
-                  tabIcon: HelpOutline,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>Help center</h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                        From the seamless transition of glass and metal to the
-                        streamlined profile, every detail was carefully
-                        considered to enhance your experience. So while its
-                        display is larger, the phone feels just right.
-                        <br />
-                        <br />
-                        Another Text. The first thing you notice when you hold
-                        the phone is how great it feels in your hand. The cover
-                        glass curves down around the sides to meet the anodized
-                        aluminum enclosure in a remarkable, simplified design.
                       </CardBody>
                     </Card>
                   )

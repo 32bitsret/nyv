@@ -26,13 +26,13 @@ const dashAdmin = [
     state: "openPages",
     icon: Email
   },
-  {
-    collapse: false,
-    path: "/settings",
-    name: "Settings",
-    state: "openPages",
-    icon: Settings
-  },
+  // {
+  //   collapse: false,
+  //   path: "/settings",
+  //   name: "Settings",
+  //   state: "openPages",
+  //   icon: Settings
+  // },
  
 ]
 
