@@ -1,24 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-
 import withStyles from "@material-ui/core/styles/withStyles";
-import Icon from "@material-ui/core/Icon";
-
-// @material-ui/icons
-// import Weekend from "@material-ui/icons/Weekend";
-import Home from "@material-ui/icons/Home";
-import Business from "@material-ui/icons/Business";
-import AccountBalance from "@material-ui/icons/AccountBalance";
-
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-
 import pricingPageStyle from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import CardFooter from "components/Card/CardFooter.jsx";
+import priceImage2 from "assets/img/card-3.jpeg";
+import img1 from "../assets/img/img1.jpg"
+import img2 from "../assets/img/img2.jpg"
+import img3 from "../assets/img/img3.jpg"
+import img4 from "../assets/img/img4.jpg"
 
 class Landing extends React.Component {
   render() {
@@ -33,90 +27,183 @@ class Landing extends React.Component {
             </h5>
           </GridItem>
         </GridContainer>
+
         <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={3}>
-            <Card pricing plain>
-              <CardBody pricing plain>
-                <h6 className={classes.cardCategory}>Freelancer</h6>
-                <div className={classes.icon}>
-                  <Icon className={classes.iconWhite}>weekend</Icon>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img1} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
                 </div>
-                <h3
-                  className={`${classes.cardTitleWhite} ${classes.marginTop30}`}
-                >
-                  FREE
-                </h3>
-                <p className={classes.cardCategory}>
-                  This is good if your company size is between 2 and 10 Persons.
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                    social capital developmentn
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
                 </p>
-                <Button round color="white">
-                  Choose plan
-                </Button>
               </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
-            <Card pricing raised>
-              <CardBody pricing>
-                <h6 className={classes.cardCategory}>SMALL COMPANY</h6>
-                <div className={classes.icon}>
-                  <Home className={classes.iconRose} />
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img2} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
                 </div>
-                <h3 className={`${classes.cardTitle} ${classes.marginTop30}`}>
-                  $29
-                </h3>
-                <p className={classes.cardDescription}>
-                  This is good if your company size is between 2 and 10 Persons.
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                    Unemployment reduction scheme
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
                 </p>
-                <Button round color="rose">
-                  Choose plan
-                </Button>
               </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
-            <Card pricing plain>
-              <CardBody pricing plain>
-                <h6 className={classes.cardCategory}>MEDIUM COMPANY</h6>
-                <div className={classes.icon}>
-                  <Business className={classes.iconWhite} />
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img3} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
                 </div>
-                <h3
-                  className={`${classes.cardTitleWhite} ${classes.marginTop30}`}
-                >
-                  $69
-                </h3>
-                <p className={classes.cardCategory}>
-                  This is good if your company size is between 11 and 99
-                  Persons.
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                   Government social intervention scheme
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
                 </p>
-                <Button round color="white">
-                  Choose plan
-                </Button>
               </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
-            <Card pricing plain>
-              <CardBody pricing plain>
-                <h6 className={classes.cardCategory}>ENTERPRISE</h6>
-                <div className={classes.icon}>
-                  <AccountBalance className={classes.iconWhite} />
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img4} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
                 </div>
-                <h3
-                  className={`${classes.cardTitleWhite} ${classes.marginTop30}`}
-                >
-                  $159
-                </h3>
-                <p className={classes.cardCategory}>
-                  This is good if your company size is 99+ persons.
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                    Skill Acquisition seminar
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
                 </p>
-                <Button round color="white">
-                  Choose plan
-                </Button>
               </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
             </Card>
           </GridItem>
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img2} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                </div>
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                    Poverty reduction initiative
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
+                </p>
+              </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
+            </Card>
+          </GridItem>
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card product className={classes.cardHover}>
+              <CardHeader image className={classes.cardHeaderHover}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={img4} alt="..." />
+                </a>
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                </div>
+                <h4 className={classes.cardProductTitle}>
+                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                    Youth Empowerment programme
+                  </a>
+                </h4>
+                <p className={classes.cardProductDesciprion}>
+                  The place is close to Metro Station and bus stop just 2 min by
+                  walk and near to "Naviglio" where you can enjoy the night life
+                  in London, UK.
+                </p>
+              </CardBody>
+              <CardFooter product>
+              <a href="#">
+               <h5>READ MORE>></h5>
+               </a>
+              </CardFooter>
+            </Card>
+          </GridItem>
+
+          
         </GridContainer>
       </div>
     );
