@@ -20,7 +20,10 @@ export const registerUser = (userData, history) => dispatch => {
     console.log(res)
     history.push("/login")
   }).catch(err => {
-    console.log(err)
+    // dispatch({
+    
+    // })
+    console.log("LOGIN ERROR",err.response.data.message)
   })
 };
 
@@ -34,7 +37,8 @@ export const loginUser = (user) => dispatch => {
     console.log(res)
 
     const {token} = res.data
-
+    const user = jwt_decode(token)
+    console.log("USER", user)
     localStorage.setItem("pyc_token", token)
     console.log("TOKEN", token)
     dispatch({
@@ -43,7 +47,7 @@ export const loginUser = (user) => dispatch => {
     })
     // history.push("/dashboard")
   }).catch(err => {
-    console.log(err)
+    console.log("LOGIN ERROR",err.response.data.message)
   })
 };
 

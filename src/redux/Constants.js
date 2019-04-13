@@ -8,7 +8,7 @@ export const TEST_REGISTER = "TEST_REGISTER"
 export const LOGIN_START = "LOGIN_START"
 export const LOGIN_ERROR = "LOGIN_ERROR"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
-
+export const SET_USER = "SET_USER"
 //logout
 export const LOGOUT = "LOGOUT"
 

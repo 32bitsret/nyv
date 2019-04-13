@@ -1,5 +1,11 @@
 import isEmpty from  '../../utils/isEmpty'
-import { SET_CURRENT_USER ,TEST_REGISTER, LOGIN_SUCCESS, LOGOUT} from '../Constants';
+import { 
+  SET_CURRENT_USER,
+  TEST_REGISTER, 
+  LOGIN_SUCCESS, 
+  LOGOUT,
+  SET_USER
+} from '../Constants';
 
 const initialState = {
   isAuthenticated: false,
@@ -25,6 +31,12 @@ export default (state = initialState, action) => {
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       }
+    case SET_USER:
+    return {
+      ...state,
+      isAuthenticated: !isEmpty(action.payload),
+      user: action.payload
+    }
     default:
       return state;
   }
