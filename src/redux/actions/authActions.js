@@ -2,55 +2,52 @@ import axios from 'axios';
 //import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import {loginURL, registerURL} from "../../api/apiURL"
-import { TEST_REGISTER, GET_ERRORS, SET_CURRENT_USER } from '../Constants';
-//import fetch from "fetch"
-// Register User
-export const registerUser = (userData) => dispatch => {
-  console.log("DATA", userData)
-  return fetch (registerURL , {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // 'x-access-token' : token,
-    },
-    body : JSON.stringify(userData)
-    })
-    .then((res) => {
-      alert("FROM REGISTRATION ACTION")
-      return res.json();
+import { TEST_REGISTER,
+   GET_ERRORS, 
+   SET_CURRENT_USER,
+  LOGIN_SUCCESS,
+  LOGOUT
+  } from '../Constants';
 
-      console.log()
-    })
-    .catch((error) => {
-      alert("FATAL FAILURE")
-      return error;
-    });
- // history.push('/login')
+
+// Register User
+export const registerUser = (userData, history) => dispatch => {
+  axios({
+    method: 'POST',
+    url: registerURL,
+    data: userData
+  }).then(res => {
+    console.log(res)
+    history.push("/login")
+  }).catch(err => {
+    console.log(err)
+  })
 };
 
 // Login - Get User Token
-export const loginUser = (userData) => dispatch => {
-  const result = fetch (loginURL , {
+export const loginUser = (user) => dispatch => {
+  axios({
     method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      // 'x-access-token' : token,
-    },
-    body : JSON.stringify(userData)
-    })
-    .then((res) => {
-      alert("FROM LOGIN ACTION")
-      return res.json();
-      console.log("FROM INSDE FETCH")
-    })
-    .catch((err) => {
-      alert("FATAL FAILURE")
-      return err;
-    });
+    url: loginURL,
+    data: user
+  }).then(res => {
+    console.log(res)
 
-    console.log("AFTER FETCH", result)
- 
+    const {token} = res.data
+
+    localStorage.setItem("pyc_token", token)
+    console.log("TOKEN", token)
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data.payload
+    })
+    // history.push("/dashboard")
+  }).catch(err => {
+    console.log(err)
+  })
 };
+
+
 
 // Set logged in user
 export const setCurrentUser = decoded => {
@@ -61,12 +58,11 @@ export const setCurrentUser = decoded => {
 };
 
 // Log user out
-export const logoutUser = (history) => dispatch => {
-  // Remove token from localStorage
-  // localStorage.removeItem('jwtToken');
-  // Remove auth header for future requests
-  // Set current user to {} which will set isAuthenticated to false
-  //   setAuthToken(false);
-  // dispatch(setCurrentUser({}));
-  history.push("/login")
+export const logoutUser = () => dispatch => {
+  localStorage.removeItem('pyc_token');
+   dispatch({
+     type: LOGOUT,
+     payload: {}
+   });
+  
 };

@@ -21,7 +21,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
-
+import { getProfile } from "../redux/actions/dashboardAction"
 
 import User from '../variables/UserData'
 
@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
     this.state = {
       mobileOpen: false,
       miniActive: false,
-      isAdmin: false
+      isAdmin: false //this.checkUserRole(this.props.state.auth.user)
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
@@ -45,8 +45,9 @@ class Dashboard extends React.Component {
       });
       document.body.style.overflow = "hidden";
     }
-    this.setState({isAdmin: this.checkUserRole(User)[0]})
+    this.setState({isAdmin: this.checkUserRole(this.props.state.auth.user)})
     window.addEventListener("resize", this.resizeFunction);
+   // this.props.getProfile()
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -81,22 +82,21 @@ class Dashboard extends React.Component {
 
   checkUserRole = User => {
     console.log("CONSOLE", User)
-    let status = User.map(user => {
-      if(user.userRole === "Admin" || user.userRole === "admin"){
+    // let status = User.map(User => {
+      if(User.role === "Admin" || User.role === "admin"){
         return true
       }
-      else if(user.userRole === "User" || user.userRole === "user" ){
+      else if(User.role === "User" || User.role === "user" ){
         return false
       }
-    })
-    console.log("CONSOLE STATUS", status)
-    return status
+   // })
+    // console.log("CONSOLE STATUS", status)
+    // return status
   }
 
   render() {
     const { classes, match, ...rest } = this.props;
-    // console.log(`${match.path}`+"/home")
-    // console.log("DASHBOARD",this.props)
+    console.log("DASHBOARD",this.props)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -148,8 +148,8 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return{
-      ...state
+      state
   }
 }
 
-export default connect(mapStateToProps,{})(withStyles(appStyle)(Dashboard));
+export default connect(mapStateToProps,{getProfile})(withStyles(appStyle)(Dashboard));

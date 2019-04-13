@@ -61,15 +61,17 @@ class LoginPage extends React.Component {
     e.preventDefault();
 
     const data = {
-      surname: "church",//this.state.surname,
-      email: "church@yahoo.com",//this.state.email,
-      password:"123456789",//this.state.password,
-      phone: "08102345671",//this.state.phone,
-      othernames:"Lali"// ,//this.state.othernames
+      surname: this.state.surname,
+      email: this.state.email,
+      password:this.state.password,
+      phone: Number(this.state.phone),
+      othernames:  this.state.othernames,
+      //role:"admin"
       // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
     }
-    console.log("DATA", data)
-    this.props.registerUser(data)
+    console.log("REGISTRATION::::::",data)
+    // console.log("DATA", data)
+    this.props.registerUser(data, this.props.history)
   }
   render() {
     const { classes } = this.props;
@@ -103,7 +105,7 @@ class LoginPage extends React.Component {
                 <CardBody>
                 <CustomInput
                     labelText="Surname"
-                    id="firstname"
+                    id="surname"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -119,14 +121,14 @@ class LoginPage extends React.Component {
                     }}
                   />
                   <CustomInput
-                    labelText="First Name"
-                    id="firstname"
+                    labelText="Other Names"
+                    id="othernames"
                     formControlProps={{
                       fullWidth: true
                     }}
                     inputProps={{
                       type:"text",
-                      name: "first_name",
+                      name: "othernames",
                       onChange: this.onChange,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -159,8 +161,8 @@ class LoginPage extends React.Component {
                       fullWidth: true
                     }}
                     inputProps={{
-                      type:"text",
-                      name: "password",
+                      type:"number",
+                      name: "phone",
                       onChange: this.onChange,
                       endAdornment: (
                         <InputAdornment position="end">

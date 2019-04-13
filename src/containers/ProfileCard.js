@@ -180,6 +180,50 @@ class ProfileCard extends React.Component {
             }}
           />
         </GridItem>
+        <GridItem xs={12} sm={12} md={12} lg={10}>
+          <CustomInput
+            success={this.state.emailState === "success"}
+            error={this.state.emailState === "error"}
+            labelText={
+              <span>
+                Email <small>(required)</small>
+              </span>
+            }
+            id="email"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              onChange: event => this.change(event, "email", "email"),
+              endAdornment: (
+                <InputAdornment
+                  position="end"
+                  className={classes.inputAdornment}
+                >
+                  <Email className={classes.inputAdornmentIcon} />
+                </InputAdornment>
+              )
+            }}
+          />
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12} lg={4}>
+          <CustomInput
+            success={this.state.emailState === "success"}
+            error={this.state.emailState === "error"}
+            labelText={
+              <span>
+                Email <small>(required)</small>
+              </span>
+            }
+            id="email"
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              onChange: event => this.change(event, "email", "email"),
+            }}
+          />
+        </GridItem>
       </GridContainer>
     );
   }

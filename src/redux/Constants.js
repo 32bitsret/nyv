@@ -9,10 +9,13 @@ export const LOGIN_START = "LOGIN_START"
 export const LOGIN_ERROR = "LOGIN_ERROR"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 
+//logout
+export const LOGOUT = "LOGOUT"
+
 //dashboard
 export const GET_SUMMARY = "GET_SUMMARY"
 export const GET_SUMMARY_ERROR = "GET_SUMMARY_ERROR"
-
+export const GET_PROFILE = "GET_PROFILE"
 //header
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGOUT_USER_ERROR = "LOGOUT_USER_ERROR"

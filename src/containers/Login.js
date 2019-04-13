@@ -28,8 +28,8 @@ class Login extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      email:"church@yahoo.com",
-      password: "123456789"
+      email:"",
+      password: ""
     };
   }
   componentDidMount() {
@@ -40,7 +40,17 @@ class Login extends React.Component {
       }.bind(this),
       700
     );
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push("/dashboard")
+    }
   }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.auth.isAuthenticated){
+      this.props.history.push("/dashboard")
+    }
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timeOutFunction);
     this.timeOutFunction = null;
@@ -53,12 +63,10 @@ class Login extends React.Component {
   }
   submit = (e) => {
     e.preventDefault();
-    
     const userData = {
       email: this.state.email,
       password: this.state.password
     }
-
     this.props.loginUser(userData)
   }
   render() {
@@ -144,7 +152,7 @@ Login.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    state
+    auth: state.auth
   }
 }
 export default connect(mapStateToProps, {loginUser})(withRouter(withStyles(loginPageStyle)(Login)));
