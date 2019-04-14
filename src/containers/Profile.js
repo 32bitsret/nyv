@@ -160,6 +160,16 @@ class UserProfile extends Component {
     >
       Kanam
     </MenuItem>
+
+    <MenuItem
+      classes={{
+        root: classes.selectMenuItem,
+        selected: classes.selectMenuItemSelected
+      }}
+      value="8"
+    >
+      Kanke
+    </MenuItem>
     <MenuItem
       classes={{
         root: classes.selectMenuItem,
