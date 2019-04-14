@@ -41,13 +41,11 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    social capital developmentn
+                  COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE DADIN KOWA
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
+                After the business meeting of the General Assembly of Plateau State Youth Council which held for 2 hours 30 minutes, and after exhaustive deliberations on issues, the delegates (270) of the General Assembly of Plateau State Youth Council agreed as follows;
                 </p>
               </CardBody>
               <CardFooter product>

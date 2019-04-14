@@ -22,6 +22,8 @@ import ChartistGraph from "react-chartist";import {
     completedTasksChart
   } from "variables/charts";
   import CardFooter from "components/Card/CardFooter.jsx";
+import lgaChartData from "../variables/lgaChartData"
+
 
 const styles = {
   cardIconTitle: {
@@ -157,11 +159,11 @@ class LgaTables extends React.Component {
               <CardHeader color="warning" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
+                  data={lgaChartData.data}
                   type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
+                  options={lgaChartData.options}
+                  responsiveOptions={lgaChartData.responsiveOptions}
+                  listener={lgaChartData.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -176,11 +178,11 @@ class LgaTables extends React.Component {
               <CardHeader color="warning" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
+                  data={lgaChartData.data}
                   type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
+                  options={lgaChartData.options}
+                  responsiveOptions={lgaChartData.responsiveOptions}
+                  listener={lgaChartData.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -195,11 +197,11 @@ class LgaTables extends React.Component {
               <CardHeader color="warning" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
+                  data={lgaChartData.data}
                   type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
+                  options={lgaChartData.options}
+                  responsiveOptions={lgaChartData.responsiveOptions}
+                  listener={lgaChartData.animation}
                 />
               </CardHeader>
               <CardBody>

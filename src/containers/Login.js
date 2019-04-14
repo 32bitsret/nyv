@@ -21,6 +21,7 @@ import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 import { loginUser } from  "../redux/actions/authActions"
 import { withRouter } from "react-router-dom"
+import {verifyEmail, verifyLength, verifyNumber, verifyUrl, compare} from "../utils/validation"
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,7 +30,8 @@ class Login extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       email:"",
-      password: ""
+      password: "",
+      emailState:""
     };
   }
   componentDidMount() {
@@ -69,6 +71,8 @@ class Login extends React.Component {
     }
     this.props.loginUser(userData)
   }
+
+  // verifyEmail()
   render() {
     const { classes } = this.props;
     console.log("PROPERTIES",this.props)
@@ -94,6 +98,8 @@ class Login extends React.Component {
                 </div>
                 <CardBody>
                   <CustomInput
+                    success={false}
+                    error={false}
                     labelText="Email..."
                     id="email"
                     formControlProps={{
