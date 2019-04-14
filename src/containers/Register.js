@@ -24,11 +24,11 @@ class LoginPage extends React.Component {
     super(props);
     this.state = {
       cardAnimaton: "cardHidden",
-      surname:'',
+      firstname:'',
       email: '',
       password: '',
       confirm_password:'',
-      othernames:'',
+      lastname:'',
       phone:''
     };
   }
@@ -53,11 +53,11 @@ class LoginPage extends React.Component {
     e.preventDefault();
 
     const data = {
-      surname: this.state.surname,
+      firstname: this.state.firstname,
       email: this.state.email,
       password:this.state.password,
       phone: Number(this.state.phone),
-      othernames:  this.state.othernames,
+      lastname:  this.state.lastname,
       //role:"admin"
       // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
     }
@@ -205,7 +205,7 @@ class LoginPage extends React.Component {
                   />
                 </CardBody>
                 <CardFooter className={classes.justifyContentCenter}>
-                  <Button color="rose" simple size="lg" block onClick={this.submit}>
+                  <Button color="success" simple size="lg" block onClick={this.submit}>
                     Sign Up
                   </Button>
                 </CardFooter>

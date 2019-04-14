@@ -131,7 +131,7 @@ class Login extends React.Component {
                   />
                 </CardBody>
                 <CardFooter className={classes.justifyContentCenter}>
-                  <Button color="rose" simple size="sm" block onClick={(e) => this.submit(e)}>
+                  <Button color="success" simple size="sm" block onClick={(e) => this.submit(e)}>
                     Log In
                   </Button>
                  </CardFooter>

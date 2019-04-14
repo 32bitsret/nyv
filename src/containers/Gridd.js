@@ -19,7 +19,13 @@ import Edit from "@material-ui/icons/Edit";
 import Place from "@material-ui/icons/Place";
 import ArtTrack from "@material-ui/icons/ArtTrack";
 import Language from "@material-ui/icons/Language";
+import {
+  dailySalesChart,
+  emailsSubscriptionChart,
+  completedTasksChart
+} from "variables/charts";
 
+import ChartistGraph from "react-chartist";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -52,7 +58,7 @@ class Gridd extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <GridContainer>
+        {/* <GridContainer xs={12} sm={12} md={12} lg={12}>
           <GridItem xs={12} sm={6} md={6} lg={4}>
             <Card >
               <CardHeader color="success" stats icon>
@@ -73,7 +79,6 @@ class Gridd extends Component {
               <CardFooter stats>
                 <div className={classes.stats}>
                   <Danger>
-                    {/* <Warning /> */}
                   </Danger>
                   <p>
                     Education statistics of members
@@ -100,7 +105,7 @@ class Gridd extends Component {
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
-                  {/* <DateRange /> */}
+                
                    <p>
                      Gender statistics of members
                    </p>
@@ -126,7 +131,7 @@ class Gridd extends Component {
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
-                  {/* <LocalOffer /> */}
+                 
                     <p>
                       Employment statistics of members
                     </p>
@@ -152,7 +157,7 @@ class Gridd extends Component {
               <a href="#pablo">
               <CardFooter stats>
                 <div className={classes.stats}>
-                  {/* <LocalOffer /> */}
+                 
                     <p>
                       Employment statistics of members
                     </p>
@@ -179,7 +184,7 @@ class Gridd extends Component {
               <a href="#pablo" >
               <CardFooter stats>
                 <div className={classes.stats}>
-                  {/* <LocalOffer /> */}
+                 
                     <p>
                       Employment statistics of members
                     </p>
@@ -205,7 +210,7 @@ class Gridd extends Component {
               <a href="#pablo" >
               <CardFooter stats>
                 <div className={classes.stats}>
-                  {/* <LocalOffer /> */}
+                 
                     <p>
                       Employment statistics of members
                     </p>
@@ -214,7 +219,276 @@ class Gridd extends Component {
               </a>
             </Card>
           </GridItem>
+        </GridContainer> */}
+
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="info" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={dailySalesChart.data}
+                  type="Line"
+                  options={dailySalesChart.options}
+                  // listener={dailySalesChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>Daily Sales</h4>
+                <p className={classes.cardCategory}>
+                  {/* <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                  </span>{" "} */}
+                  increase in today sales.
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                 234 {/* <AccessTime /> updated 4 minutes ago */}
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="warning" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Refresh"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button simple color="info" justIcon>
+                      <Refresh className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Change Date"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button color="transparent" simple justIcon>
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                </div>
+                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
+                <p className={classes.cardCategory}>
+                  Last Campaign Performance
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> campaign sent 2 days ago
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="danger" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={completedTasksChart.data}
+                  type="Line"
+                  options={completedTasksChart.options}
+                  listener={completedTasksChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Refresh"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button simple color="info" justIcon>
+                      <Refresh className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Change Date"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button color="transparent" simple justIcon>
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                </div>
+                <h4 className={classes.cardTitle}>Completed Tasks</h4>
+                <p className={classes.cardCategory}>
+                  Last Campaign Performance
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> campaign sent 2 days ago
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
         </GridContainer>
+
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={dailySalesChart.data}
+                  type="Line"
+                  options={dailySalesChart.options}
+                  listener={dailySalesChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Refresh"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button simple color="info" justIcon>
+                      <Refresh className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Change Date"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button color="transparent" simple justIcon>
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                </div>
+                <h4 className={classes.cardTitle}>Daily Sales</h4>
+                <p className={classes.cardCategory}>
+                  <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                  </span>{" "}
+                  increase in today sales.
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> updated 4 minutes ago
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Refresh"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button simple color="info" justIcon>
+                      <Refresh className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Change Date"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button color="transparent" simple justIcon>
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                </div>
+                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
+                <p className={classes.cardCategory}>
+                  Last Campaign Performance
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> campaign sent 2 days ago
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="danger" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={completedTasksChart.data}
+                  type="Line"
+                  options={completedTasksChart.options}
+                  listener={completedTasksChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <div className={classes.cardHoverUnder}>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Refresh"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button simple color="info" justIcon>
+                      <Refresh className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    id="tooltip-top"
+                    title="Change Date"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button color="transparent" simple justIcon>
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                </div>
+                <h4 className={classes.cardTitle}>Completed Tasks</h4>
+                <p className={classes.cardCategory}>
+                  Last Campaign Performance
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> campaign sent 2 days ago
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+
       </div>
     )
   }

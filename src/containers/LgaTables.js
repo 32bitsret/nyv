@@ -4,11 +4,6 @@ import ReactTable from "react-table";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-import Assignment from "@material-ui/icons/Assignment";
-import Dvr from "@material-ui/icons/Dvr";
-import Favorite from "@material-ui/icons/Favorite";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -31,7 +26,7 @@ const styles = {
   }
 };
 
-class ReactTables extends React.Component {
+class LgaTables extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,7 +129,7 @@ class ReactTables extends React.Component {
                 ]}
                 defaultPageSize={17}
                 showPaginationTop={false}
-                showPaginationBottom={false}
+                showPaginationBottom
                 className="-striped -highlight"
               />
             </CardBody>
@@ -149,4 +144,4 @@ class ReactTables extends React.Component {
   }
 }
 
-export default withStyles(styles)(ReactTables);
+export default withStyles(styles)(LgaTables);

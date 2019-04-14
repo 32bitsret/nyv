@@ -40,25 +40,25 @@ class MemberDetail extends React.Component {
               color="success"
               alignCenter
               tabs={[
-                {
-                  tabButton: "Gender",
-                  tabIcon: Info,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          Description about product
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                        <Table />
-                      </CardBody>
-                    </Card>
-                  )
-                },
+                // {
+                //   tabButton: "Gender",
+                //   tabIcon: Info,
+                //   tabContent: (
+                //     <Card>
+                //       <CardHeader>
+                //         <h4 className={classes.cardTitle}>
+                //           Description about product
+                //         </h4>
+                //         <p className={classes.cardCategory}>
+                //           More information here
+                //         </p>
+                //       </CardHeader>
+                //       <CardBody>
+                //         <Table />
+                //       </CardBody>
+                //     </Card>
+                //   )
+                // },
                 {
                   tabButton: "LGA",
                   tabIcon: Info,

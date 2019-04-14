@@ -82,16 +82,12 @@ class Dashboard extends React.Component {
 
   checkUserRole = User => {
     console.log("CONSOLE", User)
-    // let status = User.map(User => {
       if(User.role === "Admin" || User.role === "admin"){
         return true
       }
       else if(User.role === "User" || User.role === "user" ){
         return false
       }
-   // })
-    // console.log("CONSOLE STATUS", status)
-    // return status
   }
 
   render() {
