@@ -72,17 +72,18 @@ class LgaTables extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                  alert(
-                    "You've clicked LIKE button on \n{ \nLGA: " +
-                      obj.name +
-                      ", \nnumber of males: " +
-                      obj.males +
-                      ", \nnumber of females: " +
-                      obj.females +
-                      ", \nage average: " +
-                      obj.age +
-                      "\n}."
-                  );
+                  console.log(obj)
+                  // alert(
+                  //   "You've clicked LIKE button on \n{ \nLGA: " +
+                  //     obj.name +
+                  //     ", \nnumber of males: " +
+                  //     obj.males +
+                  //     ", \nnumber of females: " +
+                  //     obj.females +
+                  //     ", \nage average: " +
+                  //     obj.age +
+                  //     "\n}."
+                  // );
                 }}
                 color="info"
                 className="like"

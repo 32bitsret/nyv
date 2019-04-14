@@ -5,15 +5,11 @@ import PagesHeader from "./PagesHeader";
 import Footer from "./Footer";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 import bgImage from "assets/img/riyo.jpg";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import GridSystem from "../views/Components/GridSystem"
-import Accordion from "../components/Accordion/Accordion"
 
+import Landing from './Landing'
+import AboutusDetails from "./AboutusDetails"
 
-class Aboutus extends React.Component {
+class AboutUs extends React.Component {
   componentDidMount() {
     document.body.style.overflow = "unset";
   }
@@ -24,16 +20,21 @@ class Aboutus extends React.Component {
       <div>
         <PagesHeader {...rest} />
           <div className={classes.wrapper} ref="wrapper">
-               {/* <Accordion/> */}
+              <div
+                  className={classes.fullPage}
+                  style={{ backgroundImage: "url(" + bgImage + ")" }}
+              >
+              <AboutusDetails />
               <Footer white/>
             </div>
           </div>
+      </div>
     );
   }
 }
 
-Aboutus.propTypes = {
+AboutUs.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(pagesStyle)(Aboutus);
+export default withStyles(pagesStyle)(AboutUs);

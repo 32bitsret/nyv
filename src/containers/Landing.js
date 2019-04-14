@@ -42,7 +42,9 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                  COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE DADIN KOWA
+                  COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                  COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                  DADIN KOWA
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
@@ -71,14 +73,15 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Unemployment reduction scheme
+                  SPEECH DELIVERED BY FABONG JEMCHANG YILDAM (MBBS, FMCFM) ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA.
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
-                </p>
+                We congratulate you and your team on the so many laudable achievements within
+                 these two years past, particularly in the restoration of peace and order on the Plateau.
+                  We salute your courage for appointing youths into your administration, and whose contributions
+                   to the success of this administration cannot be overemphasized. 
+               </p>
               </CardBody>
               <CardFooter product>
               <a href="#">
@@ -100,13 +103,16 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                   Government social intervention scheme
+                  SPEECH DELIVERED BY PLATEAU STATE YOUTH COUNCIL CHAIRMAN ON THE EVENT OF THE INAUGURATION OF LOCAL GOVERNMENT AND DISTRICTS EXCO
+                    PROTOCOLS
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
+                It is with great pleasure that I welcome everyone here today. 
+                Over the years, we have learned that every moment in history is 
+                transitory, and that such moments pass by very quickly. We have also 
+                been taught that these moments are not only rare, but also precious and unique.
+
                 </p>
               </CardBody>
               <CardFooter product>
@@ -129,13 +135,14 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Skill Acquisition seminar
+                  GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
+                May 22nd 2018 was our first anniversary after 10 long years of despair
+                 and hopelessness. I recall with nostalgia the endless struggle for the 
+                 recreation of a Youth Council, and today, I found myself grateful for the 
+                
                 </p>
               </CardBody>
               <CardFooter product>
@@ -158,14 +165,15 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Poverty reduction initiative
+                  SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
+                   SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
+                   INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
-                </p>
+                The Commander Operation Safe Haven Gen. ACC Agundu, 
+                the representative of the Chief of Defense Staff 
+                 </p>
               </CardBody>
               <CardFooter product>
               <a href="#">
@@ -187,14 +195,15 @@ class Landing extends React.Component {
                 </div>
                 <h4 className={classes.cardProductTitle}>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Youth Empowerment programme
+                  SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
+                  THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
+                  FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                  The place is close to Metro Station and bus stop just 2 min by
-                  walk and near to "Naviglio" where you can enjoy the night life
-                  in London, UK.
-                </p>
+                Four years ago, we were in despair and
+                 also in a dire need for the resuscitation of the Council.  
+                   </p>
               </CardBody>
               <CardFooter product>
               <a href="#">

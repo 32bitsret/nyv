@@ -7,6 +7,7 @@ import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesSty
 import bgImage from "assets/img/riyo.jpg";
 
 import Landing from './Landing'
+import Aboutus from "./AboutusDetails"
 
 class Pages extends React.Component {
   componentDidMount() {
