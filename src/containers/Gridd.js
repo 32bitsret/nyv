@@ -58,169 +58,7 @@ class Gridd extends Component {
     const { classes } = this.props;
     return (
       <div>
-        {/* <GridContainer xs={12} sm={12} md={12} lg={12}>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card >
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <Icon>content_copy</Icon>
-                </CardIcon>
-                <h1 className={classes.cardCategory}>EDUCATION</h1>
-                <h3 className={classes.cardTitle}>
-                  Category
-                </h3>
-              </CardHeader>
-              <CardBody>
-                <div >
-                  <h1>431</h1>
-                </div>
-              </CardBody>
-              <a href="/dashboard/education-summary" >
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                  </Danger>
-                  <p>
-                    Education statistics of members
-                  </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>pageXOffset
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <Store />
-                </CardIcon>
-                <p className={classes.cardCategory}>GENDER</p>
-                <h3 className={classes.cardTitle}>Category</h3>
-              </CardHeader>
-              <CardBody>
-                <div>
-                  <h1>431</h1>
-                </div>
-              </CardBody>
-              <a href="#pablo">
-              <CardFooter stats>
-                <div className={classes.stats}>
-                
-                   <p>
-                     Gender statistics of members
-                   </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <Icon>info_outline</Icon>
-                </CardIcon>
-                <p className={classes.cardCategory}>EMPLOYMENT STATUS</p>
-                <h3 className={classes.cardTitle}>Category</h3>
-              </CardHeader>
-              <CardBody>
-                <div >
-                  <h1>431</h1>
-                </div>
-              </CardBody>
-              <a href="#pablo">
-              <CardFooter stats>
-                <div className={classes.stats}>
-                 
-                    <p>
-                      Employment statistics of members
-                    </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <i className="fab fa-twitter" />
-                </CardIcon>
-                <p className={classes.cardCategory}>APPLICANTS</p>
-                <h3 className={classes.cardTitle}>Category</h3>
-              </CardHeader>
-              <CardBody>
-                <div >
-                  <h1>431 people</h1>
-                </div>
-              </CardBody>
-              <a href="#pablo">
-              <CardFooter stats>
-                <div className={classes.stats}>
-                 
-                    <p>
-                      Employment statistics of members
-                    </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <i className="fab fa-twitter" />
-                </CardIcon>
-
-                <p className={classes.cardCategory}>APPLICANTS</p>
-                <h3 className={classes.cardTitle}>Category</h3>
-              </CardHeader>
-              <CardBody>
-                <div>
-                  <h1>431</h1>
-                </div>
-              </CardBody>
-              <a href="#pablo" >
-              <CardFooter stats>
-                <div className={classes.stats}>
-                 
-                    <p>
-                      Employment statistics of members
-                    </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6} lg={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <i className="fab fa-twitter" />
-                </CardIcon>
-                <h1 className={classes.cardCategory}>APPLICANTS</h1>
-                <h4 className={classes.cardTitle}>Category</h4>
-              </CardHeader>
-              <CardBody>
-                <div >
-                  <h1>431</h1>
-                </div>
-              </CardBody>
-              <a href="#pablo" >
-              <CardFooter stats>
-                <div className={classes.stats}>
-                 
-                    <p>
-                      Employment statistics of members
-                    </p>
-                </div>
-              </CardFooter>
-              </a>
-            </Card>
-          </GridItem>
-        </GridContainer> */}
-
+        
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
@@ -262,7 +100,7 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                <div className={classes.cardHoverUnder}>
+                {/* <div className={classes.cardHoverUnder}>
                   <Tooltip
                     id="tooltip-top"
                     title="Refresh"
@@ -283,7 +121,7 @@ class Gridd extends Component {
                       <Edit className={classes.underChartIcons} />
                     </Button>
                   </Tooltip>
-                </div>
+                </div> */}
                 <h4 className={classes.cardTitle}>Email Subscriptions</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -308,7 +146,7 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                <div className={classes.cardHoverUnder}>
+                {/* <div className={classes.cardHoverUnder}>
                   <Tooltip
                     id="tooltip-top"
                     title="Refresh"
@@ -329,7 +167,7 @@ class Gridd extends Component {
                       <Edit className={classes.underChartIcons} />
                     </Button>
                   </Tooltip>
-                </div>
+                </div> */}
                 <h4 className={classes.cardTitle}>Completed Tasks</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -357,7 +195,7 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                <div className={classes.cardHoverUnder}>
+                {/* <div className={classes.cardHoverUnder}>
                   <Tooltip
                     id="tooltip-top"
                     title="Refresh"
@@ -378,7 +216,7 @@ class Gridd extends Component {
                       <Edit className={classes.underChartIcons} />
                     </Button>
                   </Tooltip>
-                </div>
+                </div> */}
                 <h4 className={classes.cardTitle}>Daily Sales</h4>
                 <p className={classes.cardCategory}>
                   <span className={classes.successText}>
@@ -407,7 +245,7 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                <div className={classes.cardHoverUnder}>
+                {/* <div className={classes.cardHoverUnder}>
                   <Tooltip
                     id="tooltip-top"
                     title="Refresh"
@@ -428,7 +266,7 @@ class Gridd extends Component {
                       <Edit className={classes.underChartIcons} />
                     </Button>
                   </Tooltip>
-                </div>
+                </div> */}
                 <h4 className={classes.cardTitle}>Email Subscriptions</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -448,38 +286,10 @@ class Gridd extends Component {
                   className="ct-chart-white-colors"
                   data={completedTasksChart.data}
                   type="Line"
-                  options={completedTasksChart.options}
+                  // options={completedTasksChart.options}
                   listener={completedTasksChart.animation}
                 />
               </CardHeader>
-              <CardBody>
-                <div className={classes.cardHoverUnder}>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Refresh"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button simple color="info" justIcon>
-                      <Refresh className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Change Date"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button color="transparent" simple justIcon>
-                      <Edit className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                </div>
-                <h4 className={classes.cardTitle}>Completed Tasks</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
-              </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
                   <AccessTime /> campaign sent 2 days ago

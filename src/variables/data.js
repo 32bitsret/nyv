@@ -14,8 +14,8 @@ const dashAdmin = [
     icon: Dashboard
   },
   {
-    path: "/members",
-    name: "Members",
+    path: "/statistics",
+    name: "Statistics",
     state: "openPages",
     icon: Group
   },

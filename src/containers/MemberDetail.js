@@ -15,6 +15,8 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import Table from './Table'
+import LgaTables from "./LgaTables"
+
 
 const styles = {
   cardTitle,
@@ -40,25 +42,6 @@ class MemberDetail extends React.Component {
               color="success"
               alignCenter
               tabs={[
-                // {
-                //   tabButton: "Gender",
-                //   tabIcon: Info,
-                //   tabContent: (
-                //     <Card>
-                //       <CardHeader>
-                //         <h4 className={classes.cardTitle}>
-                //           Description about product
-                //         </h4>
-                //         <p className={classes.cardCategory}>
-                //           More information here
-                //         </p>
-                //       </CardHeader>
-                //       <CardBody>
-                //         <Table />
-                //       </CardBody>
-                //     </Card>
-                //   )
-                // },
                 {
                   tabButton: "LGA",
                   tabIcon: Info,
@@ -66,14 +49,14 @@ class MemberDetail extends React.Component {
                     <Card>
                       <CardHeader>
                         <h4 className={classes.cardTitle}>
-                          Description about product
+                          DATA STATISTICS FOR LOCAL GOVERNMENT AREA
                         </h4>
                         <p className={classes.cardCategory}>
-                          Summary ofmembers based on Local Government
+                          
                         </p>
                       </CardHeader>
                       <CardBody>
-                       <Table />
+                       <LgaTables />
                       </CardBody>
                     </Card>
                   )

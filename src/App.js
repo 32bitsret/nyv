@@ -64,7 +64,7 @@ class App extends Component {
                     <Switch>
                         <ProtectedRoute 
                             exact 
-                            path="/members" 
+                            path="/statistics" 
                             component={Members}
                         />
                     </Switch>

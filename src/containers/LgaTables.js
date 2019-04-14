@@ -12,11 +12,16 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import { dataTable } from "variables/general.jsx";
 import CardAvatar from "components/Card/CardAvatar.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 //import 
 import ProfileCard from "./ProfileCard"
+import ChartistGraph from "react-chartist";import {
+    dailySalesChart,
+    emailsSubscriptionChart,
+    completedTasksChart
+  } from "variables/charts";
+  import CardFooter from "components/Card/CardFooter.jsx";
 
 const styles = {
   cardIconTitle: {
@@ -26,19 +31,38 @@ const styles = {
   }
 };
 
+const dataRows = [
+    ["Barkin Ladi", "2", "13", "61"],
+    ["Bassa", "2", "12", "63"],
+    ["Bokkos", "2", "67", "66"],
+    ["Jos-East", "3", "78", "22"],
+    ["Jos-North", "3", "45", "33"],
+    ["Jos-South", "3", "23", "61"],
+    ["Kanam", "3", "13", "59"],
+    ["Kanke", "3", "13", "59"],
+    ["Langtang-North", "3", "23", "55"],
+    ["Langtang South", "33", "89", "39"],
+    ["Mangu", "35", "23", "23"],
+    ["Mikang", "33", "56", "30"],
+    ["Pankshin", "54", "78", "22"],
+    ["Qua'an Pan", "13", "67", "36"],
+    ["Riyom", "56", "12", "43"],
+    ["Shendam", "34", "89", "19"],
+    ["Wase", "34", "34", "66"],
+  ]
+
 class LgaTables extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: dataTable.dataRows.map((prop, key) => {
+      data: dataRows.map((prop, key) => {
         return {
-          id: key,
+          id: key + 1,
           name: prop[0],
-          position: prop[1],
-          office: prop[2],
+          males: prop[1],
+          females: prop[2],
           age: prop[3],
           actions: (
-            // we've added some custom button actions
             <div className="actions-right">
               <Button
                 justIcon={false}
@@ -47,13 +71,13 @@ class LgaTables extends React.Component {
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
                   alert(
-                    "You've clicked LIKE button on \n{ \nName: " +
+                    "You've clicked LIKE button on \n{ \nLGA: " +
                       obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
+                      ", \nnumber of males: " +
+                      obj.males +
+                      ", \nnumber of females: " +
+                      obj.females +
+                      ", \nage average: " +
                       obj.age +
                       "\n}."
                   );
@@ -71,57 +95,50 @@ class LgaTables extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("FROM TABLE")
     return (
       <GridContainer>
         <GridItem xs={6}>
           <Card>
             <CardHeader color="primary" icon>
-              <h4 className={classes.cardIconTitle}>Members Based on LGA</h4>
+              <h4 className={classes.cardIconTitle}>LGA DATA Summary</h4>
             </CardHeader>
             <CardBody>
               <ReactTable
                 data={this.state.data}
                 filterable
                 columns={[
+                {
+                    Header: "S/N",
+                    accessor: "id",
+                    sortable: false,
+                    filterable: false
+                    },
                   {
-                    Header: "Local Goverment",
-                    accessor: "position",
+                    Header: "LGA Name",
+                    accessor: "name",
                     sortable: false,
                     filterable: false
                   },
                   {
-                    Header: "Male",
-                    accessor: "office",
+                    Header: "Males",
+                    accessor: "males",
                     sortable: false,
                     filterable: false
                   },
                   {
-                    Header: "Female",
-                    accessor: "age",
+                    Header: "Females",
+                    accessor: "females",
                     sortable: false,
                     filterable: false
                   },
                   {
-                    Header: "Average Age",
+                    Header: "Age Average",
                     accessor: "age",
                     sortable: false,
                     filterable: false
                   }, 
                   {
-                    Header: "disabled",
-                    accessor: "age",
-                    sortable: false,
-                    filterable: false
-                  },
-                  {
-                    Header: "employed",
-                    accessor: "age",
-                    sortable: false,
-                    filterable: false
-                  },
-                  {
-                    Header: "Actions",
+                    Header: "  View      ",
                     accessor: "actions",
                     sortable: false,
                     filterable: false
@@ -129,16 +146,72 @@ class LgaTables extends React.Component {
                 ]}
                 defaultPageSize={17}
                 showPaginationTop={false}
-                showPaginationBottom
+                showPaginationBottom={false}
                 className="-striped -highlight"
               />
             </CardBody>
           </Card>
         </GridItem>
         <GridItem xs={6} md={6} xs={6}>
-          <ProfileCard/>
+            <Card chart className={classes.cardHover}>
+              <CardHeader color="warning" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
+                <p className={classes.cardCategory}>
+                  Data Summary
+                </p>
+              </CardBody>
+              <CardFooter chart>
+              </CardFooter>
+            </Card><Card chart className={classes.cardHover}>
+              <CardHeader color="warning" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
+                <p className={classes.cardCategory}>
+                  Data Summary
+                </p>
+              </CardBody>
+              <CardFooter chart>
+              </CardFooter>
+            </Card><Card chart className={classes.cardHover}>
+              <CardHeader color="warning" className={classes.cardHeaderHover}>
+                <ChartistGraph
+                  className="ct-chart-white-colors"
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
+                <p className={classes.cardCategory}>
+                  Data Summary
+                </p>
+              </CardBody>
+              <CardFooter chart>
+              </CardFooter>
+            </Card>
         </GridItem>
-        
       </GridContainer>
     );
   }
