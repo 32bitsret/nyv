@@ -213,7 +213,7 @@ class GridSystem extends React.Component {
         <Card>
           <CardBody>
             <GridContainer>
-              <GridItem xs={12} sm={6}>
+              <GridItem xs={6} sm={6}>
                 <h3>Some Title Here</h3>
                 <p>
                   One morning, when Gregor Samsa woke from troubled dreams, he

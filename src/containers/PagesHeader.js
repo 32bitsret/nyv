@@ -51,6 +51,7 @@ class PagesHeader extends React.Component {
           <ListItem className={classes.listItem}>
             <a href="/aboutus" className={classes.navLink}>
               <ListItemText
+                color="success"
                 primary={"About us"}
                 disableTypography={true}
                 className={classes.listItemText}

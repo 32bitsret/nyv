@@ -24,9 +24,11 @@ import Tablex from '../views/Tables/ReactTables'
 import { getProfile } from "../redux/actions/dashboardAction"
 
 import User from '../variables/UserData'
+import moreMembers from "../variables/moreMembers"
 
 var ps;
 
+let newLGA = []
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,7 @@ class Dashboard extends React.Component {
     this.setState({isAdmin: this.checkUserRole(this.props.state.auth.user)})
     window.addEventListener("resize", this.resizeFunction);
    // this.props.getProfile()
+   this.extract(moreMembers,"jos-south")
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -90,7 +93,19 @@ class Dashboard extends React.Component {
       }
   }
 
+  extract = (arr, value) => {
+    arr.map(o => {
+      if(o.lga === value){
+        console.log(o)
+        newLGA.push(o)
+      }
+    })
+  }
+
   render() {
+    console.log(moreMembers)
+
+    console.log(":::::::",newLGA)
     const { classes, match, ...rest } = this.props;
     console.log("DASHBOARD",this.props)
     const mainPanel =

@@ -5,9 +5,13 @@ import PagesHeader from "./PagesHeader";
 import Footer from "./Footer";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 import bgImage from "assets/img/riyo.jpg";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import Card from "components/Card/Card.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import GridSystem from "../views/Components/GridSystem"
+import Accordion from "../components/Accordion/Accordion"
 
-import Landing from './Landing'
-import  UserProfile from './Profile'
 
 class Aboutus extends React.Component {
   componentDidMount() {
@@ -20,15 +24,10 @@ class Aboutus extends React.Component {
       <div>
         <PagesHeader {...rest} />
           <div className={classes.wrapper} ref="wrapper">
-              <div
-                  className={classes.fullPage}
-                  style={{ backgroundImage: "url(" + bgImage + ")" }}
-              >
-
+               {/* <Accordion/> */}
               <Footer white/>
             </div>
           </div>
-      </div>
     );
   }
 }

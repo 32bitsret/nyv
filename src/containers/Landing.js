@@ -17,6 +17,7 @@ import img4 from "../assets/img/img4.jpg"
 class Landing extends React.Component {
   render() {
     const { classes } = this.props;
+    console.log("LANDING", classes)
     return (
       <div className={classes.container}>
         <GridContainer justify="center">
@@ -45,7 +46,9 @@ class Landing extends React.Component {
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
-                After the business meeting of the General Assembly of Plateau State Youth Council which held for 2 hours 30 minutes, and after exhaustive deliberations on issues, the delegates (270) of the General Assembly of Plateau State Youth Council agreed as follows;
+                After the business meeting of the General Assembly of Plateau State Youth Council which held for 
+                2 hours 30 minutes, and after exhaustive deliberations on issues, the delegates (270) of the 
+                General Assembly of Plateau State Youth Council agreed as follows;
                 </p>
               </CardBody>
               <CardFooter product>

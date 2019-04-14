@@ -1,10 +1,6 @@
 import React from "react";
-// react component for creating dynamic tables
 import ReactTable from "react-table";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -12,16 +8,9 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardAvatar from "components/Card/CardAvatar.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-//import 
-import ProfileCard from "./ProfileCard"
-import ChartistGraph from "react-chartist";import {
-    dailySalesChart,
-    emailsSubscriptionChart,
-    completedTasksChart
-  } from "variables/charts";
-  import CardFooter from "components/Card/CardFooter.jsx";
+import ChartistGraph from "react-chartist";
+import CardFooter from "components/Card/CardFooter.jsx";
 import lgaChartData from "../variables/lgaChartData"
 
 
@@ -52,6 +41,17 @@ const dataRows = [
     ["Shendam", "34", "89", "19"],
     ["Wase", "34", "34", "66"],
   ]
+
+const pieChart = {
+  data: {
+    labels: ["62%"+" females", "32%"+" Males"],
+    series: [62, 32]
+  },
+  options: {
+    height: "230px"
+  }
+}
+
 
 class LgaTables extends React.Component {
   constructor(props) {
@@ -193,24 +193,26 @@ class LgaTables extends React.Component {
               </CardBody>
               <CardFooter chart>
               </CardFooter>
-            </Card><Card chart className={classes.cardHover}>
-              <CardHeader color="warning" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={lgaChartData.data}
-                  type="Bar"
-                  options={lgaChartData.options}
-                  responsiveOptions={lgaChartData.responsiveOptions}
-                  listener={lgaChartData.animation}
-                />
+            </Card>
+            <Card>
+              <CardHeader color="danger" icon>
+                <CardIcon color="danger">
+                  {/* <Timeline /> */}
+                </CardIcon>
+                <h4 className={classes.cardIconTitle}>Pie Chart</h4>
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
-                <p className={classes.cardCategory}>
-                  Data Summary
-                </p>
+                <ChartistGraph
+                  data={pieChart.data}
+                  type="Pie"
+                  options={pieChart.options}
+                />
               </CardBody>
-              <CardFooter chart>
+              <CardFooter stats className={classes.cardFooter}>
+                <h6 className={classes.legendTitle}>Legend</h6>
+                <i className={classes.info} /> Apple{` `}
+                <i className={classes.danger} /> Windows
+                Phone{` `}
               </CardFooter>
             </Card>
         </GridItem>
