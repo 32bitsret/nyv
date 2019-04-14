@@ -13,6 +13,7 @@ import Dashboard from './containers/Dashboard'
 import PricingPage from "views/Pages/PricingPage.jsx";
 import Login from "./containers/Login";
 import Register from './containers/Register'
+import AboutUs from './containers/AboutUs'
 import Home from './containers/Home'
 import Members from './containers/Members'
 import Messages from './containers/Messages'
@@ -60,6 +61,11 @@ class App extends Component {
                         exact 
                         path="/register" 
                         component={Register} 
+                    />  
+                    <Route 
+                    exact 
+                    path="/aboutus" 
+                    component={AboutUs}
                     />
                     <Switch>
                         <ProtectedRoute 

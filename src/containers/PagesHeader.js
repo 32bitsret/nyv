@@ -47,31 +47,37 @@ class PagesHeader extends React.Component {
     });
     const trial = (
         <List className={classes.list}>
+          
           <ListItem className={classes.listItem}>
-            <NavLink to={"/login"} className={classes.navLink}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <Dashboard />
-              </ListItemIcon>
+            <a href="/aboutus" className={classes.navLink}>
+              <ListItemText
+                primary={"About us"}
+                disableTypography={true}
+                className={classes.listItemText}
+              />
+            </a>
+          </ListItem>
+
+          <ListItem className={classes.listItem}>
+            <a href="/login" className={classes.navLink}>
               <ListItemText
                 primary={"Login"}
                 disableTypography={true}
                 className={classes.listItemText}
               />
-            </NavLink>
+            </a>
           </ListItem>
 
           <ListItem className={classes.listItem}>
-            <NavLink to={"/register"} className={classes.navLink}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <Dashboard />
-              </ListItemIcon>
-              <ListItemText
+            <a href="/register" className={classes.navLink}>
+          <ListItemText
                 primary={"Sign Up"}
                 disableTypography={true}
                 className={classes.listItemText}
               />
-            </NavLink>
+            </a>
           </ListItem>
+
         </List>
     )
     return (
@@ -79,16 +85,16 @@ class PagesHeader extends React.Component {
         <Toolbar className={classes.container}>
           <Hidden smDown>
             <div className={classes.flex}>
-              <Button href="#" className={classes.title} color="transparent">
+              <a href="/" className={classes.title} color="transparent">
                 PLATEAU YOUTH COUNCIL
-              </Button>
+              </a>
             </div>
           </Hidden>
           <Hidden mdUp>
             <div className={classes.flex}>
-              <Button href="#" className={classes.title} color="transparent">
+              <a href="/" className={classes.title} color="transparent">
                 PYC
-              </Button>
+              </a>
             </div>
           </Hidden>
           <Hidden smDown>{trial}</Hidden>
