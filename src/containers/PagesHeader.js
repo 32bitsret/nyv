@@ -98,7 +98,7 @@ class PagesHeader extends React.Component {
           <Hidden smDown>
             <div className={classes.flex}>
               <a href="/" className={classes.title} color="transparent">
-                PLATEAU YOUTH COUNCIL
+                PYC
               </a>
             </div>
           </Hidden>

@@ -169,6 +169,11 @@ class Speech2Details extends React.Component {
                 <br/>
                 Thank you.
                 </p>
+                <p>
+                Dr. Fabong Jemchang Yildam<br/>
+                MBBS, FMCFM<br/>
+                Chairman
+                </p>
               </CardHeader>
             </Card>
           </GridItem>

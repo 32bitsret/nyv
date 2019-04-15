@@ -22,7 +22,7 @@ class Landing extends React.Component {
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={6}>
-            <h2 className={classes.title}>PLATEAU YOUTH COUNCIL</h2>
+            <h1 className={classes.title}><small>PLATEAU YOUTH COUNCIL</small></h1>
             <h5 className={classes.description}>
              reducing unemployment....
             </h5>
@@ -43,9 +43,9 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE 
-                  YOUTH COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT 
-                  THE AZI NYAKO YOUTH CENTRE  DADIN KOWA" >
+                <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                    COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                    DADIN KOWA" >
                     COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
                     COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
                     DADIN KOWA
