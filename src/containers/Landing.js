@@ -22,7 +22,7 @@ class Landing extends React.Component {
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={6}>
-            <h1 className={classes.title}><small>PLATEAU YOUTH COUNCIL</small></h1>
+            <h1 className={classes.title}><small>PLATEAU STATE YOUTH COUNCIL</small></h1>
             <h5 className={classes.description}>
              reducing unemployment....
             </h5>
