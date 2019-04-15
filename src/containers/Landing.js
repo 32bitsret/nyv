@@ -45,7 +45,7 @@ class Landing extends React.Component {
                 <h4 className={classes.cardProductTitle}>
                   <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE 
                   YOUTH COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT 
-                  THE AZI NYAKO YOUTH CENTRE  DADIN KOWA">
+                  THE AZI NYAKO YOUTH CENTRE  DADIN KOWA" >
                     COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
                     COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
                     DADIN KOWA
@@ -70,16 +70,16 @@ class Landing extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  <img src={img2} alt="..." />
+              <a href="/SPEECH DELIVERED BY FABONG JEMCHANG YILDAM ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA">
+                <img src={img2} alt="..." />
                 </a>
               </CardHeader>
               <CardBody>
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                  SPEECH DELIVERED BY FABONG JEMCHANG YILDAM (MBBS, FMCFM) ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA.
+                <a href="/SPEECH DELIVERED BY FABONG JEMCHANG YILDAM ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA">
+                   SPEECH DELIVERED BY FABONG JEMCHANG YILDAM (MBBS, FMCFM) ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA.
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
@@ -90,7 +90,7 @@ class Landing extends React.Component {
                </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/SPEECH DELIVERED BY FABONG JEMCHANG YILDAM ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA">
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>

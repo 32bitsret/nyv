@@ -22,6 +22,7 @@ import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
 import Contactus from "./containers/pages/Contactus"
 import Speech1 from './containers/pages/Speech1';
+import Speech2 from './containers/pages/Speech2'
 
 const hist = createBrowserHistory();
 
@@ -80,6 +81,11 @@ class App extends Component {
                         COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
                         DADIN KOWA" 
                         component={Speech1}
+                    />
+                    <Route 
+                        exact 
+                        path="/SPEECH DELIVERED BY FABONG JEMCHANG YILDAM ON THE OCCASION OF HIS SWEARING - IN AS CHAIRMAN PLATEAU STATE YOUTH COUNCIL OF NIGERIA" 
+                        component={Speech2}
                     />
                     <Switch>
                         <ProtectedRoute 
