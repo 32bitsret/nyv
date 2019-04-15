@@ -168,7 +168,9 @@ class Landing extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+              <a href="/SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
+                   SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
+                   INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA">
                   <img src={img2} alt="..." />
                 </a>
               </CardHeader>
@@ -176,7 +178,9 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <a href="/SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
+                   SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
+                   INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA">
                   SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
                    SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
                    INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA
@@ -188,7 +192,9 @@ class Landing extends React.Component {
                  </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
+                   SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
+                   INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA">
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>
@@ -198,7 +204,9 @@ class Landing extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="/SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
+                  THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
+                  FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY" >
                   <img src={img4} alt="..." />
                 </a>
               </CardHeader>
@@ -206,7 +214,9 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <a href="/SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
+                  THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
+                  FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY" >
                   SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
                   THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
                   FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY
@@ -218,7 +228,9 @@ class Landing extends React.Component {
                    </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
+                  THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
+                  FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY" >
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>

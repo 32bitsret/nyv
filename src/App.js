@@ -25,6 +25,9 @@ import Speech1 from './containers/pages/Speech1';
 import Speech2 from './containers/pages/Speech2'
 import Speech3 from './containers/pages/Speech3'
 import Speech4 from './containers/pages/Speech4'
+import Speech5 from './containers/pages/Speech5'
+import Speech6 from './containers/pages/Speech6'
+
 
 const hist = createBrowserHistory();
 
@@ -99,6 +102,20 @@ class App extends Component {
                         exact 
                         path="/GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II" 
                         component={Speech4}
+                    />
+                    <Route 
+                        exact 
+                        path="/SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
+                        SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 
+                        INITIATIVE ON TUESDAY 18TH DECEMBER 2018 AT HILL STATION JOS NIGERIA"
+                        component={Speech5}
+                    />
+                    <Route 
+                        exact 
+                        path="/SPEECH OF THE CHAIRMAN AT THE ZONAL YOUTH SUMMIT HELD IN 
+                        THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
+                        FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY"
+                        component={Speech6}
                     />
                     <Switch>
                         <ProtectedRoute 
