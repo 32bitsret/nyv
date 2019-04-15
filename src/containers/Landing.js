@@ -33,7 +33,9 @@ class Landing extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                    COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                    DADIN KOWA" >
                   <img src={img1} alt="..." />
                 </a>
               </CardHeader>
@@ -41,10 +43,12 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                  COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
-                  COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
-                  DADIN KOWA
+                  <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE 
+                  YOUTH COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT 
+                  THE AZI NYAKO YOUTH CENTRE  DADIN KOWA">
+                    COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                    COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                    DADIN KOWA
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
@@ -54,7 +58,9 @@ class Landing extends React.Component {
                 </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                    COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                    DADIN KOWA" >
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>

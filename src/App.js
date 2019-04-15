@@ -20,6 +20,8 @@ import Messages from './containers/Messages'
 import Notifications from './containers/Notifications'
 import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
+import Contactus from "./containers/pages/Contactus"
+import Speech1 from './containers/pages/Speech1';
 
 const hist = createBrowserHistory();
 
@@ -63,9 +65,21 @@ class App extends Component {
                         component={Register} 
                     />  
                     <Route 
-                    exact 
-                    path="/aboutus" 
-                    component={Aboutus}
+                        exact 
+                        path="/aboutus" 
+                        component={Aboutus}
+                    />
+                    <Route 
+                        exact 
+                        path="/contactus" 
+                        component={Contactus}
+                    />
+                    <Route 
+                        exact 
+                        path="/COMMUNIQUÉ ISSUED AT THE END OF THE GENERAL ASSEMBLY OF PLATEAU STATE YOUTH 
+                        COUNCIL HELD ON WEDNESDAY 29TH OF AUGUST 2018 AT THE AZI NYAKO YOUTH CENTRE 
+                        DADIN KOWA" 
+                        component={Speech1}
                     />
                     <Switch>
                         <ProtectedRoute 
