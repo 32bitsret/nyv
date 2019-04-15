@@ -144,7 +144,31 @@ class Speech2Details extends React.Component {
                 <p>
                 To our Parent and supervising ministry, the Ministry of Youths and Sports Development, we are proud of you.  
                 </p>
-                
+                <section>
+                <quote>
+                    <i>
+                        <b>
+                            "
+                            Now the only way to avoid this shipwreck and to provide for our posterity is to follow the counsel of Micah, to do justly, to love mercy, to walk humbly with our God. For this end, we must be knit together in this work as one man, we must entertain each other in brotherly affection, we must be willing to abridge ourselves of our superfluities, for the supply of others necessities, we must uphold a familiar commerce together in all meekness, gentleness, patience and liberality. 
+                            We must delight in each other, make others condition our own, rejoice together, mourn together, labour and suffer together, always having before our eyes our commission and community in the work, our community as members of the same body, so shall we keep the unity of the spirit in the bond of peace. The Lord will be our God and delight to dwell among us, as His own people and will command a blessing upon us in all our ways. So we shall see much more of His wisdom, power, goodness and truth than formerly we have been acquainted with. 
+                            For we shall find that the God of the heavens is among us, when ten of us shall be able to resist a thousand of our enemies, when we shall make a praise and glory, that men shall say of succeeding plantations; the Lord make like that of Plateau state(paraphrased). For we must consider that we shall be as a city upon a hill, the eyes of all people are upon us; so that if we shall deal falsely with our God in His work we have undertaken and so cause Him to withdraw His present help from us…
+                            "
+                        </b>
+                    </i>
+                </quote><br/>
+                <quote style={{alignSelf:"right"}}>
+                    <i>
+                        <b>
+                        John Winthrop 
+                        </b>
+                    </i>
+                </quote>
+                </section>
+                <p>
+                We are the light of the world. A city that is set on a hill cannot be hidden. I have been guided my entire life by John Winthrop’s sermon before his shipmates on the flagship Arbella three hundred and eighty seven years ago, as we are faced with the task of building a new youth council on a perilous frontier. We cannot afford to disappoint because the eyes of the world is on us. We must rise and shine for the Glory of the Lord is upon us. Failure is not an option. 
+                <br/>
+                Thank you.
+                </p>
               </CardHeader>
             </Card>
           </GridItem>
