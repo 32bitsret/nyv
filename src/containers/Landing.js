@@ -67,6 +67,7 @@ class Landing extends React.Component {
             </Card>
           </GridItem>
 
+
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
@@ -97,10 +98,12 @@ class Landing extends React.Component {
             </Card>
           </GridItem>
 
+
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+              <a href="/SPEECH DELIVERED BY PLATEAU STATE YOUTH COUNCIL CHAIRMAN ON THE EVENT OF THE INAUGURATION OF LOCAL GOVERNMENT AND DISTRICTS EXCO
+                        PROTOCOLS">
                   <img src={img3} alt="..." />
                 </a>
               </CardHeader>
@@ -108,9 +111,10 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="/SPEECH DELIVERED BY PLATEAU STATE YOUTH COUNCIL CHAIRMAN ON THE EVENT OF THE INAUGURATION OF LOCAL GOVERNMENT AND DISTRICTS EXCO
+                        PROTOCOLS">
                   SPEECH DELIVERED BY PLATEAU STATE YOUTH COUNCIL CHAIRMAN ON THE EVENT OF THE INAUGURATION OF LOCAL GOVERNMENT AND DISTRICTS EXCO
-                    PROTOCOLS
+                  PROTOCOLS
                   </a>
                 </h4>
                 <p className={classes.cardProductDesciprion}>
@@ -122,17 +126,19 @@ class Landing extends React.Component {
                 </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/SPEECH DELIVERED BY PLATEAU STATE YOUTH COUNCIL CHAIRMAN ON THE EVENT OF THE INAUGURATION OF LOCAL GOVERNMENT AND DISTRICTS EXCO
+                        PROTOCOLS">
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>
             </Card>
           </GridItem>
 
+
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>
               <CardHeader image className={classes.cardHeaderHover}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <a href="/GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II" >
                   <img src={img4} alt="..." />
                 </a>
               </CardHeader>
@@ -140,7 +146,7 @@ class Landing extends React.Component {
                 <div className={classes.cardHoverUnder}>
                 </div>
                 <h4 className={classes.cardProductTitle}>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <a href="/GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II" >
                   GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II
                   </a>
                 </h4>
@@ -148,16 +154,16 @@ class Landing extends React.Component {
                 May 22nd 2018 was our first anniversary after 10 long years of despair
                  and hopelessness. I recall with nostalgia the endless struggle for the 
                  recreation of a Youth Council, and today, I found myself grateful for the 
-                
                 </p>
               </CardBody>
               <CardFooter product>
-              <a href="#">
+              <a href="/GENERAL ASSEMBLY AUGUST 29TH 2018 THE AGE OF REASON II" >
                <h5>READ MORE>></h5>
                </a>
               </CardFooter>
             </Card>
           </GridItem>
+
 
           <GridItem xs={12} sm={12} md={4}>
             <Card product className={classes.cardHover}>

@@ -45,11 +45,6 @@ class ContactusDetail extends React.Component {
                 </h4>          
               </CardHeader>
             </Card>
-            <Card>
-              <CardHeader>
-                <h3 className={classes.title} style={{color:"green"}}><b><i>Social Media Handles</i></b></h3>
-              </CardHeader>
-            </Card>
           </GridItem>
         </GridContainer>
       </div>
