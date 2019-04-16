@@ -79,15 +79,12 @@ class Gridd extends Component {
               <CardBody>
                 <h4 className={classes.cardTitle}>Daily Sales</h4>
                 <p className={classes.cardCategory}>
-                  {/* <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                  </span>{" "} */}
                   increase in today sales.
                 </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                 234 {/* <AccessTime /> updated 4 minutes ago */}
+                 234 
                 </div>
               </CardFooter>
             </Card>
@@ -105,28 +102,6 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                {/* <div className={classes.cardHoverUnder}>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Refresh"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button simple color="info" justIcon>
-                      <Refresh className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Change Date"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button color="transparent" simple justIcon>
-                      <Edit className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                </div> */}
                 <h4 className={classes.cardTitle}>Email Subscriptions</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -151,28 +126,6 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                {/* <div className={classes.cardHoverUnder}>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Refresh"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button simple color="info" justIcon>
-                      <Refresh className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Change Date"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button color="transparent" simple justIcon>
-                      <Edit className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                </div> */}
                 <h4 className={classes.cardTitle}>Completed Tasks</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -200,28 +153,6 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                {/* <div className={classes.cardHoverUnder}>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Refresh"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button simple color="info" justIcon>
-                      <Refresh className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Change Date"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button color="transparent" simple justIcon>
-                      <Edit className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                </div> */}
                 <h4 className={classes.cardTitle}>Daily Sales</h4>
                 <p className={classes.cardCategory}>
                   <span className={classes.successText}>
@@ -250,28 +181,6 @@ class Gridd extends Component {
                 />
               </CardHeader>
               <CardBody>
-                {/* <div className={classes.cardHoverUnder}>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Refresh"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button simple color="info" justIcon>
-                      <Refresh className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip
-                    id="tooltip-top"
-                    title="Change Date"
-                    placement="bottom"
-                    classes={{ tooltip: classes.tooltip }}
-                  >
-                    <Button color="transparent" simple justIcon>
-                      <Edit className={classes.underChartIcons} />
-                    </Button>
-                  </Tooltip>
-                </div> */}
                 <h4 className={classes.cardTitle}>Email Subscriptions</h4>
                 <p className={classes.cardCategory}>
                   Last Campaign Performance
@@ -291,7 +200,6 @@ class Gridd extends Component {
                   className="ct-chart-white-colors"
                   data={completedTasksChart.data}
                   type="Line"
-                  // options={completedTasksChart.options}
                   listener={completedTasksChart.animation}
                 />
               </CardHeader>
