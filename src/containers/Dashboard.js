@@ -35,7 +35,8 @@ class Dashboard extends React.Component {
     this.state = {
       mobileOpen: false,
       miniActive: false,
-      isAdmin: false //this.checkUserRole(this.props.state.auth.user)
+      isAdmin: false ,//this.checkUserRole(this.props.state.auth.user)
+      user: {}
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
@@ -47,10 +48,12 @@ class Dashboard extends React.Component {
       });
       document.body.style.overflow = "hidden";
     }
-    this.setState({isAdmin: this.checkUserRole(this.props.state.auth.user)})
+    this.setState({isAdmin: this.checkUserRole(this.props.auth.user)})
+    this.setState({user:this.props.auth.user })
     window.addEventListener("resize", this.resizeFunction);
-   // this.props.getProfile()
-   this.extract(moreMembers,"jos-south")
+    console.log("USER INSIDE STATE+++++++", this.props.auth.user)
+    this.props.getProfile(this.props.auth.user.phone)
+    this.extract(moreMembers,"jos-south")
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -103,11 +106,13 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(moreMembers)
+    // console.log(moreMembers)
 
     console.log(":::::::",newLGA)
     const { classes, match, ...rest } = this.props;
-    console.log("DASHBOARD",this.props)
+    if(this.state.user !== null) { 
+     console.log("DASHBOARD",this.state.user)
+    }
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -159,7 +164,7 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return{
-      state
+     auth: state.auth
   }
 }
 

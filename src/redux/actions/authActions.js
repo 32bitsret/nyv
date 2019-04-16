@@ -10,7 +10,7 @@ import { TEST_REGISTER,
   ERROR_LOGIN
   } from '../Constants';
 
-
+import {getProfile} from "./dashboardAction"
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios({
@@ -47,12 +47,13 @@ export const loginUser = (user) => dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data.payload
     })
+    // dispatch(getProfile(user.phone))
     // history.push("/dashboard")
   }).catch(err => {
     console.log("LOGIN ERROR",err.response)
     dispatch({
       type: ERROR_LOGIN,
-      payload: err.response.data
+      payload: err.response
     })
   })
 };

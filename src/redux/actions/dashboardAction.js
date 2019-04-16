@@ -2,10 +2,17 @@ import {GET_PROFILE, GET_MEMBERS} from "../Constants"
 import { profileURL } from "../../api/apiURL"
 import axios from "axios"
 
-export const getProfile = () => dispatch => {
+export const getProfile = (phone) => dispatch => {
+    console.log("ACTION DASHBOARD", typeof(phone))
     axios({
-        method: "",
+        method: "POST",
         url: profileURL,
-        body: ""
+        data: { phone}
+    })
+    .then(res => {
+        console.log(res.data.data)
+    })
+    .catch(err => {
+        console.log(err)
     })
 }
