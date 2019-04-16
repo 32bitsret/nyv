@@ -56,6 +56,11 @@ class UserProfile extends Component {
     this.setState({user:this.props.getProfile(this.props.auth.user.phone)})
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log("INSIDE COMPONENT WILL RECIEVE PROPS", nextProps.dashboard)
+    this.setState({user: nextProps.dashboard.dashboard})
+  }
+
   onchange = (e) => {
     e.preventDefault()
     this.setState({[e.target.name]: e.target.value})
@@ -73,9 +78,11 @@ class UserProfile extends Component {
   };
   render(){
     const { classes } = this.props;
+    const { dashboard } = this.props.dashboard
     console.log("INSIDE  PROFILE", this.props.auth.user.phone)
     console.log("INSIDE PROFILE", this.state.user)
     console.log("INSIDE PROFILE SHOW VALUE", this.props.dashboard.dashboard)
+    console.log("INSIDE PROFILE SHOW VALUE ALONE", dashboard)
     
     const lga = ( //
       <Select
@@ -275,205 +282,12 @@ class UserProfile extends Component {
         Update Profile
       </Button>    
     )
+    // this.props.dashboard.dashboard
 
-          // const profilePanel = prof => this.props.dashboard.isloading ? (<div>Loading</div>) : (
-            //   <GridItem xs={12} sm={12} md={8}>
-            //   <Card>
-            //     <CardHeader color="success" icon>
-            //       <CardIcon color="success">
-            //         <PermIdentity />
-            //       </CardIcon>
-            //       <h4 className={classes.cardIconTitle}>
-            //         Profile - <small>Complete your profile</small>
-            //       </h4>
-            //     </CardHeader>
-            //     <CardBody>
-            //       <GridContainer>
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="First Name"
-            //             id="first_name"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //             inputProps={{
-            //               name:"first_name",
-            //               value: this.state.disable ? prof.name : this.state.first_name,
-            //               disabled: this.state.disable,
-            //               onChange: this.onchange
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Other Names"
-            //             id="email-address"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //             inputProps={{
-            //               name:"other_name",
-            //               value: this.state.disable ? prof.otherNames : this.state.other_names,
-            //               disabled:  this.state.disable,
-            //               onChange: this.onchange
-            //             }}
-            //           />
-                
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Email Address"
-            //             id="other_name"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //             inputProps={{
-            //               name:"other_name",
-            //               value: prof.emailAddress,
-            //               disabled:  true,
-            //               //onChange: this.onchange
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //       </GridContainer>
-
-            //       <GridContainer>
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           {/* <CustomInput
-            //             labelText="First Name"
-            //             id="first-name"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           /> */}
-
-            //           <CardContent>
-
-            //           {/* <InputLabel className={classes.label}>Date Picker</InputLabel> */}
-            //           <FormControl fullWidth>
-            //               <Datetime
-            //                 // dateFormat={true}  
-            //                 timeFormat={false}
-            //                 formControlProps={{
-            //                   fullWidth: true
-            //                 }}
-            //                 inputProps={{
-            //                   name:"dob",
-            //                   placeholder:"Date of Birth",
-            //                   // value: this.state.disable ? prof.dob : this.state.dob,
-            //                   // disabled:  this.state.disable,
-            //                   // onChange: this.onchange
-            //                 }}
-            //               />
-            //             </FormControl>
-            //           </CardContent>
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //         <FormControl
-            //               fullWidth
-            //               className={classes.selectFormControl}
-            //             >
-            //               <InputLabel
-            //                 htmlFor="lga"
-            //                 className={classes.selectLabel}
-            //               >
-            //                LGA
-            //               </InputLabel>
-            //               {lga}
-            //             </FormControl>
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Last Name"
-            //             id="last-name"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //             inputProps={{
-            //               value: this.state.name
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //       </GridContainer>
-            //       <GridContainer>
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="City"
-            //             id="city"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Country"
-            //             id="country"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Postal Code"
-            //             id="postal-code"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //       </GridContainer>
-            //       <GridContainer>
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="City"
-            //             id="city"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Country"
-            //             id="country"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //         <GridItem xs={12} sm={12} md={4}>
-            //           <CustomInput
-            //             labelText="Postal Code"
-            //             id="postal-code"
-            //             formControlProps={{
-            //               fullWidth: true
-            //             }}
-            //           />
-            //         </GridItem>
-
-            //       </GridContainer>
-            //       {butt}
-            //       <Clearfix />
-            //     </CardBody>
-            //   </Card>
-            // </GridItem>
-          // )
-    const  profile = this.props.dash.map((prof, key) => this.props.dashboard.isloading ?(<div>Loading</div>) :(
-        <GridContainer key={key}>
-          {/* {profilePanel(prof)} */}
+    const  profile = this.props.dashboard.isloading ?
+        (<div>Loading</div>) 
+        :
+        (<GridContainer >
           <GridItem xs={12} sm={12} md={8}>
               <Card>
                 <CardHeader color="success" icon>
@@ -495,7 +309,7 @@ class UserProfile extends Component {
                         }}
                         inputProps={{
                           name:"first_name",
-                          value: this.state.disable ? prof.name : this.state.first_name,
+                          value: this.state.disable ? this.state.user.firstname : this.state.first_name,
                           disabled: this.state.disable,
                           onChange: this.onchange
                         }}
@@ -511,7 +325,7 @@ class UserProfile extends Component {
                         }}
                         inputProps={{
                           name:"other_name",
-                          value: this.state.disable ? prof.otherNames : this.state.other_names,
+                          value: this.state.disable ? this.state.user.firstname : this.state.other_names,
                           disabled:  this.state.disable,
                           onChange: this.onchange
                         }}
@@ -528,7 +342,7 @@ class UserProfile extends Component {
                         }}
                         inputProps={{
                           name:"other_name",
-                          value: prof.emailAddress,
+                          value: this.state.user.firstname,
                           disabled:  true,
                           //onChange: this.onchange
                         }}
@@ -539,18 +353,8 @@ class UserProfile extends Component {
 
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
-                      {/* <CustomInput
-                        labelText="First Name"
-                        id="first-name"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      /> */}
-
                       <CardContent>
-
-                      {/* <InputLabel className={classes.label}>Date Picker</InputLabel> */}
-                      <FormControl fullWidth>
+                        <FormControl fullWidth>
                           <Datetime
                             // dateFormat={true}  
                             timeFormat={false}
@@ -669,11 +473,6 @@ class UserProfile extends Component {
             </GridItem>
         {<GridItem xs={12} sm={12} md={4}>
           <Card profile>
-            {/* <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={prof.avatar} alt="..." />
-              </a>
-            </CardAvatar> */}
                     <ImageUpload
                       avatar
                       addButtonProps={{
@@ -690,10 +489,10 @@ class UserProfile extends Component {
                       }}
                     />
             <CardBody profile>
-              <h2 className={classes.cardTitle}>{prof.name+ " " +prof.otherNames}</h2>
+              {/* <h2 className={classes.cardTitle}>{prof.name+ " " +prof.otherNames}</h2>
               <h6 className={classes.cardCategory}>{prof.course}</h6>
               <h6 className={classes.cardTitle}>{prof.emailAddress}</h6>
-              <h3 className={classes.cardTitle}>{prof.phone}</h3>
+              <h3 className={classes.cardTitle}>{prof.phone}</h3> */}
               {/* <Button color="success" round>
                 Upload
               </Button> */}
@@ -701,7 +500,7 @@ class UserProfile extends Component {
           </Card>
         </GridItem>}
       </GridContainer>
-    ))
+    )
 
   return (
     <div>
