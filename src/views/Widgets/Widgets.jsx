@@ -119,7 +119,7 @@ class Widgets extends React.Component {
           <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
               title="Tasks:"
-              headerColor="rose"
+              headerColor="success"
               tabs={[
                 {
                   tabName: "Bugs",

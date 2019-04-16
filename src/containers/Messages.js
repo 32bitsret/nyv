@@ -21,7 +21,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
-
+import MessagesDetail from "./MessagesDetail"
 import User from '../variables/UserData'
 var ps;
 
@@ -131,8 +131,7 @@ class Messages extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              {/* <Profile dash={data.dashUser}/> */}
-              {/* {display} */}
+              <MessagesDetail />
             </div>
         </div>
         </div>

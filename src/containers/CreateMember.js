@@ -21,7 +21,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
-
+import CreateMemberDetail from "./CreateMemberDetails"
 import User from '../variables/UserData'
 var ps;
 
@@ -131,8 +131,7 @@ class CreateMember extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              {/* <Profile dash={data.dashUser}/> */}
-              {/* {display} */}
+             <CreateMemberDetail/>
             </div>
         </div>
         </div>
