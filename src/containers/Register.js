@@ -18,6 +18,14 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
+import {
+  verifyEmail, 
+  verifyLength, 
+  verifyNumber, 
+  verifyUrl, 
+  compare}
+   from "../utils/validation"
+
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -29,7 +37,12 @@ class LoginPage extends React.Component {
       password: '',
       confirm_password:'',
       lastname:'',
-      phone:''
+      phone:'',
+
+      firstnameState:'',
+      passwordState:'',
+      phoneState:'',
+      lastnameState:''
     };
   }
   componentDidMount() {
@@ -45,25 +58,76 @@ class LoginPage extends React.Component {
     this.timeOutFunction = null;
   }
 
-  onChange = (e) => {
+  onChange = (e, stateName, type, stateNameEquivalence) => {
+    e.preventDefault()
     this.setState({ [e.target.name]: e.target.value });
+    switch(type){
+      case "email":
+        if(verifyEmail(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "password":
+        if(verifyLength(e.target.value, 6)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "equalTo":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "number":
+        if(verifyNumber(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]:"error"})
+        }
+        break;
+      case "minValue":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+        else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+    }
   }
 
   submit = (e) => {
     e.preventDefault();
-
-    const data = {
-      firstname: this.state.firstname,
-      email: this.state.email,
-      password:this.state.password,
-      phone: Number(this.state.phone),
-      lastname:  this.state.lastname,
-      //role:"admin"
-      // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
+    if(this.state.firstnameState === ""){
+      this.setState({firstnameState:"error"})
     }
-    console.log("REGISTRATION::::::",data)
-    // console.log("DATA", data)
-    this.props.registerUser(data, this.props.history)
+    if(this.state.lastnameState === ""){
+      this.setState({lastnameState: "error"})
+    }
+    if(this.state.passwordState === ""){
+      this.setState({passwordState: "error"})
+    }
+    if(this.state.phoneState === ""){
+      this.setState({phoneState: "error"})
+    }
+    else{
+        const data = {
+        firstname: this.state.firstname,
+        email: this.state.email,
+        password:this.state.password,
+        phone: Number(this.state.phone),
+        lastname:  this.state.lastname,
+        //role:"admin"
+        // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
+      }
+      console.log("REGISTRATION::::::",data)
+      this.props.registerUser(data, this.props.history)
+    }
   }
   render() {
     const { classes } = this.props;
@@ -96,15 +160,17 @@ class LoginPage extends React.Component {
                 {/* </CardHeader> */}
                 <CardBody>
                 <CustomInput
-                    labelText="Surname"
-                    id="surname"
+                    success={this.state.lastnameState === "success"}
+                    error={this.state.lastnameState === "error"}
+                    labelText="Last Name"
+                    id="lastname"
                     formControlProps={{
                       fullWidth: true
                     }}
                     inputProps={{
                       type:"text",
-                      name: "surname",
-                      onChange: this.onChange,
+                      name: "lastname",
+                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Face className={classes.inputAdornmentIcon} />
@@ -112,59 +178,63 @@ class LoginPage extends React.Component {
                       )
                     }}
                   />
-                  <CustomInput
-                    labelText="Other Names"
-                    id="othernames"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type:"text",
-                      name: "othernames",
-                      onChange: this.onChange,
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Face className={classes.inputAdornmentIcon} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Email"
-                    id="email"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "email",
-                      name: "email",
-                      onChange: this.onChange,
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Email className={classes.inputAdornmentIcon} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Phone number"
-                    id="phone"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type:"number",
-                      name: "phone",
-                      onChange: this.onChange,
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Icon className={classes.inputAdornmentIcon}>
-                            lock_outline
-                          </Icon>
-                        </InputAdornment>
-                      )
-                    }}
-                  />
+                <CustomInput
+                  success={this.state.firstnameState === "success"}
+                  error={this.state.firstnameState === "error"}
+                  labelText="First Name"
+                  id="firstname"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"text",
+                    name: "firstname",
+                    onChange: (e) => this.onChange(e, "firstname", "minValue"),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Face className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                  labelText="Email"
+                  id="email"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type: "email",
+                    name: "email",
+                    onChange: this.onChange,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Email className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                  success={this.state.phoneState === "success"}
+                  error={this.state.phoneState === "error"}
+                  labelText="Phone number"
+                  id="phone"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"number",
+                    name: "phone",
+                    onChange: (e)=> this.onChange(e, "phone", "number" ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Icon className={classes.inputAdornmentIcon}>
+                          lock_outline
+                        </Icon>
+                      </InputAdornment>
+                    )
+                  }}
+                />
                  <CustomInput
                     labelText="Password"
                     id="password"

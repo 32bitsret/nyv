@@ -9,6 +9,7 @@ export const LOGIN_START = "LOGIN_START"
 export const LOGIN_ERROR = "LOGIN_ERROR"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const SET_USER = "SET_USER"
+export const ERROR_LOGIN = "ERROR_LOGIN"
 //logout
 export const LOGOUT = "LOGOUT"
 

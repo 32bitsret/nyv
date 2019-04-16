@@ -21,7 +21,13 @@ import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 import { loginUser } from  "../redux/actions/authActions"
 import { withRouter } from "react-router-dom"
-import {verifyEmail, verifyLength, verifyNumber, verifyUrl, compare} from "../utils/validation"
+import {
+  verifyEmail, 
+  verifyLength, 
+  verifyNumber, 
+  verifyUrl, 
+  compare}
+   from "../utils/validation"
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,7 +37,9 @@ class Login extends React.Component {
       cardAnimaton: "cardHidden",
       email:"",
       password: "",
-      emailState:""
+      emailState:"",
+      passwordState:"",
+      error:{}
     };
   }
   componentDidMount() {
@@ -58,24 +66,50 @@ class Login extends React.Component {
     this.timeOutFunction = null;
   }
   
-  change = (e) => {
-    e.preventDefault()
-    this.setState({[e.target.name]: e.target.value})
-
+  change = (e, stateName, type, stateNameEqualTo) => {
+   e.preventDefault()
+   this.setState({[e.target.name]: e.target.value})
+    switch(type){
+      case "email":
+        if(verifyEmail(e.target.value)){
+          this.setState({[stateName + "State"]: "success"})
+        }
+        else {
+          this.setState({[stateName + "State"]: "error"})
+        }
+        break;
+      case "password":
+        if(verifyLength(e.target.value, 6)){
+          this.setState({[stateName + "State"]: "success"})
+        }
+        else {
+          this.setState({[stateName +"State"]: "error"})
+        }
+    }
   }
+
   submit = (e) => {
     e.preventDefault();
-    const userData = {
+    if(this.state.emailState === ""){
+      this.setState({emailState: "error"})
+    }
+   if(this.state.passwordState === ""){
+      this.setState({passwordState : "error"})
+    }
+    else { const userData = {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.loginUser(userData)
+    this.props.loginUser(userData)}
   }
 
-  // verifyEmail()
+  
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props)
+    console.log("PROPERTIES",this.props.auth)
+    console.log(this.state.error)
+    if(this.props.auth.error !== null || this.props.auth.error !== "" ){ 
+    }
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
@@ -98,8 +132,8 @@ class Login extends React.Component {
                 </div>
                 <CardBody>
                   <CustomInput
-                    success={false}
-                    error={false}
+                    success={this.state.emailState === "success"}
+                    error={this.state.emailState === "error"}
                     labelText="Email..."
                     id="email"
                     formControlProps={{
@@ -108,7 +142,11 @@ class Login extends React.Component {
                     inputProps={{
                       type:'email',
                       name:'email',
-                      onChange: this.change,
+                      onChange: (e) => this.change(
+                        e,
+                        "email",
+                        "email"
+                      ),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Email className={classes.inputAdornmentIcon} />
@@ -117,6 +155,8 @@ class Login extends React.Component {
                     }}
                   />
                   <CustomInput
+                    success={this.state.passwordState === "success"}
+                    error={this.state.passwordState === "error"}
                     labelText="Password"
                     id="password"
                     formControlProps={{
@@ -125,7 +165,11 @@ class Login extends React.Component {
                     inputProps={{
                         type: "password",
                         name: 'password',
-                        onChange: this.change,
+                        onChange: (e) => this.change(
+                          e,
+                          "password",
+                          "password"
+                        ),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Icon className={classes.inputAdornmentIcon}>

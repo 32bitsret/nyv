@@ -6,7 +6,8 @@ import { TEST_REGISTER,
    GET_ERRORS, 
    SET_CURRENT_USER,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  ERROR_LOGIN
   } from '../Constants';
 
 
@@ -29,6 +30,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login - Get User Token
 export const loginUser = (user) => dispatch => {
+    console.log("USER OBJECT", user)
   axios({
     method: 'POST',
     url: loginURL,
@@ -47,7 +49,11 @@ export const loginUser = (user) => dispatch => {
     })
     // history.push("/dashboard")
   }).catch(err => {
-    console.log("LOGIN ERROR",err.response.data.message)
+    console.log("LOGIN ERROR",err.response)
+    dispatch({
+      type: ERROR_LOGIN,
+      payload: err.response.data
+    })
   })
 };
 
