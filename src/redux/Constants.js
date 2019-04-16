@@ -22,8 +22,8 @@ export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGOUT_USER_ERROR = "LOGOUT_USER_ERROR"
 
 //Members
-export const GET_MEMBERS = "GET_MEMBERS"
-export const GET_MEMBERS_ERROR = "GET_MEMBERS_ERROR"
+
+export const GET_PROFILE_ERROR = "GET_PROFILE_ERROR"
 export const GET_MEMBER = "GET_MEMBER"
 
 //Messages

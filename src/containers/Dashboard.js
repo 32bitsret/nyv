@@ -49,10 +49,11 @@ class Dashboard extends React.Component {
       document.body.style.overflow = "hidden";
     }
     this.setState({isAdmin: this.checkUserRole(this.props.auth.user)})
+    this.props.getProfile(this.props.auth.user.phone)
     this.setState({user:this.props.auth.user })
     window.addEventListener("resize", this.resizeFunction);
     console.log("USER INSIDE STATE+++++++", this.props.auth.user)
-    this.props.getProfile(this.props.auth.user.phone)
+    // this.props.getProfile(this.props.auth.user.phone)
     this.extract(moreMembers,"jos-south")
   }
   componentWillUnmount() {
@@ -69,7 +70,9 @@ class Dashboard extends React.Component {
       }
     }
   }
+componentWillReceiveProps(nextProps){
 
+}
 
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
@@ -108,7 +111,7 @@ class Dashboard extends React.Component {
   render() {
     // console.log(moreMembers)
 
-    console.log(":::::::",newLGA)
+    console.log(":::::::",this.props.dashboard)
     const { classes, match, ...rest } = this.props;
     if(this.state.user !== null) { 
      console.log("DASHBOARD",this.state.user)
@@ -123,7 +126,7 @@ class Dashboard extends React.Component {
       });
     
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
-    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={User}/>)
+    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={User} value={this.state.user}/>)
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -164,7 +167,8 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return{
-     auth: state.auth
+     auth: state.auth,
+     dashboard: state.dashboard
   }
 }
 

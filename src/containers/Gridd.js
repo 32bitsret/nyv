@@ -37,7 +37,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
+import { getProfile } from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 
 class Gridd extends Component {
@@ -46,6 +46,10 @@ class Gridd extends Component {
     this.state = {
       value: 0
     }
+  }
+
+  componentDidMount(){
+
   }
     handleChange = (event, value) => {
         this.setState({ value });
@@ -56,6 +60,7 @@ class Gridd extends Component {
     
   render() {
     const { classes } = this.props;
+    console.log("INSIDE GRID", this.props.auth)
     return (
       <div>
         
@@ -306,8 +311,8 @@ class Gridd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    auth: state.emailsSubscriptionChart
   }
 }
 
-export default connect(mapStateToProps, {})(withStyles(dashboardStyle)(Gridd))
+export default connect(mapStateToProps, {getProfile})(withStyles(dashboardStyle)(Gridd))

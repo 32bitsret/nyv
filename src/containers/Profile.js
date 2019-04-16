@@ -22,7 +22,7 @@ import Switch from "@material-ui/core/Switch";
 import Select from "@material-ui/core/Select";
 import { CardContent } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-
+import { getProfile } from "../redux/actions/dashboardAction"
 
 
 class UserProfile extends Component {
@@ -46,12 +46,14 @@ class UserProfile extends Component {
     id:"",
     disable: true,
     editing: this.onButtonClick,
-    isLoading:  false
+    isLoading:  false,
+    user: {}
   }
 
   
   componentDidMount(){
-    //getUserData();
+    console.log("COMPONENT DID MOUNT")
+    this.setState({user:this.props.getProfile(this.props.auth.user.phone)})
   }
 
   onchange = (e) => {
@@ -71,10 +73,11 @@ class UserProfile extends Component {
   };
   render(){
     const { classes } = this.props;
-    console.log("INSIDE  PROFILE", this.props)
-    console.log("INSIDE PROFILE", this.state.other_name)
+    console.log("INSIDE  PROFILE", this.props.auth.user.phone)
+    console.log("INSIDE PROFILE", this.state.user)
+    console.log("INSIDE PROFILE SHOW VALUE", this.props.dashboard)
     
-    const lga = (
+    const lga = ( //
       <Select
       MenuProps={{
         className: classes.selectMenu
@@ -517,10 +520,11 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => {
   return {
-    state
+    auth: state.auth,
+    dashboard: state.dashboard
   }
 }
-export default connect(mapStateToProps, {})(withStyles(userProfileStyles)(UserProfile));
+export default connect(mapStateToProps, {getProfile})(withStyles(userProfileStyles)(UserProfile));
 
 
 /**
