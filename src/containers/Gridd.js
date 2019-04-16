@@ -65,33 +65,35 @@ class Gridd extends Component {
       <div>
         
         <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={12} sm={12} md={12}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="info" className={classes.cardHeaderHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  // listener={dailySalesChart.animation}
+                  data={emailsSubscriptionChart.data}
+                  type="Bar"
+                  options={emailsSubscriptionChart.options}
+                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                  listener={emailsSubscriptionChart.animation}
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Daily Sales</h4>
+                <h4 className={classes.cardTitle}>Education Summary</h4>
+                  For 17 Local Government Areas
                 <p className={classes.cardCategory}>
-                  increase in today sales.
                 </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                 234 
+                  
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
+
+          <GridItem xs={12} sm={12} md={12}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="warning" className={classes.cardHeaderHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
                   data={emailsSubscriptionChart.data}
@@ -109,39 +111,13 @@ class Gridd extends Component {
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
+                  
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <Card chart className={classes.cardHover}>
-              <CardHeader color="danger" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={completedTasksChart.data}
-                  type="Line"
-                  options={completedTasksChart.options}
-                  listener={completedTasksChart.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Completed Tasks</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-        </GridContainer>
-
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
+          
+          {/* <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
               <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
@@ -167,7 +143,13 @@ class Gridd extends Component {
                 </div>
               </CardFooter>
             </Card>
-          </GridItem>
+          </GridItem> */}
+          
+        </GridContainer>
+
+        <GridContainer>
+
+
           <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
               <CardHeader color="success" className={classes.cardHeaderHover}>
@@ -193,9 +175,10 @@ class Gridd extends Component {
               </CardFooter>
             </Card>
           </GridItem>
+
           <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="danger" className={classes.cardHeaderHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
                   data={completedTasksChart.data}
