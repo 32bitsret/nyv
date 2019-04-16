@@ -73,17 +73,6 @@ class LgaTables extends React.Component {
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
                   console.log(obj)
-                  // alert(
-                  //   "You've clicked LIKE button on \n{ \nLGA: " +
-                  //     obj.name +
-                  //     ", \nnumber of males: " +
-                  //     obj.males +
-                  //     ", \nnumber of females: " +
-                  //     obj.females +
-                  //     ", \nage average: " +
-                  //     obj.age +
-                  //     "\n}."
-                  // );
                 }}
                 color="info"
                 className="like"
@@ -157,7 +146,7 @@ class LgaTables extends React.Component {
         </GridItem>
         <GridItem xs={6} md={6} xs={6}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="warning" className={classes.cardHeaderHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
                   data={lgaChartData.data}
@@ -176,7 +165,7 @@ class LgaTables extends React.Component {
               <CardFooter chart>
               </CardFooter>
             </Card><Card chart className={classes.cardHover}>
-              <CardHeader color="warning" className={classes.cardHeaderHover}>
+              <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
                   className="ct-chart-white-colors"
                   data={lgaChartData.data}
@@ -196,7 +185,7 @@ class LgaTables extends React.Component {
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader color="danger" icon>
+              <CardHeader color="success" icon>
                 <CardIcon color="danger">
                   {/* <Timeline /> */}
                 </CardIcon>

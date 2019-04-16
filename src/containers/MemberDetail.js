@@ -38,88 +38,18 @@ class MemberDetail extends React.Component {
       <div>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12}>
-            <NavPills
-              color="success"
-              alignCenter
-              tabs={[
-                {
-                  tabButton: "LGA",
-                  tabIcon: Info,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          DATA STATISTICS FOR LOCAL GOVERNMENT AREA
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                       <LgaTables />
-                      </CardBody>
-                    </Card>
-                  )
-                },
-                {
-                  tabButton: "Description",
-                  tabIcon: Info,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          Description about product
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                         <Table />
-                      </CardBody>
-                    </Card>
-                  )
-                },
-                {
-                  tabButton: "Description",
-                  tabIcon: Info,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          Description about product
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                         <Table />
-                      </CardBody>
-                    </Card>
-                  )
-                },
-                {
-                  tabButton: "Location",
-                  tabIcon: LocationOn,
-                  tabContent: (
-                    <Card>
-                      <CardHeader>
-                        <h4 className={classes.cardTitle}>
-                          Location of the product
-                        </h4>
-                        <p className={classes.cardCategory}>
-                          More information here
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                        <Table />
-                      </CardBody>
-                    </Card>
-                  )
-                }
-              ]}
-            />
+            <Card>
+              <CardHeader>
+                <h4 className={classes.cardTitle}>
+                  DATA STATISTICS FOR LOCAL GOVERNMENT AREA
+                </h4>
+                  <p className={classes.cardCategory}>                  
+                </p>
+              </CardHeader>
+              <CardBody>
+                <LgaTables />
+              </CardBody>
+            </Card>
           </GridItem>
         </GridContainer>
       </div>

@@ -369,7 +369,7 @@ class UserProfile extends Component {
                             inputProps={{
                               name:"dob",
                               placeholder:"Date of Birth",
-                              value: this.state.disable ? this.state.user.DoB : this.state.DoB,
+                              value:this.state.disable ? this.state.user.DoB : this.state.DoB,
                               disabled:  this.state.disable,
                               onChange: this.onchange
                             }}

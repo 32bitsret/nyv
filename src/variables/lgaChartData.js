@@ -2,27 +2,24 @@
 const lgaChartData = {
     data: {
       labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Mai",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
+        "BSc",
+        "BEng",
+        "HND",
+        "ND",
+        "NCE",
+        "WAEC",
+        "PRIMARY SCHOOL",
+        "MASTERS",
+        "PHD",
       ],
-      series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
+      series: [[20, 43, 32, 80, 55, 53, 32, 34, 68]]
     },
     options: {
       axisX: {
         showGrid: false
       },
       low: 0,
-      high: 1000,
+      high: 200,
       chartPadding: {
         top: 0,
         right: 5,

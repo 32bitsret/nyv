@@ -21,12 +21,11 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
-import MemberDetail from './MemberDetail'
-import User from '../variables/UserData'
 
+import User from '../variables/UserData'
 var ps;
 
-class Members extends React.Component {
+class CreateMember extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,6 +43,7 @@ class Members extends React.Component {
       });
       document.body.style.overflow = "hidden";
     }
+    this.setState({isAdmin: this.checkUserRole(User)[0]})
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
@@ -77,10 +77,24 @@ class Members extends React.Component {
     }
   }
 
+    checkUserRole = User => {
+    console.log("CONSOLE", User)
+    let status = User.map(user => {
+      if(user.userRole === "Admin" || user.userRole === "admin"){
+        return true
+      }
+      else if(user.userRole === "User" || user.userRole === "user" ){
+        return false
+      }
+    })
+    console.log("CONSOLE STATUS", status)
+    return status
+  }
+
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("Members",classes)
+    console.log("CreateMember",classes)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -91,7 +105,8 @@ class Members extends React.Component {
       });
     
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
-      return (
+    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={data.dashUser}/>)
+    return (
       <div className={classes.wrapper}>
         <Sidebar
           routes={route}
@@ -116,7 +131,8 @@ class Members extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              <MemberDetail/>
+              {/* <Profile dash={data.dashUser}/> */}
+              {/* {display} */}
             </div>
         </div>
         </div>
@@ -125,7 +141,7 @@ class Members extends React.Component {
   }
 }
 
-Members.propTypes = {
+CreateMember.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -134,5 +150,5 @@ const mapStateToProps = state => {
     ...state
   }
 }
+export default connect(mapStateToProps, {})(withStyles(appStyle)(CreateMember));
 
-export default connect(mapStateToProps, {})(withStyles(appStyle)(Members));

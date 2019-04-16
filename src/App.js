@@ -16,6 +16,7 @@ import Register from './containers/Register'
 import Aboutus from './containers/AboutUs'
 import Home from './containers/Home'
 import Members from './containers/Members'
+import CreateMember from './containers/CreateMember'
 import Messages from './containers/Messages'
 import Notifications from './containers/Notifications'
 import {SET_USER} from "./redux/Constants"
@@ -122,6 +123,13 @@ class App extends Component {
                             exact 
                             path="/statistics" 
                             component={Members}
+                        />
+                    </Switch>
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/create-user" 
+                            component={CreateMember}
                         />
                     </Switch>
                     <Switch>
