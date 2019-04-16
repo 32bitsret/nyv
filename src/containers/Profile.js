@@ -31,7 +31,7 @@ class UserProfile extends Component {
     other_name:"",
     avatar:"",
     emailAddress:"",
-    dob:"",
+    DoB:"",
     lga:"",
     gender:"",
     phone:"",
@@ -285,7 +285,13 @@ class UserProfile extends Component {
     // this.props.dashboard.dashboard
 
     const  profile = this.props.dashboard.isloading ?
-        (<div>Loading</div>) 
+        (<div>
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={4}>
+                <div>loading...</div>
+              </GridItem>
+            </GridContainer>
+        </div>) 
         :
         (<GridContainer >
           <GridItem xs={12} sm={12} md={8}>
@@ -318,31 +324,30 @@ class UserProfile extends Component {
 
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
-                        labelText="Other Names"
+                        labelText="Middle Name"
                         id="email-address"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           name:"other_name",
-                          value: this.state.disable ? this.state.user.firstname : this.state.other_names,
-                          disabled:  this.state.disable,
+                          value:  this.state.user.middlename,//this.state.disable ? this.state.user.firstname : this.state.other_names,
+                          disabled:  true,//this.state.disable,
                           onChange: this.onchange
                         }}
                       />
-                
                     </GridItem>
 
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
-                        labelText="Email Address"
+                        labelText="Last Name"
                         id="other_name"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           name:"other_name",
-                          value: this.state.user.firstname,
+                          value: this.state.user.lastname,
                           disabled:  true,
                           //onChange: this.onchange
                         }}
@@ -364,9 +369,9 @@ class UserProfile extends Component {
                             inputProps={{
                               name:"dob",
                               placeholder:"Date of Birth",
-                              // value: this.state.disable ? prof.dob : this.state.dob,
-                              // disabled:  this.state.disable,
-                              // onChange: this.onchange
+                              value: this.state.disable ? this.state.user.DoB : this.state.DoB,
+                              disabled:  this.state.disable,
+                              onChange: this.onchange
                             }}
                           />
                         </FormControl>
@@ -381,22 +386,28 @@ class UserProfile extends Component {
                           <InputLabel
                             htmlFor="lga"
                             className={classes.selectLabel}
+                            onChange ={this.onchange}
+                            value="BOKKOS"//{this.state.disable ? this.state.user.lga : this.state.lga}
+                            name="lga"
                           >
                            LGA
                           </InputLabel>
                           {lga}
-                        </FormControl>
+                    </FormControl>
                     </GridItem>
 
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
-                        labelText="Last Name"
-                        id="last-name"
+                        labelText="Phone Number"
+                        id="phone"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
-                          value: this.state.name
+                          name:"phone",
+                          value: "0"+this.state.user.phone ,
+                          disabled: true,
+                        
                         }}
                       />
                     </GridItem>
@@ -473,26 +484,29 @@ class UserProfile extends Component {
             </GridItem>
         {<GridItem xs={12} sm={12} md={4}>
           <Card profile>
-                    <ImageUpload
-                      avatar
-                      addButtonProps={{
-                        color: "success",
-                        round: true
-                      }}
-                      changeButtonProps={{
-                        color: "success",
-                        round: true
-                      }}
-                      removeButtonProps={{
-                        color: "danger",
-                        round: true
-                      }}
-                    />
+            <ImageUpload
+              avatar
+              addButtonProps={{
+                color: "success",
+                round: true
+              }}
+              changeButtonProps={{
+                color: "success",
+                round: true
+              }}
+              removeButtonProps={{
+                color: "danger",
+                round: true
+              }}
+            />
             <CardBody profile>
-              {/* <h2 className={classes.cardTitle}>{prof.name+ " " +prof.otherNames}</h2>
-              <h6 className={classes.cardCategory}>{prof.course}</h6>
-              <h6 className={classes.cardTitle}>{prof.emailAddress}</h6>
-              <h3 className={classes.cardTitle}>{prof.phone}</h3> */}
+              <h2 className={classes.cardTitle}>{this.state.user.firstname+ " " +this.state.user.middlename+" " +this.state.user.lastname}</h2>
+              <h6 className={classes.cardCategory}>Address: {this.state.user.address}</h6>
+              <h6 className={classes.cardTitle}>Email: {this.state.user.email}</h6>
+              <h3 className={classes.cardTitle}>LGA: {this.state.user.lga}</h3>
+              <h3 className={classes.cardTitle}>GENDER: {this.state.user.gender}</h3>
+              <h3 className={classes.cardTitle}>LGA: {this.state.user.lga}</h3>
+              
               {/* <Button color="success" round>
                 Upload
               </Button> */}

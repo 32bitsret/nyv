@@ -20,3 +20,17 @@ export const getProfile = (phone) => dispatch => {
         console.log(err)
     })
 }
+
+export const updateProfile = () => {
+    axios({
+        method: "",
+        url: "",
+        data: ""
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
