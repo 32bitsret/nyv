@@ -15,4 +15,6 @@ export const profileURL = `${BASE_URL}/pyc/profile/`
 export const updateProfile = `${BASE_URL}/`
 
 
+export const getNotificationURL = `${BASE_URL}/`
+
 

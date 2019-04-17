@@ -116,35 +116,6 @@ class Gridd extends Component {
               </CardFooter>
             </Card>
           </GridItem>
-          
-          {/* <GridItem xs={12} sm={12} md={4}>
-            <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  listener={dailySalesChart.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Daily Sales</h4>
-                <p className={classes.cardCategory}>
-                  <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                  </span>{" "}
-                  increase in today sales.
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> updated 4 minutes ago
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem> */}
-          
         </GridContainer>
 
         <GridContainer>
@@ -194,7 +165,6 @@ class Gridd extends Component {
             </Card>
           </GridItem>
         </GridContainer>
-
       </div>
     )
   }
