@@ -22,14 +22,14 @@ const ProtectedRoute = ({ component: Component, auth, ...rest }) => (
       {...rest}
       render={props =>{
         console.log("INSIDE PRIVATE ROUTE", auth)
-        if(auth.isAuthenticated === true && auth.user.role === "admin" ){
+        if(auth.isAuthenticated === true ){
           return (
             <Component {...props} />
           )
         }
-        else if(auth.isAuthenticated === true && auth.user.role !== "admin" ){
-          <Redirect to="/login" />
-        }
+        // else if(auth.isAuthenticated === true && auth.user.role !== "admin" ){
+        //   <Redirect to="/login" />
+        // }
         else{
          return( 
           <Redirect to="/login" />

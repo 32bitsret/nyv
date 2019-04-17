@@ -14,6 +14,8 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import lgaChartData from "../variables/lgaChartData"
 import moreMembers from "../variables/moreMembers"
 import isEmpty from "../utils/isEmpty"
+import {extactEducation, extract} from "../utils/Table/TableFunctions"
+
 
 const styles = {
   cardIconTitle: {
@@ -25,41 +27,26 @@ const styles = {
 
 
 const dataRows = [
-    ["Barkin Ladi", 2, 13, 61],
-    ["Bassa", "2", "12", "63"],
-    ["Bokkos", "2", "67", "66"],
-    ["Jos-East", "3", "78", "22"],
-    ["Jos-North", "3", "45", "33"],
-    ["Jos-South", "3", "23", "61"],
-    ["Kanam", "3", "13", "59"],
-    ["Kanke", "3", "13", "59"],
-    ["Langtang-North", "3", "23", "55"],
-    ["Langtang South", "33", "89", "39"],
-    ["Mangu", "35", "23", "23"],
-    ["Mikang", "33", "56", "30"],
-    ["Pankshin", "54", "78", "22"],
-    ["Qua'an Pan", "13", "67", "36"],
-    ["Riyom", "56", "12", "43"],
-    ["Shendam", "34", "89", "19"],
-    ["Wase", "34", "34", "66"],
+    ["Barkin Ladi"],
+    ["Bassa"],
+    ["Bokkos"],
+    ["Jos-East"],
+    ["Jos-North"],
+    ["Jos-South"],
+    ["Kanam"],
+    ["Kanke"],
+    ["Langtang-North"],
+    ["Langtang South"],
+    ["Mangu"],
+    ["Mikang"],
+    ["Pankshin"],
+    ["Qua'an Pan"],
+    ["Riyom"],
+    ["Shendam"],
+    ["Wase"],
   ]
 
-const pieChart = {
-  data: {
-    labels: ["62%"+" females", "32%"+" Males"],
-    series: [62, 32]
-  },
-  options: {
-    height: "230px"
-  }
-}
 
-
-const extract = (arr1, arr2) => {
- let res1 = arr1.map(o => {
-    console.log(o[0])
-  })
-}
 
 class LgaTables extends React.Component {
   constructor(props) {
@@ -197,24 +184,6 @@ class LgaTables extends React.Component {
                     sortable: false,
                     filterable: false
                   },
-                  {
-                    Header: "Males",
-                    accessor: "males",
-                    sortable: false,
-                    filterable: false
-                  },
-                  {
-                    Header: "Females",
-                    accessor: "females",
-                    sortable: false,
-                    filterable: false
-                  },
-                  {
-                    Header: "Age Average",
-                    accessor: "age",
-                    sortable: false,
-                    filterable: false
-                  }, 
                   {
                     Header: "  View      ",
                     accessor: "actions",

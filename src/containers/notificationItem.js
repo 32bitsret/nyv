@@ -154,12 +154,12 @@ class Notifications extends React.Component {
                       <div
                         className={classes.cardHeader + " " + classes.center}
                       >
-                        <h4 className={classes.cardTitle}>
+                        {/* <h4 className={classes.cardTitle}>
                           Notifications Places
                         </h4>
                         <p className={classes.cardSubtitle}>
                          notifications
-                        </p>
+                        </p> */}
                       </div>
                     </GridItem>
                   </GridContainer>
