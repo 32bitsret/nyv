@@ -12,7 +12,8 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import ChartistGraph from "react-chartist";
 import CardFooter from "components/Card/CardFooter.jsx";
 import lgaChartData from "../variables/lgaChartData"
-
+import moreMembers from "../variables/moreMembers"
+import isEmpty from "../utils/isEmpty"
 
 const styles = {
   cardIconTitle: {
@@ -22,8 +23,9 @@ const styles = {
   }
 };
 
+
 const dataRows = [
-    ["Barkin Ladi", "2", "13", "61"],
+    ["Barkin Ladi", 2, 13, 61],
     ["Bassa", "2", "12", "63"],
     ["Bokkos", "2", "67", "66"],
     ["Jos-East", "3", "78", "22"],
@@ -53,13 +55,24 @@ const pieChart = {
 }
 
 
+const extract = (arr1, arr2) => {
+  let res1;
+  let res2;
+  res1 = arr1.map(o => {
+    console.log(o[0])
+  })
+}
+
 class LgaTables extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      tableData: {},
+      isloading: true,
       data: dataRows.map((prop, key) => {
         return {
-          id: key + 1,
+          id: key ,
+          sn: key + 1,
           name: prop[0],
           males: prop[1],
           females: prop[2],
@@ -72,7 +85,10 @@ class LgaTables extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                  console.log(obj)
+                  this.setState({
+                    tableData: obj,
+                    isloading: false
+                  })
                 }}
                 color="info"
                 className="like"
@@ -85,8 +101,63 @@ class LgaTables extends React.Component {
       })
     };
   }
+
+
+  componentDidMount(){
+    extract(dataRows, moreMembers)
+  }
   render() {
     const { classes } = this.props;
+    console.log("TYPE OF DATA",this.state.tableData)
+
+    const display = this.state.isloading ? ( 
+    <Card>
+      <CardBody stats className={classes.cardFooter}>
+        <i className={classes.danger} /> No LGA selected{` `}              
+      </CardBody>
+    </Card>
+    ) : ( 
+      <Card>
+        <CardBody>
+          <h1 className={classes.cardTitle}>{" "} BARKIN LADI</h1>
+          <h4 className={classes.cardTitle}>TOTAL:{"  "} 65</h4>
+          <h4 className={classes.cardTitle}>MALES:{"  "} 32</h4>
+          <h4 className={classes.cardTitle}>FEMALES:{"  "} 33</h4>
+          <hr/>
+          <h3 className={classes.cardTitle}>PROFILE SUMMARY</h3>
+          <h4 className={classes.cardTitle}>MARRIED:{"  "} 14</h4>
+          <h4 className={classes.cardTitle}>SINGLE:{"  "} 7</h4>
+          <h4 className={classes.cardTitle}>DISABLED:{"  "} 8</h4>
+          <h4 className={classes.cardTitle}>NOT DISABLED:{"  "} 9</h4>
+          <hr/>
+          <h3 className={classes.cardTitle}>EDUCATIONAL SUMMARY</h3>
+          <hr/>
+          <h4 className={classes.cardTitle}>BSC:{"  "} 0</h4>
+          <h4 className={classes.cardTitle}>BEng:{"  "} 6</h4>
+          <h4 className={classes.cardTitle}>HND:{"  "} 3</h4>
+          <h4 className={classes.cardTitle}>ND:{"  "} 2</h4>
+          <h4 className={classes.cardTitle}>WAEC:{"  "} 3</h4>
+          <h4 className={classes.cardTitle}>MSC:{"  "} 5</h4>
+          <h4 className={classes.cardTitle}>PHD:{"  "} 3</h4>
+
+        </CardBody>
+        <CardFooter stats className={classes.cardFooter}>
+          <i className={classes.danger} /> Windows
+          Phone{` `}              
+          <Button
+            className={classes.danger} 
+            justIcon={false}
+            round
+            simple
+            color="info"
+            className="like"
+          >
+            View
+          </Button>
+        </CardFooter>
+      </Card>
+    )
+
     return (
       <GridContainer>
         <GridItem xs={6}>
@@ -101,7 +172,7 @@ class LgaTables extends React.Component {
                 columns={[
                 {
                     Header: "S/N",
-                    accessor: "id",
+                    accessor: "sn",
                     sortable: false,
                     filterable: false
                     },
@@ -145,66 +216,7 @@ class LgaTables extends React.Component {
           </Card>
         </GridItem>
         <GridItem xs={6} md={6} xs={6}>
-            <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={lgaChartData.data}
-                  type="Bar"
-                  options={lgaChartData.options}
-                  responsiveOptions={lgaChartData.responsiveOptions}
-                  listener={lgaChartData.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
-                <p className={classes.cardCategory}>
-                  Data Summary
-                </p>
-              </CardBody>
-              <CardFooter chart>
-              </CardFooter>
-            </Card><Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={lgaChartData.data}
-                  type="Bar"
-                  options={lgaChartData.options}
-                  responsiveOptions={lgaChartData.responsiveOptions}
-                  listener={lgaChartData.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>BASSA LGA SUMMARY</h4>
-                <p className={classes.cardCategory}>
-                  Data Summary
-                </p>
-              </CardBody>
-              <CardFooter chart>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader color="success" icon>
-                <CardIcon color="danger">
-                  {/* <Timeline /> */}
-                </CardIcon>
-                <h4 className={classes.cardIconTitle}>Pie Chart</h4>
-              </CardHeader>
-              <CardBody>
-                <ChartistGraph
-                  data={pieChart.data}
-                  type="Pie"
-                  options={pieChart.options}
-                />
-              </CardBody>
-              <CardFooter stats className={classes.cardFooter}>
-                <h6 className={classes.legendTitle}>Legend</h6>
-                <i className={classes.info} /> Apple{` `}
-                <i className={classes.danger} /> Windows
-                Phone{` `}
-              </CardFooter>
-            </Card>
+            {display}
         </GridItem>
       </GridContainer>
     );

@@ -24,6 +24,11 @@ import {
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts";
+import Group from "@material-ui/icons/Group"
+import Email from "@material-ui/icons/Email"
+import Notifications from "@material-ui/icons/Notifications"
+import Person from "@material-ui/icons/Person"
+
 
 import ChartistGraph from "react-chartist";
 // core components
@@ -76,6 +81,7 @@ class Gridd extends Component {
                   responsiveOptions={emailsSubscriptionChart.responsiveOptions}
                   listener={emailsSubscriptionChart.animation}
                 />
+                
               </CardHeader>
               <CardBody>
                 <h4 className={classes.cardTitle}>Education Summary</h4>
@@ -91,7 +97,7 @@ class Gridd extends Component {
             </Card>
           </GridItem>
 
-          <GridItem xs={12} sm={12} md={12}>
+          {/* <GridItem xs={12} sm={12} md={12}>
             <Card chart className={classes.cardHover}>
               <CardHeader color="success" className={classes.cardHeaderHover}>
                 <ChartistGraph
@@ -115,52 +121,69 @@ class Gridd extends Component {
                 </div>
               </CardFooter>
             </Card>
-          </GridItem>
+          </GridItem> */}
         </GridContainer>
 
         <GridContainer>
-
-
-          <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
-                />
-              </CardHeader>
+              {/* <CardHeader color="success" className={classes.cardHeaderHover}>
+               <h1 className={classes.cardTitle}>GENERAL SUMMARY</h1>
+              
+              </CardHeader> */}
               <CardBody>
-                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
+               <h4 className={classes.cardTitle}><Person/>TOTAL: 20</h4>
+               <h4 className={classes.cardTitle}><Person/>MALES: 300</h4>
+               <h4 className={classes.cardTitle}><Person/>FEMALES: 400</h4>
                 <p className={classes.cardCategory}>
-                  Last Campaign Performance
+                  {/* Total */}
                 </p>
               </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
-                </div>
+              <CardFooter chart>               
+                <h1 className={classes.cardTitle}>GENERAL SUMMARY</h1>
               </CardFooter>
             </Card>
           </GridItem>
 
           <GridItem xs={12} sm={12} md={4}>
             <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={completedTasksChart.data}
-                  type="Line"
-                  listener={completedTasksChart.animation}
-                />
-              </CardHeader>
+              {/* <CardHeader color="transparent" className={classes.cardHeaderHover}>
+               <h1 className={classes.cardTitle}>PROFILE SUMMARY</h1>
+              </CardHeader> */}
+              <CardBody>
+               <h4 className={classes.cardTitle}><Person/>{"  "} 20 SINGLE</h4>
+               <h4 className={classes.cardTitle}><Person/>{"  "}  300 MARRIED</h4>
+               <h4 className={classes.cardTitle}><Person/>{"  "}  40 DISABLED</h4>
+               <h4 className={classes.cardTitle}><Person/>{"  "}  245 NOT DISABLED</h4>
+                <p className={classes.cardCategory}>
+                  {/* Total */}
+                </p>
+              </CardBody>
               <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
-                </div>
+                <h1 className={classes.cardTitle}>PROFILE SUMMARY</h1>
+              </CardFooter>
+            </Card>
+          </GridItem>
+
+          <GridItem xs={12} sm={12} md={4}>
+            <Card chart className={classes.cardHover}>
+              {/* <CardHeader color="transparent" className={classes.cardHeaderHover}>
+               <h1 className={classes.cardTitle}>EDUCATION SUMMARY</h1>
+              </CardHeader> */}
+              <CardBody>
+              <h4 className={classes.cardTitle}>BSC: 20</h4>
+               <h4 className={classes.cardTitle}>BEng: 300</h4>
+               <h4 className={classes.cardTitle}>ND: 400</h4>
+               <h4 className={classes.cardTitle}>HND: 45</h4>
+               <h4 className={classes.cardTitle}>O' LEVEL: 45</h4>
+               <h4 className={classes.cardTitle}>MSC: 45</h4>
+               <h4 className={classes.cardTitle}>PHD: 45</h4>
+                <p className={classes.cardCategory}>
+                  {/* Total */}
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <h1 className={classes.cardTitle}>EDUCATION SUMMARY</h1>
               </CardFooter>
             </Card>
           </GridItem>
