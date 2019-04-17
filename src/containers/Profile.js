@@ -6,6 +6,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Clearfix from "components/Clearfix/Clearfix.jsx";
+import FormLabel from "@material-ui/core/FormLabel";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
@@ -306,6 +307,7 @@ class UserProfile extends Component {
                 </CardHeader>
                 <CardBody>
                   <GridContainer>
+                    
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
                         labelText="First Name"
@@ -331,8 +333,7 @@ class UserProfile extends Component {
                         }}
                         inputProps={{
                           name:"other_name",
-                          value:  this.state.user.middlename,//this.state.disable ? this.state.user.firstname : this.state.other_names,
-                          disabled:  true,//this.state.disable,
+                          value:  this.state.user.middlename,                          disabled:  true,
                           onChange: this.onchange
                         }}
                       />
@@ -413,10 +414,14 @@ class UserProfile extends Component {
                     </GridItem>
 
                   </GridContainer>
-                  <GridContainer>
+                  <GridContainer>                
+                    <GridItem xs={12} sm={12} md={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      Email
+                    </FormLabel>
+                  </GridItem>
                     <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
-                        labelText="City"
                         id="city"
                         formControlProps={{
                           fullWidth: true
@@ -424,7 +429,7 @@ class UserProfile extends Component {
                       />
                     </GridItem>
 
-                    <GridItem xs={12} sm={12} md={4}>
+                    {/* <GridItem xs={12} sm={12} md={4}>
                       <CustomInput
                         labelText="Country"
                         id="country"
@@ -442,7 +447,7 @@ class UserProfile extends Component {
                           fullWidth: true
                         }}
                       />
-                    </GridItem>
+                    </GridItem> */}
 
                   </GridContainer>
                   <GridContainer>

@@ -14,7 +14,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import PictureUpload from "components/CustomUpload/PictureUpload.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-
+import FormLabel from "@material-ui/core/FormLabel";
 const style = {
   infoText: {
     fontWeight: "300",

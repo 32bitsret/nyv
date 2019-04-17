@@ -63,131 +63,107 @@ class Gridd extends Component {
         this.setState({ value: index });
     };
     
+
+  
   render() {
     const { classes } = this.props;
-    console.log("INSIDE GRID", this.props.auth)
+    console.log("INSIDE GRID", this.props.dashboard)
+
+     const display = this.props.dashboard.isloading ? (       
+     <GridContainer justify="center">
+       <div>loading...</div>
+    </GridContainer>
+    ) :
+      ( 
+        <div>
+        <GridContainer>
+        <GridItem xs={12} sm={12} md={6}>
+          <Card chart >
+            <CardHeader color="success" className={classes.cardHeaderHover}>
+              <ChartistGraph
+                className="ct-chart-white-colors"
+                data={emailsSubscriptionChart.data}
+                type="Bar"
+                options={emailsSubscriptionChart.options}
+                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                listener={emailsSubscriptionChart.animation}
+              />
+              
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>GENERAL SUMMARY</h4>
+                For 17 Local Government Areas
+              <p className={classes.cardCategory}>
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={6}>
+          <Card chart >
+            <CardHeader color="success" className={classes.cardHeaderHover}>
+              <ChartistGraph
+                className="ct-chart-white-colors"
+                data={emailsSubscriptionChart.data}
+                type="Bar"
+                options={emailsSubscriptionChart.options}
+                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                listener={emailsSubscriptionChart.animation}
+              />
+              
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>EDUCATION SUMMARY</h4>
+                For 17 Local Government Areas
+              <p className={classes.cardCategory}>
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+      </GridContainer>
+
+      <GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
+          <Card chart >
+            <CardHeader color="success" className={classes.cardHeaderHover}>
+              <ChartistGraph
+                className="ct-chart-white-colors"
+                data={emailsSubscriptionChart.data}
+                type="Bar"
+                options={emailsSubscriptionChart.options}
+                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                listener={emailsSubscriptionChart.animation}
+              />
+              
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>GENERAL SUMMARY</h4>
+                For 17 Local Government Areas
+              <p className={classes.cardCategory}>
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+      </GridContainer>
+      </div>
+      )
     return (
       <div>
-        
-        <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-            <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
-                />
-                
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Education Summary</h4>
-                  For 17 Local Government Areas
-                <p className={classes.cardCategory}>
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-
-          {/* <GridItem xs={12} sm={12} md={12}>
-            <Card chart className={classes.cardHover}>
-              <CardHeader color="success" className={classes.cardHeaderHover}>
-                <ChartistGraph
-                  className="ct-chart-white-colors"
-                  data={emailsSubscriptionChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem> */}
-        </GridContainer>
-
-        <GridContainer>
-        <GridItem xs={12} sm={12} md={4}>
-            <Card chart className={classes.cardHover}>
-              {/* <CardHeader color="success" className={classes.cardHeaderHover}>
-               <h1 className={classes.cardTitle}>GENERAL SUMMARY</h1>
-              
-              </CardHeader> */}
-              <CardBody>
-               <h4 className={classes.cardTitle}><Person/>TOTAL: 20</h4>
-               <h4 className={classes.cardTitle}><Person/>MALES: 300</h4>
-               <h4 className={classes.cardTitle}><Person/>FEMALES: 400</h4>
-                <p className={classes.cardCategory}>
-                  {/* Total */}
-                </p>
-              </CardBody>
-              <CardFooter chart>               
-                <h1 className={classes.cardTitle}>GENERAL SUMMARY</h1>
-              </CardFooter>
-            </Card>
-          </GridItem>
-
-          <GridItem xs={12} sm={12} md={4}>
-            <Card chart className={classes.cardHover}>
-              {/* <CardHeader color="transparent" className={classes.cardHeaderHover}>
-               <h1 className={classes.cardTitle}>PROFILE SUMMARY</h1>
-              </CardHeader> */}
-              <CardBody>
-               <h4 className={classes.cardTitle}><Person/>{"  "} 20 SINGLE</h4>
-               <h4 className={classes.cardTitle}><Person/>{"  "}  300 MARRIED</h4>
-               <h4 className={classes.cardTitle}><Person/>{"  "}  40 DISABLED</h4>
-               <h4 className={classes.cardTitle}><Person/>{"  "}  245 NOT DISABLED</h4>
-                <p className={classes.cardCategory}>
-                  {/* Total */}
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <h1 className={classes.cardTitle}>PROFILE SUMMARY</h1>
-              </CardFooter>
-            </Card>
-          </GridItem>
-
-          <GridItem xs={12} sm={12} md={4}>
-            <Card chart className={classes.cardHover}>
-              {/* <CardHeader color="transparent" className={classes.cardHeaderHover}>
-               <h1 className={classes.cardTitle}>EDUCATION SUMMARY</h1>
-              </CardHeader> */}
-              <CardBody>
-              <h4 className={classes.cardTitle}>BSC: 20</h4>
-               <h4 className={classes.cardTitle}>BEng: 300</h4>
-               <h4 className={classes.cardTitle}>ND: 400</h4>
-               <h4 className={classes.cardTitle}>HND: 45</h4>
-               <h4 className={classes.cardTitle}>O' LEVEL: 45</h4>
-               <h4 className={classes.cardTitle}>MSC: 45</h4>
-               <h4 className={classes.cardTitle}>PHD: 45</h4>
-                <p className={classes.cardCategory}>
-                  {/* Total */}
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <h1 className={classes.cardTitle}>EDUCATION SUMMARY</h1>
-              </CardFooter>
-            </Card>
-          </GridItem>
-        </GridContainer>
+        {display}
       </div>
     )
   }
@@ -195,7 +171,7 @@ class Gridd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.emailsSubscriptionChart
+     dashboard: state.dashboard
   }
 }
 

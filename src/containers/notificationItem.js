@@ -87,7 +87,7 @@ class Notifications extends React.Component {
               >
               </div>
                  <SnackbarContent
-                  message={one.title}
+                  message={one.message}
                   icon={AddAlert}
                   color="success"
                 />

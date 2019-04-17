@@ -79,7 +79,7 @@ class Sidebar extends React.Component {
   //   this.setState({})
   // }
   render() {
-    console.log("SIDEBAR", this.props)
+    console.log("SIDEBAR", this.props.dashboard)
     const {
       classes,
       color,
@@ -155,24 +155,25 @@ class Sidebar extends React.Component {
     //   </div>
     // );
 
-    const user = userData.map( (useR, key )=> (
-      <div className={userWrapperClass} key={key}>
+    const user =  (
+    // userData.map( (useR, key )=> (
+      <div className={userWrapperClass} >
       <div className={photo}>
-        <img src={useR.avatar} className={classes.avatarImg} alt="..." />
+        <img src="{}" className={classes.avatarImg} alt="..." />
       </div>
       <List className={classes.list}>
         <ListItem className={classes.item + " " + classes.userItem}>
             <ListItemText
-              primary={useR.name+ ' ' + useR.otherNames}
+              primary={this.props.dashboard.dashboard.firstname+ ' ' + this.props.dashboard.dashboard.lastname}
               disableTypography={true}
               className={itemText + " " + classes.userItemText}
             />
         </ListItem>
       </List>
     </div>
-    ))
+    )
     
-    var links = (
+    var links =  (
       <List className={classes.list}>
         {routes.map((prop, key) => {
           if (prop.redirect) {
