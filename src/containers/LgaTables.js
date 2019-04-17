@@ -14,7 +14,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import lgaChartData from "../variables/lgaChartData"
 import moreMembers from "../variables/moreMembers"
 import isEmpty from "../utils/isEmpty"
-import {extactEducation, extract} from "../utils/Table/TableFunctions"
+import {extactEducation, extractLGA, extractMale} from "../utils/Table/TableFunctions"
 
 
 const styles = {
@@ -27,23 +27,23 @@ const styles = {
 
 
 const dataRows = [
-    ["Barkin Ladi"],
-    ["Bassa"],
-    ["Bokkos"],
-    ["Jos-East"],
-    ["Jos-North"],
-    ["Jos-South"],
-    ["Kanam"],
-    ["Kanke"],
-    ["Langtang-North"],
-    ["Langtang South"],
-    ["Mangu"],
-    ["Mikang"],
-    ["Pankshin"],
-    ["Qua'an Pan"],
-    ["Riyom"],
-    ["Shendam"],
-    ["Wase"],
+    ["barkin ladi"],
+    ["bassa"],
+    ["bokkos"],
+    ["jos-east"],
+    ["jos-north"],
+    ["jos-south"],
+    ["kanam"],
+    ["kanke"],
+    ["langtang-north"],
+    ["langtang south"],
+    ["mangu"],
+    ["mikang"],
+    ["pankshin"],
+    ["qua'an pan"],
+    ["riyom"],
+    ["shendam"],
+    ["wase"],
   ]
 
 
@@ -59,10 +59,10 @@ class LgaTables extends React.Component {
           id: key ,
           sn: key + 1,
           name: prop[0],
-          males: prop[1],
+          males: extractMale(moreMembers, "male", prop[0] ),
           females: prop[2],
           age: prop[3],
-          total: moreMembers.length,
+          total: extractLGA(moreMembers,prop[0]),
           married: "",
           single: "",
           divorced: "",
@@ -104,15 +104,15 @@ class LgaTables extends React.Component {
 
 
   componentDidMount(){
-    extract(dataRows, moreMembers)
+    // extract(moreMembers,"Bassa")
   }
   render() {
     const { classes } = this.props;
     console.log("TYPE OF DATA",this.state.tableData)
-
+    // console.log("RESULT", extract(moreMembers, "Bassa"))
     const display = this.state.isloading ? ( 
     <Card>
-      <CardBody stats className={classes.cardFooter}>
+      <CardBody  className={classes.cardFooter}>
         <i className={classes.danger} /> No LGA selected              
       </CardBody>
     </Card>
