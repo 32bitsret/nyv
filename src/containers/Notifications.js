@@ -119,24 +119,7 @@ class Notifications extends React.Component {
             {...rest}
           />
         <div className={classes.content}>
-            {/* <div className={classes.container}>
-               <SnackbarContent
-                    message={
-                       'INFO - This is a regular notification made with color="info"'
-                    }
-                    close
-                    color="info"
-                  />
-                <Snackbar
-                    place="tl"
-                    color="info"
-                    icon={AddAlert}
-                    message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                    open={this.state.tl}
-                    closeNotification={() => this.setState({ tl: false })}
-                    close
-                    />
-            </div> */}      
+          <NotificationItem/>    
           </div>
         </div>
       </div>
