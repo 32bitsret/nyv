@@ -56,9 +56,7 @@ const pieChart = {
 
 
 const extract = (arr1, arr2) => {
-  let res1;
-  let res2;
-  res1 = arr1.map(o => {
+ let res1 = arr1.map(o => {
     console.log(o[0])
   })
 }
@@ -77,6 +75,21 @@ class LgaTables extends React.Component {
           males: prop[1],
           females: prop[2],
           age: prop[3],
+          total: moreMembers.length,
+          married: "",
+          single: "",
+          divorced: "",
+          widowed:"",
+          Bsc:"",
+          BEng: "",
+          HND: "",
+          ND: "",
+          NCE: "",
+          MSC: "",
+          PHD: "",
+          OLEVEL: "",
+          Disabled: "",
+          NotDisabled: "",
           actions: (
             <div className="actions-right">
               <Button
@@ -113,32 +126,35 @@ class LgaTables extends React.Component {
     const display = this.state.isloading ? ( 
     <Card>
       <CardBody stats className={classes.cardFooter}>
-        <i className={classes.danger} /> No LGA selected{` `}              
+        <i className={classes.danger} /> No LGA selected              
       </CardBody>
     </Card>
     ) : ( 
       <Card>
         <CardBody>
-          <h1 className={classes.cardTitle}>{" "} BARKIN LADI</h1>
-          <h4 className={classes.cardTitle}>TOTAL:{"  "} 65</h4>
-          <h4 className={classes.cardTitle}>MALES:{"  "} 32</h4>
-          <h4 className={classes.cardTitle}>FEMALES:{"  "} 33</h4>
+          <h1 className={classes.cardTitle}>{" "} {this.state.tableData.name}</h1>
+          <h4 className={classes.cardTitle}>TOTAL:{"  "} {this.state.tableData.total}</h4>
+          <h4 className={classes.cardTitle}>MALES:{"  "} {this.state.tableData.males}</h4>
+          <h4 className={classes.cardTitle}>FEMALES:{"  "} {this.state.tableData.females}</h4>
           <hr/>
           <h3 className={classes.cardTitle}>PROFILE SUMMARY</h3>
-          <h4 className={classes.cardTitle}>MARRIED:{"  "} 14</h4>
-          <h4 className={classes.cardTitle}>SINGLE:{"  "} 7</h4>
-          <h4 className={classes.cardTitle}>DISABLED:{"  "} 8</h4>
-          <h4 className={classes.cardTitle}>NOT DISABLED:{"  "} 9</h4>
+          <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
+          <h4 className={classes.cardTitle}>SINGLE:{"  "} {this.state.tableData.single}</h4>
+          <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.Divorced}</h4>
+          <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.Widowed}</h4>
+          <h4 className={classes.cardTitle}>DISABLED:{"  "} {this.state.tableData.Disabled}</h4>
+          <h4 className={classes.cardTitle}>NOT DISABLED:{"  "} {this.state.tableData.NotDisabled}</h4>
           <hr/>
           <h3 className={classes.cardTitle}>EDUCATIONAL SUMMARY</h3>
           <hr/>
-          <h4 className={classes.cardTitle}>BSC:{"  "} 0</h4>
-          <h4 className={classes.cardTitle}>BEng:{"  "} 6</h4>
-          <h4 className={classes.cardTitle}>HND:{"  "} 3</h4>
-          <h4 className={classes.cardTitle}>ND:{"  "} 2</h4>
-          <h4 className={classes.cardTitle}>WAEC:{"  "} 3</h4>
-          <h4 className={classes.cardTitle}>MSC:{"  "} 5</h4>
-          <h4 className={classes.cardTitle}>PHD:{"  "} 3</h4>
+          <h4 className={classes.cardTitle}>BSC:{"  "} {this.state.tableData.Bsc}</h4>
+          <h4 className={classes.cardTitle}>BEng:{"  "} {this.state.tableData.BEng}</h4>
+          <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.HND}</h4>
+          <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.ND}</h4>
+          <h4 className={classes.cardTitle}>NCE:{"  "} {this.state.tableData.NCE}</h4>
+          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.OLEVEL}</h4>
+          <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
+          <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
 
         </CardBody>
         <CardFooter stats className={classes.cardFooter}>
