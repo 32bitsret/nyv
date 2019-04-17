@@ -142,8 +142,7 @@ class LgaTables extends React.Component {
 
         </CardBody>
         <CardFooter stats className={classes.cardFooter}>
-          <i className={classes.danger} /> Windows
-          Phone{` `}              
+          <i className={classes.danger} /> {` `}              
           <Button
             className={classes.danger} 
             justIcon={false}

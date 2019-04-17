@@ -45,6 +45,191 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 
+
+
+const education = {
+  data: {
+    labels: [
+      "BSc",
+      "BEng",
+      "HND",
+      "ND",
+      "NCE",
+      "WAEC",
+      "PRIMARY SCHOOL",
+      "MASTERS",
+      "PHD",
+    ],
+    series: [[20, 43, 32, 80, 55, 53, 32, 34, 68]]
+  },
+  options: {
+    axisX: {
+      showGrid: false
+    },
+    low: 0,
+    high: 200,
+    chartPadding: {
+      top: 0,
+      right: 5,
+      bottom: 0,
+      left: 0
+    }
+  },
+  responsiveOptions: [
+    [
+      "screen and (max-width: 640px)",
+      {
+        seriesBarDistance: 5,
+        axisX: {
+          labelInterpolationFnc: function(value) {
+            return value[0];
+          }
+        }
+      }
+    ]
+  ],
+  animation: {
+    draw: function(data) {
+      if (data.type === "bar") {
+        data.element.animate({
+          opacity: {
+            begin: (data.index + 1) * 80,
+            dur: 500,
+            from: 0,
+            to: 1,
+            easing: "ease"
+          }
+        });
+      }
+    }
+  }
+};
+
+
+const general = {
+  data: {
+    labels: [
+      "Total",
+      "Males",
+      "Females",
+      "Disabled",
+      "Not disabled",
+      "divorced",
+      "single",
+      "Widowed",
+      "married",
+    ],
+    series: [[20, 43, 32, 80, 55, 53, 32, 34, 68]]
+  },
+  options: {
+    axisX: {
+      showGrid: false
+    },
+    low: 0,
+    high: 200,
+    chartPadding: {
+      top: 0,
+      right: 5,
+      bottom: 0,
+      left: 0
+    }
+  },
+  responsiveOptions: [
+    [
+      "screen and (max-width: 640px)",
+      {
+        seriesBarDistance: 5,
+        axisX: {
+          labelInterpolationFnc: function(value) {
+            return value[0];
+          }
+        }
+      }
+    ]
+  ],
+  animation: {
+    draw: function(data) {
+      if (data.type === "bar") {
+        data.element.animate({
+          opacity: {
+            begin: (data.index + 1) * 80,
+            dur: 500,
+            from: 0,
+            to: 1,
+            easing: "ease"
+          }
+        });
+      }
+    }
+  }
+};
+
+const gender = {
+  data: {
+    labels: [
+      "B/Ladi",
+      "Bassa",
+      "Bokkos",
+      "Jos/E",
+      "Jos/N",
+      "Jos/S",
+      "Kanam",
+      "Kanke",
+      "Langtang/N", 
+      "Langtang/S",
+      "Mangu",
+      "Mikang",
+      "Pankshin",
+      "Qua'an Pan",
+      "Riyom",
+      "Shendam",
+      "Wase",
+    ],
+    series: [[20, 43,20, 43, 32, 80, 55, 53, 32, 34, 68, 80, 55, 53, 32, 34, 68]]
+  },
+  options: {
+    axisX: {
+      showGrid: false
+    },
+    low: 0,
+    high: 200,
+    chartPadding: {
+      top: 0,
+      right: 5,
+      bottom: 0,
+      left: 0
+    }
+  },
+  responsiveOptions: [
+    [
+      "screen and (max-width: 640px)",
+      {
+        seriesBarDistance: 5,
+        axisX: {
+          labelInterpolationFnc: function(value) {
+            return value[0];
+          }
+        }
+      }
+    ]
+  ],
+  animation: {
+    draw: function(data) {
+      if (data.type === "bar") {
+        data.element.animate({
+          opacity: {
+            begin: (data.index + 1) * 80,
+            dur: 500,
+            from: 0,
+            to: 1,
+            easing: "ease"
+          }
+        });
+      }
+    }
+  }
+};
+
 class Gridd extends Component {
   constructor(props){
     super(props)
@@ -82,16 +267,16 @@ class Gridd extends Component {
             <CardHeader color="success" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
-                data={emailsSubscriptionChart.data}
+                data={general.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={general.options}
+                responsiveOptions={general.responsiveOptions}
+                listener={general.animation}
               />
               
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>GENERAL SUMMARY</h4>
+              <h4 className={classes.cardTitle}>GENERAL PROFILE SUMMARY</h4>
                 For 17 Local Government Areas
               <p className={classes.cardCategory}>
               </p>
@@ -108,7 +293,7 @@ class Gridd extends Component {
             <CardHeader color="success" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
-                data={emailsSubscriptionChart.data}
+                data={education.data}
                 type="Bar"
                 options={emailsSubscriptionChart.options}
                 responsiveOptions={emailsSubscriptionChart.responsiveOptions}
@@ -117,7 +302,7 @@ class Gridd extends Component {
               
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>EDUCATION SUMMARY</h4>
+              <h4 className={classes.cardTitle}>GENERAL EDUCATION SUMMARY</h4>
                 For 17 Local Government Areas
               <p className={classes.cardCategory}>
               </p>
@@ -137,16 +322,16 @@ class Gridd extends Component {
             <CardHeader color="success" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
-                data={emailsSubscriptionChart.data}
+                data={gender.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={education.options}
+                responsiveOptions={education.responsiveOptions}
+                listener={education.animation}
               />
               
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>GENERAL SUMMARY</h4>
+              <h4 className={classes.cardTitle}>GENERAL POPULATION SUMMARY</h4>
                 For 17 Local Government Areas
               <p className={classes.cardCategory}>
               </p>

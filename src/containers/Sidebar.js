@@ -15,6 +15,7 @@ import Icon from "@material-ui/core/Icon";
 import HeaderLinks from "./HeaderLinks";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
 import { connect } from "react-redux"
+import {getProfile} from  "../redux/actions/dashboardAction"
 //import 
 
 
@@ -63,6 +64,7 @@ class Sidebar extends React.Component {
     this.activeRoute.bind(this);
   }
   componentDidMount(){
+    this.props.getProfile(this.props.auth.user.phone)
     console.log("IN SIDE SIDEBAR")
   }
   // verifies if routeName is the one active (in browser input)
@@ -79,7 +81,7 @@ class Sidebar extends React.Component {
   //   this.setState({})
   // }
   render() {
-    console.log("SIDEBAR", this.props.dashboard)
+    console.log("SIDEBAR", this.props.auth.user)
     const {
       classes,
       color,
@@ -156,7 +158,6 @@ class Sidebar extends React.Component {
     // );
 
     const user =  (
-    // userData.map( (useR, key )=> (
       <div className={userWrapperClass} >
       <div className={photo}>
         <img src="{}" className={classes.avatarImg} alt="..." />
@@ -358,7 +359,10 @@ Sidebar.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    ...state
+    auth: state.auth,
+    dashboard: state.dashboard
   }
 }
-export default connect(mapStateToProps, {})(withStyles(sidebarStyle)(Sidebar));
+export default connect(mapStateToProps, {
+  getProfile
+})(withStyles(sidebarStyle)(Sidebar));
