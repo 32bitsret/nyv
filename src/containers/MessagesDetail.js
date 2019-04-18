@@ -23,6 +23,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import { connect } from "react-redux"
+import isEmpty from "../utils/isEmpty"
 
 class MessagesDetail extends React.Component {
   constructor(props) {
@@ -109,7 +110,12 @@ class MessagesDetail extends React.Component {
                 </GridContainer>
                 <GridContainer justify="flex-end">
                   <GridItem xs={12} sm={12} md={9}>
-                    <Button color="success">Send</Button>
+                    <Button 
+                      color="success"
+                      
+                    >
+                      Send
+                    </Button>
                   </GridItem>
                 </GridContainer>
               </form>
@@ -118,7 +124,7 @@ class MessagesDetail extends React.Component {
         </GridItem>
       </GridContainer>
   
-        <GridContainer>
+        {/* <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card>
               <CardHeader color="success" icon>
@@ -180,14 +186,7 @@ class MessagesDetail extends React.Component {
                         id: "simple-select"
                       }}
                     >
-                      <MenuItem
-                        disabled={this.state.disableB}
-                        classes={{
-                          root: classes.selectMenuItem
-                        }}
-                      >
-                          all
-                      </MenuItem>
+          
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
@@ -630,7 +629,7 @@ class MessagesDetail extends React.Component {
                </CardBody>
             </Card>
           </GridItem>
-        </GridContainer>
+        </GridContainer> */}
       </div>
     );
   }

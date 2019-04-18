@@ -165,7 +165,7 @@ class Sidebar extends React.Component {
       <List className={classes.list}>
         <ListItem className={classes.item + " " + classes.userItem}>
             <ListItemText
-              primary={this.props.dashboard.dashboard.firstname+ ' ' + this.props.dashboard.dashboard.lastname}
+              primary={this.props.auth.user.email}
               disableTypography={true}
               className={itemText + " " + classes.userItemText}
             />

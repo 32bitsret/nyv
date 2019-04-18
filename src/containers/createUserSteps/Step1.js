@@ -1,196 +1,302 @@
 import React from "react";
-
-// @material-ui/icons
-import Face from "@material-ui/icons/Face";
-import RecordVoiceOver from "@material-ui/icons/RecordVoiceOver";
-import Email from "@material-ui/icons/Email";
-
-// @material-ui/core components
+import PropTypes from "prop-types";
+import { registerUser } from '../../redux/actions/authActions'
+import { connect} from 'react-redux'
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-
-// core components
+import Icon from "@material-ui/core/Icon";
+import { withRouter} from "react-router-dom"
+import Face from "@material-ui/icons/Face";
+import Email from "@material-ui/icons/Email";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import PictureUpload from "components/CustomUpload/PictureUpload.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+import Card from "components/Card/Card.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import CardFooter from "components/Card/CardFooter.jsx";
+import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
+import {
+  verifyEmail, 
+  verifyLength, 
+  verifyNumber, 
+  verifyUrl, 
+  compare}
+   from "../../utils/validation"
 
-const style = {
-  infoText: {
-    fontWeight: "300",
-    margin: "10px 0 30px",
-    textAlign: "center"
-  },
-  inputAdornmentIcon: {
-    color: "#555"
-  },
-  inputAdornment: {
-    position: "relative"
-  }
-};
 
 class Step1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      firstnameState: "",
-      lastname: "",
-      lastnameState: "",
-      email: "",
-      emailState: ""
+      cardAnimaton: "cardHidden",
+      firstname:'',
+      email: '',
+      password: '',
+      confirm_password:'',
+      lastname:'',
+      phone:'',
+
+      firstnameState:'',
+      passwordState:'',
+      phoneState:'',
+      lastnameState:''
     };
   }
-  sendState() {
-    return this.state;
+  componentDidMount() {
+     this.timeOutFunction = setTimeout(
+      function() {
+        this.setState({ cardAnimaton: "" });
+      }.bind(this),
+      700
+    );
   }
-  // function that returns true if value is email, false otherwise
-  verifyEmail(value) {
-    var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (emailRex.test(value)) {
-      return true;
-    }
-    return false;
+  componentWillUnmount() {
+    clearTimeout(this.timeOutFunction);
+    this.timeOutFunction = null;
   }
-  // function that verifies if a string has a given length or not
-  verifyLength(value, length) {
-    if (value.length >= length) {
-      return true;
-    }
-    return false;
-  }
-  change(event, stateName, type, stateNameEqualTo) {
-    switch (type) {
+
+  onChange = (e, stateName, type, stateNameEquivalence) => {
+    e.preventDefault()
+    this.setState({ [e.target.name]: e.target.value });
+    switch(type){
       case "email":
-        if (this.verifyEmail(event.target.value)) {
-          this.setState({ [stateName + "State"]: "success" });
-        } else {
-          this.setState({ [stateName + "State"]: "error" });
+        if(verifyEmail(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
         }
         break;
-      case "length":
-        if (this.verifyLength(event.target.value, stateNameEqualTo)) {
-          this.setState({ [stateName + "State"]: "success" });
-        } else {
-          this.setState({ [stateName + "State"]: "error" });
+      case "password":
+        if(verifyLength(e.target.value, 6)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
         }
         break;
-      default:
+      case "equalTo":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "number":
+        if(verifyNumber(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]:"error"})
+        }
+        break;
+      case "minValue":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+        else {
+          this.setState({[stateName+"State"]: "error"})
+        }
         break;
     }
-    this.setState({ [stateName]: event.target.value });
   }
-  isValidated() {
-    if (
-      this.state.firstnameState === "success" &&
-      this.state.lastnameState === "success" &&
-      this.state.emailState === "success"
-    ) {
-      return true;
-    } else {
-      if (this.state.firstnameState !== "success") {
-        this.setState({ firstnameState: "error" });
-      }
-      if (this.state.lastnameState !== "success") {
-        this.setState({ lastnameState: "error" });
-      }
-      if (this.state.emailState !== "success") {
-        this.setState({ emailState: "error" });
-      }
+
+  submit = (e) => {
+    e.preventDefault();
+    if(this.state.firstnameState === ""){
+      this.setState({firstnameState:"error"})
     }
-    return false;
+    if(this.state.lastnameState === ""){
+      this.setState({lastnameState: "error"})
+    }
+    if(this.state.passwordState === ""){
+      this.setState({passwordState: "error"})
+    }
+    if(this.state.phoneState === ""){
+      this.setState({phoneState: "error"})
+    }
+    else{
+        const data = {
+        firstname: this.state.firstname,
+        email: this.state.email,
+        password:this.state.password,
+        phone: Number(this.state.phone),
+        lastname:  this.state.lastname,
+        //role:"admin"
+        // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
+      }
+      console.log("REGISTRATION::::::",data)
+      this.props.registerUser(data, this.props.history)
+    }
   }
   render() {
     const { classes } = this.props;
+    console.log("PROPERTIES",this.props)
+    console.log("NAME",this.state)
     return (
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={12}>
-          <h4 className={classes.infoText}>
-            Let's start with the basic information (with validation)
-          </h4>
-        </GridItem>
-        <GridItem xs={12} sm={4}>
-          <PictureUpload />
-        </GridItem>
-        <GridItem xs={12} sm={6}>
-          <CustomInput
-            success={this.state.firstnameState === "success"}
-            error={this.state.firstnameState === "error"}
-            labelText={
-              <span>
-                First Name <small>(required)</small>
-              </span>
-            }
-            id="firstname"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              onChange: event => this.change(event, "firstname", "length", 3),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  className={classes.inputAdornment}
-                >
-                  <Face className={classes.inputAdornmentIcon} />
-                </InputAdornment>
-              )
-            }}
-          />
-          <CustomInput
-            success={this.state.lastnameState === "success"}
-            error={this.state.lastnameState === "error"}
-            labelText={
-              <span>
-                Last Name <small>(required)</small>
-              </span>
-            }
-            id="lastname"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              onChange: event => this.change(event, "lastname", "length", 3),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  className={classes.inputAdornment}
-                >
-                  <RecordVoiceOver className={classes.inputAdornmentIcon} />
-                </InputAdornment>
-              )
-            }}
-          />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={12} lg={10}>
-          <CustomInput
-            success={this.state.emailState === "success"}
-            error={this.state.emailState === "error"}
-            labelText={
-              <span>
-                Email <small>(required)</small>
-              </span>
-            }
-            id="email"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              onChange: event => this.change(event, "email", "email"),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  className={classes.inputAdornment}
-                >
-                  <Email className={classes.inputAdornmentIcon} />
-                </InputAdornment>
-              )
-            }}
-          />
-        </GridItem>
-      </GridContainer>
+      <div className={classes.container}>
+      <div style={{height:"80px"}}></div>
+        <GridContainer >
+          <GridItem xs={12} sm={6} md={6}>
+            <form>
+              <Card login className={classes[this.state.cardAnimaton]}>
+                {/* <CardHeader
+                  className={`${classes.cardHeader} ${classes.textCenter}`}
+                  color="rose"
+                > */}
+                {/* <div className={"center-style"}>
+                <a href="/">
+                  <img
+                    className={classes.cardImgTop}
+                    data-src="holder.js/100px180/"
+                    alt="100%x180"
+                    style={{ height: "180px", width: "180px", position:"center center" }}
+                    src={logoo}
+                    data-holder-rendered="true"
+                  />
+                  <h4 className={classes.cardTitle}>Sign Up</h4>
+                </a>
+                </div> */}
+                {/* </CardHeader> */}
+                <CardBody>
+                <CustomInput
+                    success={this.state.lastnameState === "success"}
+                    error={this.state.lastnameState === "error"}
+                    labelText="Last Name"
+                    id="lastname"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"text",
+                      name: "lastname",
+                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Face className={classes.inputAdornmentIcon} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                <CustomInput
+                  success={this.state.firstnameState === "success"}
+                  error={this.state.firstnameState === "error"}
+                  labelText="First Name"
+                  id="firstname"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"text",
+                    name: "firstname",
+                    onChange: (e) => this.onChange(e, "firstname", "minValue"),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Face className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                  labelText="Email"
+                  id="email"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type: "email",
+                    name: "email",
+                    onChange: this.onChange,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Email className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                  success={this.state.phoneState === "success"}
+                  error={this.state.phoneState === "error"}
+                  labelText="Phone number"
+                  id="phone"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"number",
+                    name: "phone",
+                    onChange: (e)=> this.onChange(e, "phone", "number" ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Icon className={classes.inputAdornmentIcon}>
+                          lock_outline
+                        </Icon>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                 <CustomInput
+                    labelText="Password"
+                    id="password"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"password",
+                      name: "password",
+                      onChange: this.onChange,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Icon className={classes.inputAdornmentIcon}>
+                            lock_outline
+                          </Icon>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Confirm Password"
+                    id="password"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"password",
+                      name: "confirm_password",
+                      onChange: this.onChange,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Icon className={classes.inputAdornmentIcon}>
+                            lock_outline
+                          </Icon>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                </CardBody>
+                <CardFooter className={classes.justifyContentCenter}>
+                  <Button color="success" simple size="lg" block onClick={this.submit}>
+                    Sign Up
+                  </Button>
+                </CardFooter>
+                <br/>
+                  <p style={{textAlign:"center", paddingBottom: "5px"}}>have an account already? <a href="/login">Log in</a></p>
+              </Card>
+            </form>
+          </GridItem>
+        </GridContainer>
+      </div>
     );
   }
 }
 
-export default withStyles(style)(Step1);
+Step1.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps, {registerUser})(withRouter(withStyles(loginPageStyle)(Step1)));

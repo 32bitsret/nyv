@@ -29,7 +29,7 @@ import CardBody from "components/Card/CardBody.jsx";
 
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 
-class Step2 extends React.Component {
+class Step4 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -823,4 +823,4 @@ class Step2 extends React.Component {
   }
 }
 
-export default withStyles(regularFormsStyle)(Step2);
+export default withStyles(regularFormsStyle)(Step4);
