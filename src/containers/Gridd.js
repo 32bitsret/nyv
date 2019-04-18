@@ -370,7 +370,7 @@ class Gridd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-     dashboard: state.dashboard
+    dashboard: state.dashboard
   }
 }
 

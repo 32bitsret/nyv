@@ -1,21 +1,10 @@
 import React from "react";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Radio from "@material-ui/core/Radio";
 import Checkbox from "@material-ui/core/Checkbox";
-
-// @material-ui/icons
 import MailOutline from "@material-ui/icons/MailOutline";
-import Check from "@material-ui/icons/Check";
-import Clear from "@material-ui/icons/Clear";
-import Contacts from "@material-ui/icons/Contacts";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
@@ -25,8 +14,14 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardText from "components/Card/CardText.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import InputLabel from "@material-ui/core/InputLabel";
+import Switch from "@material-ui/core/Switch";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import { connect } from "react-redux"
 
 class MessagesDetail extends React.Component {
   constructor(props) {
@@ -34,7 +29,8 @@ class MessagesDetail extends React.Component {
     this.state = {
       checked: [24, 22],
       selectedValue: null,
-      selectedEnabled: "b"
+      selectedEnabled: "b",
+      simpleSelect: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
@@ -60,9 +56,14 @@ class MessagesDetail extends React.Component {
       checked: newChecked
     });
   }
+
+  handleSimple = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   render() {
     const { classes } = this.props;
     return (
+      <div>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
@@ -121,19 +122,354 @@ class MessagesDetail extends React.Component {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={12} md={6}>
-          <Card>
-            <CardHeader color="success" icon>
-              <h4 className={classes.cardIconTitle}>Receivers</h4>
-            </CardHeader>
-            <CardBody>
-              
-            </CardBody>
-          </Card>
-        </GridItem>
       </GridContainer>
+  
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card>
+              <CardHeader color="success" icon>
+                <CardIcon color="success">
+                </CardIcon>
+                <h4 className={classes.cardIconTitle}>Filter By Profile</h4>
+              </CardHeader>
+              <CardBody>
+              <FormControl
+                    disabled
+                    fullWidth
+                    className={classes.selectFormControl}
+                  >
+                    <Select
+                      MenuProps={{
+                        className: classes.selectMenu
+                      }}
+                      classes={{
+                        select: classes.select
+                      }}
+                      value={this.state.simpleSelect}
+                      onChange={this.handleSimple}
+                      inputProps={{
+                        name: "simpleSelect",
+                        id: "simple-select"
+                      }}
+                    >
+                      <MenuItem
+                        disabled
+                        classes={{
+                          root: classes.selectMenuItem
+                        }}
+                      >
+                          all
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="2"
+                      >
+                        married
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="3"
+                      >
+                        singles
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="4"
+                      >
+                        divorced
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="5"
+                      >
+                        widowed
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="6"
+                      >
+                        females
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="7"
+                      >
+                        males
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="8"
+                      >
+                        disabled
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="9"
+                      >
+                        not-disabled
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card>
+              <CardHeader color="success" icon>
+                <CardIcon color="success">
+                </CardIcon>
+                <h4 className={classes.cardIconTitle}>Filert</h4>
+              </CardHeader>
+              <CardBody>
+              <FormControl
+                    disabled
+                    fullWidth
+                    className={classes.selectFormControl}
+                  >
+                    <Select
+                      MenuProps={{
+                        className: classes.selectMenu
+                      }}
+                      classes={{
+                        select: classes.select
+                      }}
+                      value={this.state.simpleSelect}
+                      onChange={this.handleSimple}
+                      inputProps={{
+                        name: "simpleSelect",
+                        id: "simple-select"
+                      }}
+                    >
+                      <MenuItem
+                        disabled
+                        classes={{
+                          root: classes.selectMenuItem
+                        }}
+                      >
+                          all
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="2"
+                      >
+                        married
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="3"
+                      >
+                        singles
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="4"
+                      >
+                        divorced
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="5"
+                      >
+                        widowed
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="6"
+                      >
+                        females
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="7"
+                      >
+                        males
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="8"
+                      >
+                        disabled
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="9"
+                      >
+                        not-disabled
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <Card>
+              <CardHeader color="success" icon>
+            
+                <h4 className={classes.cardIconTitle}>Time Picker</h4>
+              </CardHeader>
+              <CardBody>
+              <FormControl
+                    disabled
+                    fullWidth
+                    className={classes.selectFormControl}
+                  >
+                    <Select
+                      MenuProps={{
+                        className: classes.selectMenu
+                      }}
+                      classes={{
+                        select: classes.select
+                      }}
+                      value={this.state.simpleSelect}
+                      onChange={this.handleSimple}
+                      inputProps={{
+                        name: "simpleSelect",
+                        id: "simple-select"
+                      }}
+                    >
+                      <MenuItem
+                        disabled
+                        classes={{
+                          root: classes.selectMenuItem
+                        }}
+                      >
+                          all
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="2"
+                      >
+                        married
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="3"
+                      >
+                        singles
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="4"
+                      >
+                        divorced
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="5"
+                      >
+                        widowed
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="6"
+                      >
+                        females
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="7"
+                      >
+                        males
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="8"
+                      >
+                        disabled
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="9"
+                      >
+                        not-disabled
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+               </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
     );
   }
 }
 
-export default withStyles(regularFormsStyle)(MessagesDetail);
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps, {})(withStyles(regularFormsStyle)(MessagesDetail));

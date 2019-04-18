@@ -274,7 +274,7 @@ class SweetAlertPage extends React.Component {
         />
         {this.state.alert}
         <GridContainer>
-          <GridItem xs={12} sm={12} md={3}>
+          <GridItem xs={12} sm={12} md={12}>
             <Card>
               <CardBody>
                 <div className={classes.center}>
