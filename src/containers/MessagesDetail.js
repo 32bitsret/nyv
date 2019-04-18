@@ -21,6 +21,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Switch from "@material-ui/core/Switch";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import { connect } from "react-redux"
 
 class MessagesDetail extends React.Component {
@@ -28,40 +29,33 @@ class MessagesDetail extends React.Component {
     super(props);
     this.state = {
       checked: [24, 22],
-      selectedValue: null,
+      selectedValue: "a",
       selectedEnabled: "b",
-      simpleSelect: "",
+      lga: "",
+      profile: "",
+      education: "",
+      disableA: false,
+      disableB: false,
+      disableC: false
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
-  handleChange(event) {
+
+  handleChange = (event) => {
     this.setState({ selectedValue: event.target.value });
   }
-  handleChangeEnabled(event) {
+
+  handleChangeEnabled = (event) => {
     this.setState({ selectedEnabled: event.target.value });
-  }
-  handleToggle(value) {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked
-    });
   }
 
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+
   render() {
     const { classes } = this.props;
+    console.log("INSIDE MESSAGE DETAILS", this.props)
     return (
       <div>
       <GridContainer justify="center">
@@ -128,13 +122,47 @@ class MessagesDetail extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card>
               <CardHeader color="success" icon>
-                <CardIcon color="success">
-                </CardIcon>
-                <h4 className={classes.cardIconTitle}>Filter By Profile</h4>
+                <div
+                      className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                      }
+                    >
+                      <FormControlLabel
+                        control={
+                          <Radio
+                            checked={this.state.selectedValue === "a"}
+                            onChange={this.handleChange}
+                            value="a"
+                            name="radio button demo"
+                            aria-label="A"
+                            icon={
+                              <FiberManualRecord
+                                className={classes.radioUnchecked}
+                              />
+                            }
+                            checkedIcon={
+                              <FiberManualRecord
+                                className={classes.radioChecked}
+                              />
+                            }
+                            classes={{
+                              checked: classes.radio,
+                              root: classes.radioRoot
+                            }}
+                          />
+                        }
+                        classes={{
+                          label: classes.label
+                        }}
+                        label="Filter By Profile"
+                      />
+                    </div>
               </CardHeader>
               <CardBody>
               <FormControl
-                    disabled
+                    disabled={this.state.disableA}
                     fullWidth
                     className={classes.selectFormControl}
                   >
@@ -145,15 +173,15 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.simpleSelect}
+                      value={this.state.profile}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "simpleSelect",
+                        name: "profile",
                         id: "simple-select"
                       }}
                     >
                       <MenuItem
-                        disabled
+                        disabled={this.state.disableB}
                         classes={{
                           root: classes.selectMenuItem
                         }}
@@ -240,13 +268,47 @@ class MessagesDetail extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card>
               <CardHeader color="success" icon>
-                <CardIcon color="success">
-                </CardIcon>
-                <h4 className={classes.cardIconTitle}>Filert</h4>
+                <div
+                      className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                      }
+                    >
+                      <FormControlLabel
+                        control={
+                          <Radio
+                            checked={this.state.selectedValue === "b"}
+                            onChange={this.handleChange}
+                            value="b"
+                            name="radio button demo"
+                            aria-label="B"
+                            icon={
+                              <FiberManualRecord
+                                className={classes.radioUnchecked}
+                              />
+                            }
+                            checkedIcon={
+                              <FiberManualRecord
+                                className={classes.radioChecked}
+                              />
+                            }
+                            classes={{
+                              checked: classes.radio,
+                              root: classes.radioRoot
+                            }}
+                          />
+                        }
+                        classes={{
+                          label: classes.label
+                        }}
+                        label="Filter By Local Government Area"
+                      />
+                    </div>
               </CardHeader>
               <CardBody>
               <FormControl
-                    disabled
+                    disabled={this.state.enableB}
                     fullWidth
                     className={classes.selectFormControl}
                   >
@@ -257,20 +319,21 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.simpleSelect}
+                      value={this.state.lga}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "simpleSelect",
+                        name: "lga",
                         id: "simple-select"
                       }}
                     >
                       <MenuItem
-                        disabled
                         classes={{
-                          root: classes.selectMenuItem
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
                         }}
+                        value="1"
                       >
-                          all
+                          barkin ladi
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -279,7 +342,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="2"
                       >
-                        married
+                        bassa
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -288,7 +351,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="3"
                       >
-                        singles
+                        bokkos
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -297,7 +360,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="4"
                       >
-                        divorced
+                        jos-east
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -306,7 +369,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="5"
                       >
-                        widowed
+                        jos-north
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -315,7 +378,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="6"
                       >
-                        females
+                        jos-south
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -324,7 +387,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="7"
                       >
-                        males
+                        kanam
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -333,7 +396,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="8"
                       >
-                        disabled
+                        kanke
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -342,7 +405,79 @@ class MessagesDetail extends React.Component {
                         }}
                         value="9"
                       >
-                        not-disabled
+                        langtang-north
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="10"
+                      >
+                        langtang-south
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="11"
+                      >
+                        mangu
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="12"
+                      >
+                        mikang
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="13"
+                      >
+                        pankshin
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="14"
+                      >
+                        qua'an pan
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="15"
+                      >
+                        riyom
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="16"
+                      >
+                        shendam
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="17"
+                      >
+                        wase
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -352,12 +487,47 @@ class MessagesDetail extends React.Component {
           <GridItem xs={12} sm={12} md={4}>
             <Card>
               <CardHeader color="success" icon>
-            
-                <h4 className={classes.cardIconTitle}>Time Picker</h4>
+                <div
+                      className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                      }
+                    >
+                      <FormControlLabel
+                        control={
+                          <Radio
+                            checked={this.state.selectedValue === "c"}
+                            onChange={this.handleChange}
+                            value="c"
+                            name="radio button demo"
+                            aria-label="C"
+                            icon={
+                              <FiberManualRecord
+                                className={classes.radioUnchecked}
+                              />
+                            }
+                            checkedIcon={
+                              <FiberManualRecord
+                                className={classes.radioChecked}
+                              />
+                            }
+                            classes={{
+                              checked: classes.radio,
+                              root: classes.radioRoot
+                            }}
+                          />
+                        }
+                        classes={{
+                          label: classes.label
+                        }}
+                        label="Filter By Educational Qualification"
+                      />
+                    </div>
               </CardHeader>
               <CardBody>
               <FormControl
-                    disabled
+                    disabled={this.state.disableC}
                     fullWidth
                     className={classes.selectFormControl}
                   >
@@ -368,10 +538,10 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.simpleSelect}
+                      value={this.state.education}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "simpleSelect",
+                        name: "education",
                         id: "simple-select"
                       }}
                     >
@@ -381,7 +551,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem
                         }}
                       >
-                          all
+                          select
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -390,7 +560,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="2"
                       >
-                        married
+                        BSc
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -399,7 +569,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="3"
                       >
-                        singles
+                        BEng
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -408,7 +578,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="4"
                       >
-                        divorced
+                        HND
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -417,7 +587,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="5"
                       >
-                        widowed
+                        ND
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -426,7 +596,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="6"
                       >
-                        females
+                        NCE
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -435,7 +605,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="7"
                       >
-                        males
+                        MSC
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -444,7 +614,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="8"
                       >
-                        disabled
+                        PHD
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -453,7 +623,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="9"
                       >
-                        not-disabled
+                        Olevel
                       </MenuItem>
                     </Select>
                   </FormControl>
