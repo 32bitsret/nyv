@@ -1,50 +1,28 @@
 import React ,{Component} from "react";
 import PropTypes from "prop-types";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux"
-import Store from "@material-ui/icons/Store";
-// import InfoOutline from "@material-ui/icons/InfoOutline";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Refresh from "@material-ui/icons/Refresh";
-import Edit from "@material-ui/icons/Edit";
-import Place from "@material-ui/icons/Place";
-import ArtTrack from "@material-ui/icons/ArtTrack";
-import Language from "@material-ui/icons/Language";
 import {
-  dailySalesChart,
   emailsSubscriptionChart,
-  completedTasksChart
 } from "variables/charts";
-import Group from "@material-ui/icons/Group"
-import Email from "@material-ui/icons/Email"
-import Notifications from "@material-ui/icons/Notifications"
-import Person from "@material-ui/icons/Person"
-
-
 import ChartistGraph from "react-chartist";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Table from "components/Table/Table.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import Danger from "components/Typography/Danger.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-
+import moreMembers from "../variables/moreMembers"
+import {
+  extractLGA,
+  extractEducation,
+  extractDisability,
+  extractMaritalStatus,
+  extractGender
+} from "../utils/Gridd/Extraction"
 
 
 const education = {
@@ -55,12 +33,20 @@ const education = {
       "HND",
       "ND",
       "NCE",
-      "WAEC",
-      "PRIMARY SCHOOL",
       "MASTERS",
       "PHD",
+      "Olevel"
     ],
-    series: [[20, 43, 32, 80, 55, 53, 32, 34, 68]]
+    series: [[
+      extractEducation(moreMembers, "BSc"), 
+      extractEducation(moreMembers, "BEng"), 
+      extractEducation(moreMembers, "HND"), 
+      extractEducation(moreMembers, "ND"), 
+      extractEducation(moreMembers, "NCE"), 
+      extractEducation(moreMembers, "MSC"), 
+      extractEducation(moreMembers, "PHD"),
+      extractEducation(moreMembers, "Olevel")
+    ]]
   },
   options: {
     axisX: {
@@ -119,7 +105,17 @@ const general = {
       "Widowed",
       "married",
     ],
-    series: [[20, 43, 32, 80, 55, 53, 32, 34, 68]]
+    series: [[
+      moreMembers.length, 
+      extractGender(moreMembers,"male"), 
+      extractGender(moreMembers,"female"), 
+      extractDisability(moreMembers,"yes"),       
+      extractDisability(moreMembers,"no"), 
+      extractMaritalStatus(moreMembers,"divorced"), 
+      extractMaritalStatus(moreMembers,"single"), 
+      extractMaritalStatus(moreMembers,"widowed"), 
+      extractMaritalStatus(moreMembers,"married")
+    ]]
   },
   options: {
     axisX: {
@@ -185,14 +181,32 @@ const gender = {
       "Shendam",
       "Wase",
     ],
-    series: [[20, 43,20, 43, 32, 80, 55, 53, 32, 34, 68, 80, 55, 53, 32, 34, 68]]
+    series: [[
+      extractLGA(moreMembers, "barkin ladi"), 
+      extractLGA(moreMembers, "bassa"),
+      extractLGA(moreMembers, "bokkos"), 
+      extractLGA(moreMembers, "jos-east"), 
+      extractLGA(moreMembers, "jos-north"), 
+      extractLGA(moreMembers, "jos-south"), 
+      extractLGA(moreMembers, "kanam"), 
+      extractLGA(moreMembers, "kanke"), 
+      extractLGA(moreMembers, "langtang-north"), 
+      extractLGA(moreMembers, "langtang-south"), 
+      extractLGA(moreMembers, "mangu"), 
+      extractLGA(moreMembers, "mikang"), 
+      extractLGA(moreMembers, "pankshin"), 
+      extractLGA(moreMembers, "qua'an pan"), 
+      extractLGA(moreMembers, "riyom"), 
+      extractLGA(moreMembers, "shendam"), 
+      extractLGA(moreMembers, "wase")
+    ]]
   },
   options: {
     axisX: {
       showGrid: false
     },
     low: 0,
-    high: 200,
+    high: 10,
     chartPadding: {
       top: 0,
       right: 5,

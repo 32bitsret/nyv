@@ -17,9 +17,8 @@ import isEmpty from "../utils/isEmpty"
 import {
   extractEducation, 
   extractLGA, 
-  extractMale,
+  extractGender,
   extractMaritalStatus,
-  extractFemale,
   extractDisability
 } from "../utils/Table/TableFunctions"
 
@@ -66,8 +65,8 @@ class LgaTables extends React.Component {
           id: key ,
           sn: key + 1,
           name: prop[0],
-          males: extractMale(moreMembers, "male", prop[0] ),
-          females: extractFemale(moreMembers, "female", prop[0] ),
+          males: extractGender(moreMembers, "male", prop[0] ),
+          females: extractGender(moreMembers, "female", prop[0] ),
           age: prop[3],
           total: extractLGA(moreMembers,prop[0]),
           married: extractMaritalStatus(moreMembers, "married", prop[0]),

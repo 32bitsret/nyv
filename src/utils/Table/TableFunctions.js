@@ -10,20 +10,8 @@
      return result.length;
   }
 
-  //extract male gender from local government
-  export  const extractMale = (arr, test, lga) => {
-    let result = [];
-    arr.forEach(element => {
-    if(element.lga === lga){
-      if(element.gender === test){
-        result.push(element)
-      }}
-    });
-    return result.length;
-  }
-
-  //extract female gender from local government
-  export  const extractFemale = (arr, test, lga) => {
+  //extract gender from local government
+  export  const extractGender = (arr, test, lga) => {
     let result = [];
     arr.forEach(element => {
       if(element.lga === lga){
@@ -68,8 +56,6 @@
     return result.length;
  }
   
- 
-
   export  const extractUser = (arr, test) => {
     let user = {};
     arr.forEach(i => {
