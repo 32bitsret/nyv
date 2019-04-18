@@ -25,6 +25,7 @@ import {
   verifyUrl, 
   compare}
    from "../utils/validation"
+   import Phone from "@material-ui/icons/Phone";
 
 
 class LoginPage extends React.Component {
@@ -228,9 +229,7 @@ class LoginPage extends React.Component {
                     onChange: (e)=> this.onChange(e, "phone", "number" ),
                     endAdornment: (
                       <InputAdornment position="end">
-                        <Icon className={classes.inputAdornmentIcon}>
-                          lock_outline
-                        </Icon>
+                        <Phone/>
                       </InputAdornment>
                     )
                   }}

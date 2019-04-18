@@ -2,132 +2,130 @@ import React from "react";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-
-// core components
-import CustomInput from "components/CustomInput/CustomInput.jsx";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Face from "@material-ui/icons/Face";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+import Card from "components/Card/Card.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import CardText from "components/Card/CardText.jsx";
+import CardIcon from "components/Card/CardIcon.jsx";
+import CardBody from "components/Card/CardBody.jsx";
 
-import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-
-const style = {
-  infoText: {
-    fontWeight: "300",
-    margin: "10px 0 30px",
-    textAlign: "center"
-  },
-  ...customSelectStyle
-};
+import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 
 class Step3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      simpleSelect: "",
-      desgin: false,
-      code: false,
-      develop: false
+      checked: [24, 22],
+      selectedValue: null,
+      selectedEnabled: "b"
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
-  sendState() {
-    return this.state;
+  handleChange(event) {
+    this.setState({ selectedValue: event.target.value });
   }
-  handleSimple = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-  isValidated() {
-    return true;
+  handleChangeEnabled(event) {
+    this.setState({ selectedEnabled: event.target.value });
+  }
+  handleToggle(value) {
+    const { checked } = this.state;
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    this.setState({
+      checked: newChecked
+    });
   }
   render() {
     const { classes } = this.props;
     return (
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={12}>
-          <h4 className={classes.infoText}>Are you living in a nice area?</h4>
-        </GridItem>
-        <GridItem xs={12} sm={7}>
-          <CustomInput
-            labelText="Street Name"
-            id="streetname"
-            formControlProps={{
-              fullWidth: true
-            }}
-          />
-        </GridItem>
-        <GridItem xs={12} sm={3}>
-          <CustomInput
-            labelText="Street No."
-            id="streetno"
-            formControlProps={{
-              fullWidth: true
-            }}
-          />
-        </GridItem>
-        <GridItem xs={12} sm={5}>
-          <CustomInput
-            labelText="City"
-            id="city"
-            formControlProps={{
-              fullWidth: true
-            }}
-          />
-        </GridItem>
-        <GridItem xs={12} sm={5}>
-          <FormControl fullWidth className={classes.selectFormControl}>
-            <InputLabel htmlFor="simple-select" className={classes.selectLabel}>
-              Choose City
-            </InputLabel>
-            <Select
-              MenuProps={{
-                className: classes.selectMenu
-              }}
-              classes={{
-                select: classes.select
-              }}
-              value={this.state.simpleSelect}
-              onChange={this.handleSimple}
-              inputProps={{
-                name: "simpleSelect",
-                id: "simple-select"
-              }}
-            >
-              <MenuItem
-                disabled
-                classes={{
-                  root: classes.selectMenuItem
-                }}
-              >
-                Country
-              </MenuItem>
-              <MenuItem
-                classes={{
-                  root: classes.selectMenuItem,
-                  selected: classes.selectMenuItemSelected
-                }}
-                value="2"
-              >
-                France
-              </MenuItem>
-              <MenuItem
-                classes={{
-                  root: classes.selectMenuItem,
-                  selected: classes.selectMenuItemSelected
-                }}
-                value="3"
-              >
-                Romania
-              </MenuItem>
-            </Select>
-          </FormControl>
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardBody>
+              <form>
+                <GridContainer>
+                  <GridItem xs={12} sm={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      Institution
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={8}>
+                    <CustomInput
+                      id="help-text"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "text",
+                        endAdornment: (
+                            <InputAdornment position="end">
+                              <Face className={classes.inputAdornmentIcon} />
+                            </InputAdornment>
+                          )
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <br/>
+                <GridContainer>
+                  <GridItem xs={12} sm={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      Course of Study
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={8}>
+                    <CustomInput
+                      id="help-text"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "text"
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <br/>
+                <GridContainer>
+                  <GridItem xs={12} sm={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      Qualification
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={8}>
+                    <CustomInput
+                      id="pass"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "password"
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+              </form>
+            </CardBody>
+          </Card>
         </GridItem>
       </GridContainer>
     );
   }
 }
 
-
-export default withStyles(style)(Step3);
+export default withStyles(regularFormsStyle)(Step3);

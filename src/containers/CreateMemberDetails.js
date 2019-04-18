@@ -5,6 +5,7 @@ import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import Step1 from "./createUserSteps/Step1"
 import Step4 from "./createUserSteps/Step4"
 import Step2 from "./createUserSteps/Step2"
+import Step3 from "./createUserSteps/Step3"
 
 class WizardView extends React.Component {
   render() {
@@ -16,27 +17,27 @@ class WizardView extends React.Component {
               headerColor="success"
               tabs={[
                 {
-                  tabName: "Bio Info",
+                  tabName: "Basic Info",
                   tabContent: (
-                    <Step2/>
+                    <Step1/>
                   )
                 },
                 {
-                  tabName: "Contact Info",
+                  tabName: "Bio Info",
                   tabContent: (
-                     <Step1/>
+                     <Step2/>
                   )
                 },
                 {
                   tabName: "Education Info",
                   tabContent: (
-                   <Step4/>
+                   <Step3/>
                   )
                 },
                 {
                   tabName: "Uploads",
                   tabContent: (
-                   <div>SERVER</div>
+                   <Step4/>
                   )
                 }
               ]}
