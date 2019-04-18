@@ -14,7 +14,14 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import lgaChartData from "../variables/lgaChartData"
 import moreMembers from "../variables/moreMembers"
 import isEmpty from "../utils/isEmpty"
-import {extactEducation, extractLGA, extractMale} from "../utils/Table/TableFunctions"
+import {
+  extractEducation, 
+  extractLGA, 
+  extractMale,
+  extractMaritalStatus,
+  extractFemale,
+  extractDisability
+} from "../utils/Table/TableFunctions"
 
 
 const styles = {
@@ -60,23 +67,23 @@ class LgaTables extends React.Component {
           sn: key + 1,
           name: prop[0],
           males: extractMale(moreMembers, "male", prop[0] ),
-          females: prop[2],
+          females: extractFemale(moreMembers, "female", prop[0] ),
           age: prop[3],
           total: extractLGA(moreMembers,prop[0]),
-          married: "",
-          single: "",
-          divorced: "",
-          widowed:"",
-          Bsc:"",
-          BEng: "",
-          HND: "",
-          ND: "",
-          NCE: "",
-          MSC: "",
-          PHD: "",
-          OLEVEL: "",
-          Disabled: "",
-          NotDisabled: "",
+          married: extractMaritalStatus(moreMembers, "married", prop[0]),
+          single:  extractMaritalStatus(moreMembers, "single", prop[0]),
+          divorced: extractMaritalStatus(moreMembers, "divorced", prop[0]),
+          widowed: extractMaritalStatus(moreMembers, "widowed", prop[0]),
+          Bsc: extractEducation(moreMembers,"BSc", prop[0]),
+          BEng: extractEducation(moreMembers,"BEng", prop[0]),
+          HND: extractEducation(moreMembers,"HND", prop[0]),
+          ND: extractEducation(moreMembers,"ND", prop[0]),
+          NCE: extractEducation(moreMembers,"NCE", prop[0]),
+          MSC: extractEducation(moreMembers,"MSC", prop[0]),
+          PHD: extractEducation(moreMembers,"PHD", prop[0]),
+          OLEVEL: extractEducation(moreMembers,"Olevel", prop[0]),
+          Disabled: extractDisability(moreMembers, "yes", prop[0]),
+          NotDisabled: extractDisability(moreMembers, "no", prop[0]),
           actions: (
             <div className="actions-right">
               <Button
@@ -120,6 +127,7 @@ class LgaTables extends React.Component {
       <Card>
         <CardBody>
           <h1 className={classes.cardTitle}>{" "} {this.state.tableData.name}</h1>
+          <hr/>
           <h4 className={classes.cardTitle}>TOTAL:{"  "} {this.state.tableData.total}</h4>
           <h4 className={classes.cardTitle}>MALES:{"  "} {this.state.tableData.males}</h4>
           <h4 className={classes.cardTitle}>FEMALES:{"  "} {this.state.tableData.females}</h4>
@@ -127,8 +135,8 @@ class LgaTables extends React.Component {
           <h3 className={classes.cardTitle}>PROFILE SUMMARY</h3>
           <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>SINGLE:{"  "} {this.state.tableData.single}</h4>
-          <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.Divorced}</h4>
-          <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.Widowed}</h4>
+          <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.divorced}</h4>
+          <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.widowed}</h4>
           <h4 className={classes.cardTitle}>DISABLED:{"  "} {this.state.tableData.Disabled}</h4>
           <h4 className={classes.cardTitle}>NOT DISABLED:{"  "} {this.state.tableData.NotDisabled}</h4>
           <hr/>

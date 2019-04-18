@@ -1,4 +1,5 @@
 
+ //extract local governments  
   export  const extractLGA = (arr, test) => {
      let result = [];
      arr.forEach(element => {
@@ -7,8 +8,10 @@
        }
      });
      return result.length;
-   }
-   export  const extractMale = (arr, test, lga) => {
+  }
+
+  //extract male gender from local government
+  export  const extractMale = (arr, test, lga) => {
     let result = [];
     arr.forEach(element => {
     if(element.lga === lga){
@@ -19,37 +22,53 @@
     return result.length;
   }
 
+  //extract female gender from local government
   export  const extractFemale = (arr, test, lga) => {
     let result = [];
     arr.forEach(element => {
-      if(element.gender === test){
-        result.push(element)
-      }
-    });
+      if(element.lga === lga){
+        if(element.gender === test){
+          result.push(element)
+        }}
+      });
     return result.length;
   }
   
-//   export  const extractLGA = (arr, test) => {
-//     let result = [];
-//     arr.forEach(element => {
-//       if(element.lga === test){
-//         result.push(element)
-//       }
-//     });
-//     return result.length;
-//   }
+
+  export  const extractEducation = (arr, test, lga) => {
+    let result = [];
+    arr.forEach(element => {
+      if(element.lga === lga){
+        if(element.education === test){
+          result.push(element)
+        }}
+      });
+    return result.length;
+  }
   
+  export  const extractDisability = (arr, test, lga) => {
+    let result = [];
+    arr.forEach(element => {
+      if(element.lga === lga){
+        if(element.disability === test){
+          result.push(element)
+        }}
+      });
+    return result.length;
+  }
+
+  export const extractMaritalStatus = (arr, test, lga) => {
+    let result = [];
+    arr.forEach(element => {
+      if(element.lga === lga){
+        if(element.maritalstatus === test){
+          result.push(element)
+        }}
+      });
+    return result.length;
+ }
   
-  export const extactEducation = (arr, test) => {
-     let result = [];
-     arr.forEach(element => {
-       if(element.id !== test){
-         result.push(element)
-       }
-     });
-     return result;
-   }
-   
+ 
 
   export  const extractUser = (arr, test) => {
     let user = {};
