@@ -26,7 +26,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardText from "components/Card/CardText.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 
 class Step2 extends React.Component {
@@ -96,38 +99,195 @@ class Step2 extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={3}>
                     <FormLabel className={classes.labelHorizontal}>
-                      First Name
+                      Gender
                     </FormLabel>
                   </GridItem>
                   <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="help-text"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text"
-                      }}
-                    />
+                      <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                           <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleSimple}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Male
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Female
+                            </MenuItem>
+                          </Select>
+                      </FormControl>
                   </GridItem>
                 </GridContainer>
                 <br/>
                 <GridContainer>
                   <GridItem xs={12} sm={3}>
                     <FormLabel className={classes.labelHorizontal}>
-                      Password
+                      Marital Status
                     </FormLabel>
                   </GridItem>
                   <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "password"
-                      }}
-                    />
+                  <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                           <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleSimple}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Single
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Married
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Divorced
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Widowed
+                            </MenuItem>
+                          </Select>
+                      </FormControl>
+                  </GridItem>
+                </GridContainer>
+                <br/>
+                <GridContainer>
+                  <GridItem xs={12} sm={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      LGA
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={8}>
+                  <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                           <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleSimple}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Single
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Married
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Divorced
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Widowed
+                            </MenuItem>
+                          </Select>
+                      </FormControl>
                   </GridItem>
                 </GridContainer>
                 <GridContainer>
