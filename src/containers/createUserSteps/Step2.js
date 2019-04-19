@@ -74,7 +74,7 @@ class Step2 extends React.Component {
     (<GridContainer>
       <GridItem xs={12} sm={3} lg={6}>
         <FormLabel className={classes.labelHorizontal}>
-          Create An Account 
+          No Account Created 
         </FormLabel>
       </GridItem>
     </GridContainer>)
