@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import PerfectScrollbar from "perfect-scrollbar";
@@ -69,7 +70,7 @@ class Members extends React.Component {
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("Members",classes)
+    console.log("Members",this.props.user.user)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -80,6 +81,7 @@ class Members extends React.Component {
       });
     
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
+    const display = this.props.user.user.role === "admin" ? <MemberDetail/> : <Redirect to="/" />
       return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -105,7 +107,7 @@ class Members extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              <MemberDetail/>
+              {display}
             </div>
         </div>
         </div>
@@ -120,7 +122,7 @@ Members.propTypes = {
 
 const mapStateToProps = state => {
   return{
-    ...state
+    user: state.auth
   }
 }
 

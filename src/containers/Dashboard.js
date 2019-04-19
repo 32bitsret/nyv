@@ -114,7 +114,7 @@ componentWillReceiveProps(nextProps){
     console.log(":::::::",this.props.dashboard)
     const { classes, match, ...rest } = this.props;
     if(this.state.user !== null) { 
-     console.log("DASHBOARD",this.state.user)
+     console.log("DASHBOARD",this.props.user)
     }
     const mainPanel =
       classes.mainPanel +

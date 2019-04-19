@@ -94,7 +94,7 @@ class CreateMember extends React.Component {
   render() {
     const { classes, match, ...rest } = this.props;
     console.log(`${match.path}`+"/home")
-    console.log("CreateMember",classes)
+    console.log("CreateMember",this.props.user.role)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -104,8 +104,8 @@ class CreateMember extends React.Component {
           navigator.platform.indexOf("Win") > -1
       });
     
-    const route = this.state.isAdmin?data.dashAdmin:data.dashUser
-    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={data.dashUser}/>)
+    const route = this.props.user.role === "admin" ? data.dashAdmin:data.dashUser
+    const display = this.props.user.role === "admin" ? <CreateMemberDetail/> : <Redirect to="/"/>
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -131,7 +131,7 @@ class CreateMember extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-             <CreateMemberDetail/>
+              {display}
             </div>
         </div>
         </div>
@@ -146,7 +146,7 @@ CreateMember.propTypes = {
 
 const mapStateToProps = state => {
   return{
-    ...state
+    user:state.auth.user
   }
 }
 export default connect(mapStateToProps, {})(withStyles(appStyle)(CreateMember));
