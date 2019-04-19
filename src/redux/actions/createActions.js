@@ -6,12 +6,13 @@ import {
     DONE_STEP_TWO,
     ERROR,
     FETCH_USER,
-    FETCHING_USER
+    FETCHING_USER,
+    DONE_UPDATING
 } from "../Constants"
 import axios from "axios"
 import {
     registerURL,
-    updateProfile,
+    updateProfileURL,
     profileURL
 } from "../../api/apiURL"
 
@@ -61,12 +62,15 @@ export const updateBioInfo = (data) => dispatch =>{
 export const updateBasicInfo = (data) => dispatch =>{
     //step3
     axios({
-        method:"",
-        url:"",
-        data: ""
+        method:"PUT",
+        url: updateProfileURL,
+        data: data
     })
     .then(res => {
-
+        console.log(":::::::::::::UPDATED DATA::::::::::", res.data)
+        // dispatch({
+        //     type:
+        // })
     })
     .catch(err => {
         

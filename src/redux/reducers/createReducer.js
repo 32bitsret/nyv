@@ -6,7 +6,8 @@ import {
     DONE_STEP_TWO,
     ERROR,
     FETCH_USER,
-    FETCHING_USER
+    FETCHING_USER,
+    DONE_UPDATING
 } from "../Constants"
 
 const initialState = {

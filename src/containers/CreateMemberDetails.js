@@ -7,9 +7,16 @@ import Step4 from "./createUserSteps/Step4"
 import Step2 from "./createUserSteps/Step2"
 import Step3 from "./createUserSteps/Step3"
 import {connect} from "react-redux"
+import { withRouter } from "react-router-dom"
 
+
+let user
 class WizardView extends React.Component {
+
+  componentDidMount
   render() {
+     user = this.props.createUser.user
+    console.log("GRNAD FATHER", this.props.createUser)
     return (
       <GridContainer justify="center">
        <GridItem xs={12} sm={12} md={8}>
@@ -20,7 +27,7 @@ class WizardView extends React.Component {
                 {
                   tabName: "Basic Info",
                   tabContent: (
-                    <Step1/>
+                    <Step1 user={user}/>
                   )
                 },
                 {

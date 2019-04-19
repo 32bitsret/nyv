@@ -12,7 +12,7 @@ export const registerURL = `${BASE_URL}/pyc/registerUser`
 export const profileURL = `${BASE_URL}/pyc/profile`
 
 //update Profile
-export const updateProfile = `${BASE_URL}/`
+export const updateProfileURL = `${BASE_URL}/pyc/profile`
 
 //get notification 
 export const getNotificationURL = `${BASE_URL}/`

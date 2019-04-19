@@ -47,7 +47,7 @@ class Step2 extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUser(9099474330)
+    // this.props.fetchUser(9099474330)
   }
 
   handleChange(event) {

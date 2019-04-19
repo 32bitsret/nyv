@@ -37,6 +37,7 @@ import {
   verifyUrl, 
   compare}
    from "../../utils/validation"
+   import { withRouter } from "react-router-dom"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -68,6 +69,31 @@ class Step1 extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    const user = nextProps.createUser.user
+    if (user !== null){
+      this.setState({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        phone: user.phone,
+        email: user.email,
+        middlename: user.middlename
+      })
+    }
+  }
+
+  componentDidMount(){
+    console.log("COMPONENT HAS MOUNTED", this.props.user)
+    const user =  this.props.user
+    this.setState({
+      firstname: user.firstname,
+      lastname: user.lastname,
+      phone: user.phone,
+      email: user.email,
+      middlename: user.middlename
+    })
   }
 
   handleChange(e) {
@@ -152,47 +178,53 @@ class Step1 extends React.Component {
   update = (e) => {
     e.preventDefault()
     let query = {
-      _id: ""
+      _id: this.props.createUser.user._id
+    }
+    let update = {
+      email: this.state.email,
+      password: this.state.password,
+      firstname: this.state.firstname,
+      middlename: this.state.middlename,
+      lastname: this.state.lastname,
+      role: this.state.role
     }
     const data = {
-      query: {
-
-      },
-      update:{
-
-      }
+      query: query,
+      update: update
     }
     this.props.updateBasicInfo(data)  
   }
 
-  registerNewMember = (e) => {
+  editExistingUser = (e) => {
     e.preventDefault();
+
     let newNumber = Number(this.state.searchValue.slice(1))
-    console.log("SEARCHED VALUE", typeof(newNumber))
-    console.log("SEARCHED VALUE", typeof(this.state.searchValue))
+    this.props.fetchUser(newNumber)
+    
+    window.location.reload()
   }
 
   render() {
     const { classes } = this.props;
-    console.log("NAME", this.props.createUser)
-
-    const butt = this.props.createUser.userExist ? (
-      <Button
-        color="success"
-        onClick={this.update}
-      >
-        Update Profile
-      </Button>
+    console.log("NAME", this.props)
+    const butt = this.props.createUser.userExist ? 
+      (
+        <Button
+          color="success"
+          onClick={this.update}
+        >
+          Update Profile
+        </Button>
       )
       :
       (
-      <Button
-        color="success"
-        onClick={this.submit}
-      >
-        Create Profile
-      </Button>
-    )
+        <Button
+          color="success"
+          onClick={this.submit}
+        >
+          Create Profile
+        </Button>
+      )
 
     const display = !this.props.createUser.userExist ?
            (
@@ -201,13 +233,13 @@ class Step1 extends React.Component {
               <GridItem xs={12} sm={8} lg={8}>
                 <Button
                   color="success"
-                  // onClick={this.update}
+                  onClick={this.editExistingUser}
                 >
                   Edit Existing Member
                 </Button>      
                 <Button
                   color="success"
-                  onClick={this.registerNewMember}
+                  // 
                 >
                   Register New Member
                 </Button> 
@@ -376,6 +408,7 @@ class Step1 extends React.Component {
                     <GridItem xs={12} sm={8}>
                       <CustomInput
                         id="phone-1"
+                        disable
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -512,5 +545,6 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, {
   createUserByAdmin,
-
-})(withStyles(regularFormsStyle)(Step1));
+  fetchUser,
+  updateBasicInfo
+})(withRouter(withStyles(regularFormsStyle)(Step1)));
