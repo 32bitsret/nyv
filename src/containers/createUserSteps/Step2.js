@@ -67,7 +67,7 @@ class Step2 extends React.Component {
   }
   
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props ;
     console.log("STEP TWO REDUX", this.props.createUser)
 
     const display = !this.props.createUser.createSuccess 

@@ -4,17 +4,16 @@ import {
     DONE_STEP_ONE,
     DONE_STEP_THREE,
     DONE_STEP_TWO,
-    ERROR
+    ERROR,
+    FETCH_USER
 } from "../Constants"
 
 const initialState = {
     step1:"1",
-    step2:"",
-    step3:"",
-    step4:"",
     createSuccess:false,
     error:{},
-    isloading: false
+    isloading: false,
+    user:{}
 };
 
 export default (state = initialState, action) => {
@@ -22,13 +21,25 @@ export default (state = initialState, action) => {
     case CREATE_USER_BY_ADMIN:
         return {
             ...state,
-            step1:"good",
-            createSuccess: isEmpty(action.payload)
+            isloading: true
         }
     case DONE_STEP_ONE:
         return {
             ...state,
-            step2:"2"
+            isloading: false,
+            user: action.payload,
+            createSuccess: true
+        }
+    case ERROR:
+        return{
+            ...state,
+            error: action.payload
+        }
+    case FETCH_USER:
+        return {
+            ...state,
+            isloading: false,
+            user: action.payload
         }
     default:
       return state;
