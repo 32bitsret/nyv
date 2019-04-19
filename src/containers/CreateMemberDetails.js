@@ -9,18 +9,7 @@ import Step3 from "./createUserSteps/Step3"
 import {connect} from "react-redux"
 
 class WizardView extends React.Component {
-  constructor(props){
-    super(props);
-
-    const state = {
-      createSuccess: false
-    }
-  }
-
-
   render() {
-    const bio = this.props.createUser.createSuccess ? (<div></div>) : 
-    console.log("CREATING MEMBER",this.props.createUser)
     return (
       <GridContainer justify="center">
        <GridItem xs={12} sm={12} md={8}>

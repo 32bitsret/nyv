@@ -9,7 +9,7 @@ export const registerURL = `${BASE_URL}/pyc/registerUser`
 
 
 //get profile
-export const profileURL = `${BASE_URL}/pyc/profile/`
+export const profileURL = `${BASE_URL}/pyc/profile`
 
 //update Profile
 export const updateProfile = `${BASE_URL}/`

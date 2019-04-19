@@ -25,7 +25,10 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
-import {createUserByAdmin} from "../../redux/actions/createActions"
+import {
+  createUserByAdmin,
+  updateBasicInfo
+} from "../../redux/actions/createActions"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -34,13 +37,13 @@ class Step1 extends React.Component {
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
-      firstName:"",
-      middleName:"",
-      lastName:"",
+      firstname:"",
+      middlename:"",
+      lastname:"",
       email:"",
       phone:"",
       password: "",
-      confirmPassword:"",
+      confirmpassword:"",
       role:"user"
     };
     this.handleChange = this.handleChange.bind(this);
@@ -71,275 +74,352 @@ class Step1 extends React.Component {
     const data = {
       email: this.state.email,
       password:this.state.password,
-      firstname:this.state.firstName+" "+this.state.middleName,
-      lastname:this.state.lastName,
+      firstname:this.state.firstname+" "+this.state.middlename,
+      lastname:this.state.lastname,
       phone: Number(this.state.phone),
       role:this.state.role
     }
-
+    
     this.props.createUserByAdmin(data)
     console.log("SUBMISSION", data)
   }
+
+  update = (e) => {
+    e.preventDefault()
+    let query = {
+      _id: ""
+    }
+    const data = {
+      query: {
+
+      },
+      update:{
+
+      }
+    }
+    this.props.updateBasicInfo(data)
+  }
+
   render() {
     const { classes } = this.props;
-    // console.log("NAME", this.state)
-    return (
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardBody>
-              <form>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      First Name
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="firstname"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        name:"firstName",
-                        value:this.state.firstName,
-                        onChange:this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Middle Name
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="middlename"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        name:"middleName",
-                        value:this.state.middleName,
-                        onChange:this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        )
-                      }}
-                     />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Last Name
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="lastname"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        name:"lastName",
-                        value:this.state.lastName,
-                        onChange:this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Email
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      // success={true}
-                      // error={true}
-                      id="email-1"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "email",
-                        name:"email",
-                        value:this.state.email,
-                        onChange:this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Email className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Phone Number
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="phone-1"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "number",
-                        name:"phone",
-                        value:this.state.phone,
-                        onChange: this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Phone/>
-                          </InputAdornment>
-                        )
-                      }}
-                      helpText="Phone Number cannot be changed after registration"
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Password
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="password-1"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "password",
-                        name: "password",
-                        value: this.state.password,
-                        onChange: this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputAdornmentIcon}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Confirm Password
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="password-2"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "password",
-                        name:"confirmPassword",
-                        value: this.state.confirmPassword,
-                        onChange:this.handleChange,
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputAdornmentIcon}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
+    console.log("NAME", this.props.createUser)
 
-                <br/>
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={6} lg={4}>
-                    <div
-                      className={
-                        classes.checkboxAndRadio +
-                        " " +
-                        classes.checkboxAndRadioHorizontal
-                      }
-                    >
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            tabIndex={-1}
-                            onClick={() => this.handleToggle()}
-                            checkedIcon={
-                              <Check className={classes.checkedIcon} />
-                            }
-                            icon={<Check className={classes.uncheckedIcon} />}
-                            classes={{
-                              checked: classes.checked,
-                              root: classes.checkRoot
-                            }}
-                          />
-                        }
-                        classes={{
-                          label: classes.label
+    const butt = this.props.createUser.userExist ? (
+      <Button
+        color="success"
+        onClick={this.update}
+      >
+        Update Profile
+      </Button>
+      )
+      :
+      (
+      <Button
+        color="success"
+        onClick={this.submit}
+      >
+        Create Profile
+      </Button>
+    )
+
+    const display = !this.props.createUser.userExist ?
+           (
+            <GridContainer justify="center">
+            <br/>
+              <GridItem xs={12} sm={8} lg={8}>
+                <Button
+                  color="success"
+                  // onClick={this.update}
+                >
+                  Edit Existing Member
+                </Button>      
+                <Button
+                  color="success"
+                  // onClick={this.update}
+                >
+                  Register New Member
+                </Button> 
+              </GridItem>
+              <GridItem xs={12} sm={8} lg={5}>
+                  <CustomInput
+                    id="help-text"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      placeholder:"Phone number...",
+                      endAdornment: (
+                          <InputAdornment position="end">
+                          
+                          </InputAdornment>
+                        )
+                    }}
+                  /> 
+              </GridItem>
+              <br/>
+          </GridContainer>
+          )
+          :
+          (<GridContainer>
+          <GridItem xs={12} sm={12} md={12}>
+            <Card>
+              <CardBody>
+                <form>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        First Name
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="firstname"
+                        formControlProps={{
+                          fullWidth: true
                         }}
-                        label="Create as Admin"
+                        inputProps={{
+                          type: "text",
+                          name:"firstname",
+                          value:this.state.firstname,
+                          onChange:this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Face className={classes.inputAdornmentIcon} />
+                            </InputAdornment>
+                          )
+                        }}
                       />
-                    </div>
-                  </GridItem>
-                  <GridItem xs={12} sm={6} lg={4}>
-                    <div className={classes.inlineChecks}>
-                      <Button
-                        color="success"
-                        onClick={this.submit}
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Middle Name
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="middlename"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "text",
+                          name:"middlename",
+                          value:this.state.middlename,
+                          onChange:this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Face className={classes.inputAdornmentIcon} />
+                            </InputAdornment>
+                          )
+                        }}
+                       />
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Last Name
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="lastname"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "text",
+                          name:"lastname",
+                          value:this.state.lastname,
+                          onChange:this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Face className={classes.inputAdornmentIcon} />
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Email
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        // success={true}
+                        // error={true}
+                        id="email-1"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "email",
+                          name:"email",
+                          value:this.state.email,
+                          onChange:this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Email className={classes.inputAdornmentIcon} />
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Phone Number
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="phone-1"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "number",
+                          name:"phone",
+                          value:this.state.phone,
+                          onChange: this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Phone/>
+                            </InputAdornment>
+                          )
+                        }}
+                        helpText="Phone Number cannot be changed after registration"
+                      />
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Password
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="password-1"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "password",
+                          name: "password",
+                          value: this.state.password,
+                          onChange: this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Icon className={classes.inputAdornmentIcon}>
+                                lock_outline
+                              </Icon>
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                    </GridItem>
+                  </GridContainer>
+                  <br/>
+                  <GridContainer>
+                    <GridItem xs={12} sm={3}>
+                      <FormLabel className={classes.labelHorizontal}>
+                        Confirm Password
+                      </FormLabel>
+                    </GridItem>
+                    <GridItem xs={12} sm={8}>
+                      <CustomInput
+                        id="password-2"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "password",
+                          name:"confirmpassword",
+                          value: this.state.confirmpassword,
+                          onChange:this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Icon className={classes.inputAdornmentIcon}>
+                                lock_outline
+                              </Icon>
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                    </GridItem>
+                  </GridContainer>
+  
+                  <br/>
+                  <GridContainer justify="center">
+                    <GridItem xs={12} sm={6} lg={4}>
+                      <div
+                        className={
+                          classes.checkboxAndRadio +
+                          " " +
+                          classes.checkboxAndRadioHorizontal
+                        }
                       >
-                        Create Profile
-                      </Button>
-                    </div>
-                  </GridItem>
-                </GridContainer>
-              </form>
-            </CardBody>
-          </Card>
-        </GridItem>
-      </GridContainer>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              tabIndex={-1}
+                              onClick={() => this.handleToggle()}
+                              checkedIcon={
+                                <Check className={classes.checkedIcon} />
+                              }
+                              icon={<Check className={classes.uncheckedIcon} />}
+                              classes={{
+                                checked: classes.checked,
+                                root: classes.checkRoot
+                              }}
+                            />
+                          }
+                          classes={{
+                            label: classes.label
+                          }}
+                          label="Create as Admin"
+                        />
+                      </div>
+                    </GridItem>
+                    <GridItem xs={12} sm={6} lg={4}>
+                      <div className={classes.inlineChecks}>
+                          {butt}
+                      </div>
+                    </GridItem>
+                  </GridContainer>
+                </form>
+              </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>)
+
+    return (
+      <div>
+        {display}
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    state
+    createUser: state.createUser
   }
 }
-export default connect(mapStateToProps, {createUserByAdmin})(withStyles(regularFormsStyle)(Step1));
+export default connect(mapStateToProps, {
+  createUserByAdmin,
+
+})(withStyles(regularFormsStyle)(Step1));

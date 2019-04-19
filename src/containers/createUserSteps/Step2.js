@@ -31,6 +31,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
+import {fetchUser} from "../../redux/actions/createActions"
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -44,6 +45,11 @@ class Step2 extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
+
+  componentDidMount(){
+    this.props.fetchUser(9099474330)
+  }
+
   handleChange(event) {
     this.setState({ selectedValue: event.target.value });
   }
@@ -70,7 +76,7 @@ class Step2 extends React.Component {
     const { classes } = this.props ;
     console.log("STEP TWO REDUX", this.props.createUser)
 
-    const display = !this.props.createUser.createSuccess 
+    const display = !this.props.createUser.userExist 
     ? 
     (<GridContainer>
       <GridItem xs={12} sm={3} lg={6}>
@@ -528,4 +534,4 @@ const mapStateToProps = state => {
     createUser: state.createUser
   }
 }
-export default connect(mapStateToProps, {})(withStyles(regularFormsStyle)(Step2));
+export default connect(mapStateToProps, {fetchUser})(withStyles(regularFormsStyle)(Step2));

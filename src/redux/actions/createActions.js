@@ -5,17 +5,24 @@ import {
     DONE_STEP_THREE,
     DONE_STEP_TWO,
     ERROR,
-    FETCH_USER
+    FETCH_USER,
+    FETCHING_USER
 } from "../Constants"
 import axios from "axios"
-import {registerURL} from "../../api/apiURL"
+import {
+    registerURL,
+    updateProfile,
+    profileURL
+} from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
     //step1
     console.log("FROM STEP1 ACTION", typeof(data.phone))
+    
     dispatch({
         type:CREATE_USER_BY_ADMIN,
     })
+
     axios({
         method:"POST",
         url: registerURL,
@@ -36,7 +43,7 @@ export const createUserByAdmin = (data) => dispatch => {
     })
 }
 
-export const updateBioInfo = () => dispatch =>{
+export const updateBioInfo = (data) => dispatch =>{
     //step2
     axios({
         method:"",
@@ -51,7 +58,7 @@ export const updateBioInfo = () => dispatch =>{
     })
 }
 
-export const updateEducationalInfo = () => dispatch =>{
+export const updateBasicInfo = (data) => dispatch =>{
     //step3
     axios({
         method:"",
@@ -66,7 +73,23 @@ export const updateEducationalInfo = () => dispatch =>{
     })
 }
 
-export const uploadPicture = () => dispatch =>{
+
+export const updateEducationalInfo = (data) => dispatch =>{
+    //step3
+    axios({
+        method:"",
+        url:"",
+        data: ""
+    })
+    .then(res => {
+
+    })
+    .catch(err => {
+        
+    })
+}
+
+export const uploadPicture = (data) => dispatch =>{
     //step4
     axios({
         method:"",
@@ -81,7 +104,7 @@ export const uploadPicture = () => dispatch =>{
     })
 }
 
-export const uploadDocument = () => dispatch =>{
+export const uploadDocument = (data) => dispatch =>{
     //step4
     axios({
         method:"",
@@ -96,16 +119,26 @@ export const uploadDocument = () => dispatch =>{
     })
 }
 
-export const fetchUser = () =>  dispatch => {
+export const fetchUser = (phone) =>  dispatch => {
+//    console.log("TESTING TESTING", phone)
+   dispatch({
+       type:FETCHING_USER
+   })
+//======================================
     axios({
-        method:"",
-        url:"",
-        data: ""
+        method:"POST",
+        url:profileURL,
+        data: {phone:phone}
     })
     .then(res => {
-
+        console.log(res.data.data)
+        dispatch({
+            type: FETCH_USER,
+            payload: res.data.data
+        })
     })
     .catch(err => {
-        
+        console.log(err)
     })
+//=======================================
 }

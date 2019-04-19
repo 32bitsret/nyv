@@ -65,7 +65,7 @@ class Step3 extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const display = !this.props.createUser.createSuccess ? 
+    const display = !this.props.createUser.userExist ? 
     (
       <GridContainer>
         <GridItem xs={12} sm={3} lg={6}>

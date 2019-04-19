@@ -5,12 +5,13 @@ import {
     DONE_STEP_THREE,
     DONE_STEP_TWO,
     ERROR,
-    FETCH_USER
+    FETCH_USER,
+    FETCHING_USER
 } from "../Constants"
 
 const initialState = {
     step1:"1",
-    createSuccess:false,
+    userExist:false,
     error:{},
     isloading: false,
     user:{}
@@ -28,7 +29,12 @@ export default (state = initialState, action) => {
             ...state,
             isloading: false,
             user: action.payload,
-            createSuccess: true
+            userExist: true
+        }
+    case FETCHING_USER:
+        return {
+            ...state,
+            isloading: true,
         }
     case ERROR:
         return{
@@ -39,7 +45,8 @@ export default (state = initialState, action) => {
         return {
             ...state,
             isloading: false,
-            user: action.payload
+            user: action.payload,
+            userExist: true
         }
     default:
       return state;
