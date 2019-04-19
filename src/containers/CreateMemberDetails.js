@@ -12,10 +12,15 @@ class WizardView extends React.Component {
   constructor(props){
     super(props);
 
-    // state
+    const state = {
+      createSuccess: false
+    }
   }
 
+
   render() {
+    const bio = this.props.createUser.createSuccess ? (<div></div>) : 
+    console.log("CREATING MEMBER",this.props.createUser)
     return (
       <GridContainer justify="center">
        <GridItem xs={12} sm={12} md={8}>
@@ -57,7 +62,7 @@ class WizardView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // state
+     createUser: state.createUser
   }
 }
-export default connect(null, null)(WizardView);
+export default connect(mapStateToProps, null)(WizardView);

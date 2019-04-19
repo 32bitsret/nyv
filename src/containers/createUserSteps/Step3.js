@@ -1,6 +1,5 @@
 import React from "react";
-
-// @material-ui/core components
+import {connect} from "react-redux"
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -65,150 +64,170 @@ class Step3 extends React.Component {
 
   render() {
     const { classes } = this.props;
-    return (
+
+    const display = !this.props.createUser.createSuccess ? 
+    (
       <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardBody>
-              <form>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Institution
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="help-text"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        endAdornment: (
-                            <InputAdornment position="end">
-                              <Face className={classes.inputAdornmentIcon} />
-                            </InputAdornment>
-                          )
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Course of Study
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                    <CustomInput
-                      id="help-text"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text"
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Qualification
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={8}>
-                  <FormControl
-                          fullWidth
-                          className={classes.selectFormControl}
-                        >
-                           <InputLabel
-                            htmlFor="simple-select"
-                            className={classes.selectLabel}
-                          >
-                          </InputLabel>
-                          <Select
-                            MenuProps={{
-                              className: classes.selectMenu
-                            }}
-                            classes={{
-                              select: classes.select
-                            }}
-                            value={this.state.simpleSelect}
-                            onChange={this.handleSimple}
-                            inputProps={{
-                              name: "simpleSelect",
-                              id: "simple-select"
-                            }}
-                          >
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="2"
-                            >
-                              Olevel
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="3"
-                            >
-                              ND
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="4"
-                            >
-                              HND
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="5"
-                            >
-                              Degree
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="6"
-                            >
-                              MSC
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="7"
-                            >
-                              PHD
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                  </GridItem>
-                </GridContainer>
-              </form>
-            </CardBody>
-          </Card>
+        <GridItem xs={12} sm={3} lg={6}>
+          <FormLabel className={classes.labelHorizontal}>
+            No Account Created
+          </FormLabel>
         </GridItem>
       </GridContainer>
+    ) 
+    : 
+    (<GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
+        <Card>
+          <CardBody>
+            <form>
+              <GridContainer>
+                <GridItem xs={12} sm={3}>
+                  <FormLabel className={classes.labelHorizontal}>
+                    Institution
+                  </FormLabel>
+                </GridItem>
+                <GridItem xs={12} sm={8}>
+                  <CustomInput
+                    id="help-text"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      endAdornment: (
+                          <InputAdornment position="end">
+                            <Face className={classes.inputAdornmentIcon} />
+                          </InputAdornment>
+                        )
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <br/>
+              <GridContainer>
+                <GridItem xs={12} sm={3}>
+                  <FormLabel className={classes.labelHorizontal}>
+                    Course of Study
+                  </FormLabel>
+                </GridItem>
+                <GridItem xs={12} sm={8}>
+                  <CustomInput
+                    id="help-text"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <br/>
+              <GridContainer>
+                <GridItem xs={12} sm={3}>
+                  <FormLabel className={classes.labelHorizontal}>
+                    Qualification
+                  </FormLabel>
+                </GridItem>
+                <GridItem xs={12} sm={8}>
+                <FormControl
+                        fullWidth
+                        className={classes.selectFormControl}
+                      >
+                         <InputLabel
+                          htmlFor="simple-select"
+                          className={classes.selectLabel}
+                        >
+                        </InputLabel>
+                        <Select
+                          MenuProps={{
+                            className: classes.selectMenu
+                          }}
+                          classes={{
+                            select: classes.select
+                          }}
+                          value={this.state.simpleSelect}
+                          onChange={this.handleSimple}
+                          inputProps={{
+                            name: "simpleSelect",
+                            id: "simple-select"
+                          }}
+                        >
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="2"
+                          >
+                            Olevel
+                          </MenuItem>
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="3"
+                          >
+                            ND
+                          </MenuItem>
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="4"
+                          >
+                            HND
+                          </MenuItem>
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="5"
+                          >
+                            Degree
+                          </MenuItem>
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="6"
+                          >
+                            MSC
+                          </MenuItem>
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value="7"
+                          >
+                            PHD
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                </GridItem>
+              </GridContainer>
+            </form>
+          </CardBody>
+        </Card>
+      </GridItem>
+    </GridContainer>)
+    return (
+      <div>
+        {display}
+      </div>
     );
   }
 }
 
-export default withStyles(regularFormsStyle)(Step3);
+const mapStateToProps = state => {
+  return {
+    createUser: state.createUser
+  }
+}
+export default connect(mapStateToProps, {})(withStyles(regularFormsStyle)(Step3));
