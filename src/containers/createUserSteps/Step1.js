@@ -27,8 +27,16 @@ import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/reg
 import {connect} from "react-redux"
 import {
   createUserByAdmin,
-  updateBasicInfo
+  updateBasicInfo,
+  fetchUser
 } from "../../redux/actions/createActions"
+import {
+  verifyEmail, 
+  verifyLength, 
+  verifyNumber, 
+  verifyUrl, 
+  compare}
+   from "../../utils/validation"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -37,6 +45,7 @@ class Step1 extends React.Component {
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
+    
       firstname:"",
       middlename:"",
       lastname:"",
@@ -44,11 +53,23 @@ class Step1 extends React.Component {
       phone:"",
       password: "",
       confirmpassword:"",
-      role:"user"
+      role:"user",
+
+      firstnameState:"",
+      middlenameState:"",
+      lastnameState:"",
+      emailState:"",
+      phoneState:"",
+      passwordState:"",
+      confirmpasswordState:"",
+
+      searchValue:"",
+      searchValueState:""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -68,9 +89,53 @@ class Step1 extends React.Component {
     }
   }
 
+
+  onChange = (e, stateName, type, stateNameEquivalence) => {
+    e.preventDefault()
+    this.setState({ [e.target.name]: e.target.value });
+    switch(type){
+      case "email":
+        if(verifyEmail(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "password":
+        if(verifyLength(e.target.value, 6)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "equalTo":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "number":
+        if(verifyNumber(e.target.value)){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]:"error"})
+        }
+        break;
+      case "minValue":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+        else {
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+    }
+  }
+
+
   submit = (e) => {
     e.preventDefault()
-
     const data = {
       email: this.state.email,
       password:this.state.password,
@@ -97,7 +162,14 @@ class Step1 extends React.Component {
 
       }
     }
-    this.props.updateBasicInfo(data)
+    this.props.updateBasicInfo(data)  
+  }
+
+  registerNewMember = (e) => {
+    e.preventDefault();
+    let newNumber = Number(this.state.searchValue.slice(1))
+    console.log("SEARCHED VALUE", typeof(newNumber))
+    console.log("SEARCHED VALUE", typeof(this.state.searchValue))
   }
 
   render() {
@@ -125,7 +197,7 @@ class Step1 extends React.Component {
     const display = !this.props.createUser.userExist ?
            (
             <GridContainer justify="center">
-            <br/>
+              <br/>
               <GridItem xs={12} sm={8} lg={8}>
                 <Button
                   color="success"
@@ -135,41 +207,47 @@ class Step1 extends React.Component {
                 </Button>      
                 <Button
                   color="success"
-                  // onClick={this.update}
+                  onClick={this.registerNewMember}
                 >
                   Register New Member
                 </Button> 
               </GridItem>
-              <GridItem xs={12} sm={8} lg={5}>
-                  <CustomInput
-                    id="help-text"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      placeholder:"Phone number...",
-                      endAdornment: (
-                          <InputAdornment position="end">
-                          
-                          </InputAdornment>
-                        )
-                    }}
-                  /> 
-              </GridItem>
-              <br/>
-              <GridContainer>
-                <GridItem xs={12} sm={3} lg={8}>
-                  <FormLabel className={classes.labelHorizontal}>
-                    - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
-                  </FormLabel>
+
+              <GridContainer justify="center">
+                <GridItem xs={12} sm={8} lg={5}>
+                    <CustomInput
+                      id="help-text"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "number",
+                        placeholder:"Phone number...",
+                        name:"searchValue",
+                        value:this.state.searchValue,
+                        onChange:(e) => this.onChange(e,"searchValue","number"),
+                        endAdornment: (
+                            <InputAdornment position="end">
+                            
+                            </InputAdornment>
+                          )
+                      }}
+                    /> 
                 </GridItem>
                 <br/>
-                <GridItem xs={12} sm={3} lg={8}>
-                  <FormLabel className={classes.labelHorizontal}>
-                    - To EDIT a Profile, Type Phone and Clcik
-                  </FormLabel>
-                </GridItem>
+                <GridContainer>
+                  <GridItem xs={12} sm={3} lg={8}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
+                    </FormLabel>
+                  </GridItem>
+                  <br/>
+                  <GridItem xs={12} sm={3} lg={8}>
+                    <FormLabel className={classes.labelHorizontal}>
+                      - To EDIT a Profile, Type Phone and Clcik
+                    </FormLabel>
+                  </GridItem>
+                </GridContainer>
               </GridContainer>
           </GridContainer>
           )
