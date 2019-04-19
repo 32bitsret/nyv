@@ -158,6 +158,19 @@ class Step1 extends React.Component {
                   /> 
               </GridItem>
               <br/>
+              <GridContainer>
+                <GridItem xs={12} sm={3} lg={8}>
+                  <FormLabel className={classes.labelHorizontal}>
+                    - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
+                  </FormLabel>
+                </GridItem>
+                <br/>
+                <GridItem xs={12} sm={3} lg={8}>
+                  <FormLabel className={classes.labelHorizontal}>
+                    - To EDIT a Profile, Type Phone and Clcik
+                  </FormLabel>
+                </GridItem>
+              </GridContainer>
           </GridContainer>
           )
           :
