@@ -65,6 +65,7 @@ class Step2 extends React.Component {
       checked: newChecked
     });
   }
+  
   render() {
     const { classes } = this.props;
     console.log("STEP TWO REDUX", this.props.createUser)

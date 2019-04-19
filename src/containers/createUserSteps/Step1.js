@@ -24,6 +24,7 @@ import CardText from "components/Card/CardText.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
+import {connect} from "react-redux"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -31,34 +32,38 @@ class Step1 extends React.Component {
     this.state = {
       checked: [24, 22],
       selectedValue: null,
-      selectedEnabled: "b"
+      selectedEnabled: "b",
+      firstName:"",
+      middleName:"",
+      lastName:"",
+      email:"",
+      phone:"",
+      role:""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
-  handleChange(event) {
-    this.setState({ selectedValue: event.target.value });
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
   handleChangeEnabled(event) {
     this.setState({ selectedEnabled: event.target.value });
   }
-  handleToggle(value) {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+  handleToggle() {
+    if(this.state.role === "" || this.state.role === "user"){
+      this.setState({
+        role: "admin"
+      });
     }
-
-    this.setState({
-      checked: newChecked
-    });
+    else {
+      this.setState({
+        role: "user"
+      })
+    }
   }
   render() {
     const { classes } = this.props;
+    console.log("NAME", this.state)
     return (
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
@@ -79,6 +84,9 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "text",
+                        name:"firstName",
+                        value:this.state.firstName,
+                        onChange:this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Face className={classes.inputAdornmentIcon} />
@@ -103,6 +111,9 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "text",
+                        name:"middleName",
+                        value:this.state.middleName,
+                        onChange:this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Face className={classes.inputAdornmentIcon} />
@@ -127,6 +138,9 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "text",
+                        name:"lastName",
+                        value:this.state.lastName,
+                        onChange:this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Face className={classes.inputAdornmentIcon} />
@@ -145,12 +159,17 @@ class Step1 extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={8}>
                     <CustomInput
+                      // success={true}
+                      // error={true}
                       id="email-1"
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         type: "email",
+                        name:"email",
+                        value:this.state.email,
+                        onChange:this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputAdornmentIcon} />
@@ -175,6 +194,8 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "number",
+                        name:"phone",
+                        value:this.state.phone,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Phone/>
@@ -252,7 +273,7 @@ class Step1 extends React.Component {
                         control={
                           <Checkbox
                             tabIndex={-1}
-                            onClick={() => this.handleToggle(3)}
+                            onClick={() => this.handleToggle()}
                             checkedIcon={
                               <Check className={classes.checkedIcon} />
                             }
@@ -291,4 +312,9 @@ class Step1 extends React.Component {
   }
 }
 
-export default withStyles(regularFormsStyle)(Step1);
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+export default connect(mapStateToProps)(withStyles(regularFormsStyle)(Step1));
