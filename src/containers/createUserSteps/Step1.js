@@ -38,7 +38,9 @@ class Step1 extends React.Component {
       lastName:"",
       email:"",
       phone:"",
-      role:""
+      password: "",
+      confirmPassword:"",
+      role:"user"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
@@ -50,7 +52,7 @@ class Step1 extends React.Component {
     this.setState({ selectedEnabled: event.target.value });
   }
   handleToggle() {
-    if(this.state.role === "" || this.state.role === "user"){
+    if(this.state.role === "user"){
       this.setState({
         role: "admin"
       });
@@ -61,9 +63,23 @@ class Step1 extends React.Component {
       })
     }
   }
+
+  submit = (e) => {
+    e.preventDefault()
+
+    const data = {
+      email: this.state.email,
+      password:this.state.password,
+      firstname:this.state.firstName+" "+this.state.middleName,
+      lastname:this.state.lastName,
+      phone:this.state.phone,
+      role:this.state.role
+    }
+    console.log("SUBMISSION", data)
+  }
   render() {
     const { classes } = this.props;
-    console.log("NAME", this.state)
+    // console.log("NAME", this.state)
     return (
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
@@ -196,6 +212,7 @@ class Step1 extends React.Component {
                         type: "number",
                         name:"phone",
                         value:this.state.phone,
+                        onChange: this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Phone/>
@@ -221,6 +238,9 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "password",
+                        name: "password",
+                        value: this.state.password,
+                        onChange: this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputAdornmentIcon}>
@@ -247,6 +267,9 @@ class Step1 extends React.Component {
                       }}
                       inputProps={{
                         type: "password",
+                        name:"confirmPassword",
+                        value: this.state.confirmPassword,
+                        onChange:this.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputAdornmentIcon}>
@@ -296,6 +319,7 @@ class Step1 extends React.Component {
                      
                       <Button
                         color="success"
+                        onClick={this.submit}
                       >
                         Create Profile
                       </Button>
