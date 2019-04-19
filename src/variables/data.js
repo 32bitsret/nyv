@@ -4,6 +4,7 @@ import Group from "@material-ui/icons/Group"
 import Email from "@material-ui/icons/Email"
 import Notifications from "@material-ui/icons/Notifications"
 import Person from "@material-ui/icons/Person"
+import Search from "@material-ui/icons/Search"
 
 
 const dashAdmin = [
@@ -32,6 +33,13 @@ const dashAdmin = [
     name: "Create Member",
     state: "openPages",
     icon: Person
+  },
+  {
+    collapse: false,
+    path: "/search",
+    name: "Search",
+    state: "openPages",
+    icon: Search
   },
  
 ]

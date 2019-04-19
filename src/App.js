@@ -19,6 +19,7 @@ import Members from './containers/Members'
 import CreateMember from './containers/CreateMember'
 import Messages from './containers/Messages'
 import Notifications from './containers/Notifications'
+import Search from './containers/Search'
 import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
 import Contactus from "./containers/pages/Contactus"
@@ -130,6 +131,13 @@ class App extends Component {
                             exact 
                             path="/create-user" 
                             component={CreateMember}
+                        />
+                    </Switch>
+                    <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/search" 
+                            component={Search}
                         />
                     </Switch>
                     <Switch>
