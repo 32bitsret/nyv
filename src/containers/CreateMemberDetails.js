@@ -6,8 +6,15 @@ import Step1 from "./createUserSteps/Step1"
 import Step4 from "./createUserSteps/Step4"
 import Step2 from "./createUserSteps/Step2"
 import Step3 from "./createUserSteps/Step3"
+import {connect} from "react-redux"
 
 class WizardView extends React.Component {
+  constructor(props){
+    super(props);
+
+    // state
+  }
+
   render() {
     return (
       <GridContainer justify="center">
@@ -29,7 +36,7 @@ class WizardView extends React.Component {
                   )
                 },
                 {
-                  tabName: "Education Info",
+                  tabName: "Educational Info",
                   tabContent: (
                    <Step3/>
                   )
@@ -48,4 +55,9 @@ class WizardView extends React.Component {
   }
 }
 
-export default WizardView;
+const mapStateToProps = state => {
+  return {
+    // state
+  }
+}
+export default connect(null, null)(WizardView);

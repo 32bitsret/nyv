@@ -124,7 +124,7 @@ class MessagesDetail extends React.Component {
         </GridItem>
       </GridContainer>
   
-        {/* <GridContainer>
+        <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card>
               <CardHeader color="success" icon>
@@ -559,7 +559,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="2"
                       >
-                        BSc
+                      School Cert
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -568,7 +568,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="3"
                       >
-                        BEng
+                        Degree
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -629,7 +629,7 @@ class MessagesDetail extends React.Component {
                </CardBody>
             </Card>
           </GridItem>
-        </GridContainer> */}
+        </GridContainer>
       </div>
     );
   }
