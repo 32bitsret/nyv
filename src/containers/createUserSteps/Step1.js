@@ -97,7 +97,7 @@ class Step1 extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={8}>
                     <CustomInput
-                      id="help-text"
+                      id="firstname"
                       formControlProps={{
                         fullWidth: true
                       }}
@@ -124,7 +124,7 @@ class Step1 extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={8}>
                     <CustomInput
-                      id="help-text"
+                      id="middlename"
                       formControlProps={{
                         fullWidth: true
                       }}
@@ -151,7 +151,7 @@ class Step1 extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={8}>
                     <CustomInput
-                      id="help-text"
+                      id="lastname"
                       formControlProps={{
                         fullWidth: true
                       }}
@@ -319,7 +319,6 @@ class Step1 extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={6} lg={4}>
                     <div className={classes.inlineChecks}>
-                     
                       <Button
                         color="success"
                         onClick={this.submit}
@@ -327,7 +326,6 @@ class Step1 extends React.Component {
                         Create Profile
                       </Button>
                     </div>
-                    
                   </GridItem>
                 </GridContainer>
               </form>

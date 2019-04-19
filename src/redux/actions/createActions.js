@@ -7,20 +7,21 @@ import {
     ERROR
 } from "../Constants"
 import axios from "axios"
+import {registerURL} from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
     //step1
     console.log("FROM STEP1 ACTION", typeof(data.phone))
     axios({
-        method:"",
-        url:"",
-        data: ""
+        method:"POST",
+        url: registerURL,
+        data: data
     })
     .then(res => {
-
+        console.log(res)
     })
     .catch(err => {
-
+        console.log(err)
     })
 }
 
