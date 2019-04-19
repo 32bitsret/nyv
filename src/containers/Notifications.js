@@ -93,8 +93,8 @@ class Notifications extends React.Component {
           navigator.platform.indexOf("Win") > -1
       });
     
-    const route = this.state.isAdmin?data.dashAdmin:data.dashUser
-    const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={data.dashUser}/>)
+    const route = this.props.user.role === "user" ? data.dashAdmin : data.dashUser
+    const display = this.props.user.role === "user" ? (<NotificationItem/> ) : (<Redirect to="/"/>)
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -119,7 +119,7 @@ class Notifications extends React.Component {
             {...rest}
           />
         <div className={classes.content}>
-          <NotificationItem/>    
+          {display}   
           </div>
         </div>
       </div>
@@ -133,7 +133,7 @@ Notifications.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    ...state
+    user:state.auth.user
   }
 }
 export default connect(mapStateToProps, {})(withStyles(appStyle)(Notifications));

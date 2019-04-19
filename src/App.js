@@ -31,10 +31,10 @@ import Speech6 from './containers/pages/Speech6'
 
 
 const hist = createBrowserHistory();
-
+let user = ""
 if(localStorage.pyc_token){
     // setAuthToken(localStorage.pyc_token)
-    const user = jwt_decode(localStorage.pyc_token)
+    user = jwt_decode(localStorage.pyc_token)
     console.log("APP USER", user)
     store.dispatch({
         type: SET_USER,
@@ -153,6 +153,7 @@ class App extends Component {
                             component={Dashboard}
                         />
                     </Switch>
+
                 </div>
             </Router>
         </Provider>
