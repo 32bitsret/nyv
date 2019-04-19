@@ -25,6 +25,7 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
+import {createUserByAdmin} from "../../redux/actions/createActions"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -72,9 +73,11 @@ class Step1 extends React.Component {
       password:this.state.password,
       firstname:this.state.firstName+" "+this.state.middleName,
       lastname:this.state.lastName,
-      phone:this.state.phone,
+      phone: Number(this.state.phone),
       role:this.state.role
     }
+
+    this.props.createUserByAdmin(data)
     console.log("SUBMISSION", data)
   }
   render() {
@@ -341,4 +344,4 @@ const mapStateToProps = state => {
     state
   }
 }
-export default connect(mapStateToProps)(withStyles(regularFormsStyle)(Step1));
+export default connect(mapStateToProps, {createUserByAdmin})(withStyles(regularFormsStyle)(Step1));

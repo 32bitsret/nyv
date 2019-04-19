@@ -8,8 +8,9 @@ import {
 } from "../Constants"
 import axios from "axios"
 
-export const createUserByAdmin = () => dispatch => {
+export const createUserByAdmin = (data) => dispatch => {
     //step1
+    console.log("FROM STEP1 ACTION", typeof(data.phone))
     axios({
         method:"",
         url:"",
