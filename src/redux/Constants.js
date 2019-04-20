@@ -34,7 +34,8 @@ export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR"
 export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS"
 export const GET_NOTIFICATION_ERROR = "GET_NOTIFICATION_ERROR"
 
-//profile
+//All Profiles
+export const GET_ALLL_PROFILE = "GET_ALLL_PROFILE"
 
 //sidebar
 

@@ -1,5 +1,8 @@
-import {GET_PROFILE, GET_PROFILE_ERROR} from "../Constants"
-import { profileURL } from "../../api/apiURL"
+import {GET_PROFILE, GET_PROFILE_ERROR, GET_ALLL_PROFILE} from "../Constants"
+import { 
+    profileURL,
+    getAllProfileURL
+} from "../../api/apiURL"
 import axios from "axios"
 
 export const getProfile = (phone) => dispatch => {
@@ -21,7 +24,7 @@ export const getProfile = (phone) => dispatch => {
     })
 }
 
-export const updateProfile = () => {
+export const updateProfile = () => dispatch =>{
     axios({
         method: "",
         url: "",
@@ -29,6 +32,23 @@ export const updateProfile = () => {
     })
     .then(res => {
         console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+export const getAllProfile = () => dispatch =>{
+    axios({
+        method: "GET",
+        url: getAllProfileURL
+    })
+    .then(res => {
+        console.log("GET ALL PROFILE",res.data.data)
+        dispatch({
+            type: GET_ALLL_PROFILE,
+            payload: res.data.data
+        })
     })
     .catch(err => {
         console.log(err)

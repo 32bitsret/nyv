@@ -8,16 +8,36 @@ import Step2 from "./createUserSteps/Step2"
 import Step3 from "./createUserSteps/Step3"
 import {connect} from "react-redux"
 import { withRouter } from "react-router-dom"
+import {
+  createUserByAdmin,
+  updateBasicInfo,
+  fetchUser
+} from "../redux/actions/createActions"
 
 
-let user
+
 class WizardView extends React.Component {
-
-  componentDidMount
+  state = {
+    user: {}
+  }
+  componentDidMount(){
+    let phone = Number(localStorage.getItem("User"))
+    // this.props.fetchUser(phone)
+    let User = JSON.parse(localStorage.getItem("ESAU"))
+    // console.log("ESAUE", User)
+    this.setState({
+      user : User
+    })
+  }
+ 
+  componentWillUnmount(){
+    console.log("COMPONENT WILL UMOUNT")
+    // localStorage.removeItem("user")
+  }
   render() {
-     user = this.props.createUser.user
-    console.log("GRNAD FATHER", this.props.createUser)
-    return (
+    let user = this.state.user
+    console.log("INSIDE RENDER", user)
+     return (
       <GridContainer justify="center">
        <GridItem xs={12} sm={12} md={8}>
        <CustomTabs
@@ -61,4 +81,4 @@ const mapStateToProps = state => {
      createUser: state.createUser
   }
 }
-export default connect(mapStateToProps, null)(WizardView);
+export default connect(mapStateToProps, {fetchUser})(WizardView);

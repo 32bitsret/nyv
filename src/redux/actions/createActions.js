@@ -68,6 +68,7 @@ export const updateBasicInfo = (data) => dispatch =>{
     })
     .then(res => {
         console.log(":::::::::::::UPDATED DATA::::::::::", res.data)
+        localStorage.setItem('user', res.data.data)
         // dispatch({
         //     type:
         // })
@@ -135,7 +136,9 @@ export const fetchUser = (phone) =>  dispatch => {
         data: {phone:phone}
     })
     .then(res => {
-        console.log(res.data.data)
+        console.log("LCOALSTORAGE",res.data.data)
+        localStorage.setItem('ESAU', JSON.stringify(res.data.data))
+        console.log("ESAU", localStorage.getItem("ESAU"))
         dispatch({
             type: FETCH_USER,
             payload: res.data.data

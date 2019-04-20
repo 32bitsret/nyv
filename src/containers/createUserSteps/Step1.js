@@ -72,27 +72,29 @@ class Step1 extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const user = nextProps.createUser.user
-    if (user !== null){
+    const user = nextProps.user
+    console.log(nextProps.user)
+    // if (user !== null){
       this.setState({
-        firstname: user.firstname,
+        firstname: nextProps.user.firstname,
         lastname: user.lastname,
         phone: user.phone,
         email: user.email,
         middlename: user.middlename
       })
-    }
+    // }
+    console.log(this.sa)
   }
 
   componentDidMount(){
     console.log("COMPONENT HAS MOUNTED", this.props.user)
     const user =  this.props.user
     this.setState({
+      middlename: user.middlename,
       firstname: user.firstname,
       lastname: user.lastname,
       phone: user.phone,
       email: user.email,
-      middlename: user.middlename
     })
   }
 
@@ -197,16 +199,16 @@ class Step1 extends React.Component {
 
   editExistingUser = (e) => {
     e.preventDefault();
-
     let newNumber = Number(this.state.searchValue.slice(1))
+    // localStorage.setItem("User", newNumber.toString())
     this.props.fetchUser(newNumber)
-    
-    window.location.reload()
+   
   }
 
   render() {
     const { classes } = this.props;
-    console.log("NAME", this.props)
+    console.log("NAME", this.props.user)
+   
     const butt = this.props.createUser.userExist ? 
       (
         <Button

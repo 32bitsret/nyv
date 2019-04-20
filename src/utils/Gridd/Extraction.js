@@ -47,7 +47,7 @@ export  const extractEducation = (arr, test) => {
  export const extractMaritalStatus = (arr, test) => {
    let result = [];
    arr.forEach(element => {
-       if(element.maritalstatus === test){
+       if(element.marital_status === test){
          result.push(element)
        }
      });
