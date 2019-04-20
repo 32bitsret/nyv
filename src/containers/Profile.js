@@ -69,13 +69,10 @@ class UserProfile extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  onButtonClick = (e) => {
-    e.preventDefault()
-    this.setState({
-      editing: !this.state.editing,
-      disable: this.state.editing
-    })
+  onClick = e => {
+    alert("CLICK")
   }
+
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -301,7 +298,7 @@ class UserProfile extends Component {
                     <strong>{this.state.phone}</strong> 
                   </p>
                       <Button 
-                        href="#" 
+                        onClick={this.onClick}
                         className="btn bg-warning mb-3 float-center"
                       >
                         Change
@@ -333,8 +330,8 @@ class UserProfile extends Component {
                     <strong>Diability:</strong> {this.state.diasbility}
                   </p>
                   <Button 
-                    href="#" 
-                    className="btn bg-success btn-success mb-3 float-right"
+                    onClick={this.onClick}
+                    className="btn bg-white text-success btn-success mb-3 float-right"
                     type="button"
                     >
                     Edit
@@ -353,8 +350,8 @@ class UserProfile extends Component {
                     <strong>Email Address: </strong> {this.state.email}
                   </p>
                   <Button 
-                    href="#" 
-                    className="btn bg-success primary mb-3 float-right">
+                    onClick={this.onClick}
+                    className="btn bg-white text-success primary mb-3 float-right">
                     Edit
                   </Button>   
                 </li>
@@ -378,8 +375,8 @@ class UserProfile extends Component {
                     <strong>Highest Qualification:</strong>{this.state.education.qualification}
                   </p>
                   <Button 
-                    href="#" 
-                    className="btn bg-success primary mb-3 float-right">
+                    onClick={this.onClick}
+                    className="btn bg-white text-success primary mb-3 float-right">
                     Edit
                   </Button> 
                 </li>
@@ -396,8 +393,8 @@ class UserProfile extends Component {
                     <strong>Document Name: </strong> CV
                   </p>
                   <Button 
-                    href="#" 
-                    className="btn bg-success primary mb-3 float-right">
+                    onClick={this.onClick}
+                    className="btn bg-white text-success primary mb-3 float-right">
                     Edit
                   </Button> 
                 </li>
@@ -409,10 +406,10 @@ class UserProfile extends Component {
       </div>
         <div className="col-md-12" style={{marginTop:"5px"}}>
           <div className="card card-body bg-success text-white mb-3">
-            <div className=" text-white mb-3">
+            <div className=" text-success mb-3">
               <Button 
-                href="#" 
-                className="btn btn-success bg-warning mb-3 float-right">
+                onClick={this.onClick}
+                className="btn btn-success bg-warning mb-3 text-success float-right">
                 Edit
               </Button> 
             </div>

@@ -69,7 +69,7 @@ class Gridd extends Component {
         "HND",
         "NCE",
         "Degree",
-        "MASTERS",
+        "MSC",
         "PHD"
       ],
       series: [[
