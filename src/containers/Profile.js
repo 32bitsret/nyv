@@ -548,7 +548,7 @@ class UserProfile extends Component {
                     <strong>08012345678</strong> 
                   </p>
                     <a className="text-white p-2 " href="#">
-                      <a href="#" className="btn btn-success mb-3 float-center">Change</a>
+                      <a href="#" className="btn btn-warning mb-3 float-center">Change</a>
                     </a>
                   </p>
                 </div>
@@ -628,7 +628,9 @@ class UserProfile extends Component {
                   <p>
                     <strong>Email Address: </strong> user@gmail.com
                   </p>
-                  <br/>
+                  <p>
+                    <strong>Document Name: </strong> CV
+                  </p>
                   <a className="text-white p-2 " href="#">
                     <a href="#" className="btn btn-success mb-3 float-right">Edit</a>    
                   </a>
@@ -639,6 +641,32 @@ class UserProfile extends Component {
           </div>
         </div>
       </div>
+{/* 
+      <div className="row"> */}
+            <div className="col-md-12" style={{marginTop:"5px"}}>
+              <div className="card card-body bg-success text-white mb-3">
+                {/* <div className="row">
+                  <div className="col-3 col-md-3 m-auto">
+                    <img className="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h2 className="display-4 text-center">John Doe</h2>
+                  <p>
+                  <p>
+                    <strong>08012345678</strong> 
+                  </p>
+                    <a className="text-white p-2 " href="#">
+                      <a href="#" className="btn btn-warning mb-3 float-center">Change</a>
+                    </a>
+                  </p>
+                </div> */}
+                   <a className="text-white p-2 " href="#">
+                      <a href="#" className="btn btn-warning mb-3 float-right">Print</a>
+                    </a>
+              </div>
+            </div>
+          {/* </div> */}
     </div>
    </div>
    </div>
