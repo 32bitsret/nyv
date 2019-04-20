@@ -75,6 +75,7 @@ class UserProfile extends Component {
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
   render(){
     const { classes } = this.props;
     const { dashboard } = this.props.dashboard
@@ -277,8 +278,6 @@ class UserProfile extends Component {
         Update Profile
       </Button>    
     )
-    // this.props.dashboard.dashboard
-
     const  profile = this.props.dashboard.isloading ?
         (<div>
             <GridContainer justify="center">
@@ -286,7 +285,8 @@ class UserProfile extends Component {
                 <div>loading...</div>
               </GridItem>
             </GridContainer>
-        </div>) 
+        </div>
+        ) 
         :
         (<GridContainer >
           <GridItem xs={12} sm={12} md={8}>
@@ -513,11 +513,157 @@ class UserProfile extends Component {
           </Card>
         </GridItem>}
       </GridContainer>
-    )
+           )
 
+    const display = this.props.dashboard.isloading ?
+    (<div>
+        <GridContainer justify="center">
+            <GridItem xs={12} sm={12} md={4}>
+            <div>loading...</div>
+          </GridItem>
+        </GridContainer>
+    </div>
+    ) 
+    :(
+    <div class="profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            {/* <div class="col-6">
+              <a href="#" class="btn btn-success mb-3 float-left">Back To Profiles</a>
+            </div> */}
+            <div class="col-6">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-body bg-success text-white mb-3">
+                <div class="row">
+                  <div class="col-4 col-md-3 m-auto">
+                    <img class="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h1 class="display-4 text-center">John Doe</h1>
+                  <p class="lead text-center">email address</p>
+                  <p>LGA</p>
+                  <p>
+                    <a class="text-white p-2 " href="#">
+                      <a href="#" class="btn btn-success mb-3 float-center">Change Picture</a>
+           
+                    </a>
+                    <a class="text-white p-2 " href="#">
+                      <a href="#" class="btn btn-success mb-3 float-center">Update Profile</a>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-body bg-light mb-3">
+                <h3 class="text-center text-success">John's Bio</h3>
+                <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident fuga cum necessitatibus blanditiis vel,
+                  officia facere porro esse numquam assumenda doloremque saepe aliquam nemo excepturi aliquid maiores! Excepturi,
+                  libero repudiandae.
+                </p>
+                <hr />
+                <h3 class="text-center text-success">Skill Set</h3>
+                <div class="row">
+                  <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <div class="p-3">
+                      <i class="fa fa-check"></i> HTML</div>
+                    <div class="p-3">
+                      <i class="fa fa-check"></i> CSS</div>
+                    <div class="p-3">
+                      <i class="fa fa-check"></i> JavaScript</div>
+                    <div class="p-3">
+                      <i class="fa fa-check"></i> Python</div>
+                    <div class="p-3">
+                      <i class="fa fa-check"></i> C#</div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="row">
+            <div class="col-md-6">
+              <h3 class="text-center text-success">Experience</h3>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <h4>Microsoft</h4>
+                  <p>Oct 2011 - Current</p>
+                  <p>
+                    <strong>Position:</strong> Senior Developer
+                  </p>
+                  <p>
+                    <strong>Description:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde doloribus dicta enim
+                    excepturi laborum voluptatem nam provident quisquam facere. Quae?</p>
+                </li>
+                <li class="list-group-item">
+                  <h4>Sun Microsystems</h4>
+                  <p>Oct 2004 - Nov 2011</p>
+                  <p>
+                    <strong>Position: </strong> Systems Admin</p>
+                  <p>
+                    <p>
+                      <strong>Location: </strong> Miami, FL
+                    </p>
+                    <strong>Description: </strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde doloribus dicta
+                    enim excepturi laborum voluptatem nam provident quisquam facere. Quae?</p>
+                </li>
+              </ul>
+            </div>
+            {/* <div></div> */}
+            <div class="col-md-6">
+              <h3 class="text-center text-success">Education</h3>
+              <ul class="list-group">
+                <li class="list-group-item">
+                   <h4>Univeresity Of Washington</h4>
+                    <p>
+                      Sep 1993 - June 1999
+                    </p>
+                    <p>
+                      <strong>
+                        Degree: 
+                      </strong>Masters
+                    </p>
+                    <p>
+                      <strong>
+                        Field Of Study: 
+                      </strong>
+                        Computer Science
+                    </p>
+                    <p>
+                      <strong>
+                        Description:
+                      </strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde doloribus dicta
+                      enim excepturi laborum voluptatem nam provident quisquam facere. Quae?
+                    </p>
+                </li>
+              </ul>
+            </div>
+          </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   </div>
+  )
+  
   return (
     <div>
-      {profile}
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={12} lg={10}>
+          <div>
+           {display}
+          </div>
+        </GridItem>
+      </GridContainer>
     </div>
   );
   }

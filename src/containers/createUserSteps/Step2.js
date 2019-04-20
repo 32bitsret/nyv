@@ -76,16 +76,8 @@ class Step2 extends React.Component {
     const { classes } = this.props ;
     console.log("STEP TWO REDUX", this.props.createUser)
 
-    const display = !this.props.createUser.userExist 
+    const display = this.props.createUser.userExist 
     ? 
-    (<GridContainer>
-      <GridItem xs={12} sm={3} lg={6}>
-        <FormLabel className={classes.labelHorizontal}>
-          No Account Created 
-        </FormLabel>
-      </GridItem>
-    </GridContainer>)
-     : 
     (
       <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -522,6 +514,15 @@ class Step2 extends React.Component {
       </GridItem>
     </GridContainer>
     )
+    :
+    (<GridContainer>
+      <GridItem xs={12} sm={3} lg={6}>
+        <FormLabel className={classes.labelHorizontal}>
+          No Account Created 
+        </FormLabel>
+      </GridItem>
+    </GridContainer>)
+     
     return (
       <div>
         {display}

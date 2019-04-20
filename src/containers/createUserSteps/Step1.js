@@ -224,64 +224,8 @@ class Step1 extends React.Component {
         </Button>
       )
 
-    const display = !this.props.createUser.userExist ?
-           (
-            <GridContainer justify="center">
-              <br/>
-              <GridItem xs={12} sm={8} lg={8}>
-                <Button
-                  color="success"
-                  onClick={this.editExistingUser}
-                >
-                  Edit Existing Member
-                </Button>      
-                <Button
-                  color="success"
-                  // 
-                >
-                  Register New Member
-                </Button> 
-              </GridItem>
-
-              <GridContainer justify="center">
-                <GridItem xs={12} sm={8} lg={5}>
-                    <CustomInput
-                      id="help-text"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "number",
-                        placeholder:"Phone number...",
-                        name:"searchValue",
-                        value:this.state.searchValue,
-                        onChange:(e) => this.onChange(e,"searchValue","number"),
-                        endAdornment: (
-                            <InputAdornment position="end">
-                            
-                            </InputAdornment>
-                          )
-                      }}
-                    /> 
-                </GridItem>
-                <br/>
-                <GridContainer>
-                  <GridItem xs={12} sm={3} lg={8}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
-                    </FormLabel>
-                  </GridItem>
-                  <br/>
-                  <GridItem xs={12} sm={3} lg={8}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      - To EDIT a Profile, Type Phone and Clcik
-                    </FormLabel>
-                  </GridItem>
-                </GridContainer>
-              </GridContainer>
-          </GridContainer>
-          )
-          :
+    const display = this.props.createUser.userExist ?
+           
           (<GridContainer>
           <GridItem xs={12} sm={12} md={12}>
             <Card>
@@ -527,7 +471,63 @@ class Step1 extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>)
+  :
+  (
+    <GridContainer justify="center">
+      <br/>
+      <GridItem xs={12} sm={8} lg={8}>
+        <Button
+          color="success"
+          onClick={this.editExistingUser}
+        >
+          Edit Existing Member
+        </Button>      
+        <Button
+          color="success"
+          // 
+        >
+          Register New Member
+        </Button> home
+      </GridItem>
 
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={8} lg={5}>
+            <CustomInput
+              id="help-text"
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                type: "number",
+                placeholder:"Phone number...",
+                name:"searchValue",
+                value:this.state.searchValue,
+                onChange:(e) => this.onChange(e,"searchValue","number"),
+                endAdornment: (
+                    <InputAdornment position="end">
+                    
+                    </InputAdornment>
+                  )
+              }}
+            /> 
+        </GridItem>
+        <br/>
+        <GridContainer>
+          <GridItem xs={12} sm={3} lg={8}>
+            <FormLabel className={classes.labelHorizontal}>
+              - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
+            </FormLabel>
+          </GridItem>
+          <br/>
+          <GridItem xs={12} sm={3} lg={8}>
+            <FormLabel className={classes.labelHorizontal}>
+              - To EDIT a Profile, Type Phone and Clcik
+            </FormLabel>
+          </GridItem>
+        </GridContainer>
+      </GridContainer>
+  </GridContainer>
+  )
     return (
       <div>
         {display}

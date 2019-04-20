@@ -93,7 +93,7 @@ class Notifications extends React.Component {
           navigator.platform.indexOf("Win") > -1
       });
     
-    const route = this.props.user.role === "user" ? data.dashAdmin : data.dashUser
+    const route = this.props.user.role === "user" ? data.dashUser : data.dashAdmin 
     const display = this.props.user.role === "user" ? (<NotificationItem/> ) : (<Redirect to="/"/>)
     return (
       <div className={classes.wrapper}>
