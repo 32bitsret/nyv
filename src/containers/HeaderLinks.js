@@ -64,7 +64,7 @@ class HeaderLinks extends React.Component {
       <div className={wrapper}>
 
         <div className={managerClasses}>
-          <Button
+          {/* <Button
             color="transparent"
             justIcon
             aria-label="Notifications"
@@ -94,7 +94,7 @@ class HeaderLinks extends React.Component {
                 {rtlActive ? "إعلام" : "Notification"}
               </span>
             </Hidden>
-          </Button>
+          </Button> */}
           <Popper
             open={open}
             anchorEl={this.anchorEl}

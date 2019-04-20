@@ -74,20 +74,17 @@ class Step1 extends React.Component {
   componentWillReceiveProps(nextProps){
     const user = nextProps.user
     console.log(nextProps.user)
-    // if (user !== null){
-      this.setState({
-        firstname: nextProps.user.firstname,
-        lastname: user.lastname,
-        phone: user.phone,
-        email: user.email,
-        middlename: user.middlename
-      })
-    // }
-    console.log(this.sa)
+      // this.setState({
+      //   firstname: nextProps.user.firstname,
+      //   lastname: user.lastname,
+      //   phone: user.phone,
+      //   email: user.email,
+      //   middlename: user.middlename
+      // })
   }
 
   componentDidMount(){
-    console.log("COMPONENT HAS MOUNTED", this.props.user)
+    console.log("COMPONENT HAS MOUNTED", this.props)
     const user =  this.props.user
     this.setState({
       middlename: user.middlename,
@@ -207,7 +204,6 @@ class Step1 extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("NAME", this.props.user)
    
     const butt = this.props.createUser.userExist ? 
       (

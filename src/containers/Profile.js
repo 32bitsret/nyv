@@ -53,12 +53,10 @@ class UserProfile extends Component {
 
   
   componentDidMount(){
-    console.log("COMPONENT DID MOUNT")
     this.setState({user:this.props.getProfile(this.props.auth.user.phone)})
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("INSIDE COMPONENT WILL RECIEVE PROPS", nextProps.dashboard)
     this.setState({user: nextProps.dashboard.dashboard})
   }
 
@@ -80,11 +78,7 @@ class UserProfile extends Component {
   render(){
     const { classes } = this.props;
     const { dashboard } = this.props.dashboard
-    console.log("INSIDE  PROFILE", this.props.auth.user.phone)
-    console.log("INSIDE PROFILE", this.state.user)
-    console.log("INSIDE PROFILE SHOW VALUE", this.props.dashboard.dashboard)
-    console.log("INSIDE PROFILE SHOW VALUE ALONE", dashboard)
-    
+
     const lga = ( //
       <Select
       MenuProps={{
@@ -537,21 +531,3 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, {getProfile})(withStyles(userProfileStyles)(UserProfile));
 
-
-/**
-  <ImageUpload
-    avatar
-    addButtonProps={{
-      color: "rose",
-      round: true
-    }}
-    changeButtonProps={{
-      color: "rose",
-      round: true
-    }}
-    removeButtonProps={{
-      color: "danger",
-      round: true
-    }}
-  />
-*/ 

@@ -17,20 +17,15 @@ import {
 } from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
-    //step1
-    console.log("FROM STEP1 ACTION", typeof(data.phone))
-    
-    dispatch({
+     dispatch({
         type:CREATE_USER_BY_ADMIN,
     })
-
     axios({
         method:"POST",
         url: registerURL,
         data: data
     })
     .then(res => {
-        console.log(res)
         dispatch({
             type: DONE_STEP_ONE,
             payload: res.data.result
@@ -67,7 +62,6 @@ export const updateBasicInfo = (data) => dispatch =>{
         data: data
     })
     .then(res => {
-        console.log(":::::::::::::UPDATED DATA::::::::::", res.data)
         localStorage.setItem('user', res.data.data)
         // dispatch({
         //     type:
@@ -129,16 +123,13 @@ export const fetchUser = (phone) =>  dispatch => {
    dispatch({
        type:FETCHING_USER
    })
-//======================================
     axios({
         method:"POST",
         url:profileURL,
         data: {phone:phone}
     })
     .then(res => {
-        console.log("LCOALSTORAGE",res.data.data)
         localStorage.setItem('ESAU', JSON.stringify(res.data.data))
-        console.log("ESAU", localStorage.getItem("ESAU"))
         dispatch({
             type: FETCH_USER,
             payload: res.data.data
@@ -147,5 +138,4 @@ export const fetchUser = (phone) =>  dispatch => {
     .catch(err => {
         console.log(err)
     })
-//=======================================
 }

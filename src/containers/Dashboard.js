@@ -109,9 +109,6 @@ componentWillReceiveProps(nextProps){
   }
 
   render() {
-    // console.log(moreMembers)
-
-    console.log(":::::::",this.props.dashboard)
     const { classes, match, ...rest } = this.props;
 
     const mainPanel =

@@ -78,7 +78,6 @@ class CreateMember extends React.Component {
   }
 
     checkUserRole = User => {
-    console.log("CONSOLE", User)
     let status = User.map(user => {
       if(user.userRole === "Admin" || user.userRole === "admin"){
         return true
@@ -87,14 +86,11 @@ class CreateMember extends React.Component {
         return false
       }
     })
-    console.log("CONSOLE STATUS", status)
     return status
   }
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("CreateMember",this.props.user.role)
     const mainPanel =
       classes.mainPanel +
       " " +

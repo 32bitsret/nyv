@@ -69,8 +69,6 @@ class Members extends React.Component {
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("Members",this.props.user.user)
     const mainPanel =
       classes.mainPanel +
       " " +

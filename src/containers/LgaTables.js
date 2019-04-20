@@ -111,12 +111,11 @@ class LgaTables extends React.Component {
 
   componentWillReceiveProps(nextProps){
     this.setState({
-      tableData:nextProps.dashboard.allMembers
+      // tableData:nextProps.dashboard.allMembers
     })
   }
   render() {
     const { classes } = this.props;
-    console.log("GENDER VALUE",extractGender(this.props.dashboard.allMembers, "Male", "Barkin Ladi" ))
     const display = this.state.isloading ? ( 
     <Card>
       <CardBody  className={classes.cardFooter}>

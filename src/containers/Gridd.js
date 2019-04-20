@@ -58,32 +58,29 @@ class Gridd extends Component {
   
   render() {
     const { classes } = this.props;
-    if(this.state.members !== null){
-      console.log("INSIDE GRID", this.state.members)
-    }
-  let members = this.state.members
-  if(this.state.members !== null){   
-  education = {
+    let members = this.state.members
+    if(this.state.members !== null){   
+    education = {
     data: {
       labels: [
-        "BSc",
-        "BEng",
-        "HND",
+        "CERT",
+        "Olevel",
         "ND",
+        "HND",
         "NCE",
+        "Degree",
         "MASTERS",
-        "PHD",
-        "Olevel"
+        "PHD"
       ],
       series: [[
-        extractEducation(moreMembers, "BSc"), 
-        extractEducation(moreMembers, "BEng"), 
-        extractEducation(moreMembers, "HND"), 
+        extractEducation(moreMembers, "CERT"), 
+        extractEducation(moreMembers, "Olevel"), 
         extractEducation(moreMembers, "ND"), 
-        extractEducation(moreMembers, "NCE"), 
+        extractEducation(moreMembers, "HND"), 
+        extractEducation(moreMembers, "NCE"),
+        extractEducation(moreMembers, "Degree"), 
         extractEducation(moreMembers, "MSC"), 
-        extractEducation(moreMembers, "PHD"),
-        extractEducation(moreMembers, "Olevel")
+        extractEducation(moreMembers, "PHD")
       ]]
     },
     options: {

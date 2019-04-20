@@ -36,7 +36,6 @@ const styles = {
 class MemberDetail extends React.Component {
 
   componentDidMount(){
-    // extract(moreMembers,"Bassa")
     this.props.getAllProfile()
   }
   render() {

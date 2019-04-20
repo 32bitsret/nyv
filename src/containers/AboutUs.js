@@ -15,7 +15,6 @@ class AboutUs extends React.Component {
   }
   render() {
     const { classes, ...rest } = this.props;
-    console.log("STYLES", classes)
     return (
       <div>
         <PagesHeader {...rest} />
