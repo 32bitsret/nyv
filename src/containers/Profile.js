@@ -28,22 +28,26 @@ import { getProfile } from "../redux/actions/dashboardAction"
 
 class UserProfile extends Component {
   state = {
-    first_name:"",
-    other_name:"",
-    avatar:"",
-    emailAddress:"",
-    DoB:"",
-    lga:"",
-    gender:"",
-    phone:"",
-    education:"",
-    maritalStatus:"",
-    diasbility:"",
-    homeAddress:"",
-    course:"",
-    institution:"",
-    yearOfGrad:"",
-    userRole:"",
+    firstname:"Church",
+    middlename:"Gani",
+    lastname:"Simon",
+    email:"user@gmail.com",
+    DoB:"2012-12-12",
+    lga:"Bassa",
+    gender:"Male",
+    phone:"08012345678",
+    education:{
+      course:"Food Science",
+      institution:" FUT Minna",
+      year_of_graduation:"2000",
+      qualification:"Degree"
+    },
+    employed:"Yes",
+    marital_status:"Married",
+    diasbility:"No",
+    address:"21T Rukuba Road Jos",
+    resume:"",
+    photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
     id:"",
     disable: true,
     editing: this.onButtonClick,
@@ -80,7 +84,7 @@ class UserProfile extends Component {
     const { classes } = this.props;
     const { dashboard } = this.props.dashboard
 
-    const lga = ( //
+    const lga = ( 
       <Select
       MenuProps={{
         className: classes.selectMenu
@@ -260,261 +264,6 @@ class UserProfile extends Component {
     </Select>
     )
 
-    const butt = this.state.editing ? 
-    (
-      <Button 
-        color="success" 
-        className="UserProfile-updateProfileButton-330"
-        onClick={this.onButtonClick}
-      >
-        Save Profile
-      </Button>
-      ) : (
-      <Button 
-        color="success" 
-        className="UserProfile-updateProfileButton-330"
-        onClick={this.onButtonClick}
-      >
-        Update Profile
-      </Button>    
-    )
-    const  profile = this.props.dashboard.isloading ?
-        (<div>
-            <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={4}>
-                <div>loading...</div>
-              </GridItem>
-            </GridContainer>
-        </div>
-        ) 
-        :
-        (<GridContainer >
-          <GridItem xs={12} sm={12} md={8}>
-              <Card>
-                <CardHeader color="success" icon>
-                  <CardIcon color="success">
-                    <PermIdentity />
-                  </CardIcon>
-                  <h4 className={classes.cardIconTitle}>
-                    Profile - <small>Complete your profile</small>
-                  </h4>
-                </CardHeader>
-                <CardBody>
-                  <GridContainer>
-                    
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="First Name"
-                        id="first_name"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          name:"first_name",
-                          value: this.state.disable ? this.state.user.firstname : this.state.first_name,
-                          disabled: this.state.disable,
-                          onChange: this.onchange
-                        }}
-                      />
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Middle Name"
-                        id="email-address"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          name:"other_name",
-                          value:  this.state.user.middlename,                          disabled:  true,
-                          onChange: this.onchange
-                        }}
-                      />
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Last Name"
-                        id="other_name"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          name:"other_name",
-                          value: this.state.user.lastname,
-                          disabled:  true,
-                          //onChange: this.onchange
-                        }}
-                      />
-                    </GridItem>
-
-                  </GridContainer>
-
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CardContent>
-                        <FormControl fullWidth>
-                          <Datetime
-                            // dateFormat={true}  
-                            timeFormat={false}
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                            inputProps={{
-                              name:"dob",
-                              placeholder:"Date of Birth",
-                              value:this.state.disable ? this.state.user.DoB : this.state.DoB,
-                              disabled:  this.state.disable,
-                              onChange: this.onchange
-                            }}
-                          />
-                        </FormControl>
-                      </CardContent>
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                    <FormControl
-                          fullWidth
-                          className={classes.selectFormControl}
-                        >
-                          <InputLabel
-                            htmlFor="lga"
-                            className={classes.selectLabel}
-                            onChange ={this.onchange}
-                            value="BOKKOS"//{this.state.disable ? this.state.user.lga : this.state.lga}
-                            name="lga"
-                          >
-                           LGA
-                          </InputLabel>
-                          {lga}
-                    </FormControl>
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Phone Number"
-                        id="phone"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          name:"phone",
-                          value: "0"+this.state.user.phone ,
-                          disabled: true,
-                        
-                        }}
-                      />
-                    </GridItem>
-
-                  </GridContainer>
-                  <GridContainer>                
-                    <GridItem xs={12} sm={12} md={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                      Email
-                    </FormLabel>
-                  </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        id="city"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem>
-
-                    {/* <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Country"
-                        id="country"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Postal Code"
-                        id="postal-code"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem> */}
-
-                  </GridContainer>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="City"
-                        id="city"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Country"
-                        id="country"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem>
-
-                    <GridItem xs={12} sm={12} md={4}>
-                      <CustomInput
-                        labelText="Postal Code"
-                        id="postal-code"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                      />
-                    </GridItem>
-
-                  </GridContainer>
-                  {butt}
-                  <Clearfix />
-                </CardBody>
-              </Card>
-            </GridItem>
-        {<GridItem xs={12} sm={12} md={4}>
-          <Card profile>
-            <ImageUpload
-              avatar
-              addButtonProps={{
-                color: "success",
-                round: true
-              }}
-              changeButtonProps={{
-                color: "success",
-                round: true
-              }}
-              removeButtonProps={{
-                color: "danger",
-                round: true
-              }}
-            />
-            <CardBody profile>
-              <h2 className={classes.cardTitle}>{this.state.user.firstname+ " " +this.state.user.middlename+" " +this.state.user.lastname}</h2>
-              <h6 className={classes.cardCategory}>Address: {this.state.user.address}</h6>
-              <h6 className={classes.cardTitle}>Email: {this.state.user.email}</h6>
-              <h3 className={classes.cardTitle}>LGA: {this.state.user.lga}</h3>
-              <h3 className={classes.cardTitle}>GENDER: {this.state.user.gender}</h3>
-              <h3 className={classes.cardTitle}>LGA: {this.state.user.lga}</h3>
-              
-              {/* <Button color="success" round>
-                Upload
-              </Button> */}
-            </CardBody>
-          </Card>
-        </GridItem>}
-      </GridContainer>
-           )
-
     const display = this.props.dashboard.isloading ?
     (<div>
         <GridContainer justify="center">
@@ -538,18 +287,25 @@ class UserProfile extends Component {
               <div className="card card-body bg-success text-white mb-3">
                 <div className="row">
                   <div className="col-4 col-md-3 m-auto">
-                    <img className="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
+                    <img 
+                      className="rounded-circle" 
+                      src={this.state.photo} 
+                      alt="" 
+                    />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">John Doe</h2>
+                  <h2 className="display-4 text-center">{this.state.firstname+ " " +this.state.middlename+ " "+this.state.lastname}</h2>
                   <p>
                   <p>
-                    <strong>08012345678</strong> 
+                    <strong>{this.state.phone}</strong> 
                   </p>
-                    <a className="text-white p-2 " href="#">
-                      <a href="#" className="btn btn-warning mb-3 float-center">Change</a>
-                    </a>
+                      <Button 
+                        href="#" 
+                        className="btn bg-warning mb-3 float-center"
+                      >
+                        Change
+                      </Button>
                   </p>
                 </div>
               </div>
@@ -565,36 +321,42 @@ class UserProfile extends Component {
                   <h4>Personal Detail</h4>
                   <hr/>
                   <p>
-                    <strong>Gender:</strong> Male
+                    <strong>Gender:</strong> {this.state.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> Yes
+                    <strong>Employed:</strong> {this.state.employed}
                   </p>
                   <p>
-                    <strong>Marital Status:</strong> Married
+                    <strong>Marital Status:</strong> {this.state.marital_status}
                   </p>
                   <p>
-                    <strong>Diability:</strong> No
+                    <strong>Diability:</strong> {this.state.diasbility}
                   </p>
-                  <a className="text-white p-2 " href="#">
-                      <a href="#" className="btn btn-success mb-3 float-right">Edit</a>    
-                    </a>
+                  <Button 
+                    href="#" 
+                    className="btn bg-success btn-success mb-3 float-right"
+                    type="button"
+                    >
+                    Edit
+                  </Button>    
                 </li>
                 <li className="list-group-item">
                   <h4>Contact Info</h4>
                   <hr/>
                   <p>
-                    <strong>Address:</strong> 21T Rukuba Road,Jos
+                    <strong>Address:</strong> {this.state.address}
                   </p>
                   <p>
-                    <strong>LGA:</strong>Bassa
+                    <strong>LGA:</strong>{this.state.lga}
                   </p>
                   <p>
-                    <strong>Email Address: </strong> user@gmail.com
+                    <strong>Email Address: </strong> {this.state.email}
                   </p>
-                  <a className="text-white p-2 " href="#">
-                    <a href="#" className="btn btn-success mb-3 float-right">Edit</a>    
-                  </a>
+                  <Button 
+                    href="#" 
+                    className="btn bg-success primary mb-3 float-right">
+                    Edit
+                  </Button>   
                 </li>
               </ul>
             </div>
@@ -604,20 +366,22 @@ class UserProfile extends Component {
                    <h4>Educational Info</h4>
                    <hr/>
                    <p>
-                    <strong>Year of Graduation:</strong> 2005
+                    <strong>Year of Graduation:</strong> {this.state.education.year_of_graduation}
                   </p>
                   <p>
-                    <strong>Institution:</strong> FUT Minna
+                    <strong>Institution:</strong> {this.state.education.institution}
                   </p>
                   <p>
-                    <strong>Course:</strong>Food Science
+                    <strong>Course:</strong>{this.state.education.course}
                   </p>
                   <p>
-                    <strong>Highest Qualification:</strong>Degree
+                    <strong>Highest Qualification:</strong>{this.state.education.qualification}
                   </p>
-                  <a className="text-white p-2 " href="#">
-                    <a href="#" className="btn btn-success mb-3 float-right">Edit</a>    
-                  </a>
+                  <Button 
+                    href="#" 
+                    className="btn bg-success primary mb-3 float-right">
+                    Edit
+                  </Button> 
                 </li>
                 <li className="list-group-item">
                   <h4>Uploads</h4>
@@ -626,14 +390,16 @@ class UserProfile extends Component {
                     <strong>Description:</strong>Personal CV
                   </p>
                   <p>
-                    <strong>Email Address: </strong> user@gmail.com
+                    <strong>Email Address: </strong> {this.state.email}
                   </p>
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
-                  <a className="text-white p-2 " href="#">
-                    <a href="#" className="btn btn-success mb-3 float-right">Edit</a>    
-                  </a>
+                  <Button 
+                    href="#" 
+                    className="btn bg-success primary mb-3 float-right">
+                    Edit
+                  </Button> 
                 </li>
               </ul>
             </div>
@@ -641,32 +407,17 @@ class UserProfile extends Component {
           </div>
         </div>
       </div>
-{/* 
-      <div className="row"> */}
-            <div className="col-md-12" style={{marginTop:"5px"}}>
-              <div className="card card-body bg-success text-white mb-3">
-                {/* <div className="row">
-                  <div className="col-3 col-md-3 m-auto">
-                    <img className="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="" />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h2 className="display-4 text-center">John Doe</h2>
-                  <p>
-                  <p>
-                    <strong>08012345678</strong> 
-                  </p>
-                    <a className="text-white p-2 " href="#">
-                      <a href="#" className="btn btn-warning mb-3 float-center">Change</a>
-                    </a>
-                  </p>
-                </div> */}
-                   <a className="text-white p-2 " href="#">
-                      <a href="#" className="btn btn-warning mb-3 float-right">Print</a>
-                    </a>
-              </div>
+        <div className="col-md-12" style={{marginTop:"5px"}}>
+          <div className="card card-body bg-success text-white mb-3">
+            <div className=" text-white mb-3">
+              <Button 
+                href="#" 
+                className="btn btn-success bg-warning mb-3 float-right">
+                Edit
+              </Button> 
             </div>
-          {/* </div> */}
+          </div>
+        </div>
     </div>
    </div>
    </div>
