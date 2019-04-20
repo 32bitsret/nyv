@@ -38,16 +38,14 @@ class Gridd extends Component {
     }
   }
 
-
   componentDidMount(){
     this.props.getAllProfile()
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("DASHBOARD NEXTPROPS", nextProps.dashboard.allMembers)
-      this.setState({
-        members: nextProps.dashboard.allMembers
-      })
+    this.setState({
+      members: nextProps.dashboard.allMembers
+    })
   }
 
   handleChange = (event, value) => {
@@ -61,8 +59,8 @@ class Gridd extends Component {
   render() {
     const { classes } = this.props;
     if(this.state.members !== null){
-    console.log("INSIDE GRID", this.state.members)
-}
+      console.log("INSIDE GRID", this.state.members)
+    }
   let members = this.state.members
   if(this.state.members !== null){   
   education = {

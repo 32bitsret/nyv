@@ -15,6 +15,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import Table from './Table'
+import {getAllProfile} from "../redux/actions/dashboardAction"
 import {connect} from "react-redux"
 import LgaTables from "./LgaTables"
 
@@ -33,11 +34,15 @@ const styles = {
 };
 
 class MemberDetail extends React.Component {
+
+  componentDidMount(){
+    // extract(moreMembers,"Bassa")
+    this.props.getAllProfile()
+  }
   render() {
     const { classes } = this.props;
-    console.log("STATISTICS", this.props.dashboard)
     const display = this.props.dashboard.isloading ? 
-        (<GridContainer>
+        <GridContainer>
           <GridItem xs={6} lg={8}>
             <Card>
                <CardHeader color="primary" icon>
@@ -50,9 +55,9 @@ class MemberDetail extends React.Component {
           <GridItem xs={6} md={6} xs={6} lg={12}>
               {display}
           </GridItem>
-        </GridContainer>)
+        </GridContainer>
         :
-        (<LgaTables />)
+        <LgaTables stat={this.props.dashboard}/>
     return (
       <div>
         <GridContainer justify="center">
@@ -82,4 +87,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(MemberDetail));
+export default connect(mapStateToProps, {getAllProfile})(withStyles(styles)(MemberDetail));

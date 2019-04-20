@@ -21,7 +21,8 @@ import {
   extractMaritalStatus,
   extractDisability
 } from "../utils/Table/TableFunctions"
-
+import {connect} from "react-redux"
+import {getAllProfile} from "../redux/actions/dashboardAction"
 
 const styles = {
   cardIconTitle: {
@@ -33,26 +34,24 @@ const styles = {
 
 
 const dataRows = [
-    ["barkin ladi"],
-    ["bassa"],
-    ["bokkos"],
-    ["jos-east"],
-    ["jos-north"],
-    ["jos-south"],
-    ["kanam"],
-    ["kanke"],
-    ["langtang-north"],
-    ["langtang south"],
-    ["mangu"],
-    ["mikang"],
-    ["pankshin"],
-    ["qua'an pan"],
-    ["riyom"],
-    ["shendam"],
-    ["wase"],
+    ["Barkin Ladi"],
+    ["Bassa"],
+    ["Bokkos"],
+    ["Jos East"],
+    ["Jos North"],
+    ["Jos South"],
+    ["Kanam"],
+    ["Kanke"],
+    ["Langtang North"],
+    ["Langtang South"],
+    ["Mangu"],
+    ["Mikang"],
+    ["Pankshin"],
+    ["Qua'an Pan"],
+    ["Riyom"],
+    ["Shendam"],
+    ["Wase"],
   ]
-
-
 
 class LgaTables extends React.Component {
   constructor(props) {
@@ -65,24 +64,24 @@ class LgaTables extends React.Component {
           id: key ,
           sn: key + 1,
           name: prop[0],
-          males: extractGender(moreMembers, "Male", prop[0] ),
-          females: extractGender(moreMembers, "female", prop[0] ),
+          males: extractGender(this.props.dashboard.allMembers, "Male", prop[0] ),
+          females: extractGender(this.props.dashboard.allMembers, "Female", prop[0] ),
           age: prop[3],
-          total: extractLGA(moreMembers,prop[0]),
-          married: extractMaritalStatus(moreMembers, "married", prop[0]),
-          single:  extractMaritalStatus(moreMembers, "single", prop[0]),
-          divorced: extractMaritalStatus(moreMembers, "divorced", prop[0]),
-          widowed: extractMaritalStatus(moreMembers, "widowed", prop[0]),
-          Bsc: extractEducation(moreMembers,"BSc", prop[0]),
-          BEng: extractEducation(moreMembers,"BEng", prop[0]),
-          HND: extractEducation(moreMembers,"HND", prop[0]),
-          ND: extractEducation(moreMembers,"ND", prop[0]),
-          NCE: extractEducation(moreMembers,"NCE", prop[0]),
-          MSC: extractEducation(moreMembers,"MSC", prop[0]),
-          PHD: extractEducation(moreMembers,"PHD", prop[0]),
-          OLEVEL: extractEducation(moreMembers,"Olevel", prop[0]),
-          Disabled: extractDisability(moreMembers, "yes", prop[0]),
-          NotDisabled: extractDisability(moreMembers, "no", prop[0]),
+          total: extractLGA(this.props.dashboard.allMembers,prop[0]),
+          married: extractMaritalStatus(this.props.dashboard.allMembers, "Married", prop[0]),
+          single:  extractMaritalStatus(this.props.dashboard.allMembers, "Single", prop[0]),
+          divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
+          widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
+          Degree: extractEducation(this.props.dashboard.allMembers,"Degree", prop[0]),
+          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"School Cert", prop[0]),
+          HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
+          ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
+          NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
+          MSC: extractEducation(this.props.dashboard.allMembers,"MSC", prop[0]),
+          PHD: extractEducation(this.props.dashboard.allMembers,"PHD", prop[0]),
+          OLEVEL: extractEducation(this.props.dashboard.allMembers,"Olevel", prop[0]),
+          Disabled: extractDisability(this.props.dashboard.allMembers, "Yes", prop[0]),
+          NotDisabled: extractDisability(this.props.dashboard.allMembers, "No", prop[0]),
           actions: (
             <div className="actions-right">
               <Button
@@ -91,6 +90,7 @@ class LgaTables extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
+                  console.log("DATA", obj)
                   this.setState({
                     tableData: obj,
                     isloading: false
@@ -109,13 +109,14 @@ class LgaTables extends React.Component {
   }
 
 
-  componentDidMount(){
-    // extract(moreMembers,"Bassa")
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      tableData:nextProps.dashboard.allMembers
+    })
   }
   render() {
     const { classes } = this.props;
-    console.log("TYPE OF DATA",this.state.tableData)
-    // console.log("RESULT", extract(moreMembers, "Bassa"))
+    console.log("GENDER VALUE",extractGender(this.props.dashboard.allMembers, "Male", "Barkin Ladi" ))
     const display = this.state.isloading ? ( 
     <Card>
       <CardBody  className={classes.cardFooter}>
@@ -141,12 +142,12 @@ class LgaTables extends React.Component {
           <hr/>
           <h3 className={classes.cardTitle}>EDUCATIONAL SUMMARY</h3>
           <hr/>
-          <h4 className={classes.cardTitle}>BSC:{"  "} {this.state.tableData.Bsc}</h4>
-          <h4 className={classes.cardTitle}>BEng:{"  "} {this.state.tableData.BEng}</h4>
-          <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.HND}</h4>
-          <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.ND}</h4>
+          <h4 className={classes.cardTitle}>SCHOOL CERT:{"  "} {this.state.tableData.Bsc}</h4>
+          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.BEng}</h4>
+          <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.HND}</h4>
+          <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.ND}</h4>
           <h4 className={classes.cardTitle}>NCE:{"  "} {this.state.tableData.NCE}</h4>
-          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.OLEVEL}</h4>
+          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.OLEVEL}</h4>
           <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
           <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
 
@@ -214,4 +215,9 @@ class LgaTables extends React.Component {
   }
 }
 
-export default withStyles(styles)(LgaTables);
+const mapStateToProps = state => {
+  return {
+    dashboard: state.dashboard
+  }
+}
+export default connect(mapStateToProps, {getAllProfile})(withStyles(styles)(LgaTables));

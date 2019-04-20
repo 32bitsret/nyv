@@ -49,7 +49,7 @@
     let result = [];
     arr.forEach(element => {
       if(element.lga === lga){
-        if(element.maritalstatus === test){
+        if(element.marital_status === test){
           result.push(element)
         }}
       });

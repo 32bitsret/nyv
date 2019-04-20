@@ -17,7 +17,6 @@ export const getProfile = (phone) => dispatch => {
             type: GET_PROFILE,
             payload: res.data.data
         })
-        console.log("INSIDE THEN",res.data.data)
     })
     .catch(err => {
         console.log(err)
