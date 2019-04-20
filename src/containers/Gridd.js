@@ -38,224 +38,6 @@ class Gridd extends Component {
     }
   }
 
-//   education = {
-//     data: {
-//       labels: [
-//         "BSc",
-//         "BEng",
-//         "HND",
-//         "ND",
-//         "NCE",
-//         "MASTERS",
-//         "PHD",
-//         "Olevel"
-//       ],
-//       series: [[
-//         extractEducation(moreMembers, "BSc"), 
-//         extractEducation(moreMembers, "BEng"), 
-//         extractEducation(moreMembers, "HND"), 
-//         extractEducation(moreMembers, "ND"), 
-//         extractEducation(moreMembers, "NCE"), 
-//         extractEducation(moreMembers, "MSC"), 
-//         extractEducation(moreMembers, "PHD"),
-//         extractEducation(moreMembers, "Olevel")
-//       ]]
-//     },
-//     options: {
-//       axisX: {
-//         showGrid: false
-//       },
-//       low: 0,
-//       high: 200,
-//       chartPadding: {
-//         top: 0,
-//         right: 5,
-//         bottom: 0,
-//         left: 0
-//       }
-//     },
-//     responsiveOptions: [
-//       [
-//         "screen and (max-width: 640px)",
-//         {
-//           seriesBarDistance: 5,
-//           axisX: {
-//             labelInterpolationFnc: function(value) {
-//               return value[0];
-//             }
-//           }
-//         }
-//       ]
-//     ],
-//     animation: {
-//       draw: function(data) {
-//         if (data.type === "bar") {
-//           data.element.animate({
-//             opacity: {
-//               begin: (data.index + 1) * 80,
-//               dur: 500,
-//               from: 0,
-//               to: 1,
-//               easing: "ease"
-//             }
-//           });
-//         }
-//       }
-//     }
-//   };
-  
-  
-//  general = {
-//     data: {
-//       labels: [
-//         "Total",
-//         "Males",
-//         "Females",
-//         "Disabled",
-//         "Not disabled",
-//         "divorced",
-//         "single",
-//         "Widowed",
-//         "married",
-//       ],
-//       series: [[
-//         moreMembers.length, 
-//         extractGender(moreMembers,"male"), 
-//         extractGender(moreMembers,"female"), 
-//         extractDisability(moreMembers,"yes"),       
-//         extractDisability(moreMembers,"no"), 
-//         extractMaritalStatus(moreMembers,"divorced"), 
-//         extractMaritalStatus(moreMembers,"single"), 
-//         extractMaritalStatus(moreMembers,"widowed"), 
-//         extractMaritalStatus(moreMembers,"married")
-//       ]]
-//     },
-//     options: {
-//       axisX: {
-//         showGrid: false
-//       },
-//       low: 0,
-//       high: 200,
-//       chartPadding: {
-//         top: 0,
-//         right: 5,
-//         bottom: 0,
-//         left: 0
-//       }
-//     },
-//     responsiveOptions: [
-//       [
-//         "screen and (max-width: 640px)",
-//         {
-//           seriesBarDistance: 5,
-//           axisX: {
-//             labelInterpolationFnc: function(value) {
-//               return value[0];
-//             }
-//           }
-//         }
-//       ]
-//     ],
-//     animation: {
-//       draw: function(data) {
-//         if (data.type === "bar") {
-//           data.element.animate({
-//             opacity: {
-//               begin: (data.index + 1) * 80,
-//               dur: 500,
-//               from: 0,
-//               to: 1,
-//               easing: "ease"
-//             }
-//           });
-//         }
-//       }
-//     }
-//   };
-  
-//   gender = {
-//     data: {
-//       labels: [
-//         "B/Ladi",
-//         "Bassa",
-//         "Bokkos",
-//         "Jos/E",
-//         "Jos/N",
-//         "Jos/S",
-//         "Kanam",
-//         "Kanke",
-//         "Langtang/N", 
-//         "Langtang/S",
-//         "Mangu",
-//         "Mikang",
-//         "Pankshin",
-//         "Qua'an Pan",
-//         "Riyom",
-//         "Shendam",
-//         "Wase",
-//       ],
-//       series: [[
-//         extractLGA(moreMembers, "barkin ladi"), 
-//         extractLGA(moreMembers, "bassa"),
-//         extractLGA(moreMembers, "bokkos"), 
-//         extractLGA(moreMembers, "jos-east"), 
-//         extractLGA(moreMembers, "jos-north"), 
-//         extractLGA(moreMembers, "jos-south"), 
-//         extractLGA(moreMembers, "kanam"), 
-//         extractLGA(moreMembers, "kanke"), 
-//         extractLGA(moreMembers, "langtang-north"), 
-//         extractLGA(moreMembers, "langtang-south"), 
-//         extractLGA(moreMembers, "mangu"), 
-//         extractLGA(moreMembers, "mikang"), 
-//         extractLGA(moreMembers, "pankshin"), 
-//         extractLGA(moreMembers, "qua'an pan"), 
-//         extractLGA(moreMembers, "riyom"), 
-//         extractLGA(moreMembers, "shendam"), 
-//         extractLGA(moreMembers, "wase")
-//       ]]
-//     },
-//     options: {
-//       axisX: {
-//         showGrid: false
-//       },
-//       low: 0,
-//       high: 10,
-//       chartPadding: {
-//         top: 0,
-//         right: 5,
-//         bottom: 0,
-//         left: 0
-//       }
-//     },
-//     responsiveOptions: [
-//       [
-//         "screen and (max-width: 640px)",
-//         {
-//           seriesBarDistance: 5,
-//           axisX: {
-//             labelInterpolationFnc: function(value) {
-//               return value[0];
-//             }
-//           }
-//         }
-//       ]
-//     ],
-//     animation: {
-//       draw: function(data) {
-//         if (data.type === "bar") {
-//           data.element.animate({
-//             opacity: {
-//               begin: (data.index + 1) * 80,
-//               dur: 500,
-//               from: 0,
-//               to: 1,
-//               easing: "ease"
-//             }
-//           });
-//         }
-//       }
-//     }
-//   };
 
   componentDidMount(){
     this.props.getAllProfile()
@@ -366,7 +148,7 @@ class Gridd extends Component {
       series: [[
         members.length, 
         extractGender(members,"Male"), 
-        extractGender(members,"female"), 
+        extractGender(members,"Female"), 
         extractDisability(members,"yes"),       
         extractDisability(members,"no"), 
         extractMaritalStatus(members,"divorced"), 
@@ -440,23 +222,23 @@ class Gridd extends Component {
         "Wase",
       ],
       series: [[
-        extractLGA(moreMembers, "barkin ladi"), 
-        extractLGA(moreMembers, "bassa"),
-        extractLGA(moreMembers, "bokkos"), 
-        extractLGA(moreMembers, "jos-east"), 
-        extractLGA(moreMembers, "jos-north"), 
-        extractLGA(moreMembers, "jos-south"), 
-        extractLGA(moreMembers, "kanam"), 
-        extractLGA(moreMembers, "kanke"), 
-        extractLGA(moreMembers, "langtang-north"), 
-        extractLGA(moreMembers, "langtang-south"), 
-        extractLGA(moreMembers, "mangu"), 
-        extractLGA(moreMembers, "mikang"), 
-        extractLGA(moreMembers, "pankshin"), 
-        extractLGA(moreMembers, "qua'an pan"), 
-        extractLGA(moreMembers, "riyom"), 
-        extractLGA(moreMembers, "shendam"), 
-        extractLGA(moreMembers, "wase")
+        extractLGA(members, "Barkin Ladi"), 
+        extractLGA(members, "Bassa"),
+        extractLGA(members, "Bokkos"), 
+        extractLGA(members, "Jos East"), 
+        extractLGA(members, "Jos North"), 
+        extractLGA(members, "Jos South"), 
+        extractLGA(members, "Kanam"), 
+        extractLGA(members, "Kanke"), 
+        extractLGA(members, "Langtang North"), 
+        extractLGA(members, "Langtang South"), 
+        extractLGA(members, "Mangu"), 
+        extractLGA(members, "Mikang"), 
+        extractLGA(members, "Pankshin"), 
+        extractLGA(members, "Qua'an Pan"), 
+        extractLGA(members, "Riyom"), 
+        extractLGA(members, "Shendam"), 
+        extractLGA(members, "Wase")
       ]]
     },
     options: {
