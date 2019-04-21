@@ -294,7 +294,6 @@ class UserProfile extends Component {
                 <div className="text-center">
                   <h2 className="display-4 text-center">{this.state.firstname+ " " +this.state.middlename+ " "+this.state.lastname}</h2>
                   <p>
-                  <p>
                     <strong>{this.state.phone}</strong> 
                   </p>
                       <Button 
@@ -303,7 +302,6 @@ class UserProfile extends Component {
                       >
                         Change
                       </Button>
-                  </p>
                 </div>
               </div>
             </div>
@@ -405,12 +403,13 @@ class UserProfile extends Component {
         </div>
       </div>
         <div className="col-md-12" style={{marginTop:"5px"}}>
-          <div className="card card-body bg-success text-white mb-3">
+          <div className="card card-body bg-white text-white mb-3">
             <div className=" text-success mb-3">
               <Button 
                 onClick={this.onClick}
-                className="btn btn-success bg-warning mb-3 text-success float-right">
-                Edit
+                disabled
+                className="btn btn-success bg-success mb-3 text-white float-right">
+                Print
               </Button> 
             </div>
           </div>
