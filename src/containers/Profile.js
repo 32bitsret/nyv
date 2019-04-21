@@ -4,15 +4,12 @@ import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Clearfix from "components/Clearfix/Clearfix.jsx";
-import FormLabel from "@material-ui/core/FormLabel";
-import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
-import CardAvatar from "components/Card/CardAvatar.jsx";
-import ImageUpload from "components/CustomUpload/ImageUpload.jsx";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
 import { connect } from "react-redux"
 import Datetime from "react-datetime";
@@ -22,9 +19,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Switch from "@material-ui/core/Switch";
 import Select from "@material-ui/core/Select";
 import { CardContent } from "@material-ui/core";
+import SweetAlert from "react-bootstrap-sweetalert";
 import MenuItem from "@material-ui/core/MenuItem";
 import { getProfile } from "../redux/actions/dashboardAction"
-
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
+import SelectListGroup from "./components/Selector"
 
 class UserProfile extends Component {
   state = {
@@ -34,7 +33,7 @@ class UserProfile extends Component {
     email:"user@gmail.com",
     DoB:"2012-12-12",
     lga:"Bassa",
-    gender:"Male",
+    gender:"Female",
     phone:"08012345678",
     education:{
       course:"Food Science",
@@ -42,224 +41,99 @@ class UserProfile extends Component {
       year_of_graduation:"2000",
       qualification:"Degree"
     },
-    employed:"Yes",
+    employed:"",
     marital_status:"Married",
     diasbility:"No",
     address:"21T Rukuba Road Jos",
     resume:"",
+    // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
     id:"",
     disable: true,
     editing: this.onButtonClick,
     isLoading:  false,
-    user: {}
+    user: {},
+
+    openPersonal:false,
+    openEducation: false,
+    openContact: false,
+    openPhoto:false,
+    openUpload:false
   }
 
   
   componentDidMount(){
-    this.setState({user:this.props.getProfile(this.props.auth.user.phone)})
+    this.setState({
+      user:this.props.getProfile(this.props.auth.user.phone)
+    })
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({user: nextProps.dashboard.dashboard})
+    this.setState({
+      user: nextProps.dashboard.dashboard
+    })
   }
 
   onchange = (e) => {
     e.preventDefault()
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
-  onClick = e => {
-    alert("CLICK")
-  }
 
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onClickPersonal = e => {
+   this.setState({
+     openPersonal:!this.state.openPersonal
+   })
+  }
+
+  onClickContact = e => {
+    this.setState({
+      openContact:!this.state.openContact
+    })
+  }
+
+  onClickEducation = e => {
+    this.setState({
+      openEducation:!this.state.openEducation
+    })
+  }
+
   render(){
     const { classes } = this.props;
-    const { dashboard } = this.props.dashboard
+    console.log("CLASSESS", this.props)
+    
+    const optionsGender = [
+      { label: 'None', value: 'None' },
+      { label: 'Male', value: 'Male' },
+      { label: 'Female', value: 'Female' },
+    ];
 
-    const lga = ( 
-      <Select
-      MenuProps={{
-        className: classes.selectMenu
-      }}
-      classes={{
-        select: classes.select
-      }}
-      value={this.state.lga}
-      onChange={this.handleSimple}
-      inputProps={{
-        name: "lga",
-        id: "lga"
-      }}
-    >
-      <MenuItem
-      disabled
-      classes={{
-        root: classes.selectMenuItem
-      }}
-    >
-      Choose lga
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="2"
-    >
-      Barkin Ladi
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="3"
-    >
-      Bassa
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="4"
-    >
-      Bokkos
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="5"
-    >
-      Jos-East
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="6"
-    >
-      Jos-North
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="7"
-    >
-      Jos-South
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="8"
-    >
-      Kanam
-    </MenuItem>
+    const optionsEmployed = [
+      { label: 'None', value: 'None' },
+      { label: 'No', value: 'No' },
+      { label: 'Yes', value: 'Yes' },
+    ];
 
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="8"
-    >
-      Kanke
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="9"
-    >
-     Langtang-North
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="10"
-    >
-     Langtang-South
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="11"
-    >
-      Mangu
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="12"
-    >
-     Mikang
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="13"
-    >
-     Pankshin
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="14"
-    >
-      Qua'an Pan
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="15"
-    >
-      Riyom
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="16"
-    >
-      Shendam
-    </MenuItem>
-    <MenuItem
-      classes={{
-        root: classes.selectMenuItem,
-        selected: classes.selectMenuItemSelected
-      }}
-      value="17"
-    >
-      Wase
-    </MenuItem>
-    </Select>
-    )
+    const optionsMaritalStatus = [
+      { label: 'None', value: 'None' },
+      { label: 'Single', value: 'Single' },
+      { label: 'Married', value: 'Married' },
+      { label: 'Divorced', value: 'Divorced' },
+      { label: 'Widowed', value: 'Widowed' },
+    ];
+
+    const optionsDisability = [
+      { label: 'None', value: 'None' },
+      { label: 'No', value: 'No' },
+      { label: 'Yes', value: 'Yes' }
+    ];
+
 
     const display = this.props.dashboard.isloading ?
     (<div>
@@ -294,16 +168,15 @@ class UserProfile extends Component {
                 <div className="text-center">
                   <h2 className="display-4 text-center">{this.state.firstname+ " " +this.state.middlename+ " "+this.state.lastname}</h2>
                   <p>
-                  <p>
                     <strong>{this.state.phone}</strong> 
                   </p>
+
                       <Button 
                         onClick={this.onClick}
                         className="btn bg-warning mb-3 float-center"
                       >
                         Change
                       </Button>
-                  </p>
                 </div>
               </div>
             </div>
@@ -329,13 +202,90 @@ class UserProfile extends Component {
                   <p>
                     <strong>Diability:</strong> {this.state.diasbility}
                   </p>
+                  <p>
+                    <strong>DoB:</strong> {this.state.DoB}
+                  </p>
                   <Button 
-                    onClick={this.onClick}
+                    onClick={this.onClickPersonal}
                     className="btn bg-white text-success btn-success mb-3 float-right"
                     type="button"
                     >
                     Edit
-                  </Button>    
+                  </Button>  
+                      <Dialog
+                        open={this.state.openPersonal}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                      >
+                        <DialogTitle id="form-dialog-title">PERSONAL DATA</DialogTitle>
+                        <DialogContent>
+                          <DialogContentText>
+                            change you personal profile information here
+                          </DialogContentText>
+                            <br/>
+                          <form>
+                            <div className="form-group mb-2">
+                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Gender</label>
+                            <SelectListGroup
+                              placeholder="Gender"
+                              name="gender"
+                              value={this.state.gender}
+                              onChange={this.onchange}
+                              options={optionsGender}
+                            />
+                            </div>
+                            <div className="form-group mb-2">
+                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employed</label>
+                            <SelectListGroup
+                              placeholder="Employed"
+                              name="employed"
+                              value={this.state.employed}
+                              onChange={this.onchange}
+                              options={optionsEmployed}
+                            />
+                            </div>
+                            <div className="form-group mb-8">
+                            <label htmlFor="inputPassword" className="col-md-6 col-form-label">Marital Status</label>
+                            <SelectListGroup
+                              placeholder="Marital Status"
+                              name="marital_status"
+                              value={this.state.marital_status}
+                              onChange={this.onchange}
+                              options={optionsMaritalStatus}
+                            />
+                            </div>
+                            <div className="form-group mb-2">
+                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Disabilities</label>
+                            <SelectListGroup
+                              placeholder="Employed"
+                              name="employed"
+                              value={this.state.diasbility}
+                              onChange={this.onchange}
+                              options={optionsDisability}
+                            />
+                            </div>
+                            <div className="form-group mb-2">
+                            <label htmlFor="inputPassword" className="col-md-6 col-form-label">Date of Birth</label>
+                            <input 
+                              type="date" 
+                              className="form-control form-control-lg" 
+                              placeholder="Date of Birth" 
+                              name="DoB" 
+                              onChange={this.onchange}
+                              value={this.state.DoB}
+                             />
+                            </div>
+                        </form>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={this.onClickPersonal} color="danger">
+                            Cancel
+                          </Button>
+                          <Button onClick={this.handleClose} color="success">
+                            Update
+                          </Button>
+                        </DialogActions>
+                      </Dialog>  
                 </li>
                 <li className="list-group-item">
                   <h4>Contact Info</h4>
@@ -354,6 +304,37 @@ class UserProfile extends Component {
                     className="btn bg-white text-success primary mb-3 float-right">
                     Edit
                   </Button>   
+                  {/* <Dialog
+                        open={this.state.openPersonal}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                      >
+                        <DialogTitle id="form-dialog-title">PERSONAL DATA</DialogTitle>
+                        <DialogContent>
+                          <DialogContentText>
+                            change you personal profile information here
+                          </DialogContentText>
+                          <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="gender"
+                            type="text"
+                            name="gender"
+                            fullWidth
+                            value={this.state.gender}
+                            onChange={this.onchange}
+                          />
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={this.onClickPersonal} color="danger">
+                            Cancel
+                          </Button>
+                          <Button onClick={this.handleClose} color="success">
+                            Update
+                          </Button>
+                        </DialogActions>
+                      </Dialog>   */}
                 </li>
               </ul>
             </div>
@@ -373,6 +354,10 @@ class UserProfile extends Component {
                   </p>
                   <p>
                     <strong>Highest Qualification:</strong>{this.state.education.qualification}
+                  </p>
+                  <br/>
+                  <p>
+                    {" "}
                   </p>
                   <Button 
                     onClick={this.onClick}
