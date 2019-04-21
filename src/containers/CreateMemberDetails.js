@@ -23,23 +23,13 @@ class WizardView extends React.Component {
   }
 
   componentDidMount(){
-    let phone = Number(localStorage.getItem("User"))
-    //this.props.fetchUser(phone)
-    let User = JSON.parse(localStorage.getItem("ESAU"))
-    console.log("ESAUE", User)
-    this.setState({
-      user : User
-    })
+    
   }
  
-  componentWillUnmount(){
-    console.log("COMPONENT WILL UMOUNT")
-    localStorage.removeItem("User")
-  }
   render() {
     let user = this.state.user
 
-    const display = false ?<Step1/> : <CreatedUser />
+    const display = false ? <CreatedUser /> : <Step1/> 
     console.log("INSIDE RENDER", user)
      return (
       <GridContainer justify="center">
@@ -56,4 +46,6 @@ const mapStateToProps = state => {
      createUser: state.createUser
   }
 }
-export default connect(mapStateToProps, {fetchUser})(WizardView);
+export default connect(mapStateToProps, {
+  fetchUser
+})(WizardView);

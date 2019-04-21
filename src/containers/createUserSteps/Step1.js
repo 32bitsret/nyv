@@ -9,7 +9,11 @@ import Email from "@material-ui/icons/Email";
 import Face from "@material-ui/icons/Face";
 import MailOutline from "@material-ui/icons/MailOutline";
 import Check from "@material-ui/icons/Check";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import Clear from "@material-ui/icons/Clear";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
 import Contacts from "@material-ui/icons/Contacts";
 import Phone from "@material-ui/icons/Phone";
@@ -31,6 +35,7 @@ import {
   updateBasicInfo,
   fetchUser
 } from "../../redux/actions/createActions"
+import SelectListGroup from "../components/Selector"
 import {
   verifyEmail, 
   verifyLength, 
@@ -55,6 +60,8 @@ class Step1 extends React.Component {
       phone:"",
       password: "",
       confirmpassword:"",
+      lga:"",
+      gender:"",
       role:"user",
 
       firstnameState:"",
@@ -64,6 +71,8 @@ class Step1 extends React.Component {
       phoneState:"",
       passwordState:"",
       confirmpasswordState:"",
+      genderState:"",
+      lgaState:"",
 
       searchValue:"",
       searchValueState:""
@@ -206,6 +215,35 @@ class Step1 extends React.Component {
   render() {
     const { classes } = this.props;
    
+    const optionsGender = [
+      { label: 'None', value: 'None' },
+      { label: 'Male', value: 'Male' },
+      { label: 'Female', value: 'Female' },
+    ];
+
+
+    const optionsLGA = [
+      { label: 'None', value: 'None' },
+      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
+      { label: 'Bassa', value: 'Bassa' },
+      { label: 'Bokkos', value: 'Bokkos' },
+      { label: 'Jos East', value: 'Jos East' },
+      { label: 'Jos North', value: 'Jos North' },
+      { label: 'Jos South', value: 'Jos South' },
+      { label: 'Kanam', value: 'Kanam' },
+      { label: 'Kanke', value: 'Kanke' },
+      { label: 'Langtang North', value: 'Langtang North' },
+      { label: 'Langtang South', value: 'Langtang South' },
+      { label: 'Mangu', value: 'Mangu' },
+      { label: 'Mikang', value: 'Mikang' },
+      { label: 'Pankshin', value: 'Pankshin' },
+      { label: "Qua'an Pan", value: "Qua'an Pan" },
+      { label: 'Riyom', value: 'Riyom' },
+      { label: 'Shendam', value: 'Shendam' },
+      { label: 'Wase', value: 'Wase' },
+    ];
+
+
     const butt = this.props.createUser.userExist ? 
       (
         <Button
@@ -225,10 +263,22 @@ class Step1 extends React.Component {
         </Button>
       )
 
-    const display = !this.props.createUser.userExist ?
-           
-          (<GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
+    const display = false ?
+        (
+        <div>
+          <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={4}>
+              <div>
+                loading...
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+        )
+        :
+        (
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={12} lg={8}>
             <Card>
               <div className={"center-style"}>
               <a href="/">
@@ -383,6 +433,261 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
+                  <GridContainer justify="center">
+                  
+                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            LGA
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleSimple}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose City
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="2"
+                            >
+                              Paris
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="3"
+                            >
+                              Bucharest
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="4"
+                            >
+                              Rome
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="5"
+                            >
+                              New York
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Miami
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Piatra Neamt
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="8"
+                            >
+                              Paris
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="9"
+                            >
+                              Bucharest
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="10"
+                            >
+                              Rome
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="11"
+                            >
+                              New York
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="12"
+                            >
+                              Miami
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="13"
+                            >
+                              Piatra Neamt
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="14"
+                            >
+                              Paris
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="15"
+                            >
+                              Bucharest
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="16"
+                            >
+                              Rome
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="17"
+                            >
+                              New York
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="18"
+                            >
+                              Miami
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="19"
+                            >
+                              Piatra Neamt
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+
+                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="multiple-select"
+                            className={classes.selectLabel}
+                          >
+                            Gender
+                          </InputLabel>
+                          <Select
+                            
+                            value={this.state.multipleSelect}
+                            onChange={this.handleMultiple}
+                            MenuProps={{ className: classes.selectMenu }}
+                            classes={{ select: classes.select }}
+                            inputProps={{
+                              name: "multipleSelect",
+                              id: "multiple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose gender
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="2"
+                            >
+                              Male
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="3"
+                            >
+                              Female
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+
+                    </GridContainer>
+                  <br/>
                   <GridContainer>
                     <GridItem xs={12} sm={3}>
                       <FormLabel className={classes.labelHorizontal}>
@@ -483,64 +788,9 @@ class Step1 extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-        </GridContainer>)
-  :
-  (
-    <GridContainer justify="center">
-      <br/>
-      <GridItem xs={12} sm={8} lg={8}>
-        <Button
-          color="success"
-          onClick={this.editExistingUser}
-        >
-          Edit Existing Member
-        </Button>      
-        <Button
-          color="success"
-          // 
-        >
-          Register New Member
-        </Button> home
-      </GridItem>
-
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={8} lg={5}>
-            <CustomInput
-              id="help-text"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                type: "number",
-                placeholder:"Phone number...",
-                name:"searchValue",
-                value:this.state.searchValue,
-                onChange:(e) => this.onChange(e,"searchValue","number"),
-                endAdornment: (
-                    <InputAdornment position="end">
-                    
-                    </InputAdornment>
-                  )
-              }}
-            /> 
-        </GridItem>
-        <br/>
-        <GridContainer>
-          <GridItem xs={12} sm={3} lg={8}>
-            <FormLabel className={classes.labelHorizontal}>
-              - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
-            </FormLabel>
-          </GridItem>
-          <br/>
-          <GridItem xs={12} sm={3} lg={8}>
-            <FormLabel className={classes.labelHorizontal}>
-              - To EDIT a Profile, Type Phone and Clcik
-            </FormLabel>
-          </GridItem>
         </GridContainer>
-      </GridContainer>
-  </GridContainer>
-  )
+      )
+
     return (
       <div>
         {display}
