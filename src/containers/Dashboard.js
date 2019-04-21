@@ -24,7 +24,6 @@ import Tablex from '../views/Tables/ReactTables'
 import { getProfile } from "../redux/actions/dashboardAction"
 
 import User from '../variables/UserData'
-import moreMembers from "../variables/moreMembers"
 
 var ps;
 
@@ -53,8 +52,6 @@ class Dashboard extends React.Component {
     this.setState({user:this.props.auth.user })
     window.addEventListener("resize", this.resizeFunction);
     console.log("USER INSIDE STATE+++++++", this.props.auth.user)
-    // this.props.getProfile(this.props.auth.user.phone)
-    this.extract(moreMembers,"jos-south")
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -70,9 +67,6 @@ class Dashboard extends React.Component {
       }
     }
   }
-componentWillReceiveProps(nextProps){
-
-}
 
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
