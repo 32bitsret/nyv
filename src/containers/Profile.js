@@ -23,7 +23,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import MenuItem from "@material-ui/core/MenuItem";
 import { getProfile } from "../redux/actions/dashboardAction"
 import {
-  updateBioInfo,
+  updateBasicInfo,
+  updateEducationalInfo,
+  updateContactInfo
 } from "../redux/actions/createActions"
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
@@ -47,7 +49,7 @@ class UserProfile extends Component {
     },
     employed:"",
     marital_status:"",
-    diasbility:"",
+    disability:"",
     address:"",
     resume:"",
     // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
@@ -74,8 +76,29 @@ class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps){
+    let data = nextProps.dashboard.dashboard
+    console.log(data)
     this.setState({
-      user: nextProps.dashboard.dashboard,
+      user: {...nextProps.dashboard.dashboard},
+      firstname:isEmpty(data.firstname) ? "":data.firstname,
+      middlename: isEmpty(data.middlename)?"":data.middlename,
+      lastname: isEmpty(data.lastname)?"":data.lastname,
+      email:isEmpty(data.email)?"":data.email,
+      DoB:isEmpty(data.DoB)?"":data.DoB,
+      lga:isEmpty(data.lga)?"":data.lga,
+      gender:isEmpty(data.gender)?"":data.gender,
+      phone:isEmpty(data.phone)?"":data.phone,
+      education:{
+        course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
+        institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
+        year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
+        qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
+      },
+      employed:isEmpty(data.employed)?"":data.employed,
+      marital_status:isEmpty(data.marital_status)?"":data.marital_status,
+      disability:isEmpty(data.disability)?"":data.disability,
+      address:isEmpty(data.address)?"":data.address,
+      resume:isEmpty(data.resume)?"":data.resume,
       photo:nextProps.dashboard.dashboard.photo,
     })
   }
@@ -91,7 +114,7 @@ class UserProfile extends Component {
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
+//===========================MODAL OPS====================================
   onClickPersonal = e => {
     e.preventDefault()
    this.setState({
@@ -126,11 +149,29 @@ class UserProfile extends Component {
       openPhoto: !this.state.openPhoto
     })
   }
+//============================END OF MODAL OPS======================================
+  
+  onSubmitBasicInfo = e => {
+    e.preventDefault()
+    let query = {
+      _id: this.props.dashboard.dashboard._id
+    }
+    let update = {
+      gender: isEmpty(this.state.gender)?"":this.state.gender,
+      employed: isEmpty(this.state.employed)?"":this.state.employed,
+      marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
+      disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
+      DoB: isEmpty(this.state.DoB)?"":this.state.DoB
+    }
+    let obj = {query, update}
+    console.log("BIG OBJECT", obj)
+    this.props.updateBasicInfo({query,update})
+  }
 
   render(){
     const { classes } = this.props;
-    console.log("CLASSESS", this.props.dashboard.dashboard)
-    console.log("DASHBOARD", this.state.user)
+    console.log("CLASSESS", this.props.dashboard.dashboard._id)
+    console.log("DASHBOARD", this.state)
     console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
       { label: 'None', value: 'None' },
@@ -159,6 +200,7 @@ class UserProfile extends Component {
     ];
 
     const optionsLGA = [
+      { label: 'None', value: 'None' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -179,6 +221,7 @@ class UserProfile extends Component {
     ];
 
     const optionsYearofGrad = [
+      { label: 'None', value: 'None' },
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
       { label: '1993', value: '1993' },
@@ -211,6 +254,7 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
+      { label: 'None', value: 'None' },
       { label: 'School Cert', value: 'School Cert' },
       { label: 'Olevel', value: 'Olevel' },
       { label: 'ND', value: 'ND' },
@@ -254,7 +298,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{isEmpty(this.state.user.firstname)?"":this.state.user.firstname+ " " +isEmpty(this.state.user.middlename)?"":this.state.user.middlename+ " "+isEmpty(this.state.user.lastname)?"":this.state.user.lastname}</h2>
+                  <h2 className="display-4 text-center">{this.state.user.firstname+ " " +this.state.user.middlename+ " "+this.state.user.lastname}</h2>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
@@ -309,7 +353,7 @@ class UserProfile extends Component {
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
                   </p>
                   <p>
-                    <strong>Diability:</strong> {isEmpty(this.state.user.diasbility)?"":this.state.user.diasbility}
+                    <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
                     <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
@@ -368,7 +412,7 @@ class UserProfile extends Component {
                             <SelectListGroup
                               placeholder="disability"
                               name="disability"
-                              value={this.state.diasbility}
+                              value={this.state.disability}
                               onChange={this.onchange}
                               options={optionsDisability}
                             />
@@ -390,7 +434,7 @@ class UserProfile extends Component {
                           <Button onClick={this.onClickPersonal} color="danger">
                             Cancel
                           </Button>
-                          <Button onClick={this.handleClose} color="success">
+                          <Button onClick={this.onSubmitBasicInfo} color="success">
                             Update
                           </Button>
                         </DialogActions>
@@ -484,16 +528,16 @@ class UserProfile extends Component {
                    <h4>Educational Info</h4>
                    <hr/>
                    <p>
-                    <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.year_of_graduation}
+                    <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.year_of_graduation)?"":this.state.user.education.year_of_graduation}
                   </p>
                   <p>
-                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.institution}
+                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.institution)?"":this.state.user.education.institution}
                   </p>
                   <p>
-                    <strong>Course:</strong>{isEmpty(this.state.user.education)?"":this.state.user.education.course}
+                    <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
                   </p>
                   <p>
-                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":this.state.user.education.qualification}
+                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.qualification)?"":this.state.user.education.qualification}
                   </p>
                   <br/>
                   <p>
@@ -684,7 +728,9 @@ const mapStateToProps = state => {
   }
 }
 export default connect(mapStateToProps, {
-  getProfile
-
+  getProfile,
+  updateBasicInfo,
+  updateContactInfo,
+  updateEducationalInfo
 })(withStyles(userProfileStyles)(UserProfile));
 

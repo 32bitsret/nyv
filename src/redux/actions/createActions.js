@@ -39,36 +39,24 @@ export const createUserByAdmin = (data) => dispatch => {
     })
 }
 
-export const updateBioInfo = (data) => dispatch =>{
-    //step2
-    axios({
-        method:"",
-        url:"",
-        data: ""
-    })
-    .then(res => {
-
-    })
-    .catch(err => {
-        
-    })
-}
 
 export const updateBasicInfo = (data) => dispatch =>{
     //step3
+    console.log("UPDATED DATA", data)
     axios({
         method:"PUT",
         url: updateProfileURL,
         data: data
     })
     .then(res => {
-        localStorage.setItem('user', res.data.data)
+        // localStorage.setItem('user', res.data.data)
+        console.log("PERSONAL INFO UPDATED", res.data)
         // dispatch({
         //     type:
         // })
     })
     .catch(err => {
-        
+        console.log("ERROR FOR UPDATING BASIC DATA ", err)
     })
 }
 
@@ -76,12 +64,12 @@ export const updateBasicInfo = (data) => dispatch =>{
 export const updateEducationalInfo = (data) => dispatch =>{
     //step3
     axios({
-        method:"",
-        url:"",
-        data: ""
+        method:"PUT",
+        url:updateProfileURL,
+        data: data
     })
     .then(res => {
-
+        console.log("EDUCATION UPDATED", res.data)
     })
     .catch(err => {
         
@@ -91,7 +79,7 @@ export const updateEducationalInfo = (data) => dispatch =>{
 export const uploadPicture = (data) => dispatch =>{
     //step4
     axios({
-        method:"",
+        method:"PUT",
         url:"",
         data: ""
     })
@@ -103,10 +91,25 @@ export const uploadPicture = (data) => dispatch =>{
     })
 }
 
+
+export const updateContactInfo = data => {
+    axios({
+        method:"PUT",
+        url:updateProfileURL,
+        data: data
+    })
+    .then(res => {
+        console.log("CONTACT UPDATE", res.data)
+    })
+    .catch(err => {
+        
+    })
+}
+
 export const uploadDocument = (data) => dispatch =>{
     //step4
     axios({
-        method:"",
+        method:"PUT",
         url:"",
         data: ""
     })
