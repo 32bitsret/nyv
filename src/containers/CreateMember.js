@@ -101,7 +101,7 @@ class CreateMember extends React.Component {
       });
     
     const route = this.props.user.role === "admin" ? data.dashAdmin:data.dashUser
-    const display = this.props.user.role === "admin" ? <CreateMemberDetail/> : <Redirect to="/"/>
+    const display = this.props.user.role === "admin" ? <CreateMemberDetail/> : <Redirect to="/error"/>
     return (
       <div className={classes.wrapper}>
         <Sidebar

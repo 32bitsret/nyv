@@ -7,6 +7,7 @@ import Step4 from "./createUserSteps/Step4"
 import Step2 from "./createUserSteps/Step2"
 import Step3 from "./createUserSteps/Step3"
 import {connect} from "react-redux"
+import CreatedUser from "./CreatedUser"
 import { withRouter } from "react-router-dom"
 import {
   createUserByAdmin,
@@ -37,40 +38,13 @@ class WizardView extends React.Component {
   }
   render() {
     let user = this.state.user
+
+    const display = false ?<Step1/> : <CreatedUser />
     console.log("INSIDE RENDER", user)
      return (
       <GridContainer justify="center">
-       <GridItem xs={12} sm={12} md={8}>
-       <CustomTabs
-              title=""
-              headerColor="success"
-              tabs={[
-                {
-                  tabName: "Basic Info",
-                  tabContent: (
-                    <Step1 user={user}/>
-                  )
-                },
-                {
-                  tabName: "Bio Info",
-                  tabContent: (
-                     <Step2/>
-                  )
-                },
-                {
-                  tabName: "Educational Info",
-                  tabContent: (
-                   <Step3/>
-                  )
-                },
-                {
-                  tabName: "Uploads",
-                  tabContent: (
-                   <Step4/>
-                  )
-                }
-              ]}
-            />
+        <GridItem xs={12} sm={12} md={12} lg={12}>
+          {display}
         </GridItem>
       </GridContainer>
     );

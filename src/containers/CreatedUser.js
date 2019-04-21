@@ -12,26 +12,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
 import { connect } from "react-redux"
-import Datetime from "react-datetime";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from "@material-ui/core/Switch";
-import Select from "@material-ui/core/Select";
-import { CardContent } from "@material-ui/core";
-import SweetAlert from "react-bootstrap-sweetalert";
-import MenuItem from "@material-ui/core/MenuItem";
 import { getProfile } from "../redux/actions/dashboardAction"
 import {
   updateBasicInfo,
   updateEducationalInfo,
   updateContactInfo
 } from "../redux/actions/createActions"
-import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 
-class UserProfile extends Component {
+class CreatedUser extends Component {
   state = {
     firstname:"",
     middlename:"",
@@ -110,6 +100,9 @@ class UserProfile extends Component {
     })
   }
 
+  onDone = e => {
+    //dispatch an action the destroys created User in the store
+  }
 
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -173,10 +166,10 @@ class UserProfile extends Component {
 
   render(){
     const { classes } = this.props;
-    console.log("CLASSESS", this.props.dashboard.dashboard._id)
-    console.log("DASHBOARD", this.state)
-    console.log("CREATED USER", this.props.created)
-    console.log("CHECKING", isEmpty(this.state.user.photo))
+    // console.log("CLASSESS", this.props.dashboard.dashboard._id)
+    // console.log("DASHBOARD", this.state)
+    // console.log("CREATED USER", this.props.created)
+    // console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
       { label: 'None', value: 'None' },
       { label: 'Male', value: 'Male' },
@@ -699,9 +692,9 @@ class UserProfile extends Component {
           <div className="card card-body bg-white text-white mb-3">
             <div className=" text-success mb-3">
               <Button 
-                onClick={this.onClick}
+                onClick={this.onDone}
                 className="btn btn-success bg-success mb-3 text-white float-right">
-                Edit
+                Done
               </Button> 
             </div>
           </div>
@@ -737,5 +730,4 @@ export default connect(mapStateToProps, {
   updateBasicInfo,
   updateContactInfo,
   updateEducationalInfo
-})(withStyles(userProfileStyles)(UserProfile));
-
+})(withStyles(userProfileStyles)(CreatedUser));
