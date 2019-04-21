@@ -7,7 +7,8 @@ import {
     ERROR,
     FETCH_USER,
     FETCHING_USER,
-    DONE_UPDATING
+    DONE_UPDATING,
+    GET_PROFILE
 } from "../Constants"
 import axios from "axios"
 import {
@@ -50,10 +51,12 @@ export const updateBasicInfo = (data) => dispatch =>{
     })
     .then(res => {
         // localStorage.setItem('user', res.data.data)
-        console.log("PERSONAL INFO UPDATED", res.data)
-        // dispatch({
-        //     type:
-        // })
+        console.log("PERSONAL INFO UPDATED", res.data.data)
+        dispatch({
+            type:GET_PROFILE,
+            payload:res.data.data
+        })
+        
     })
     .catch(err => {
         console.log("ERROR FOR UPDATING BASIC DATA ", err)

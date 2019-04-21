@@ -25,6 +25,7 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
+import logoo from '../../assets/img/logo.jpg'
 import {
   createUserByAdmin,
   updateBasicInfo,
@@ -85,14 +86,14 @@ class Step1 extends React.Component {
 
   componentDidMount(){
     console.log("COMPONENT HAS MOUNTED", this.props)
-    const user =  this.props.user
-    this.setState({
-      middlename: user.middlename,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      phone: user.phone,
-      email: user.email,
-    })
+    // const user =  this.props.user
+    // this.setState({
+    //   middlename: user.middlename,
+    //   firstname: user.firstname,
+    //   lastname: user.lastname,
+    //   phone: user.phone,
+    //   email: user.email,
+    // })
   }
 
   handleChange(e) {
@@ -224,11 +225,23 @@ class Step1 extends React.Component {
         </Button>
       )
 
-    const display = this.props.createUser.userExist ?
+    const display = !this.props.createUser.userExist ?
            
           (<GridContainer>
           <GridItem xs={12} sm={12} md={12}>
             <Card>
+              <div className={"center-style"}>
+              <a href="/">
+                <img
+                  className={classes.cardImgTop}
+                  data-src="holder.js/100px180/"
+                  alt="100%x180"
+                  style={{ height: "180px", width: "180px", position:"center center" }}
+                  src={logoo}
+                  data-holder-rendered="true"
+                />
+              </a>
+              </div>
               <CardBody>
                 <form>
                   <GridContainer>

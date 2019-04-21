@@ -42,6 +42,11 @@ export default (state = initialState, action) => {
             ...state,
             error: action.payload
         }
+    case DONE_UPDATING:
+        return {
+            ...state,
+            user: action.payload
+        }
     case FETCH_USER:
         return {
             ...state,
