@@ -74,6 +74,7 @@ class Step1 extends React.Component {
       genderState:"",
       lgaState:"",
 
+      simpleSelect:"",
       searchValue:"",
       searchValueState:""
     };
@@ -434,7 +435,7 @@ class Step1 extends React.Component {
                   </GridContainer>
                   <br/>
                   <GridContainer justify="center">
-                  
+
                       <GridItem xs={12} sm={6} md={5} lg={3}>
                         <FormControl
                           fullWidth
@@ -647,7 +648,7 @@ class Step1 extends React.Component {
                           </InputLabel>
                           <Select
                             
-                            value={this.state.multipleSelect}
+                            value={this.state.simpleSelect}
                             onChange={this.handleMultiple}
                             MenuProps={{ className: classes.selectMenu }}
                             classes={{ select: classes.select }}
