@@ -22,32 +22,37 @@ import { CardContent } from "@material-ui/core";
 import SweetAlert from "react-bootstrap-sweetalert";
 import MenuItem from "@material-ui/core/MenuItem";
 import { getProfile } from "../redux/actions/dashboardAction"
+import {
+  updateBioInfo,
+} from "../redux/actions/createActions"
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
+import isEmpty from "../utils/isEmpty"
 
 class UserProfile extends Component {
   state = {
-    firstname:"Church",
-    middlename:"Gani",
-    lastname:"Simon",
-    email:"user@gmail.com",
-    DoB:"2012-12-12",
-    lga:"Bassa",
-    gender:"Female",
-    phone:"08012345678",
+    firstname:"",
+    middlename:"",
+    lastname:"",
+    email:"",
+    DoB:"",
+    lga:"",
+    gender:"",
+    phone:"",
     education:{
-      course:"Food Science",
-      institution:" FUT Minna",
-      year_of_graduation:"2000",
-      qualification:"Degree"
+      course:"",
+      institution:"",
+      year_of_graduation:"",
+      qualification:""
     },
     employed:"",
-    marital_status:"Married",
-    diasbility:"No",
-    address:"21T Rukuba Road Jos",
+    marital_status:"",
+    diasbility:"",
+    address:"",
     resume:"",
     // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
+   
     id:"",
     disable: true,
     editing: this.onButtonClick,
@@ -70,7 +75,8 @@ class UserProfile extends Component {
 
   componentWillReceiveProps(nextProps){
     this.setState({
-      user: nextProps.dashboard.dashboard
+      user: nextProps.dashboard.dashboard,
+      photo:nextProps.dashboard.dashboard.photo,
     })
   }
 
@@ -123,8 +129,9 @@ class UserProfile extends Component {
 
   render(){
     const { classes } = this.props;
-    console.log("CLASSESS", this.props)
-    
+    console.log("CLASSESS", this.props.dashboard.dashboard)
+    console.log("DASHBOARD", this.state.user)
+    console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
       { label: 'None', value: 'None' },
       { label: 'Male', value: 'Male' },
@@ -214,10 +221,13 @@ class UserProfile extends Component {
     ];
 
     const display = this.props.dashboard.isloading ?
-    (<div>
+    (
+    <div>
         <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
-            <div>loading...</div>
+            <div>
+              loading...
+            </div>
           </GridItem>
         </GridContainer>
     </div>
@@ -238,15 +248,15 @@ class UserProfile extends Component {
                   <div className="col-4 col-md-3 m-auto">
                     <img 
                       className="rounded-circle" 
-                      src={this.state.photo} 
+                      src={isEmpty(this.state.user.photo) ? "https://www.gravatar.com/avatar/anything?s=200&d=mm" : this.state.user.photo} 
                       alt="" 
                     />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{this.state.firstname+ " " +this.state.middlename+ " "+this.state.lastname}</h2>
+                  <h2 className="display-4 text-center">{isEmpty(this.state.user.firstname)?"":this.state.user.firstname+ " " +isEmpty(this.state.user.middlename)?"":this.state.user.middlename+ " "+isEmpty(this.state.user.lastname)?"":this.state.user.lastname}</h2>
                   <p>
-                    <strong>{this.state.phone}</strong> 
+                    <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
 
                       <Button 
@@ -260,22 +270,22 @@ class UserProfile extends Component {
                         onClose={this.handleClose}
                         aria-labelledby="form-dialog-title"
                       >
-                        <DialogTitle id="form-dialog-title">UPLOAD PHOTO</DialogTitle>
-                        <DialogContent>
-                          <DialogContentText>
-                            change you Profile Photo here
-                          </DialogContentText>
-                          
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.onClickPhoto} color="danger">
-                            Cancel
-                          </Button>
-                          <Button onClick={this.handleClose} color="success">
-                            Update
-                          </Button>
-                        </DialogActions>
-                      </Dialog>  
+                      <DialogTitle id="form-dialog-title">UPLOAD PHOTO</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                          change you Profile Photo here
+                        </DialogContentText>
+                        
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={this.onClickPhoto} color="danger">
+                          Cancel
+                        </Button>
+                        <Button onClick={this.handleClose} color="success">
+                          Update
+                        </Button>
+                      </DialogActions>
+                    </Dialog>  
                 </div>
               </div>
             </div>
@@ -290,19 +300,19 @@ class UserProfile extends Component {
                   <h4>Personal Detail</h4>
                   <hr/>
                   <p>
-                    <strong>Gender:</strong> {this.state.gender}
+                    <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> {this.state.employed}
+                    <strong>Employed:</strong> {isEmpty(this.state.user.employed)?"":this.state.user.employed}
                   </p>
                   <p>
-                    <strong>Marital Status:</strong> {this.state.marital_status}
+                    <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
                   </p>
                   <p>
-                    <strong>Diability:</strong> {this.state.diasbility}
+                    <strong>Diability:</strong> {isEmpty(this.state.user.diasbility)?"":this.state.user.diasbility}
                   </p>
                   <p>
-                    <strong>DoB:</strong> {this.state.DoB}
+                    <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -390,13 +400,13 @@ class UserProfile extends Component {
                   <h4>Contact Info</h4>
                   <hr/>
                   <p>
-                    <strong>Address:</strong> {this.state.address}
+                    <strong>Address:</strong> {isEmpty(this.state.user.address)?"":this.state.user.address}
                   </p>
                   <p>
-                    <strong>LGA:</strong>{this.state.lga}
+                    <strong>LGA:</strong>{isEmpty(this.state.user.lga)?"":this.state.user.lga}
                   </p>
                   <p>
-                    <strong>Email Address: </strong> {this.state.email}
+                    <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
                   <Button 
                     onClick={this.onClickContact}
@@ -474,16 +484,16 @@ class UserProfile extends Component {
                    <h4>Educational Info</h4>
                    <hr/>
                    <p>
-                    <strong>Year of Graduation:</strong> {this.state.education.year_of_graduation}
+                    <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.year_of_graduation}
                   </p>
                   <p>
-                    <strong>Institution:</strong> {this.state.education.institution}
+                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.institution}
                   </p>
                   <p>
-                    <strong>Course:</strong>{this.state.education.course}
+                    <strong>Course:</strong>{isEmpty(this.state.user.education)?"":this.state.user.education.course}
                   </p>
                   <p>
-                    <strong>Highest Qualification:</strong>{this.state.education.qualification}
+                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":this.state.user.education.qualification}
                   </p>
                   <br/>
                   <p>
@@ -583,7 +593,7 @@ class UserProfile extends Component {
                     <strong>Description:</strong>Personal CV
                   </p>
                   <p>
-                    <strong>Email Address: </strong> {this.state.email}
+                    <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
                   <p>
                     <strong>Document Name: </strong> CV
@@ -595,6 +605,7 @@ class UserProfile extends Component {
                   </Button> 
                   <Dialog
                         open={this.state.openUpload}
+
                         onClose={this.handleClose}
                         aria-labelledby="form-dialog-title"
                       >
@@ -672,5 +683,8 @@ const mapStateToProps = state => {
     dashboard: state.dashboard
   }
 }
-export default connect(mapStateToProps, {getProfile})(withStyles(userProfileStyles)(UserProfile));
+export default connect(mapStateToProps, {
+  getProfile
+
+})(withStyles(userProfileStyles)(UserProfile));
 
