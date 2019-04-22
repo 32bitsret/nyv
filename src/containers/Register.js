@@ -25,6 +25,10 @@ import {
   verifyUrl, 
   compare}
    from "../utils/validation"
+   import FormControl from "@material-ui/core/FormControl";
+   import InputLabel from "@material-ui/core/InputLabel";
+   import Select from "@material-ui/core/Select";
+   import MenuItem from "@material-ui/core/MenuItem";
    import Phone from "@material-ui/icons/Phone";
 
 
@@ -161,25 +165,6 @@ class LoginPage extends React.Component {
                 {/* </CardHeader> */}
                 <CardBody>
                 <CustomInput
-                    success={this.state.lastnameState === "success"}
-                    error={this.state.lastnameState === "error"}
-                    labelText="Last Name"
-                    id="lastname"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type:"text",
-                      name: "lastname",
-                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Face className={classes.inputAdornmentIcon} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                <CustomInput
                   success={this.state.firstnameState === "success"}
                   error={this.state.firstnameState === "error"}
                   labelText="First Name"
@@ -198,6 +183,45 @@ class LoginPage extends React.Component {
                     )
                   }}
                 />
+                                <CustomInput
+                  success={this.state.firstnameState === "success"}
+                  error={this.state.firstnameState === "error"}
+                  labelText="Middle Name"
+                  id="middlename"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"text",
+                    name: "middlename",
+                    onChange: (e) => this.onChange(e, "middlename", "minValue"),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Face className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                    success={this.state.lastnameState === "success"}
+                    error={this.state.lastnameState === "error"}
+                    labelText="Last Name"
+                    id="lastname"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"text",
+                      name: "lastname",
+                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Face className={classes.inputAdornmentIcon} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+
                 <CustomInput
                   labelText="Email"
                   id="email"
@@ -215,6 +239,249 @@ class LoginPage extends React.Component {
                     )
                   }}
                 />
+                 <GridContainer justify="center">
+                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            LGA
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleChange}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose 
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="2"
+                            >
+                              Barkin Ladi
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="3"
+                            >
+                              Bassa
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="4"
+                            >
+                              Bokkos
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="5"
+                            >
+                              Jos East
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Jos North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Jos South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="8"
+                            >
+                              Kanam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="9"
+                            >
+                              Kanke
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="10"
+                            >
+                              Langtang North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="11"
+                            >
+                              Langtang South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="12"
+                            >
+                              Mangu
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="13"
+                            >
+                              Mikang
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="14"
+                            >
+                              Pankshin
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="15"
+                            >
+                              Qua'an Pan
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="16"
+                            >
+                              Riyom
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="17"
+                            >
+                              Shendam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="18"
+                            >
+                              Wase
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+                              {"  "}
+                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="multiple-select"
+                            className={classes.selectLabel}
+                          >
+                            Gender
+                          </InputLabel>
+                          <Select
+                            value={this.state.simpleSelect}
+                            onChange={this.handleMultiple}
+                            MenuProps={{ className: classes.selectMenu }}
+                            classes={{ select: classes.select }}
+                            inputProps={{
+                              name: "multipleSelect",
+                              id: "multiple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose gender
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="2"
+                            >
+                              Male
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="3"
+                            >
+                              Female
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+
+                    </GridContainer>
                 <CustomInput
                   success={this.state.phoneState === "success"}
                   error={this.state.phoneState === "error"}

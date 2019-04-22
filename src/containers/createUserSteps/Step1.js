@@ -180,7 +180,6 @@ class Step1 extends React.Component {
       phone: Number(this.state.phone),
       role:this.state.role
     }
-    
     this.props.createUserByAdmin(data)
     console.log("SUBMISSION", data)
   }
@@ -282,7 +281,7 @@ class Step1 extends React.Component {
           <GridItem xs={12} sm={12} md={12} lg={8}>
             <Card>
               <div className={"center-style"}>
-              <a href="/">
+              {/* <a href="/"> */}
                 <img
                   className={classes.cardImgTop}
                   data-src="holder.js/100px180/"
@@ -291,7 +290,7 @@ class Step1 extends React.Component {
                   src={logoo}
                   data-holder-rendered="true"
                 />
-              </a>
+              {/* </a> */}
               </div>
               <CardBody>
                 <form>
@@ -330,6 +329,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="middlename"
                         formControlProps={{
                           fullWidth: true
@@ -357,6 +358,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="lastname"
                         formControlProps={{
                           fullWidth: true
@@ -384,8 +387,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        // success={true}
-                        // error={true}
+                        success={false}
+                        error={false}
                         id="email-1"
                         formControlProps={{
                           fullWidth: true
@@ -413,6 +416,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="phone-1"
                         disable
                         formControlProps={{
@@ -432,10 +437,9 @@ class Step1 extends React.Component {
                         helpText="Phone Number cannot be changed after registration"
                       />
                     </GridItem>
-                  </GridContainer>
-                  <br/>
-                  <GridContainer justify="center">
-
+                    </GridContainer>
+                    <br/>
+                    <GridContainer justify="center">
                       <GridItem xs={12} sm={6} md={5} lg={3}>
                         <FormControl
                           fullWidth
@@ -455,7 +459,7 @@ class Step1 extends React.Component {
                               select: classes.select
                             }}
                             value={this.state.simpleSelect}
-                            onChange={this.handleSimple}
+                            onChange={this.handleChange}
                             inputProps={{
                               name: "simpleSelect",
                               id: "simple-select"
@@ -467,7 +471,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem
                               }}
                             >
-                              Choose City
+                              Choose 
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -476,7 +480,7 @@ class Step1 extends React.Component {
                               }}
                               value="2"
                             >
-                              Paris
+                              Barkin Ladi
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -485,7 +489,7 @@ class Step1 extends React.Component {
                               }}
                               value="3"
                             >
-                              Bucharest
+                              Bassa
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -494,7 +498,7 @@ class Step1 extends React.Component {
                               }}
                               value="4"
                             >
-                              Rome
+                              Bokkos
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -503,7 +507,7 @@ class Step1 extends React.Component {
                               }}
                               value="5"
                             >
-                              New York
+                              Jos East
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -512,7 +516,7 @@ class Step1 extends React.Component {
                               }}
                               value="6"
                             >
-                              Miami
+                              Jos North
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -521,7 +525,7 @@ class Step1 extends React.Component {
                               }}
                               value="7"
                             >
-                              Piatra Neamt
+                              Jos South
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -530,7 +534,7 @@ class Step1 extends React.Component {
                               }}
                               value="8"
                             >
-                              Paris
+                              Kanam
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -539,7 +543,7 @@ class Step1 extends React.Component {
                               }}
                               value="9"
                             >
-                              Bucharest
+                              Kanke
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -548,7 +552,7 @@ class Step1 extends React.Component {
                               }}
                               value="10"
                             >
-                              Rome
+                              Langtang North
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -557,7 +561,7 @@ class Step1 extends React.Component {
                               }}
                               value="11"
                             >
-                              New York
+                              Langtang South
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -566,7 +570,7 @@ class Step1 extends React.Component {
                               }}
                               value="12"
                             >
-                              Miami
+                              Mangu
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -575,7 +579,7 @@ class Step1 extends React.Component {
                               }}
                               value="13"
                             >
-                              Piatra Neamt
+                              Mikang
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -584,7 +588,7 @@ class Step1 extends React.Component {
                               }}
                               value="14"
                             >
-                              Paris
+                              Pankshin
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -593,7 +597,7 @@ class Step1 extends React.Component {
                               }}
                               value="15"
                             >
-                              Bucharest
+                              Qua'an Pan
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -602,7 +606,7 @@ class Step1 extends React.Component {
                               }}
                               value="16"
                             >
-                              Rome
+                              Riyom
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -611,7 +615,7 @@ class Step1 extends React.Component {
                               }}
                               value="17"
                             >
-                              New York
+                              Shendam
                             </MenuItem>
                             <MenuItem
                               classes={{
@@ -620,21 +624,12 @@ class Step1 extends React.Component {
                               }}
                               value="18"
                             >
-                              Miami
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="19"
-                            >
-                              Piatra Neamt
+                              Wase
                             </MenuItem>
                           </Select>
                         </FormControl>
                       </GridItem>
-
+                              {"  "}
                       <GridItem xs={12} sm={6} md={5} lg={3}>
                         <FormControl
                           fullWidth
@@ -647,7 +642,6 @@ class Step1 extends React.Component {
                             Gender
                           </InputLabel>
                           <Select
-                            
                             value={this.state.simpleSelect}
                             onChange={this.handleMultiple}
                             MenuProps={{ className: classes.selectMenu }}
