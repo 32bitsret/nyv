@@ -43,9 +43,17 @@ class LoginPage extends React.Component {
       confirm_password:'',
       lastname:'',
       phone:'',
+      middlename:'',
+      gender:'',
+      lga:'',
 
+      confirm_passwordState:'',
       firstnameState:'',
       passwordState:'',
+      middlenameState:'',
+      emailState:'',
+      genderState:'',
+      lgaState:'',
       phoneState:'',
       lastnameState:''
     };
@@ -103,9 +111,28 @@ class LoginPage extends React.Component {
           this.setState({[stateName+"State"]: "error"})
         }
         break;
+      case "confirm_password":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "lga":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+      case "gender":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
     }
   }
 
+  selectChange = e => {
+    e.preventDefault()
+    this.setState({ [e.target.name]: e.target.value });
+  }
   submit = (e) => {
     e.preventDefault();
     if(this.state.firstnameState === ""){
@@ -114,11 +141,26 @@ class LoginPage extends React.Component {
     if(this.state.lastnameState === ""){
       this.setState({lastnameState: "error"})
     }
+    if(this.state.middlenameState === ""){
+      this.setState({middlenameState:"error"})
+    }
+    if(this.state.emailState === ""){
+      this.setState({emailState:"error"})
+    }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
     if(this.state.phoneState === ""){
       this.setState({phoneState: "error"})
+    }
+    if(this.state.lgaState === ""){
+      this.setState({lgaState: "error"})
+    }
+    if(this.state.genderState === ""){
+      this.setState({genderState:"error"})
+    }
+    if(this.state.confirm_passwordState === ""){
+      this.setState({confirm_passwordState: "error"})
     }
     else{
         const data = {
@@ -127,17 +169,20 @@ class LoginPage extends React.Component {
         password:this.state.password,
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
-        //role:"admin"
-        // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
+        gender: this.state.gender,
+        lga: this.state.lga,
+        middlename: this.state.middlename
       }
-      console.log("REGISTRATION::::::",data)
-      this.props.registerUser(data, this.props.history)
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+        console.log("REGISTRATION::::::",data)
+        this.props.registerUser(data, this.props.history)
+      }
     }
   }
   render() {
     const { classes } = this.props;
     console.log("PROPERTIES",this.props)
-    console.log("NAME",this.state)
+    console.log("NAME",this.state.lga)
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
@@ -183,9 +228,9 @@ class LoginPage extends React.Component {
                     )
                   }}
                 />
-                                <CustomInput
-                  success={this.state.firstnameState === "success"}
-                  error={this.state.firstnameState === "error"}
+                <CustomInput
+                  success={this.state.middlenameState === "success"}
+                  error={this.state.middlenameState === "error"}
                   labelText="Middle Name"
                   id="middlename"
                   formControlProps={{
@@ -223,6 +268,8 @@ class LoginPage extends React.Component {
                   />
 
                 <CustomInput
+                  success={this.state.emailState === "success"}
+                  error={this.state.emailState === "error"}
                   labelText="Email"
                   id="email"
                   formControlProps={{
@@ -231,7 +278,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type: "email",
                     name: "email",
-                    onChange: this.onChange,
+                    onChange: e => this.onChange(e, "email", "email"),
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputAdornmentIcon} />
@@ -252,17 +299,18 @@ class LoginPage extends React.Component {
                             LGA
                           </InputLabel>
                           <Select
-                            MenuProps={{
+                            error={this.state.lgaState === "error" ? true: false}
+                              MenuProps={{
                               className: classes.selectMenu
                             }}
                             classes={{
                               select: classes.select
                             }}
-                            value={this.state.simpleSelect}
-                            onChange={this.handleChange}
+                            value={this.state.lga}
+                            onChange={e => this.onChange(e, "lga", "lga")}
                             inputProps={{
-                              name: "simpleSelect",
-                              id: "simple-select"
+                              name: "lga",
+                              id: "lga"
                             }}
                           >
                             <MenuItem
@@ -278,7 +326,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="2"
+                              value="Barkin Ladi"
                             >
                               Barkin Ladi
                             </MenuItem>
@@ -287,7 +335,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="3"
+                              value="Bassa"
                             >
                               Bassa
                             </MenuItem>
@@ -296,7 +344,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="4"
+                              value="Bokkos"
                             >
                               Bokkos
                             </MenuItem>
@@ -305,7 +353,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="5"
+                              value="Jos East"
                             >
                               Jos East
                             </MenuItem>
@@ -314,7 +362,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="6"
+                              value="Jos North"
                             >
                               Jos North
                             </MenuItem>
@@ -323,7 +371,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="7"
+                              value="Jos South"
                             >
                               Jos South
                             </MenuItem>
@@ -332,7 +380,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="8"
+                              value="Kanam"
                             >
                               Kanam
                             </MenuItem>
@@ -341,16 +389,16 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="9"
+                              value="Kanam"
                             >
-                              Kanke
+                              Kanam
                             </MenuItem>
                             <MenuItem
                               classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="10"
+                              value="Langtang North"
                             >
                               Langtang North
                             </MenuItem>
@@ -359,7 +407,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="11"
+                              value="Langtang South"
                             >
                               Langtang South
                             </MenuItem>
@@ -368,7 +416,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="12"
+                              value=" Mangu"
                             >
                               Mangu
                             </MenuItem>
@@ -377,7 +425,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="13"
+                              value=" Mikang"
                             >
                               Mikang
                             </MenuItem>
@@ -386,7 +434,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="14"
+                              value="Pankshin"
                             >
                               Pankshin
                             </MenuItem>
@@ -395,7 +443,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="15"
+                              value="Qua'an Pan"
                             >
                               Qua'an Pan
                             </MenuItem>
@@ -404,7 +452,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="16"
+                              value="Riyom"
                             >
                               Riyom
                             </MenuItem>
@@ -413,7 +461,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="17"
+                              value="Shendam"
                             >
                               Shendam
                             </MenuItem>
@@ -422,7 +470,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="18"
+                              value="Wase"
                             >
                               Wase
                             </MenuItem>
@@ -442,13 +490,16 @@ class LoginPage extends React.Component {
                             Gender
                           </InputLabel>
                           <Select
-                            value={this.state.simpleSelect}
-                            onChange={this.handleMultiple}
+                            error={this.state.genderState === "error" ? true: false}
                             MenuProps={{ className: classes.selectMenu }}
-                            classes={{ select: classes.select }}
+                            classes={{ select: 
+                              classes.select+ " " + classes.labelError}}
+
+                            value={this.state.gender}
+                            onChange={e => this.onChange(e,"gender","gender")}
                             inputProps={{
-                              name: "multipleSelect",
-                              id: "multiple-select"
+                              name: "gender",
+                              id: "gender"
                             }}
                           >
                             <MenuItem
@@ -464,7 +515,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="2"
+                              value="Male"
                             >
                               Male
                             </MenuItem>
@@ -473,7 +524,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="3"
+                              value="Female"
                             >
                               Female
                             </MenuItem>
@@ -502,6 +553,8 @@ class LoginPage extends React.Component {
                   }}
                 />
                  <CustomInput
+                    success={this.state.passwordState === "success"}
+                    error={this.state.passwordState === "error"}
                     labelText="Password"
                     id="password"
                     formControlProps={{
@@ -510,7 +563,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "password",
-                      onChange: this.onChange,
+                      onChange: e => this.onChange(e, "password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Icon className={classes.inputAdornmentIcon}>
@@ -521,6 +574,8 @@ class LoginPage extends React.Component {
                     }}
                   />
                   <CustomInput
+                    success={this.state.confirm_passwordState === "success"}
+                    error={this.state.confirm_passwordState === "error"}
                     labelText="Confirm Password"
                     id="password"
                     formControlProps={{
@@ -529,7 +584,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "confirm_password",
-                      onChange: this.onChange,
+                      onChange: e => this.onChange(e, "confirm_password", "confirm_password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Icon className={classes.inputAdornmentIcon}>

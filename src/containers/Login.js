@@ -96,11 +96,16 @@ class Login extends React.Component {
    if(this.state.passwordState === ""){
       this.setState({passwordState : "error"})
     }
-    else { const userData = {
-      email: this.state.email,
-      password: this.state.password
+    else { 
+      const userData = {
+        email: this.state.email,
+        password: this.state.password 
+      }
+      if(this.state.emailState !== "" && this.state.passwordState !== ""){
+        console.log("LOGIN", userData)
+        this.props.loginUser(userData)
+      }
     }
-    this.props.loginUser(userData)}
   }
 
   
