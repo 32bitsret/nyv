@@ -28,9 +28,6 @@ class SidebarWrapper extends React.Component {
         suppressScrollY: false
       });
     }    
-    console.log("NAME",localStorage.f)
-    console.log("NAME",localStorage.l)
-    console.log("NAME",localStorage.pic)
     this.setState({
       name: localStorage.f+" "+localStorage.l,
       pic: localStorage.pic
@@ -72,9 +69,6 @@ class Sidebar extends React.Component {
     this.activeRoute.bind(this);
   }
   componentWillMount(){
-    console.log("NAME",localStorage.f)
-    console.log("NAME",localStorage.l)
-    console.log("NAME",localStorage.pic)
     this.setState({
       name: localStorage.f+" "+localStorage.l,
       pic: localStorage.pic
@@ -102,9 +96,7 @@ class Sidebar extends React.Component {
       rtlActive,
       userData
     } = this.props;
-
-    // this.extractUser(user)
-    console.log("SIDE BAR DASHBOARD", this.props.dashboard.dashboard)
+    
     const itemText =
       classes.itemText +
       " " +

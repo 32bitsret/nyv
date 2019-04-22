@@ -41,7 +41,7 @@ export const GET_ALLL_PROFILE = "GET_ALLL_PROFILE"
 
 //creating user
 export const CREATE_USER_BY_ADMIN = "CREATE_USER_BY_ADMIN"
-export const DONE_STEP_ONE = "DONE_STEP_ONE"
+export const DONE_CREATING = "DONE_CREATING"
 export const DONE_UPDATING = "DONE_UPDATING"
 export const DONE_STEP_TWO = "DONE_STEP_TWO"
 export const DONE_STEP_THREE = "DONE_STEP_THREE"
@@ -49,3 +49,4 @@ export const DONE_STEP_FOUR = "DONE_STEP_FOUR"
 export const ERROR = "ERROR"
 export const FETCH_USER = "FETCH_USER"
 export const FETCHING_USER = "FETCHING_USER"
+export const CREATING_PROFILE = "CREATING_PROFILE"

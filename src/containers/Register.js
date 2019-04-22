@@ -179,6 +179,7 @@ class LoginPage extends React.Component {
       }
     }
   }
+
   render() {
     const { classes } = this.props;
     console.log("PROPERTIES",this.props)
@@ -278,6 +279,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type: "email",
                     name: "email",
+                    value:this.state.email,
                     onChange: e => this.onChange(e, "email", "email"),
                     endAdornment: (
                       <InputAdornment position="end">
@@ -544,6 +546,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type:"number",
                     name: "phone",
+                    value:this.state.phone,
                     onChange: (e)=> this.onChange(e, "phone", "number" ),
                     endAdornment: (
                       <InputAdornment position="end">
@@ -563,6 +566,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "password",
+                      value:this.state.password,
                       onChange: e => this.onChange(e, "password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
@@ -584,6 +588,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "confirm_password",
+                      value:this.state.confirm_password,
                       onChange: e => this.onChange(e, "confirm_password", "confirm_password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
