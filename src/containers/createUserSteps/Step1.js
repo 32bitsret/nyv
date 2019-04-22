@@ -204,7 +204,8 @@ class Step1 extends React.Component {
           lastname:  this.state.lastname,
           gender: this.state.gender,
           lga: this.state.lga,
-          middlename: this.state.middlename
+          middlename: this.state.middlename,
+          role:this.state.role
         }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
@@ -214,6 +215,7 @@ class Step1 extends React.Component {
   }
 
   editExistingUser = (e) => {
+
     e.preventDefault();
     let newNumber = Number(this.state.searchValue.slice(1))
     // localStorage.setItem("User", newNumber.toString())
@@ -294,7 +296,7 @@ class Step1 extends React.Component {
                           type: "text",
                           name:"middlename",
                           value:this.state.middlename,
-                          onChange:this.handleChange,
+                          onChange: (e) => this.onChange(e, "middlename", "minValue"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputAdornmentIcon} />
@@ -319,7 +321,7 @@ class Step1 extends React.Component {
                           type: "text",
                           name:"lastname",
                           value:this.state.lastname,
-                          onChange:this.handleChange,
+                          onChange: (e) => this.onChange(e, "lastname", "minValue"),  
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputAdornmentIcon} />

@@ -178,7 +178,6 @@ class UserProfile extends Component {
     console.log("CREATED USER", this.props.created)
     console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
-      { label: 'None', value: 'None' },
       { label: 'Male', value: 'Male' },
       { label: 'Female', value: 'Female' },
     ];
@@ -190,7 +189,6 @@ class UserProfile extends Component {
     ];
 
     const optionsMaritalStatus = [
-      { label: 'None', value: 'None' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -198,13 +196,12 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'None', value: 'None' },
       { label: 'No', value: 'No' },
       { label: 'Yes', value: 'Yes' }
     ];
 
     const optionsLGA = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -225,7 +222,6 @@ class UserProfile extends Component {
     ];
 
     const optionsYearofGrad = [
-      { label: 'None', value: 'None' },
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
       { label: '1993', value: '1993' },
@@ -258,7 +254,6 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'None', value: 'None' },
       { label: 'School Cert', value: 'School Cert' },
       { label: 'Olevel', value: 'Olevel' },
       { label: 'ND', value: 'ND' },
