@@ -25,6 +25,10 @@ import {
   verifyUrl, 
   compare}
    from "../utils/validation"
+   import FormControl from "@material-ui/core/FormControl";
+   import InputLabel from "@material-ui/core/InputLabel";
+   import Select from "@material-ui/core/Select";
+   import MenuItem from "@material-ui/core/MenuItem";
    import Phone from "@material-ui/icons/Phone";
 
 
@@ -39,9 +43,17 @@ class LoginPage extends React.Component {
       confirm_password:'',
       lastname:'',
       phone:'',
+      middlename:'',
+      gender:'',
+      lga:'',
 
+      confirm_passwordState:'',
       firstnameState:'',
       passwordState:'',
+      middlenameState:'',
+      emailState:'',
+      genderState:'',
+      lgaState:'',
       phoneState:'',
       lastnameState:''
     };
@@ -99,9 +111,28 @@ class LoginPage extends React.Component {
           this.setState({[stateName+"State"]: "error"})
         }
         break;
+      case "confirm_password":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "lga":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+      case "gender":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
     }
   }
 
+  selectChange = e => {
+    e.preventDefault()
+    this.setState({ [e.target.name]: e.target.value });
+  }
   submit = (e) => {
     e.preventDefault();
     if(this.state.firstnameState === ""){
@@ -110,11 +141,26 @@ class LoginPage extends React.Component {
     if(this.state.lastnameState === ""){
       this.setState({lastnameState: "error"})
     }
+    if(this.state.middlenameState === ""){
+      this.setState({middlenameState:"error"})
+    }
+    if(this.state.emailState === ""){
+      this.setState({emailState:"error"})
+    }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
     if(this.state.phoneState === ""){
       this.setState({phoneState: "error"})
+    }
+    if(this.state.lgaState === ""){
+      this.setState({lgaState: "error"})
+    }
+    if(this.state.genderState === ""){
+      this.setState({genderState:"error"})
+    }
+    if(this.state.confirm_passwordState === ""){
+      this.setState({confirm_passwordState: "error"})
     }
     else{
         const data = {
@@ -123,17 +169,20 @@ class LoginPage extends React.Component {
         password:this.state.password,
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
-        //role:"admin"
-        // photo: "/home/church/Desktop/from loretta/WORKSHOP/8x10=1 (2).jpg"// password2:this.state.confirm_password,
+        gender: this.state.gender,
+        lga: this.state.lga,
+        middlename: this.state.middlename
       }
-      console.log("REGISTRATION::::::",data)
-      this.props.registerUser(data, this.props.history)
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+        console.log("REGISTRATION::::::",data)
+        this.props.registerUser(data, this.props.history)
+      }
     }
   }
   render() {
     const { classes } = this.props;
     console.log("PROPERTIES",this.props)
-    console.log("NAME",this.state)
+    console.log("NAME",this.state.lga)
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
@@ -161,25 +210,6 @@ class LoginPage extends React.Component {
                 {/* </CardHeader> */}
                 <CardBody>
                 <CustomInput
-                    success={this.state.lastnameState === "success"}
-                    error={this.state.lastnameState === "error"}
-                    labelText="Last Name"
-                    id="lastname"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type:"text",
-                      name: "lastname",
-                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Face className={classes.inputAdornmentIcon} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                <CustomInput
                   success={this.state.firstnameState === "success"}
                   error={this.state.firstnameState === "error"}
                   labelText="First Name"
@@ -199,6 +229,47 @@ class LoginPage extends React.Component {
                   }}
                 />
                 <CustomInput
+                  success={this.state.middlenameState === "success"}
+                  error={this.state.middlenameState === "error"}
+                  labelText="Middle Name"
+                  id="middlename"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type:"text",
+                    name: "middlename",
+                    onChange: (e) => this.onChange(e, "middlename", "minValue"),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Face className={classes.inputAdornmentIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <CustomInput
+                    success={this.state.lastnameState === "success"}
+                    error={this.state.lastnameState === "error"}
+                    labelText="Last Name"
+                    id="lastname"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type:"text",
+                      name: "lastname",
+                      onChange: (e) => this.onChange(e, "lastname", "minValue"),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Face className={classes.inputAdornmentIcon} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+
+                <CustomInput
+                  success={this.state.emailState === "success"}
+                  error={this.state.emailState === "error"}
                   labelText="Email"
                   id="email"
                   formControlProps={{
@@ -207,7 +278,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type: "email",
                     name: "email",
-                    onChange: this.onChange,
+                    onChange: e => this.onChange(e, "email", "email"),
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputAdornmentIcon} />
@@ -215,6 +286,253 @@ class LoginPage extends React.Component {
                     )
                   }}
                 />
+                 <GridContainer justify="center">
+                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            LGA
+                          </InputLabel>
+                          <Select
+                            error={this.state.lgaState === "error" ? true: false}
+                              MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.lga}
+                            onChange={e => this.onChange(e, "lga", "lga")}
+                            inputProps={{
+                              name: "lga",
+                              id: "lga"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose 
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Barkin Ladi"
+                            >
+                              Barkin Ladi
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Bassa"
+                            >
+                              Bassa
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Bokkos"
+                            >
+                              Bokkos
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Jos East"
+                            >
+                              Jos East
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Jos North"
+                            >
+                              Jos North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Jos South"
+                            >
+                              Jos South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Kanam"
+                            >
+                              Kanam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Kanam"
+                            >
+                              Kanam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Langtang North"
+                            >
+                              Langtang North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Langtang South"
+                            >
+                              Langtang South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value=" Mangu"
+                            >
+                              Mangu
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value=" Mikang"
+                            >
+                              Mikang
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Pankshin"
+                            >
+                              Pankshin
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Qua'an Pan"
+                            >
+                              Qua'an Pan
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Riyom"
+                            >
+                              Riyom
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Shendam"
+                            >
+                              Shendam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="Wase"
+                            >
+                              Wase
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+                              {"  "}
+                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="multiple-select"
+                            className={classes.selectLabel}
+                          >
+                            Gender
+                          </InputLabel>
+                          <Select
+                            error={this.state.genderState === "error" ? true: false}
+                            MenuProps={{ className: classes.selectMenu }}
+                            classes={{ select: 
+                              classes.select+ " " + classes.labelError}}
+
+                            value={this.state.gender}
+                            onChange={e => this.onChange(e,"gender","gender")}
+                            inputProps={{
+                              name: "gender",
+                              id: "gender"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose gender
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="Male"
+                            >
+                              Male
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="Female"
+                            >
+                              Female
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+
+                    </GridContainer>
                 <CustomInput
                   success={this.state.phoneState === "success"}
                   error={this.state.phoneState === "error"}
@@ -235,6 +553,8 @@ class LoginPage extends React.Component {
                   }}
                 />
                  <CustomInput
+                    success={this.state.passwordState === "success"}
+                    error={this.state.passwordState === "error"}
                     labelText="Password"
                     id="password"
                     formControlProps={{
@@ -243,7 +563,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "password",
-                      onChange: this.onChange,
+                      onChange: e => this.onChange(e, "password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Icon className={classes.inputAdornmentIcon}>
@@ -254,6 +574,8 @@ class LoginPage extends React.Component {
                     }}
                   />
                   <CustomInput
+                    success={this.state.confirm_passwordState === "success"}
+                    error={this.state.confirm_passwordState === "error"}
                     labelText="Confirm Password"
                     id="password"
                     formControlProps={{
@@ -262,7 +584,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "confirm_password",
-                      onChange: this.onChange,
+                      onChange: e => this.onChange(e, "confirm_password", "confirm_password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
                           <Icon className={classes.inputAdornmentIcon}>

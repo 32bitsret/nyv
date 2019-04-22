@@ -9,7 +9,11 @@ import Email from "@material-ui/icons/Email";
 import Face from "@material-ui/icons/Face";
 import MailOutline from "@material-ui/icons/MailOutline";
 import Check from "@material-ui/icons/Check";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import Clear from "@material-ui/icons/Clear";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
 import Contacts from "@material-ui/icons/Contacts";
 import Phone from "@material-ui/icons/Phone";
@@ -31,6 +35,7 @@ import {
   updateBasicInfo,
   fetchUser
 } from "../../redux/actions/createActions"
+import SelectListGroup from "../components/Selector"
 import {
   verifyEmail, 
   verifyLength, 
@@ -55,6 +60,8 @@ class Step1 extends React.Component {
       phone:"",
       password: "",
       confirmpassword:"",
+      lga:"",
+      gender:"",
       role:"user",
 
       firstnameState:"",
@@ -64,7 +71,10 @@ class Step1 extends React.Component {
       phoneState:"",
       passwordState:"",
       confirmpasswordState:"",
+      genderState:"",
+      lgaState:"",
 
+      simpleSelect:"",
       searchValue:"",
       searchValueState:""
     };
@@ -170,7 +180,6 @@ class Step1 extends React.Component {
       phone: Number(this.state.phone),
       role:this.state.role
     }
-    
     this.props.createUserByAdmin(data)
     console.log("SUBMISSION", data)
   }
@@ -206,6 +215,35 @@ class Step1 extends React.Component {
   render() {
     const { classes } = this.props;
    
+    const optionsGender = [
+      { label: 'None', value: 'None' },
+      { label: 'Male', value: 'Male' },
+      { label: 'Female', value: 'Female' },
+    ];
+
+
+    const optionsLGA = [
+      { label: 'None', value: 'None' },
+      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
+      { label: 'Bassa', value: 'Bassa' },
+      { label: 'Bokkos', value: 'Bokkos' },
+      { label: 'Jos East', value: 'Jos East' },
+      { label: 'Jos North', value: 'Jos North' },
+      { label: 'Jos South', value: 'Jos South' },
+      { label: 'Kanam', value: 'Kanam' },
+      { label: 'Kanke', value: 'Kanke' },
+      { label: 'Langtang North', value: 'Langtang North' },
+      { label: 'Langtang South', value: 'Langtang South' },
+      { label: 'Mangu', value: 'Mangu' },
+      { label: 'Mikang', value: 'Mikang' },
+      { label: 'Pankshin', value: 'Pankshin' },
+      { label: "Qua'an Pan", value: "Qua'an Pan" },
+      { label: 'Riyom', value: 'Riyom' },
+      { label: 'Shendam', value: 'Shendam' },
+      { label: 'Wase', value: 'Wase' },
+    ];
+
+
     const butt = this.props.createUser.userExist ? 
       (
         <Button
@@ -225,13 +263,25 @@ class Step1 extends React.Component {
         </Button>
       )
 
-    const display = !this.props.createUser.userExist ?
-           
-          (<GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
+    const display = false ?
+        (
+        <div>
+          <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={4}>
+              <div>
+                loading...
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+        )
+        :
+        (
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={12} lg={8}>
             <Card>
               <div className={"center-style"}>
-              <a href="/">
+              {/* <a href="/"> */}
                 <img
                   className={classes.cardImgTop}
                   data-src="holder.js/100px180/"
@@ -240,7 +290,7 @@ class Step1 extends React.Component {
                   src={logoo}
                   data-holder-rendered="true"
                 />
-              </a>
+              {/* </a> */}
               </div>
               <CardBody>
                 <form>
@@ -279,6 +329,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="middlename"
                         formControlProps={{
                           fullWidth: true
@@ -306,6 +358,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="lastname"
                         formControlProps={{
                           fullWidth: true
@@ -333,8 +387,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        // success={true}
-                        // error={true}
+                        success={false}
+                        error={false}
                         id="email-1"
                         formControlProps={{
                           fullWidth: true
@@ -362,6 +416,8 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={false}
+                        error={false}
                         id="phone-1"
                         disable
                         formControlProps={{
@@ -381,7 +437,251 @@ class Step1 extends React.Component {
                         helpText="Phone Number cannot be changed after registration"
                       />
                     </GridItem>
-                  </GridContainer>
+                    </GridContainer>
+                    <br/>
+                    <GridContainer justify="center">
+                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            LGA
+                          </InputLabel>
+                          <Select
+                            MenuProps={{
+                              className: classes.selectMenu
+                            }}
+                            classes={{
+                              select: classes.select
+                            }}
+                            value={this.state.simpleSelect}
+                            onChange={this.handleChange}
+                            inputProps={{
+                              name: "simpleSelect",
+                              id: "simple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose 
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="2"
+                            >
+                              Barkin Ladi
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="3"
+                            >
+                              Bassa
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="4"
+                            >
+                              Bokkos
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="5"
+                            >
+                              Jos East
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="6"
+                            >
+                              Jos North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="7"
+                            >
+                              Jos South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="8"
+                            >
+                              Kanam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="9"
+                            >
+                              Kanke
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="10"
+                            >
+                              Langtang North
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="11"
+                            >
+                              Langtang South
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="12"
+                            >
+                              Mangu
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="13"
+                            >
+                              Mikang
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="14"
+                            >
+                              Pankshin
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="15"
+                            >
+                              Qua'an Pan
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="16"
+                            >
+                              Riyom
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="17"
+                            >
+                              Shendam
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value="18"
+                            >
+                              Wase
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+                              {"  "}
+                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                        <FormControl
+                          fullWidth
+                          className={classes.selectFormControl}
+                        >
+                          <InputLabel
+                            htmlFor="multiple-select"
+                            className={classes.selectLabel}
+                          >
+                            Gender
+                          </InputLabel>
+                          <Select
+                            value={this.state.simpleSelect}
+                            onChange={this.handleMultiple}
+                            MenuProps={{ className: classes.selectMenu }}
+                            classes={{ select: classes.select }}
+                            inputProps={{
+                              name: "multipleSelect",
+                              id: "multiple-select"
+                            }}
+                          >
+                            <MenuItem
+                              disabled
+                              classes={{
+                                root: classes.selectMenuItem
+                              }}
+                            >
+                              Choose gender
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="2"
+                            >
+                              Male
+                            </MenuItem>
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelectedMultiple
+                              }}
+                              value="3"
+                            >
+                              Female
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </GridItem>
+
+                    </GridContainer>
                   <br/>
                   <GridContainer>
                     <GridItem xs={12} sm={3}>
@@ -483,64 +783,9 @@ class Step1 extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-        </GridContainer>)
-  :
-  (
-    <GridContainer justify="center">
-      <br/>
-      <GridItem xs={12} sm={8} lg={8}>
-        <Button
-          color="success"
-          onClick={this.editExistingUser}
-        >
-          Edit Existing Member
-        </Button>      
-        <Button
-          color="success"
-          // 
-        >
-          Register New Member
-        </Button> home
-      </GridItem>
-
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={8} lg={5}>
-            <CustomInput
-              id="help-text"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                type: "number",
-                placeholder:"Phone number...",
-                name:"searchValue",
-                value:this.state.searchValue,
-                onChange:(e) => this.onChange(e,"searchValue","number"),
-                endAdornment: (
-                    <InputAdornment position="end">
-                    
-                    </InputAdornment>
-                  )
-              }}
-            /> 
-        </GridItem>
-        <br/>
-        <GridContainer>
-          <GridItem xs={12} sm={3} lg={8}>
-            <FormLabel className={classes.labelHorizontal}>
-              - To Register a New User,<br/>Click "REGISTER NEW MEMBER" Button
-            </FormLabel>
-          </GridItem>
-          <br/>
-          <GridItem xs={12} sm={3} lg={8}>
-            <FormLabel className={classes.labelHorizontal}>
-              - To EDIT a Profile, Type Phone and Clcik
-            </FormLabel>
-          </GridItem>
         </GridContainer>
-      </GridContainer>
-  </GridContainer>
-  )
+      )
+
     return (
       <div>
         {display}
