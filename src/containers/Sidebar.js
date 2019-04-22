@@ -16,7 +16,7 @@ import HeaderLinks from "./HeaderLinks";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
 import { connect } from "react-redux"
 import {getProfile} from  "../redux/actions/dashboardAction"
-//import 
+import isEmpty from "../utils/isEmpty"
 
 
 var ps;
@@ -27,7 +27,14 @@ class SidebarWrapper extends React.Component {
         suppressScrollX: true,
         suppressScrollY: false
       });
-    }
+    }    
+    console.log("NAME",localStorage.f)
+    console.log("NAME",localStorage.l)
+    console.log("NAME",localStorage.pic)
+    this.setState({
+      name: localStorage.f+" "+localStorage.l,
+      pic: localStorage.pic
+    })
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -58,16 +65,22 @@ class Sidebar extends React.Component {
       openPages: this.activeRoute("-page"),
       miniActive: true,
       isAdmin: true,
-      name:"church",
+      name:"",
+      pic:"",
       user:{}
     };
     this.activeRoute.bind(this);
   }
-  componentDidMount(){
-    this.props.getProfile(this.props.auth.user.phone)
-    console.log("IN SIDE SIDEBAR")
+  componentWillMount(){
+    console.log("NAME",localStorage.f)
+    console.log("NAME",localStorage.l)
+    console.log("NAME",localStorage.pic)
+    this.setState({
+      name: localStorage.f+" "+localStorage.l,
+      pic: localStorage.pic
+    })
   }
-  // verifies if routeName is the one active (in browser input)
+  
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
   }
@@ -77,11 +90,7 @@ class Sidebar extends React.Component {
     this.setState(st);
   }
 
-  // extractUser = (arr) => {
-  //   this.setState({})
-  // }
   render() {
-    console.log("SIDEBAR", this.props.auth.user)
     const {
       classes,
       color,
@@ -95,6 +104,7 @@ class Sidebar extends React.Component {
     } = this.props;
 
     // this.extractUser(user)
+    console.log("SIDE BAR DASHBOARD", this.props.dashboard.dashboard)
     const itemText =
       classes.itemText +
       " " +
@@ -139,33 +149,15 @@ class Sidebar extends React.Component {
         [classes.photoRTL]: rtlActive
       });
 
-      
-    // var user = (
-    //   <div className={userWrapperClass}>
-    //     <div className={photo}>
-    //       <img src={user.avatar} className={classes.avatarImg} alt="..." />
-    //     </div>
-    //     <List className={classes.list}>
-    //       <ListItem className={classes.item + " " + classes.userItem}>
-    //           <ListItemText
-    //             primary={user.name + '' + user.otherNames}
-    //             disableTypography={true}
-    //             className={itemText + " " + classes.userItemText}
-    //           />
-    //       </ListItem>
-    //     </List>
-    //   </div>
-    // );
-
     const user =  (
       <div className={userWrapperClass} >
       <div className={photo}>
-        <img src="{}" className={classes.avatarImg} alt="..." />
+        <img src={this.state.pic} className={classes.avatarImg} alt="..." />
       </div>
       <List className={classes.list}>
         <ListItem className={classes.item + " " + classes.userItem}>
             <ListItemText
-              primary={this.props.auth.user.email}
+              primary={isEmpty(this.state.name)?" ":this.state.name}
               disableTypography={true}
               className={itemText + " " + classes.userItemText}
             />

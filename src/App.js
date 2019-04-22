@@ -80,7 +80,6 @@ class App extends Component {
                     <Route 
                         exact 
                         path="/contactus" 
-                        component={Contactus}
                     />
                     <Route 
                         exact 
