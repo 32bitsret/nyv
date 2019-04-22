@@ -21,9 +21,6 @@ export const registerUser = (userData, history) => dispatch => {
     console.log(res)
     history.push("/login")
   }).catch(err => {
-    // dispatch({
-    
-    // })
     console.log("LOGIN ERROR",err.response.data.message)
   })
 };
@@ -48,8 +45,6 @@ export const loginUser = (user) => dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data.payload
     })
-    // dispatch(getProfile(user.phone))
-    // history.push("/dashboard")
   }).catch(err => {
     console.log("LOGIN ERROR",err)
     dispatch({
@@ -58,8 +53,6 @@ export const loginUser = (user) => dispatch => {
     })
   })
   };
-
-
 
 // Set logged in user
 export const setCurrentUser = decoded => {

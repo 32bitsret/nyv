@@ -1,31 +1,22 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Radio from "@material-ui/core/Radio";
 import Checkbox from "@material-ui/core/Checkbox";
 import Email from "@material-ui/icons/Email";
 import Face from "@material-ui/icons/Face";
-import MailOutline from "@material-ui/icons/MailOutline";
 import Check from "@material-ui/icons/Check";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Clear from "@material-ui/icons/Clear";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
-import Contacts from "@material-ui/icons/Contacts";
 import Phone from "@material-ui/icons/Phone";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardText from "components/Card/CardText.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
@@ -35,15 +26,13 @@ import {
   updateBasicInfo,
   fetchUser
 } from "../../redux/actions/createActions"
-import SelectListGroup from "../components/Selector"
 import {
   verifyEmail, 
   verifyLength, 
   verifyNumber, 
-  verifyUrl, 
-  compare}
-   from "../../utils/validation"
-   import { withRouter } from "react-router-dom"
+  compare
+}from "../../utils/validation"
+import { withRouter } from "react-router-dom"
 
 class Step1 extends React.Component {
   constructor(props) {

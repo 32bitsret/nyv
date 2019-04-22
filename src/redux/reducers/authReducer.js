@@ -1,6 +1,5 @@
 import isEmpty from  '../../utils/isEmpty'
 import { 
-  SET_CURRENT_USER,
   TEST_REGISTER, 
   LOGIN_SUCCESS, 
   LOGOUT,

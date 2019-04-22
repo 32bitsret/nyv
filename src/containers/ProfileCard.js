@@ -1,20 +1,13 @@
 import React from "react";
-
-// @material-ui/icons
-import Face from "@material-ui/icons/Face";
 import RecordVoiceOver from "@material-ui/icons/RecordVoiceOver";
 import Email from "@material-ui/icons/Email";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import PictureUpload from "components/CustomUpload/PictureUpload.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-import FormLabel from "@material-ui/core/FormLabel";
+
 const style = {
   infoText: {
     fontWeight: "300",
@@ -44,16 +37,7 @@ class ProfileCard extends React.Component {
   sendState() {
     return this.state;
   }
-  // function that returns true if value is email, false otherwise
-  // verifyEmail(value) {
-  //   var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   if (emailRex.test(value)) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-  // function that verifies if a string has a given length or not
-  verifyLength(value, length) {
+ verifyLength(value, length) {
     if (value.length >= length) {
       return true;
     }

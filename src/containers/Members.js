@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import PerfectScrollbar from "perfect-scrollbar";
