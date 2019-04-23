@@ -113,38 +113,50 @@ class Dashboard extends React.Component {
         [classes.mainPanelWithPerfectScrollbar]:
           navigator.platform.indexOf("Win") > -1
       });
-    
+   
+      
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
     const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={User} value={this.state.user}/>)
-    return (
+     
+    const main = false ? ( 
       <div className={classes.wrapper}>
-        <Sidebar
-          routes={route}
-          logoText={"PYC"}
-          logo={logo}
-          // image={image}
-          handleDrawerToggle={this.handleDrawerToggle}
-          open={this.state.mobileOpen}
-          color="green"
-          bgColor="black"
+  
+      </div>
+    ) : (
+      <div className={classes.wrapper}>
+      <Sidebar
+        routes={route}
+        logoText={"PYC"}
+        logo={logo}
+        // image={image}
+        handleDrawerToggle={this.handleDrawerToggle}
+        open={this.state.mobileOpen}
+        color="green"
+        bgColor="black"
+        miniActive={this.state.miniActive}
+        userData={User}
+        {...rest}
+      />
+      <div className={mainPanel} ref="mainPanel">
+        <Header
+          sidebarMinimize={this.sidebarMinimize.bind(this)}
           miniActive={this.state.miniActive}
-          userData={User}
+          routes={route}
+          handleDrawerToggle={this.handleDrawerToggle}
           {...rest}
         />
-        <div className={mainPanel} ref="mainPanel">
-          <Header
-            sidebarMinimize={this.sidebarMinimize.bind(this)}
-            miniActive={this.state.miniActive}
-            routes={route}
-            handleDrawerToggle={this.handleDrawerToggle}
-            {...rest}
-          />
-        <div className={classes.content}>
-            <div className={classes.container}>
-              {display}
-            </div>
-        </div>
-        </div>
+      <div className={classes.content}>
+          <div className={classes.container}>
+            {display}
+          </div>
+      </div>
+      </div>
+    </div>
+    )
+
+  return (
+      <div>
+        {main}
       </div>
     );
   }

@@ -1,13 +1,15 @@
 import isEmpty from  '../../utils/isEmpty'
 import {GET_PROFILE,
    GET_PROFILE_ERROR,
-  GET_ALLL_PROFILE
+  GET_ALLL_PROFILE,
+  GET_RID_OF_WELCOME
   } from "../Constants"
 
 const initialState = {
     dashboard :{},
     isloading: true,
-    allMembers: []
+    allMembers: [],
+    isWelcome: true
 };
 
 export default (state = initialState, action) => {
@@ -24,6 +26,11 @@ export default (state = initialState, action) => {
         dashboard: action.payload,
         isloading: isEmpty(action.payload)
       } 
+    case GET_RID_OF_WELCOME:
+      return{
+        ...state,
+        
+      }
     default:
       return state;
   }

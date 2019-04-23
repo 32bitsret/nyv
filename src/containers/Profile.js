@@ -187,39 +187,39 @@ class UserProfile extends Component {
   render(){
     const { classes } = this.props;
     const optionsGender = [
-      { label: 'Male', value: 'Male' },
-      { label: 'Female', value: 'Female' },
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' },
     ];
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'No' },
-      { label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'no' },
+      { label: 'Yes', value: 'yes' },
     ];
 
     const optionsMaritalStatus = [
-      { label: 'Single', value: 'Single' },
-      { label: 'Married', value: 'Married' },
-      { label: 'Divorced', value: 'Divorced' },
-      { label: 'Widowed', value: 'Widowed' },
+      { label: 'Single', value: 'single' },
+      { label: 'Married', value: 'married' },
+      { label: 'Divorced', value: 'divorced' },
+      { label: 'Widowed', value: 'widowed' },
     ];
 
     const optionsDisability = [
-      { label: 'No', value: 'No' },
-      { label: 'Yes', value: 'Yes' }
+      { label: 'No', value: 'no' },
+      { label: 'Yes', value: 'yes' }
     ];
 
     const optionsLGA = [
       { label: '', value: '' },
-      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
-      { label: 'Bassa', value: 'Bassa' },
-      { label: 'Bokkos', value: 'Bokkos' },
-      { label: 'Jos East', value: 'Jos East' },
-      { label: 'Jos North', value: 'Jos North' },
-      { label: 'Jos South', value: 'Jos South' },
-      { label: 'Kanam', value: 'Kanam' },
-      { label: 'Kanke', value: 'Kanke' },
-      { label: 'Langtang North', value: 'Langtang North' },
+      { label: 'Barkin Ladi', value: 'barkin ladi' },
+      { label: 'Bassa', value: 'bassa' },
+      { label: 'Bokkos', value: 'bokkos' },
+      { label: 'Jos East', value: 'jos-east' },
+      { label: 'Jos North', value: 'jos-north' },
+      { label: 'Jos South', value: 'jos-south' },
+      { label: 'Kanam', value: 'kanam' },
+      { label: 'Kanke', value: 'kanke' },
+      { label: 'Langtang North', value: 'langtang North' },
       { label: 'Langtang South', value: 'Langtang South' },
       { label: 'Mangu', value: 'Mangu' },
       { label: 'Mikang', value: 'Mikang' },
@@ -306,7 +306,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{this.state.user.firstname+ " " +this.state.user.middlename+ " "+this.state.user.lastname}</h2>
+                  <h2 className="display-4 text-center">{this.state.user.firstname+ " "+this.state.user.lastname}</h2>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>

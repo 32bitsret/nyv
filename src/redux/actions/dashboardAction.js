@@ -1,4 +1,9 @@
-import {GET_PROFILE, GET_PROFILE_ERROR, GET_ALLL_PROFILE} from "../Constants"
+import {
+    GET_PROFILE, 
+    GET_PROFILE_ERROR, 
+    GET_ALLL_PROFILE,
+    GET_RID_OF_WELCOME
+} from "../Constants"
 import { 
     profileURL,
     getAllProfileURL
@@ -49,6 +54,9 @@ export const getProfileInit = (phone) => dispatch => {
             localStorage.setItem("pic",res.data.data.photo)
         }
         window.location.reload()
+        dispatch({
+            type:""
+        })
     })
     .catch(err => {
         console.log(err)

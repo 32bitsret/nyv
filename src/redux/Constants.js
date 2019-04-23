@@ -17,6 +17,7 @@ export const LOGOUT = "LOGOUT"
 export const GET_SUMMARY = "GET_SUMMARY"
 export const GET_SUMMARY_ERROR = "GET_SUMMARY_ERROR"
 export const GET_PROFILE = "GET_PROFILE"
+export const GET_RID_OF_WELCOME = "GET_RID_OF_WELCOME"
 //header
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGOUT_USER_ERROR = "LOGOUT_USER_ERROR"

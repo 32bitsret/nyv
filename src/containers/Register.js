@@ -142,18 +142,18 @@ class LoginPage extends React.Component {
     if(this.state.middlenameState === ""){
       this.setState({middlenameState:"error"})
     }
-    if(this.state.emailState === ""){
-      this.setState({emailState:"error"})
-    }
+    // if(this.state.emailState === ""){
+    //   this.setState({emailState:"error"})
+    // }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
     if(this.state.phoneState === ""){
       this.setState({phoneState: "error"})
     }
-    if(this.state.lgaState === ""){
-      this.setState({lgaState: "error"})
-    }
+    // if(this.state.lgaState === ""){
+    //   this.setState({lgaState: "error"})
+    // }
     if(this.state.genderState === ""){
       this.setState({genderState:"error"})
     }
@@ -161,17 +161,16 @@ class LoginPage extends React.Component {
       this.setState({confirm_passwordState: "error"})
     }
     else{
-        const data = {
-        firstname: this.state.firstname,
+      const data = {
+        firstname: this.state.firstname+" "+this.state.middlename,
         email: this.state.email,
         password:this.state.password,
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
         gender: this.state.gender,
-        lga: this.state.lga,
-        middlename: this.state.middlename
+        // lga: this.state.lga, 
       }
-      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
         this.props.registerUser(data, this.props.history)
       }
@@ -280,7 +279,7 @@ class LoginPage extends React.Component {
                   }}
                 />
                  <GridContainer justify="center">
-                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                      {/* <GridItem xs={12} sm={6} md={5} lg={6}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -469,9 +468,9 @@ class LoginPage extends React.Component {
                             </MenuItem>
                           </Select>
                         </FormControl>
-                      </GridItem>
+                      </GridItem> */}
                               {"  "}
-                      <GridItem xs={12} sm={6} md={5} lg={6}>
+                      <GridItem xs={12} sm={6} md={5} lg={12}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -508,7 +507,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="Male"
+                              value="male"
                             >
                               Male
                             </MenuItem>
@@ -517,7 +516,7 @@ class LoginPage extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="Female"
+                              value="female"
                             >
                               Female
                             </MenuItem>
