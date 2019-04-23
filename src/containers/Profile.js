@@ -150,7 +150,7 @@ class UserProfile extends Component {
     })
   }
 //============================END OF MODAL OPS======================================
-  
+//======================START OF SUBMISSION ROUTINES=============================
   onSubmitBasicInfo = e => {
     e.preventDefault()
     let query = {
@@ -171,26 +171,33 @@ class UserProfile extends Component {
     })
   }
 
+  onSubmitContactInfo = e => {
+    e.preventDefault()
+    let query = {
+      _id: this.props.dashboard.dashboard._id
+    }
+    let update = {
+      //update   
+    }
+    let obj = {query, update}
+    console.log("BIG OBJECT", obj)
+    this.props.updateBasicInfo({query,update})
+  }
+//============================END OF SUBMISSION ROUTINES===========================
   render(){
     const { classes } = this.props;
-    console.log("CLASSESS", this.props.dashboard.dashboard._id)
-    console.log("DASHBOARD", this.state)
-    console.log("CREATED USER", this.props.created)
-    console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
-      { label: 'None', value: 'None' },
       { label: 'Male', value: 'Male' },
       { label: 'Female', value: 'Female' },
     ];
 
     const optionsEmployed = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'No', value: 'No' },
       { label: 'Yes', value: 'Yes' },
     ];
 
     const optionsMaritalStatus = [
-      { label: 'None', value: 'None' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -198,13 +205,12 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'None', value: 'None' },
       { label: 'No', value: 'No' },
       { label: 'Yes', value: 'Yes' }
     ];
 
     const optionsLGA = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -225,7 +231,6 @@ class UserProfile extends Component {
     ];
 
     const optionsYearofGrad = [
-      { label: 'None', value: 'None' },
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
       { label: '1993', value: '1993' },
@@ -258,7 +263,6 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'None', value: 'None' },
       { label: 'School Cert', value: 'School Cert' },
       { label: 'Olevel', value: 'Olevel' },
       { label: 'ND', value: 'ND' },
@@ -641,7 +645,7 @@ class UserProfile extends Component {
                     <strong>Description:</strong>Personal CV
                   </p>
                   <p>
-                    <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
+                    <strong>Email Address: </strong>{isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
                   <p>
                     <strong>Document Name: </strong> CV
@@ -652,42 +656,40 @@ class UserProfile extends Component {
                     Edit
                   </Button> 
                   <Dialog
-                        open={this.state.openUpload}
+                    open={this.state.openUpload}
 
-                        onClose={this.handleClose}
-                        aria-labelledby="form-dialog-title"
-                      >
-                        <DialogTitle id="form-dialog-title">UPLOAD DOCUMENT</DialogTitle>
-                        <DialogContent>
-                          <DialogContentText>
-                            change you Uploaded Document here
-                          </DialogContentText>
-                          <br/>
-                            <div className="form-group mb-8">
-                            <label 
-                              htmlFor="inputPassword" 
-                              className="col-md-6 col-form-label">
-                              Resume
-                            </label>
-                            <input 
-                              type="file" 
-                              className="form-control form-control-lg" 
-                              placeholder="resume" 
-                              name="resume" 
-                              // value={this.state.email} 
-                              // onChange={this.onchange}
-                            />
-                          </div>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.onClickUpload} color="danger">
-                            Cancel
-                          </Button>
-                          <Button onClick={this.handleClose} color="success">
-                            Update
-                          </Button>
-                        </DialogActions>
-                      </Dialog>  
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                  >
+                    <DialogTitle id="form-dialog-title">UPLOAD DOCUMENT</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        change you Uploaded Document here
+                      </DialogContentText>
+                      <br/>
+                        <div className="form-group mb-8">
+                        <label 
+                          htmlFor="inputPassword" 
+                          className="col-md-6 col-form-label">
+                          Resume
+                        </label>
+                        <input 
+                          type="file" 
+                          className="form-control form-control-lg" 
+                          placeholder="resume" 
+                          name="resume" 
+                        />
+                      </div>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={this.onClickUpload} color="danger">
+                        Cancel
+                      </Button>
+                      <Button onClick={this.handleClose} color="success">
+                        Update
+                      </Button>
+                    </DialogActions>
+                  </Dialog>  
                 </li>
               </ul>
             </div>

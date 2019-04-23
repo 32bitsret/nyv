@@ -42,7 +42,6 @@ class CreatedUser extends Component {
     disability:"",
     address:"",
     resume:"",
-    // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
    
     id:"",
@@ -166,24 +165,20 @@ class CreatedUser extends Component {
 
   render(){
     const { classes } = this.props;
-    // console.log("CLASSESS", this.props.dashboard.dashboard._id)
-    // console.log("DASHBOARD", this.state)
-    // console.log("CREATED USER", this.props.created)
-    // console.log("CHECKING", isEmpty(this.state.user.photo))
     const optionsGender = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'Male', value: 'Male' },
       { label: 'Female', value: 'Female' },
     ];
 
     const optionsEmployed = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'No', value: 'No' },
       { label: 'Yes', value: 'Yes' },
     ];
 
     const optionsMaritalStatus = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -191,13 +186,13 @@ class CreatedUser extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'No', value: 'No' },
       { label: 'Yes', value: 'Yes' }
     ];
 
     const optionsLGA = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -218,7 +213,7 @@ class CreatedUser extends Component {
     ];
 
     const optionsYearofGrad = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
       { label: '1993', value: '1993' },
@@ -251,7 +246,7 @@ class CreatedUser extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'None', value: 'None' },
+      { label: '', value: '' },
       { label: 'School Cert', value: 'School Cert' },
       { label: 'Olevel', value: 'Olevel' },
       { label: 'ND', value: 'ND' },

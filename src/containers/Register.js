@@ -14,7 +14,6 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import logoo from '../assets/img/logo.jpg'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
@@ -22,14 +21,13 @@ import {
   verifyEmail, 
   verifyLength, 
   verifyNumber, 
-  verifyUrl, 
-  compare}
-   from "../utils/validation"
-   import FormControl from "@material-ui/core/FormControl";
-   import InputLabel from "@material-ui/core/InputLabel";
-   import Select from "@material-ui/core/Select";
-   import MenuItem from "@material-ui/core/MenuItem";
-   import Phone from "@material-ui/icons/Phone";
+  compare
+}from "../utils/validation"
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Phone from "@material-ui/icons/Phone";
 
 
 class LoginPage extends React.Component {
@@ -179,10 +177,9 @@ class LoginPage extends React.Component {
       }
     }
   }
+
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props)
-    console.log("NAME",this.state.lga)
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
@@ -190,10 +187,6 @@ class LoginPage extends React.Component {
           <GridItem xs={12} sm={6} md={4}>
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
-                {/* <CardHeader
-                  className={`${classes.cardHeader} ${classes.textCenter}`}
-                  color="rose"
-                > */}
                 <div className={"center-style"}>
                 <a href="/">
                   <img
@@ -207,7 +200,6 @@ class LoginPage extends React.Component {
                   <h4 className={classes.cardTitle}>Sign Up</h4>
                 </a>
                 </div>
-                {/* </CardHeader> */}
                 <CardBody>
                 <CustomInput
                   success={this.state.firstnameState === "success"}
@@ -278,6 +270,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type: "email",
                     name: "email",
+                    value:this.state.email,
                     onChange: e => this.onChange(e, "email", "email"),
                     endAdornment: (
                       <InputAdornment position="end">
@@ -544,6 +537,7 @@ class LoginPage extends React.Component {
                   inputProps={{
                     type:"number",
                     name: "phone",
+                    value:this.state.phone,
                     onChange: (e)=> this.onChange(e, "phone", "number" ),
                     endAdornment: (
                       <InputAdornment position="end">
@@ -563,6 +557,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "password",
+                      value:this.state.password,
                       onChange: e => this.onChange(e, "password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">
@@ -584,6 +579,7 @@ class LoginPage extends React.Component {
                     inputProps={{
                       type:"password",
                       name: "confirm_password",
+                      value:this.state.confirm_password,
                       onChange: e => this.onChange(e, "confirm_password", "confirm_password", "password"),
                       endAdornment: (
                         <InputAdornment position="end">

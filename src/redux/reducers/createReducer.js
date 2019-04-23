@@ -1,13 +1,12 @@
 import isEmpty from  '../../utils/isEmpty'
 import {
     CREATE_USER_BY_ADMIN, 
-    DONE_STEP_ONE,
-    DONE_STEP_THREE,
-    DONE_STEP_TWO,
+    DONE_CREATING,
     ERROR,
     FETCH_USER,
     FETCHING_USER,
-    DONE_UPDATING
+    DONE_UPDATING,
+    CREATING_PROFILE
 } from "../Constants"
 
 const initialState = {
@@ -15,22 +14,25 @@ const initialState = {
     userExist:false,
     error:{},
     isloading: false,
-    user:{}
+    user:{},
+    createdUser:false,
+    creatingProfile:false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_USER_BY_ADMIN:
+    case CREATING_PROFILE:
         return {
             ...state,
-            isloading: true
+            creatingProfile: true
         }
-    case DONE_STEP_ONE:
+    case DONE_CREATING:
         return {
             ...state,
             isloading: false,
             user: action.payload,
-            userExist: true
+            userExist: true,
+            creatingProfile:false
         }
     case FETCHING_USER:
         return {

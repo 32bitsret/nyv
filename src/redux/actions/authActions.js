@@ -9,8 +9,8 @@ import { TEST_REGISTER,
   LOGOUT,
   ERROR_LOGIN
   } from '../Constants';
+import {getProfileInit} from "./dashboardAction"
 
-import {getProfile} from "./dashboardAction"
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios({
@@ -21,9 +21,6 @@ export const registerUser = (userData, history) => dispatch => {
     console.log(res)
     history.push("/login")
   }).catch(err => {
-    // dispatch({
-    
-    // })
     console.log("LOGIN ERROR",err.response.data.message)
   })
 };
@@ -40,25 +37,22 @@ export const loginUser = (user) => dispatch => {
 
     const {token} = res.data
     const user = jwt_decode(token)
-    console.log("USER", user)
     localStorage.setItem("pyc_token", token)
+    dispatch(getProfileInit(user.phone)) 
+    console.log("USER", user)
     console.log("TOKEN", token)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data.payload
     })
-    // dispatch(getProfile(user.phone))
-    // history.push("/dashboard")
   }).catch(err => {
-    console.log("LOGIN ERROR",err.response)
+    console.log("LOGIN ERROR",err)
     dispatch({
       type: ERROR_LOGIN,
       payload: err.response
     })
   })
-};
-
-
+  };
 
 // Set logged in user
 export const setCurrentUser = decoded => {
@@ -70,7 +64,10 @@ export const setCurrentUser = decoded => {
 
 // Log user out
 export const logoutUser = () => dispatch => {
-  localStorage.removeItem('pyc_token');
+  localStorage.removeItem('pyc_token')
+  localStorage.removeItem("f")
+  localStorage.removeItem("l")
+  localStorage.removeItem("pic")
    dispatch({
      type: LOGOUT,
      payload: {}

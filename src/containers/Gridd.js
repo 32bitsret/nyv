@@ -135,10 +135,10 @@ class Gridd extends Component {
         "Females",
         "Disabled",
         "Not disabled",
-        "divorced",
-        "single",
+        "Divorced",
+        "Single",
         "Widowed",
-        "married",
+        "Married",
       ],
       series: [[
         members.length, 
@@ -285,8 +285,8 @@ class Gridd extends Component {
     </GridContainer>
     ) :
       ( 
-        <div>
-        <GridContainer>
+      <div>
+      <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <Card chart >
             <CardHeader color="success" className={classes.cardHeaderHover}>
@@ -342,7 +342,7 @@ class Gridd extends Component {
       </GridContainer>
 
       <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card chart >
             <CardHeader color="success" className={classes.cardHeaderHover}>
               <ChartistGraph

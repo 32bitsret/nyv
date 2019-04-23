@@ -6,14 +6,9 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import ChartistGraph from "react-chartist";
 import CardFooter from "components/Card/CardFooter.jsx";
-import lgaChartData from "../variables/lgaChartData"
-import moreMembers from "../variables/moreMembers"
-import isEmpty from "../utils/isEmpty"
 import {
   extractEducation, 
   extractLGA, 

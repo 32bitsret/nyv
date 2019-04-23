@@ -1,14 +1,12 @@
 import isEmpty from  '../../utils/isEmpty'
 import {
-    CREATE_USER_BY_ADMIN, 
-    DONE_STEP_ONE,
-    DONE_STEP_THREE,
-    DONE_STEP_TWO,
+    DONE_CREATING,
     ERROR,
     FETCH_USER,
     FETCHING_USER,
     DONE_UPDATING,
-    GET_PROFILE
+    GET_PROFILE,
+    CREATING_PROFILE
 } from "../Constants"
 import axios from "axios"
 import {
@@ -19,7 +17,7 @@ import {
 
 export const createUserByAdmin = (data) => dispatch => {
      dispatch({
-        type:CREATE_USER_BY_ADMIN,
+        type:CREATING_PROFILE,
     })
     axios({
         method:"POST",
@@ -28,7 +26,7 @@ export const createUserByAdmin = (data) => dispatch => {
     })
     .then(res => {
         dispatch({
-            type: DONE_STEP_ONE,
+            type: DONE_CREATING,
             payload: res.data.result
         })
     })

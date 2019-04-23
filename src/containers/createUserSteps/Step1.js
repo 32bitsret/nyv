@@ -1,31 +1,22 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Radio from "@material-ui/core/Radio";
 import Checkbox from "@material-ui/core/Checkbox";
 import Email from "@material-ui/icons/Email";
 import Face from "@material-ui/icons/Face";
-import MailOutline from "@material-ui/icons/MailOutline";
 import Check from "@material-ui/icons/Check";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Clear from "@material-ui/icons/Clear";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
-import Contacts from "@material-ui/icons/Contacts";
 import Phone from "@material-ui/icons/Phone";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardText from "components/Card/CardText.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
@@ -35,15 +26,13 @@ import {
   updateBasicInfo,
   fetchUser
 } from "../../redux/actions/createActions"
-import SelectListGroup from "../components/Selector"
 import {
   verifyEmail, 
   verifyLength, 
   verifyNumber, 
-  verifyUrl, 
-  compare}
-   from "../../utils/validation"
-   import { withRouter } from "react-router-dom"
+  compare
+}from "../../utils/validation"
+import { withRouter } from "react-router-dom"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -59,7 +48,7 @@ class Step1 extends React.Component {
       email:"",
       phone:"",
       password: "",
-      confirmpassword:"",
+      confirm_password:"",
       lga:"",
       gender:"",
       role:"user",
@@ -70,7 +59,7 @@ class Step1 extends React.Component {
       emailState:"",
       phoneState:"",
       passwordState:"",
-      confirmpasswordState:"",
+      confirm_passwordState:"",
       genderState:"",
       lgaState:"",
 
@@ -82,37 +71,14 @@ class Step1 extends React.Component {
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
 
-  componentWillReceiveProps(nextProps){
-    const user = nextProps.user
-    console.log(nextProps.user)
-      // this.setState({
-      //   firstname: nextProps.user.firstname,
-      //   lastname: user.lastname,
-      //   phone: user.phone,
-      //   email: user.email,
-      //   middlename: user.middlename
-      // })
-  }
-
-  componentDidMount(){
-    console.log("COMPONENT HAS MOUNTED", this.props)
-    // const user =  this.props.user
-    // this.setState({
-    //   middlename: user.middlename,
-    //   firstname: user.firstname,
-    //   lastname: user.lastname,
-    //   phone: user.phone,
-    //   email: user.email,
-    // })
-  }
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   handleChangeEnabled(event) {
     this.setState({ selectedEnabled: event.target.value });
   }
-  handleToggle() {
+  
+  handleToggle = () => {
     if(this.state.role === "user"){
       this.setState({
         role: "admin"
@@ -166,45 +132,79 @@ class Step1 extends React.Component {
           this.setState({[stateName+"State"]: "error"})
         }
         break;
+      case "confirm_password":
+        if(compare(e.target.value,this.state[stateNameEquivalence])){
+          this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
+        }
+        break;
+      case "lga":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
+      case "gender":
+        if(verifyLength(e.target.value, 1)){
+          this.setState({[stateName+"State"]: "success"})
+        }
     }
   }
 
+  selectChange = e => {
+    e.preventDefault()
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
   submit = (e) => {
-    e.preventDefault()
-    const data = {
-      email: this.state.email,
-      password:this.state.password,
-      firstname:this.state.firstname+" "+this.state.middlename,
-      lastname:this.state.lastname,
-      phone: Number(this.state.phone),
-      role:this.state.role
+    e.preventDefault();
+    if(this.state.firstnameState === ""){
+      this.setState({firstnameState:"error"})
     }
-    this.props.createUserByAdmin(data)
-    console.log("SUBMISSION", data)
-  }
-
-  update = (e) => {
-    e.preventDefault()
-    let query = {
-      _id: this.props.createUser.user._id
+    if(this.state.lastnameState === ""){
+      this.setState({lastnameState: "error"})
     }
-    let update = {
-      email: this.state.email,
-      password: this.state.password,
-      firstname: this.state.firstname,
-      middlename: this.state.middlename,
-      lastname: this.state.lastname,
-      role: this.state.role
+    if(this.state.middlenameState === ""){
+      this.setState({middlenameState:"error"})
     }
-    const data = {
-      query: query,
-      update: update
+    if(this.state.emailState === ""){
+      this.setState({emailState:"error"})
     }
-    this.props.updateBasicInfo(data)  
+    if(this.state.passwordState === ""){
+      this.setState({passwordState: "error"})
+    }
+    if(this.state.phoneState === ""){
+      this.setState({phoneState: "error"})
+    }
+    if(this.state.lgaState === ""){
+      this.setState({lgaState: "error"})
+    }
+    if(this.state.genderState === ""){
+      this.setState({genderState:"error"})
+    }
+    if(this.state.confirm_passwordState === ""){
+      this.setState({confirm_passwordState: "error"})
+    }
+    else{
+        const data = {
+          firstname: this.state.firstname,
+          email: this.state.email,
+          password:this.state.password,
+          phone: Number(this.state.phone),
+          lastname:  this.state.lastname,
+          gender: this.state.gender,
+          lga: this.state.lga,
+          middlename: this.state.middlename,
+          role:this.state.role
+        }
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+        console.log("REGISTRATION::::::",data)
+        // this.props.createUserByAdmin(data)
+      }
+    }
   }
 
   editExistingUser = (e) => {
+
     e.preventDefault();
     let newNumber = Number(this.state.searchValue.slice(1))
     // localStorage.setItem("User", newNumber.toString())
@@ -215,55 +215,7 @@ class Step1 extends React.Component {
   render() {
     const { classes } = this.props;
    
-    const optionsGender = [
-      { label: 'None', value: 'None' },
-      { label: 'Male', value: 'Male' },
-      { label: 'Female', value: 'Female' },
-    ];
-
-
-    const optionsLGA = [
-      { label: 'None', value: 'None' },
-      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
-      { label: 'Bassa', value: 'Bassa' },
-      { label: 'Bokkos', value: 'Bokkos' },
-      { label: 'Jos East', value: 'Jos East' },
-      { label: 'Jos North', value: 'Jos North' },
-      { label: 'Jos South', value: 'Jos South' },
-      { label: 'Kanam', value: 'Kanam' },
-      { label: 'Kanke', value: 'Kanke' },
-      { label: 'Langtang North', value: 'Langtang North' },
-      { label: 'Langtang South', value: 'Langtang South' },
-      { label: 'Mangu', value: 'Mangu' },
-      { label: 'Mikang', value: 'Mikang' },
-      { label: 'Pankshin', value: 'Pankshin' },
-      { label: "Qua'an Pan", value: "Qua'an Pan" },
-      { label: 'Riyom', value: 'Riyom' },
-      { label: 'Shendam', value: 'Shendam' },
-      { label: 'Wase', value: 'Wase' },
-    ];
-
-
-    const butt = this.props.createUser.userExist ? 
-      (
-        <Button
-          color="success"
-          onClick={this.update}
-        >
-          Update Profile
-        </Button>
-      )
-      :
-      (
-        <Button
-          color="success"
-          onClick={this.submit}
-        >
-          Create Profile
-        </Button>
-      )
-
-    const display = false ?
+    const display = this.props.createUser.creatingProfile ?
         (
         <div>
           <GridContainer justify="center">
@@ -294,14 +246,12 @@ class Step1 extends React.Component {
               </div>
               <CardBody>
                 <form>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        First Name
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={this.state.firstnameState === "success"}
+                        error={this.state.firstnameState === "error"}
+                        labelText="First Name"
                         id="firstname"
                         formControlProps={{
                           fullWidth: true
@@ -310,7 +260,7 @@ class Step1 extends React.Component {
                           type: "text",
                           name:"firstname",
                           value:this.state.firstname,
-                          onChange:this.handleChange,
+                          onChange: e => this.onChange(e,"firstname","minValue"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputAdornmentIcon} />
@@ -321,16 +271,12 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Middle Name
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        success={false}
-                        error={false}
+                        success={this.state.middlenameState === "success"}
+                        error={this.state.middlenameState === "error"}
+                        labelText="Middle Name"
                         id="middlename"
                         formControlProps={{
                           fullWidth: true
@@ -339,7 +285,7 @@ class Step1 extends React.Component {
                           type: "text",
                           name:"middlename",
                           value:this.state.middlename,
-                          onChange:this.handleChange,
+                          onChange: (e) => this.onChange(e, "middlename", "minValue"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputAdornmentIcon} />
@@ -350,16 +296,12 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Last Name
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        success={false}
-                        error={false}
+                        success={this.state.lastnameState === "success"}
+                        error={this.state.lastnameState === "error"}
+                        labelText="Last Name"
                         id="lastname"
                         formControlProps={{
                           fullWidth: true
@@ -368,7 +310,7 @@ class Step1 extends React.Component {
                           type: "text",
                           name:"lastname",
                           value:this.state.lastname,
-                          onChange:this.handleChange,
+                          onChange: (e) => this.onChange(e, "lastname", "minValue"),  
                           endAdornment: (
                             <InputAdornment position="end">
                               <Face className={classes.inputAdornmentIcon} />
@@ -379,16 +321,12 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Email
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        success={false}
-                        error={false}
+                        success={this.state.emailState === "success"}
+                        error={this.state.emailState === "error"}
+                        labelText="Email"
                         id="email-1"
                         formControlProps={{
                           fullWidth: true
@@ -397,7 +335,7 @@ class Step1 extends React.Component {
                           type: "email",
                           name:"email",
                           value:this.state.email,
-                          onChange:this.handleChange,
+                          onChange:e => this.onChange(e, "email", "email"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Email className={classes.inputAdornmentIcon} />
@@ -408,16 +346,12 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Phone Number
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
-                        success={false}
-                        error={false}
+                        success={this.state.phoneState === "success"}
+                        error={this.state.phoneState === "error"}
+                        labelText="Phone"
                         id="phone-1"
                         disable
                         formControlProps={{
@@ -427,7 +361,7 @@ class Step1 extends React.Component {
                           type: "number",
                           name:"phone",
                           value:this.state.phone,
-                          onChange: this.handleChange,
+                          onChange: (e)=> this.onChange(e, "phone", "number" ),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Phone/>
@@ -440,7 +374,7 @@ class Step1 extends React.Component {
                     </GridContainer>
                     <br/>
                     <GridContainer justify="center">
-                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                      <GridItem xs={12} sm={6} md={5} lg={4}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -452,17 +386,18 @@ class Step1 extends React.Component {
                             LGA
                           </InputLabel>
                           <Select
+                            error={this.state.lgaState === "error" ? true: false}
                             MenuProps={{
                               className: classes.selectMenu
                             }}
                             classes={{
                               select: classes.select
                             }}
-                            value={this.state.simpleSelect}
-                            onChange={this.handleChange}
+                            value={this.state.lga}
+                            onChange={e => this.onChange(e, "lga", "lga")}
                             inputProps={{
-                              name: "simpleSelect",
-                              id: "simple-select"
+                              name: "lga",
+                              id: "lga"
                             }}
                           >
                             <MenuItem
@@ -478,7 +413,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="2"
+                              value="Barkin Ladi"
                             >
                               Barkin Ladi
                             </MenuItem>
@@ -487,7 +422,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="3"
+                              value="Bassa"
                             >
                               Bassa
                             </MenuItem>
@@ -496,7 +431,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="4"
+                              value="Bokkos"
                             >
                               Bokkos
                             </MenuItem>
@@ -505,7 +440,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="5"
+                              value="Jos East"
                             >
                               Jos East
                             </MenuItem>
@@ -514,7 +449,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="6"
+                              value="Jos North"
                             >
                               Jos North
                             </MenuItem>
@@ -523,7 +458,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="7"
+                              value="Jos South"
                             >
                               Jos South
                             </MenuItem>
@@ -532,7 +467,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="8"
+                              value="Kanam"
                             >
                               Kanam
                             </MenuItem>
@@ -541,16 +476,16 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="9"
+                              value="Kanam"
                             >
-                              Kanke
+                              Kanam
                             </MenuItem>
                             <MenuItem
                               classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="10"
+                              value="Langtang North"
                             >
                               Langtang North
                             </MenuItem>
@@ -559,7 +494,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="11"
+                              value="Langtang South"
                             >
                               Langtang South
                             </MenuItem>
@@ -568,7 +503,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="12"
+                              value=" Mangu"
                             >
                               Mangu
                             </MenuItem>
@@ -577,7 +512,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="13"
+                              value=" Mikang"
                             >
                               Mikang
                             </MenuItem>
@@ -586,7 +521,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="14"
+                              value="Pankshin"
                             >
                               Pankshin
                             </MenuItem>
@@ -595,7 +530,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="15"
+                              value="Qua'an Pan"
                             >
                               Qua'an Pan
                             </MenuItem>
@@ -604,7 +539,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="16"
+                              value="Riyom"
                             >
                               Riyom
                             </MenuItem>
@@ -613,7 +548,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="17"
+                              value="Shendam"
                             >
                               Shendam
                             </MenuItem>
@@ -622,7 +557,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                               }}
-                              value="18"
+                              value="Wase"
                             >
                               Wase
                             </MenuItem>
@@ -630,7 +565,7 @@ class Step1 extends React.Component {
                         </FormControl>
                       </GridItem>
                               {"  "}
-                      <GridItem xs={12} sm={6} md={5} lg={3}>
+                      <GridItem xs={12} sm={6} md={5} lg={4}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -642,13 +577,14 @@ class Step1 extends React.Component {
                             Gender
                           </InputLabel>
                           <Select
-                            value={this.state.simpleSelect}
-                            onChange={this.handleMultiple}
+                            error={this.state.genderState === "error" ? true: false}
+                            value={this.state.gender}
+                            onChange={e => this.onChange(e,"gender","gender")}
                             MenuProps={{ className: classes.selectMenu }}
                             classes={{ select: classes.select }}
                             inputProps={{
-                              name: "multipleSelect",
-                              id: "multiple-select"
+                              name: "gender",
+                              id: "gender"
                             }}
                           >
                             <MenuItem
@@ -664,7 +600,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="2"
+                              value="Male"
                             >
                               Male
                             </MenuItem>
@@ -673,7 +609,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="3"
+                              value="Female"
                             >
                               Female
                             </MenuItem>
@@ -683,15 +619,13 @@ class Step1 extends React.Component {
 
                     </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Password
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={this.state.passwordState === "success"}
+                        error={this.state.passwordState === "error"}
                         id="password-1"
+                        labelText="Password"
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -699,7 +633,7 @@ class Step1 extends React.Component {
                           type: "password",
                           name: "password",
                           value: this.state.password,
-                          onChange: this.handleChange,
+                          onChange: e => this.onChange(e, "password", "password"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputAdornmentIcon}>
@@ -712,23 +646,21 @@ class Step1 extends React.Component {
                     </GridItem>
                   </GridContainer>
                   <br/>
-                  <GridContainer>
-                    <GridItem xs={12} sm={3}>
-                      <FormLabel className={classes.labelHorizontal}>
-                        Confirm Password
-                      </FormLabel>
-                    </GridItem>
+                  <GridContainer justify="center">
                     <GridItem xs={12} sm={8}>
                       <CustomInput
+                        success={this.state.confirm_passwordState === "success"}
+                        error={this.state.confirm_passwordState === "error"}
                         id="password-2"
+                        labelText="Confirm Password"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           type: "password",
-                          name:"confirmpassword",
-                          value: this.state.confirmpassword,
-                          onChange:this.handleChange,
+                          name:"confirm_password",
+                          value: this.state.confirm_password,
+                          onChange: e => this.onChange(e, "confirm_password", "confirm_password", "password"),
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputAdornmentIcon}>
@@ -775,7 +707,12 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={6} lg={4}>
                       <div className={classes.inlineChecks}>
-                          {butt}
+                        <Button
+                          color="success"
+                          onClick={this.submit}
+                        >
+                          Create Profile
+                        </Button>
                       </div>
                     </GridItem>
                   </GridContainer>
