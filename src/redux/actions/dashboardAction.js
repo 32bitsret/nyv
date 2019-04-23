@@ -13,7 +13,6 @@ import axios from "axios"
 import isEmpty from "../../utils/isEmpty"
 
 export const getProfile = (phone) => dispatch => {
-    // console.log("ACTION DASHBOARD", typeof(phone))
     dispatch({
         type:GET_RID_OF_WELCOME
     })
@@ -27,8 +26,6 @@ export const getProfile = (phone) => dispatch => {
             type: GET_PROFILE,
             payload: res.data.data
         })
-        console.log("PROFILE RETURNED", res.data.data)
-
     })
     .catch(err => {
         console.log(err)
@@ -44,11 +41,7 @@ export const getProfileInit = (phone) => dispatch => {
         url: profileURL,
         data: { phone}
     })
-    .then(res => {
-        dispatch({
-            type: GET_PROFILE,
-            payload: res.data.data
-        })
+    .then(res => {        
         console.log("PROFILE RETURNED", res.data.data)
         localStorage.setItem("f",res.data.data.firstname)
         localStorage.setItem("l",res.data.data.lastname)
@@ -57,6 +50,12 @@ export const getProfileInit = (phone) => dispatch => {
         }else{
             localStorage.setItem("pic",res.data.data.photo)
         }
+
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data.data
+        })
+
     })
     .catch(err => {
         console.log(err)

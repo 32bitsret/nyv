@@ -18,23 +18,7 @@ import { connect } from "react-redux"
 import {getProfile} from  "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty"
 import store from '../store'; 
-import {SET_SIDEBAR} from '../redux/Constants'
 import { profileURL } from "../api/apiURL";
-
-let name = ""
-let pic =""
-if(localStorage.f && localStorage.l && localStorage.pic){
-  name = localStorage.f+" "+localStorage.l
-  pic = localStorage.pic
-  let obj = {
-    name,
-    pic
-  }
-  store.dispatch({
-    type: SET_SIDEBAR,
-    payload: obj
-  })
-}
 
 var ps;
 class SidebarWrapper extends React.Component {

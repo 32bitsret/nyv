@@ -29,7 +29,7 @@ import Speech3 from './containers/pages/Speech3'
 import Speech4 from './containers/pages/Speech4'
 import Speech5 from './containers/pages/Speech5'
 import Speech6 from './containers/pages/Speech6'
-
+import {SET_SIDEBAR} from './redux/Constants'
 
 const hist = createBrowserHistory();
 let user = ""
@@ -49,6 +49,23 @@ if(localStorage.pyc_token){
     //   // Clear current Profile
       window.location.href = '/login';
     }
+}
+
+
+let name = ""
+let pic =""
+if(localStorage.f && localStorage.pic){
+  name = localStorage.f+" "+localStorage.l
+  pic = localStorage.pic
+  let obj = {
+    name,
+    pic
+  }
+  store.dispatch({
+    type: SET_SIDEBAR,
+    payload: obj
+  })
+//   window.location.reload()
 }
 
 class App extends Component {

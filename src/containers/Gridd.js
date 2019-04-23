@@ -2,6 +2,8 @@ import React ,{Component} from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from "react-redux"
+import Timeline from "@material-ui/icons/Timeline";
+import CardIcon from "components/Card/CardIcon.jsx";
 import {
   emailsSubscriptionChart,
 } from "variables/charts";
@@ -21,13 +23,16 @@ import {
   extractEducation,
   extractDisability,
   extractMaritalStatus,
-  extractGender
+  extractGender,
+  extractEmployment
 } from "../utils/Gridd/Extraction"
+import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
 
 
 let general
 let gender
 let education
+let employment
 
 class Gridd extends Component {
   constructor(props){
@@ -73,14 +78,69 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(moreMembers, "CERT"), 
-        extractEducation(moreMembers, "Olevel"), 
-        extractEducation(moreMembers, "ND"), 
-        extractEducation(moreMembers, "HND"), 
-        extractEducation(moreMembers, "NCE"),
-        extractEducation(moreMembers, "Degree"), 
-        extractEducation(moreMembers, "MSC"), 
-        extractEducation(moreMembers, "PHD")
+        extractEducation(moreMembers, "cert"), 
+        extractEducation(moreMembers, "olevel"), 
+        extractEducation(moreMembers, "nd"), 
+        extractEducation(moreMembers, "hnd"), 
+        extractEducation(moreMembers, "nce"),
+        extractEducation(moreMembers, "degree"), 
+        extractEducation(moreMembers, "msc"), 
+        extractEducation(moreMembers, "phd")
+      ]]
+    },
+    options: {
+      axisX: {
+        showGrid: false
+      },
+      low: 0,
+      high: 200,
+      chartPadding: {
+        top: 0,
+        right: 5,
+        bottom: 0,
+        left: 0
+      }
+    },
+    responsiveOptions: [
+      [
+        "screen and (max-width: 640px)",
+        {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function(value) {
+              return value[0];
+            }
+          }
+        }
+      ]
+    ],
+    animation: {
+      draw: function(data) {
+        if (data.type === "bar") {
+          data.element.animate({
+            opacity: {
+              begin: (data.index + 1) * 80,
+              dur: 500,
+              from: 0,
+              to: 1,
+              easing: "ease"
+            }
+          });
+        }
+      }
+    }
+  };
+
+
+   employment = {
+    data: {
+      labels: [
+        "Employed",
+        "Not Employed",
+      ],
+      series: [[
+        extractEmployment(moreMembers, "employed"), 
+        extractEmployment(moreMembers, "not employed")
       ]]
     },
     options: {
@@ -142,14 +202,14 @@ class Gridd extends Component {
       ],
       series: [[
         members.length, 
-        extractGender(members,"Male"), 
-        extractGender(members,"Female"), 
+        extractGender(members,"male"), 
+        extractGender(members,"female"), 
         extractDisability(members,"yes"),       
         extractDisability(members,"no"), 
         extractMaritalStatus(members,"divorced"), 
-        extractMaritalStatus(members,"Single"), 
+        extractMaritalStatus(members,"single"), 
         extractMaritalStatus(members,"widowed"), 
-        extractMaritalStatus(members,"Married")
+        extractMaritalStatus(members,"married")
       ]]
     },
     options: {
@@ -195,6 +255,33 @@ class Gridd extends Component {
     }
   };
   
+  const pieChart = {
+    data: {
+      labels: ["62%", "32%"],
+      series: [
+        62,
+         32]
+    },
+    options: {
+      height: "230px"
+    }
+  };
+  
+
+  
+  // const employment = {
+  //   data: {
+  //     labels: ["%", "32%"],
+  //     series: [
+  //       extractEmployment(members,"employed"), 
+  //       extractEmployment(members,"not employed")]
+  //   },
+  //   options: {
+  //     height: "230px"
+  //   }
+  // };
+
+
   gender = {
     data: {
       labels: [
@@ -206,8 +293,8 @@ class Gridd extends Component {
         "Jos/S",
         "Kanam",
         "Kanke",
-        "Langtang/N", 
-        "Langtang/S",
+        "Lang/N", 
+        "Lang/S",
         "Mangu",
         "Mikang",
         "Pankshin",
@@ -215,25 +302,27 @@ class Gridd extends Component {
         "Riyom",
         "Shendam",
         "Wase",
+        "Other"
       ],
       series: [[
-        extractLGA(members, "Barkin Ladi"), 
-        extractLGA(members, "Bassa"),
-        extractLGA(members, "Bokkos"), 
-        extractLGA(members, "Jos East"), 
-        extractLGA(members, "Jos North"), 
-        extractLGA(members, "Jos South"), 
-        extractLGA(members, "Kanam"), 
-        extractLGA(members, "Kanke"), 
-        extractLGA(members, "Langtang North"), 
-        extractLGA(members, "Langtang South"), 
-        extractLGA(members, "Mangu"), 
-        extractLGA(members, "Mikang"), 
-        extractLGA(members, "Pankshin"), 
-        extractLGA(members, "Qua'an Pan"), 
-        extractLGA(members, "Riyom"), 
-        extractLGA(members, "Shendam"), 
-        extractLGA(members, "Wase")
+        extractLGA(members, "barkin ladi"), 
+        extractLGA(members, "bassa"),
+        extractLGA(members, "bokkos"), 
+        extractLGA(members, "jos east"), 
+        extractLGA(members, "jos north"), 
+        extractLGA(members, "jos south"), 
+        extractLGA(members, "kanam"), 
+        extractLGA(members, "kanke"), 
+        extractLGA(members, "langtang north"), 
+        extractLGA(members, "langtang south"), 
+        extractLGA(members, "mangu"), 
+        extractLGA(members, "mikang"), 
+        extractLGA(members, "pankshin"), 
+        extractLGA(members, "qua'an pan"), 
+        extractLGA(members, "riyom"), 
+        extractLGA(members, "shendam"), 
+        extractLGA(members, "wase"),
+        extractLGA(members, "wase")
       ]]
     },
     options: {
@@ -278,7 +367,8 @@ class Gridd extends Component {
       }
     }
   };
-  }
+  
+  console.log("PIE CHART", extractEmployment(members,"employed"))
      const display = this.props.dashboard.isloading ? (       
      <GridContainer justify="center">
        <div>loading...</div>
@@ -369,6 +459,31 @@ class Gridd extends Component {
           </Card>
         </GridItem>
       </GridContainer>
+          <GridItem xs={12} sm={12} md={6} lg={4}>
+          <Card chart >
+            <CardHeader color="success" className={classes.cardHeaderHover}>
+              <ChartistGraph
+                className="ct-chart-white-colors"
+                data={employment.data}
+                type="Bar"
+                options={emailsSubscriptionChart.options}
+                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
+                listener={emailsSubscriptionChart.animation}
+              />
+              
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>EMPLOYMENT SUMMARY</h4>
+                For 17 Local Government Areas and others
+              <p className={classes.cardCategory}>
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
       </div>
       )
     return (
@@ -377,7 +492,7 @@ class Gridd extends Component {
       </div>
     )
   }
-}
+}}
 
 const mapStateToProps = (state) => {
   return {

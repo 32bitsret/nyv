@@ -17,16 +17,16 @@ class WizardView extends React.Component {
     user: {}
   }
 
-  componentDidMount(){
-    
-  }
+componentWillReceiveProps(nextProps){
+  this.setState({
+    user: nextProps.createUser.user
+  })
+}
  
   render() {
     let user = this.state.user
-
     const display = this.props.createUser.createdUser ? <CreatedUser /> : <Step1/> 
-    console.log("INSIDE RENDER", this.props.createUser)
-     return (
+      return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12} lg={12}>
           {display}
