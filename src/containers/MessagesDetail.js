@@ -23,6 +23,13 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import { connect } from "react-redux"
+import {
+  maritalstatusFilter,
+  profileFilter,
+  genderFilter,
+  lgaFilter,
+  educationFilter
+} from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import moreMembers from  "../variables/moreMembers"
 
@@ -40,7 +47,10 @@ class MessagesDetail extends React.Component {
       gender:[],
       disableA: false,
       disableB: false,
-      disableC: false
+      disableC: false,
+      profileMembers: [],
+      lgaMembers: [],
+
     };
   }
 
@@ -71,6 +81,15 @@ class MessagesDetail extends React.Component {
 
   render() {
     const { classes } = this.props;
+    let genderFiltered = genderFilter(this.state.gender, moreMembers)
+    let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
+    let lgaFiltered = lgaFilter(this.state.lga, moreMembers)
+    let profileFiltered = profileFilter(this.state.profile, moreMembers)
+    
+    console.log("FILTERED GENDER KAWAI",genderFiltered)
+    console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
+    console.log("FILTERED LGA KAWAI",lgaFiltered)
+    console.log("FILTERED PROFILE KAWAI",profileFiltered)
     return (
       <div>
       <GridContainer justify="center">
@@ -168,8 +187,8 @@ class MessagesDetail extends React.Component {
                       value={this.state.gender}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "profile",
-                        id: "profile"
+                        name: "gender",
+                        id: "gender"
                       }}
                     >
                       <MenuItem
@@ -185,7 +204,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="females"
+                        value="female"
                       >
                         females
                       </MenuItem>
@@ -194,7 +213,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="males"
+                        value="male"
                       >
                         males
                       </MenuItem>
@@ -298,7 +317,7 @@ class MessagesDetail extends React.Component {
                       onChange={this.handleSimple}
                       inputProps={{
                         name: "marital_status",
-                        id: "simple-select"
+                        id: "marital_status"
                       }}
                     >
                       <MenuItem
@@ -344,15 +363,6 @@ class MessagesDetail extends React.Component {
                         value="widowed"
                       >
                         widowed
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected
-                        }}
-                        value="females"
-                      >
-                        females
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -460,7 +470,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="kanam7"
+                        value="kanam"
                       >
                         kanam
                       </MenuItem>
@@ -559,7 +569,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="wase"
+                        value="others"
                       >
                         others
                       </MenuItem>

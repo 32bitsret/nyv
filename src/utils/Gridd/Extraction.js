@@ -65,7 +65,7 @@ export  const extractEducation = (arr, test) => {
       result.push(element)
     }
   });
-  return result.length;
+  return result;
 }
 
 //extract gender from general data
@@ -76,7 +76,7 @@ export  const extractGenderData = (arr, test) => {
      result.push(element)
    }
  });
- return result.length;
+ return result;
 }
 //extract ducation from generl data
 
@@ -87,7 +87,7 @@ export  const extractEducationData = (arr, test) => {
        result.push(element)
      }
   });
- return result.length;
+ return result;
 }
 
 //extract disability from general data
@@ -98,7 +98,7 @@ export  const extractDisabilityData = (arr, test) => {
        result.push(element)
      }
    });
- return result.length;
+ return result;
 }
 
 //extract marital status from general data
@@ -109,7 +109,7 @@ export const extractMaritalStatusData = (arr, test) => {
        result.push(element)
      }
    });
- return result.length;
+ return result;
 }
 
 
