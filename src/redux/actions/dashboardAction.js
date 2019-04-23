@@ -1,4 +1,10 @@
-import {GET_PROFILE, GET_PROFILE_ERROR, GET_ALLL_PROFILE} from "../Constants"
+import {
+    GET_PROFILE, 
+    GET_PROFILE_ERROR, 
+    GET_ALLL_PROFILE,
+    GET_RID_OF_WELCOME,
+    START_WELCOME
+} from "../Constants"
 import { 
     profileURL,
     getAllProfileURL
@@ -8,6 +14,9 @@ import isEmpty from "../../utils/isEmpty"
 
 export const getProfile = (phone) => dispatch => {
     // console.log("ACTION DASHBOARD", typeof(phone))
+    dispatch({
+        type:GET_RID_OF_WELCOME
+    })
     axios({
         method: "POST",
         url: profileURL,
@@ -27,9 +36,9 @@ export const getProfile = (phone) => dispatch => {
 }
 
 
-
+//NOTE: PLEASE BEFORE YOU ALTER ANYTHING HERE, 
+//MAKE SURE YOU KNOW WHAT YOU'RE DOING, BECUASE I DIDN'T KNOW WHAT I WAS DOINGWHNE I WROTE THIS
 export const getProfileInit = (phone) => dispatch => {
-    // console.log("ACTION DASHBOARD", typeof(phone))
     axios({
         method: "POST",
         url: profileURL,
@@ -48,7 +57,6 @@ export const getProfileInit = (phone) => dispatch => {
         }else{
             localStorage.setItem("pic",res.data.data.photo)
         }
-        window.location.reload()
     })
     .catch(err => {
         console.log(err)
@@ -71,6 +79,9 @@ export const updateProfile = () => dispatch =>{
 }
 
 export const getAllProfile = () => dispatch =>{
+    dispatch({
+        type: GET_RID_OF_WELCOME
+    })
     axios({
         method: "GET",
         url: getAllProfileURL

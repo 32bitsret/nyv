@@ -166,18 +166,18 @@ class Step1 extends React.Component {
     if(this.state.middlenameState === ""){
       this.setState({middlenameState:"error"})
     }
-    if(this.state.emailState === ""){
-      this.setState({emailState:"error"})
-    }
+    // if(this.state.emailState === ""){
+    //   this.setState({emailState:"error"})
+    // }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
     if(this.state.phoneState === ""){
       this.setState({phoneState: "error"})
     }
-    if(this.state.lgaState === ""){
-      this.setState({lgaState: "error"})
-    }
+    // if(this.state.lgaState === ""){
+    //   this.setState({lgaState: "error"})
+    // }
     if(this.state.genderState === ""){
       this.setState({genderState:"error"})
     }
@@ -186,17 +186,16 @@ class Step1 extends React.Component {
     }
     else{
         const data = {
-          firstname: this.state.firstname,
+          firstname: this.state.firstname+" "+this.state.middlename,
           email: this.state.email,
           password:this.state.password,
           phone: Number(this.state.phone),
           lastname:  this.state.lastname,
           gender: this.state.gender,
-          lga: this.state.lga,
-          middlename: this.state.middlename,
+          // lga: this.state.lga,
           role:this.state.role
         }
-      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.emailState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.lgaState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
         // this.props.createUserByAdmin(data)
       }
@@ -374,7 +373,7 @@ class Step1 extends React.Component {
                     </GridContainer>
                     <br/>
                     <GridContainer justify="center">
-                      <GridItem xs={12} sm={6} md={5} lg={4}>
+                      {/* <GridItem xs={12} sm={6} md={5} lg={4}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -563,9 +562,9 @@ class Step1 extends React.Component {
                             </MenuItem>
                           </Select>
                         </FormControl>
-                      </GridItem>
+                      </GridItem> */}
                               {"  "}
-                      <GridItem xs={12} sm={6} md={5} lg={4}>
+                      <GridItem xs={12} sm={6} md={5} lg={8}>
                         <FormControl
                           fullWidth
                           className={classes.selectFormControl}
@@ -600,7 +599,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="Male"
+                              value="male"
                             >
                               Male
                             </MenuItem>
@@ -609,7 +608,7 @@ class Step1 extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelectedMultiple
                               }}
-                              value="Female"
+                              value="female"
                             >
                               Female
                             </MenuItem>

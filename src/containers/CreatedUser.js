@@ -167,49 +167,49 @@ class CreatedUser extends Component {
     const { classes } = this.props;
     const optionsGender = [
       { label: '', value: '' },
-      { label: 'Male', value: 'Male' },
-      { label: 'Female', value: 'Female' },
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' },
     ];
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'No' },
-      { label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'no' },
+      { label: 'Yes', value: 'yes' },
     ];
 
     const optionsMaritalStatus = [
       { label: '', value: '' },
-      { label: 'Single', value: 'Single' },
-      { label: 'Married', value: 'Married' },
-      { label: 'Divorced', value: 'Divorced' },
-      { label: 'Widowed', value: 'Widowed' },
+      { label: 'Single', value: 'single' },
+      { label: 'Married', value: 'married' },
+      { label: 'Divorced', value: 'divorced' },
+      { label: 'Widowed', value: 'widowed' },
     ];
 
     const optionsDisability = [
       { label: '', value: '' },
-      { label: 'No', value: 'No' },
-      { label: 'Yes', value: 'Yes' }
+      { label: 'No', value: 'no' },
+      { label: 'Yes', value: 'yes' }
     ];
 
     const optionsLGA = [
       { label: '', value: '' },
-      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
-      { label: 'Bassa', value: 'Bassa' },
-      { label: 'Bokkos', value: 'Bokkos' },
-      { label: 'Jos East', value: 'Jos East' },
-      { label: 'Jos North', value: 'Jos North' },
-      { label: 'Jos South', value: 'Jos South' },
-      { label: 'Kanam', value: 'Kanam' },
-      { label: 'Kanke', value: 'Kanke' },
-      { label: 'Langtang North', value: 'Langtang North' },
-      { label: 'Langtang South', value: 'Langtang South' },
-      { label: 'Mangu', value: 'Mangu' },
-      { label: 'Mikang', value: 'Mikang' },
-      { label: 'Pankshin', value: 'Pankshin' },
-      { label: "Qua'an Pan", value: "Qua'an Pan" },
-      { label: 'Riyom', value: 'Riyom' },
-      { label: 'Shendam', value: 'Shendam' },
-      { label: 'Wase', value: 'Wase' },
+      { label: 'Barkin Ladi', value: 'barkin ladi' },
+      { label: 'Bassa', value: 'bassa' },
+      { label: 'Bokkos', value: 'bokkos' },
+      { label: 'Jos East', value: 'jos-east' },
+      { label: 'Jos North', value: 'jos-north' },
+      { label: 'Jos South', value: 'jos-south' },
+      { label: 'Kanam', value: 'kanam' },
+      { label: 'Kanke', value: 'kanke' },
+      { label: 'Langtang North', value: 'langtang-north' },
+      { label: 'Langtang South', value: 'langtang-south' },
+      { label: 'Mangu', value: 'mangu' },
+      { label: 'Mikang', value: 'mikang' },
+      { label: 'Pankshin', value: 'pankshin' },
+      { label: "Qua'an Pan", value: "qua'an pan" },
+      { label: 'Riyom', value: 'riyom' },
+      { label: 'Shendam', value: 'shendam' },
+      { label: 'Wase', value: 'wase' },
     ];
 
     const optionsYearofGrad = [
@@ -247,13 +247,13 @@ class CreatedUser extends Component {
 
     const optionsQualification = [
       { label: '', value: '' },
-      { label: 'School Cert', value: 'School Cert' },
-      { label: 'Olevel', value: 'Olevel' },
-      { label: 'ND', value: 'ND' },
-      { label: 'HND', value: 'HND' },
-      { label: 'Degree', value: 'Degree' },
-      { label: 'MSC', value: 'MSC' },
-      { label: 'PHD', value: 'PHD' }
+      { label: 'School Cert', value: 'cert' },
+      { label: 'Olevel', value: 'olevel' },
+      { label: 'ND', value: 'nd' },
+      { label: 'HND', value: 'hnd' },
+      { label: 'Degree', value: 'degree' },
+      { label: 'MSC', value: 'msc' },
+      { label: 'PHD', value: 'phd' }
     ];
 
     const display = this.props.dashboard.isloading ?
