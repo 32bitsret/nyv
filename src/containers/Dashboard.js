@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
     const route = this.state.isAdmin?data.dashAdmin:data.dashUser
     const display = this.state.isAdmin?(<Gridd/>):(<Profile dash={User} value={this.state.user}/>)
      
-    const main = false ? ( 
+    const main = this.props.dashboard.isWelcome ? ( 
       <div className={classes.wrapper}>
   
       </div>
