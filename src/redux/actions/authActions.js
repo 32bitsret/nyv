@@ -34,7 +34,6 @@ export const loginUser = (user) => dispatch => {
     data: user
   }).then(res => {
     console.log(res)
-
     const {token} = res.data
     const user = jwt_decode(token)
     localStorage.setItem("pyc_token", token)

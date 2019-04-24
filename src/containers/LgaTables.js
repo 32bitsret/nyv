@@ -131,8 +131,8 @@ class LgaTables extends React.Component {
           <h4 className={classes.cardTitle}>FEMALES:{"  "} {this.state.tableData.females}</h4>
           <hr/>
           <h3 className={classes.cardTitle}>PROFILE SUMMARY</h3>
-          <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>SINGLE:{"  "} {this.state.tableData.single}</h4>
+          <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.divorced}</h4>
           <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.widowed}</h4>
           <h4 className={classes.cardTitle}>DISABLED:{"  "} {this.state.tableData.Disabled}</h4>

@@ -12,15 +12,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
 import { connect } from "react-redux"
-import Datetime from "react-datetime";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from "@material-ui/core/Switch";
-import Select from "@material-ui/core/Select";
-import { CardContent } from "@material-ui/core";
-import SweetAlert from "react-bootstrap-sweetalert";
-import MenuItem from "@material-ui/core/MenuItem";
 import { getProfile } from "../redux/actions/dashboardAction"
 import {
   updateBasicInfo,
@@ -30,6 +21,7 @@ import {
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
+import ImageUpload from "./components/ImageUpload"
 
 class UserProfile extends Component {
   state = {
@@ -186,6 +178,7 @@ class UserProfile extends Component {
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
     const { classes } = this.props;
+    const userProfile = this.props.auth.user
     const optionsGender = [
       { label: 'Male', value: 'male' },
       { label: 'Female', value: 'female' },
@@ -306,7 +299,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{this.state.user.firstname+ " "+this.state.user.lastname}</h2>
+                  <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
@@ -327,16 +320,29 @@ class UserProfile extends Component {
                         <DialogContentText>
                           change you Profile Photo here
                         </DialogContentText>
-                        
+                        <ImageUpload 
+                          addButtonProps={{
+                            color: "rose",
+                            round: true
+                          }}
+                          changeButtonProps={{
+                            color: "rose",
+                            round: true
+                          }}
+                          removeButtonProps={{
+                            color: "danger",
+                            round: true
+                          }}
+                        />
                       </DialogContent>
-                      <DialogActions>
+                      {/* <DialogActions>
                         <Button onClick={this.onClickPhoto} color="danger">
                           Cancel
                         </Button>
                         <Button onClick={this.handleClose} color="success">
                           Update
                         </Button>
-                      </DialogActions>
+                      </DialogActions> */}
                     </Dialog>  
                 </div>
               </div>
@@ -388,6 +394,7 @@ class UserProfile extends Component {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Gender</label>
                             <SelectListGroup
+                            
                               placeholder="Gender"
                               name="gender"
                               value={this.state.gender}
