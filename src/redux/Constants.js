@@ -55,3 +55,6 @@ export const ERROR = "ERROR"
 export const FETCH_USER = "FETCH_USER"
 export const FETCHING_USER = "FETCHING_USER"
 export const CREATING_PROFILE = "CREATING_PROFILE"
+
+//photo update
+export const SUCCESS_UPDATING_PHOTO = "SUCCESS_UPDATING_PHOTO"

@@ -19,6 +19,7 @@ import {getProfile} from  "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty"
 import store from '../store'; 
 import { profileURL } from "../api/apiURL";
+import defaultAvatar from "assets/img/placeholder.jpg";
 
 var ps;
 class SidebarWrapper extends React.Component {
@@ -90,7 +91,7 @@ class Sidebar extends React.Component {
 
   render() {
     const sidebarImage = this.props.dashboard.sidebarImage
-    console.log("################################", this.props.auth.user)
+    console.log("################################", this.props.dashboard.dashboard.photo)
     const userName = this.props.auth.user
     const {
       classes,
@@ -151,7 +152,7 @@ class Sidebar extends React.Component {
     const user =  (
       <div className={userWrapperClass} >
       <div className={photo}>
-        <img src={sidebarImage} className={classes.avatarImg} alt="..." />
+        <img src={isEmpty(this.props.dashboard.dashboard.photo) ? defaultAvatar : this.props.dashboard.dashboard.photo} className={classes.avatarImg} alt="..." />
       </div>
       <List className={classes.list}>
         <ListItem className={classes.item + " " + classes.userItem}>
