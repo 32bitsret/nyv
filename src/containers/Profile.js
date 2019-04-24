@@ -177,6 +177,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
+    console.log("",this.props.dashboard)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [

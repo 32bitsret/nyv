@@ -80,8 +80,9 @@ export const updateEducationalInfo = (data) => dispatch =>{
 
 export const uploadPicture = (data) => dispatch =>{
     //step4
+    console.log("FROM IMAGE UPLOAD", data)
     axios({
-        method:"PUT",
+        method:"POST",
         url:uploadImageURL,
         data: data
     })
