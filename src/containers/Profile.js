@@ -136,7 +136,7 @@ class UserProfile extends Component {
   }
 
   onClickPhoto = e => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({
       openPhoto: !this.state.openPhoto
     })
@@ -320,17 +320,19 @@ class UserProfile extends Component {
                         <DialogContentText>
                           change you Profile Photo here
                         </DialogContentText>
-                        <ImageUpload 
+                        <ImageUpload
+                          cancel={this.onClickPhoto}
+                          avatar 
                           addButtonProps={{
-                            color: "rose",
+                            color: "success",
                             round: true
                           }}
                           changeButtonProps={{
                             color: "rose",
                             round: true
                           }}
-                          removeButtonProps={{
-                            color: "danger",
+                          uploadButtonProps={{
+                            color: "success",
                             round: true
                           }}
                         />
