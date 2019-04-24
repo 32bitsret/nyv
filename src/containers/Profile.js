@@ -329,7 +329,7 @@ class UserProfile extends Component {
                             round: true
                           }}
                           changeButtonProps={{
-                            color: "rose",
+                            color: "danger",
                             round: true
                           }}
                           uploadButtonProps={{
@@ -338,14 +338,6 @@ class UserProfile extends Component {
                           }}
                         />
                       </DialogContent>
-                      {/* <DialogActions>
-                        <Button onClick={this.onClickPhoto} color="danger">
-                          Cancel
-                        </Button>
-                        <Button onClick={this.handleClose} color="success">
-                          Update
-                        </Button>
-                      </DialogActions> */}
                     </Dialog>  
                 </div>
               </div>

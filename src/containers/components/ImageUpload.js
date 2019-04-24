@@ -44,7 +44,7 @@ class ImageUpload extends React.Component {
         photo: this.state.file.split(',')[1]
     }
      console.log("DATA",data)
-     this.props.uploadPicture(data)
+     this.props.uploadPicture(data, id)
   }
   handleClick() {
     this.refs.fileInput.click();
