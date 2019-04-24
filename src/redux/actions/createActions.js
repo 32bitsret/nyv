@@ -12,7 +12,8 @@ import axios from "axios"
 import {
     registerURL,
     updateProfileURL,
-    profileURL
+    profileURL,
+    uploadImageURL
 } from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
@@ -81,14 +82,14 @@ export const uploadPicture = (data) => dispatch =>{
     //step4
     axios({
         method:"PUT",
-        url:"",
-        data: ""
+        url:uploadImageURL,
+        data: data
     })
     .then(res => {
-
+        console.log("RESPONSE FROM IMAGE", res)
     })
     .catch(err => {
-        
+        console.log("ERROR FROM IMAGE", err)  
     })
 }
 

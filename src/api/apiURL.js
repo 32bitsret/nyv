@@ -21,4 +21,5 @@ export const sendMessageURL = `${BASE_URL}/`
 //get all profiles
 export const getAllProfileURL = `${BASE_URL}/pyc/profile`
 
-
+//upload image
+export const uploadImageURL = `${BASE_URL}/pyc/upload`

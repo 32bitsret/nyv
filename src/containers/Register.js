@@ -572,7 +572,7 @@ class LoginPage extends React.Component {
                     success={this.state.confirm_passwordState === "success"}
                     error={this.state.confirm_passwordState === "error"}
                     labelText="Confirm Password"
-                    id="password"
+                    id="password1"
                     formControlProps={{
                       fullWidth: true
                     }}
