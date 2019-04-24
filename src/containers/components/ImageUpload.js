@@ -37,13 +37,13 @@ class ImageUpload extends React.Component {
   }
 
   handleSubmit(e) {
-
+    const id = this.props.state.dashboard.dashboard._id
     const data = {
         type: this.state.type,
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
-    console.log("DATA",data)
+     console.log("DATA",data)
      this.props.uploadPicture(data)
   }
   handleClick() {
@@ -51,7 +51,7 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-      console.log("IMAGE", this.state)
+      console.log("IMAGE", this.props.state.dashboard.dashboard._id)
     var {
       avatar,
       addButtonProps,

@@ -87,7 +87,7 @@ export const uploadPicture = (data) => dispatch =>{
         data: data
     })
     .then(res => {
-        console.log("RESPONSE FROM IMAGE", res)
+        console.log("RESPONSE FROM IMAGE", res.data.location)
     })
     .catch(err => {
         console.log("ERROR FROM IMAGE", err)  
