@@ -10,6 +10,17 @@
     return result.length;
   }
 
+   //extract Employment Status
+ export  const extractEmployment = (arr, test) => {
+  let result = [];
+  arr.forEach(element => {
+    if(element.employment === test){
+      result.push(element)
+    }
+  });
+  return result.length;
+  }
+
  //extract gender from general data
  export  const extractGender = (arr, test) => {
    let result = [];

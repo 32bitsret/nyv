@@ -18,23 +18,7 @@ import { connect } from "react-redux"
 import {getProfile} from  "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty"
 import store from '../store'; 
-import {SET_SIDEBAR} from '../redux/Constants'
 import { profileURL } from "../api/apiURL";
-
-let name = ""
-let pic =""
-if(localStorage.f && localStorage.l && localStorage.pic){
-  name = localStorage.f+" "+localStorage.l
-  pic = localStorage.pic
-  let obj = {
-    name,
-    pic
-  }
-  store.dispatch({
-    type: SET_SIDEBAR,
-    payload: obj
-  })
-}
 
 var ps;
 class SidebarWrapper extends React.Component {
@@ -93,10 +77,7 @@ class Sidebar extends React.Component {
   }
   
   componentDidMount(){
-    this.setState({
-      name: localStorage.f+" "+localStorage.l,
-      pic: localStorage.pic
-    })
+
   }
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
@@ -108,8 +89,9 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const sidebarProfile = this.props.dashboard.sidebar
-    console.log("################################", sidebarProfile)
+    const sidebarImage = this.props.dashboard.sidebarImage
+    console.log("################################", this.props.auth.user)
+    const userName = this.props.auth.user
     const {
       classes,
       color,
@@ -169,12 +151,12 @@ class Sidebar extends React.Component {
     const user =  (
       <div className={userWrapperClass} >
       <div className={photo}>
-        <img src={sidebarProfile.pic} className={classes.avatarImg} alt="..." />
+        <img src={sidebarImage} className={classes.avatarImg} alt="..." />
       </div>
       <List className={classes.list}>
         <ListItem className={classes.item + " " + classes.userItem}>
             <ListItemText
-              primary={sidebarProfile.name}
+              primary={userName.firstname}
               disableTypography={true}
               className={itemText + " " + classes.userItemText}
             />

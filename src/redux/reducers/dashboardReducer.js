@@ -12,7 +12,7 @@ const initialState = {
     isloading: true,
     allMembers: [],
     isWelcome: true,
-    sidebar:{}
+    sidebarImage:"https://www.gravatar.com/avatar/anything?s=200&d=mm"
 };
 
 export default (state = initialState, action) => {

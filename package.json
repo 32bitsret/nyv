@@ -10,6 +10,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "3.0.1",
     "axios": "^0.18.0",
+    "base64-img": "^1.0.4",
     "chartist": "0.10.1",
     "fetch": "^1.1.0",
     "history": "4.7.2",

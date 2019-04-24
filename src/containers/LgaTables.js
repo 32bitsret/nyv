@@ -14,7 +14,8 @@ import {
   extractLGA, 
   extractGender,
   extractMaritalStatus,
-  extractDisability
+  extractDisability,
+  extractEmployment
 } from "../utils/Table/TableFunctions"
 import {connect} from "react-redux"
 import {getAllProfile} from "../redux/actions/dashboardAction"
@@ -46,6 +47,7 @@ const dataRows = [
     ["Riyom"],
     ["Shendam"],
     ["Wase"],
+    ["Others"],
   ]
 
 class LgaTables extends React.Component {
@@ -59,24 +61,26 @@ class LgaTables extends React.Component {
           id: key ,
           sn: key + 1,
           name: prop[0],
-          males: extractGender(this.props.dashboard.allMembers, "Male", prop[0] ),
-          females: extractGender(this.props.dashboard.allMembers, "Female", prop[0] ),
+          males: extractGender(this.props.dashboard.allMembers, "male", prop[0] ),
+          females: extractGender(this.props.dashboard.allMembers, "female", prop[0] ),
           age: prop[3],
           total: extractLGA(this.props.dashboard.allMembers,prop[0]),
-          married: extractMaritalStatus(this.props.dashboard.allMembers, "Married", prop[0]),
-          single:  extractMaritalStatus(this.props.dashboard.allMembers, "Single", prop[0]),
-          divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
-          widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
-          Degree: extractEducation(this.props.dashboard.allMembers,"Degree", prop[0]),
-          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"School Cert", prop[0]),
-          HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
-          ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
-          NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
-          MSC: extractEducation(this.props.dashboard.allMembers,"MSC", prop[0]),
-          PHD: extractEducation(this.props.dashboard.allMembers,"PHD", prop[0]),
-          OLEVEL: extractEducation(this.props.dashboard.allMembers,"Olevel", prop[0]),
-          Disabled: extractDisability(this.props.dashboard.allMembers, "Yes", prop[0]),
-          NotDisabled: extractDisability(this.props.dashboard.allMembers, "No", prop[0]),
+          married: extractMaritalStatus(this.props.dashboard.allMembers, "married", prop[0]),
+          single:  extractMaritalStatus(this.props.dashboard.allMembers, "single", prop[0]),
+          divorced: extractMaritalStatus(this.props.dashboard.allMembers, "divorced", prop[0]),
+          widowed: extractMaritalStatus(this.props.dashboard.allMembers, "widowed", prop[0]),
+          Degree: extractEducation(this.props.dashboard.allMembers,"degree", prop[0]),
+          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"school cert", prop[0]),
+          HND: extractEducation(this.props.dashboard.allMembers,"hnd", prop[0]),
+          ND: extractEducation(this.props.dashboard.allMembers,"nd", prop[0]),
+          NCE: extractEducation(this.props.dashboard.allMembers,"nce", prop[0]),
+          MSC: extractEducation(this.props.dashboard.allMembers,"msc", prop[0]),
+          PHD: extractEducation(this.props.dashboard.allMembers,"phd", prop[0]),
+          OLEVEL: extractEducation(this.props.dashboard.allMembers,"olevel", prop[0]),
+          Disabled: extractDisability(this.props.dashboard.allMembers, "yes", prop[0]),
+          NotDisabled: extractDisability(this.props.dashboard.allMembers, "no", prop[0]),
+          employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
+          notEmployed:extractEmployment(this.props.dashboard.allMembers,"not employed",prop[0]),
           actions: (
             <div className="actions-right">
               <Button
@@ -127,8 +131,8 @@ class LgaTables extends React.Component {
           <h4 className={classes.cardTitle}>FEMALES:{"  "} {this.state.tableData.females}</h4>
           <hr/>
           <h3 className={classes.cardTitle}>PROFILE SUMMARY</h3>
-          <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>SINGLE:{"  "} {this.state.tableData.single}</h4>
+          <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.divorced}</h4>
           <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.widowed}</h4>
           <h4 className={classes.cardTitle}>DISABLED:{"  "} {this.state.tableData.Disabled}</h4>
@@ -144,7 +148,12 @@ class LgaTables extends React.Component {
           <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.OLEVEL}</h4>
           <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
           <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
-
+         
+          <h3 className={classes.cardTitle}>EMPLOYMENT SUMMARY</h3>
+          <hr/>
+          <h4 className={classes.cardTitle}>EMPLOYED:{"  "} {this.state.tableData.employed}</h4>
+          <h4 className={classes.cardTitle}>NOT EMPLOYED:{"  "} {this.state.tableData.notEmployed}</h4>
+          
         </CardBody>
         <CardFooter stats className={classes.cardFooter}>
           <i className={classes.danger} /> {` `}              
@@ -193,7 +202,7 @@ class LgaTables extends React.Component {
                     filterable: false
                   }
                 ]}
-                defaultPageSize={17}
+                defaultPageSize={18}
                 showPaginationTop={false}
                 showPaginationBottom={false}
                 className="-striped -highlight"

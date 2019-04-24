@@ -168,7 +168,8 @@ class LoginPage extends React.Component {
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
         gender: this.state.gender,
-        // lga: this.state.lga, 
+        // lga: this.state.lga,
+        // role:"admin" 
       }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)

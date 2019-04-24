@@ -22,7 +22,19 @@
     return result.length;
   }
   
-
+   //extract Employment Status
+   export  const extractEmployment = (arr, test, lga) => {
+      let result = [];
+      arr.forEach(element => {
+        if(element.lga === lga){
+          if(element.employment === test){
+            result.push(element)
+          }
+        }
+      });
+     return result.length;
+    }
+  
   export  const extractEducation = (arr, test, lga) => {
     let result = [];
     arr.forEach(element => {
