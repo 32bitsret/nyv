@@ -4,12 +4,6 @@ import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
 import { connect } from "react-redux"
 import { getProfile } from "../../redux/actions/dashboardAction"
@@ -118,7 +112,8 @@ class CreatedUser extends Component {
   }
 
   render(){
-    const { classes } = this.props;   
+    const { classes } = this.props;  
+    console.log("PROPS TO PREVIEW", this.props.user) 
     return (
         <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12} lg={12}>

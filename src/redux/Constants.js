@@ -58,3 +58,6 @@ export const CREATING_PROFILE = "CREATING_PROFILE"
 
 //photo update
 export const SUCCESS_UPDATING_PHOTO = "SUCCESS_UPDATING_PHOTO"
+
+//searching
+export const DONE_SEARCHING = "DONE_SEARCHING"

@@ -15,6 +15,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
+import {extractLGA} from "../utils/Gridd/Extraction"
 
 const styles = {
   cardIconTitle: {
@@ -28,13 +29,18 @@ class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user:{},
       data: dataTable.dataRows.map((prop, key) => {
         return {
-          id: key,
-          name: prop[0],
-          position: prop[1],
-          office: prop[2],
-          age: prop[3],
+        //   id: key,
+        //   name: prop[0],
+        //   position: prop[1],
+        //   office: prop[2],
+        //   age: prop[3],
+         name:"",
+         DoB:"",
+         gender:"",
+         photo:"",
           actions: (
             <div className="actions-right">
               <Button
@@ -42,13 +48,16 @@ class SearchResult extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
+                  console.log(obj) 
+                  this.setState({
+                        user:obj
+                    })
                 }}
                 color="success"
                 className="edit"
               >
                View
               </Button>{" "}
-
             </div>
           )
         };
@@ -57,6 +66,16 @@ class SearchResult extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    console.log("SELECTEDSER", this.state.user)
+    const display = isEmpty(this.state.user) ?        
+        <Card>
+            <CardBody  className={classes.cardFooter}>
+                <i className={classes.danger} /> No User Selected            
+            </CardBody>
+        </Card>
+        :
+        <UserPreview user={this.state.user}/> 
+ 
     return (
         <div>
         <Heading
@@ -112,7 +131,7 @@ class SearchResult extends React.Component {
             </Card>
             </GridItem>
             <GridItem xs={6} md={6} xs={6} lg={6}>
-                <UserPreview/>
+               {display}
             </GridItem>
         </GridContainer>
         </div>
