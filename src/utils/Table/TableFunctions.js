@@ -43,13 +43,14 @@
         if(element.education ){
           console.log(typeof(element)),  
           result.push(element.education)
-          result.map(res => {
-            if(res.educational_qualification === test){
-                number.push(res.educational_qualification)
-            }
-          })
+         
         }}
       });
+      result.map(res => {
+        if(res.educational_qualification === test){
+            number.push(res.educational_qualification)
+        }
+      })
     return number.length;
   }
   

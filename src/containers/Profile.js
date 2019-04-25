@@ -219,10 +219,10 @@ class UserProfile extends Component {
     ];
 
     const optionsMaritalStatus = [
-      { label: 'Single', value: 'single' },
-      { label: 'Married', value: 'married' },
-      { label: 'Divorced', value: 'divorced' },
-      { label: 'Widowed', value: 'widowed' },
+      { label: 'Single', value: 'Single' },
+      { label: 'Married', value: 'Married' },
+      { label: 'Divorced', value: 'Divorced' },
+      { label: 'Widowed', value: 'Widowed' },
     ];
 
     const optionsDisability = [
