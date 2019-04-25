@@ -20,7 +20,7 @@ import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import User from '../variables/UserData'
-import SearchResult from "./SearchResult"
+import SearchDetail from "./SearchDetail"
 var ps;
 
 class Search extends React.Component {
@@ -103,14 +103,13 @@ class Search extends React.Component {
       });
     
     const route = this.props.user.role === "admin" ? data.dashAdmin:data.dashUser
-    // const display = this.props.user.role === "admin" ? <SearchDetail/> : <Redirect to="/"/>
+    const display = this.props.user.role === "admin" ? <SearchDetail/> : <Redirect to="/"/>
     return (
       <div className={classes.wrapper}>
         <Sidebar
           routes={route}
           logoText={"PYC"}
           logo={logo}
-          // image={image}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
           color="green"
@@ -129,8 +128,7 @@ class Search extends React.Component {
           />
         <div className={classes.content}>
             <div className={classes.container}>
-              {/* {display} */}
-              <SearchResult/>
+              {display}
             </div>
         </div>
         </div>

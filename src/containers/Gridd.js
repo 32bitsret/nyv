@@ -205,10 +205,10 @@ class Gridd extends Component {
         extractGender(members,"female"), 
         extractDisability(members,"yes"),       
         extractDisability(members,"no"), 
-        extractMaritalStatus(members,"divorced"), 
-        extractMaritalStatus(members,"single"), 
-        extractMaritalStatus(members,"widowed")||extractMaritalStatus(members,"Widowed"), 
-        extractMaritalStatus(members,"married")
+        extractMaritalStatus(members,"Divorced"), 
+        extractMaritalStatus(members,"Single"), 
+        extractMaritalStatus(members,"Widowed")||extractMaritalStatus(members,"Widowed"), 
+        extractMaritalStatus(members,"Married")
       ]]
     },
     options: {
