@@ -37,13 +37,20 @@
   
   export  const extractEducation = (arr, test, lga) => {
     let result = [];
+    let number = []
     arr.forEach(element => {
       if(element.lga === lga){
-        if(element.education === test){
-          result.push(element)
+        if(element.education ){
+          console.log(typeof(element)),  
+          result.push(element.education)
+          result.map(res => {
+            if(res.educational_qualification === test){
+                number.push(res.educational_qualification)
+            }
+          })
         }}
       });
-    return result.length;
+    return number.length;
   }
   
   export  const extractDisability = (arr, test, lga) => {

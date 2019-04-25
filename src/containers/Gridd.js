@@ -78,14 +78,14 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(moreMembers, "cert"), 
-        extractEducation(moreMembers, "olevel"), 
-        extractEducation(moreMembers, "nd"), 
-        extractEducation(moreMembers, "hnd"), 
-        extractEducation(moreMembers, "nce"),
-        extractEducation(moreMembers, "degree"), 
-        extractEducation(moreMembers, "msc"), 
-        extractEducation(moreMembers, "phd")
+        extractEducation(moreMembers, "CERT"), 
+        extractEducation(moreMembers, "OLEVEL"), 
+        extractEducation(moreMembers, "ND"), 
+        extractEducation(moreMembers, "HND"), 
+        extractEducation(moreMembers, "NCE"),
+        extractEducation(moreMembers, "Degree"), 
+        extractEducation(moreMembers, "MSC"), 
+        extractEducation(moreMembers, "PHD")
       ]]
     },
     options: {
@@ -208,7 +208,7 @@ class Gridd extends Component {
         extractDisability(members,"no"), 
         extractMaritalStatus(members,"divorced"), 
         extractMaritalStatus(members,"single"), 
-        extractMaritalStatus(members,"widowed"), 
+        extractMaritalStatus(members,"widowed")||extractMaritalStatus(members,"Widowed"), 
         extractMaritalStatus(members,"married")
       ]]
     },
@@ -305,24 +305,24 @@ class Gridd extends Component {
         "Other"
       ],
       series: [[
-        extractLGA(members, "barkin ladi"), 
-        extractLGA(members, "bassa"),
-        extractLGA(members, "bokkos"), 
-        extractLGA(members, "jos east"), 
-        extractLGA(members, "jos north"), 
-        extractLGA(members, "jos south"), 
-        extractLGA(members, "kanam"), 
-        extractLGA(members, "kanke"), 
-        extractLGA(members, "langtang north"), 
-        extractLGA(members, "langtang south"), 
-        extractLGA(members, "mangu"), 
-        extractLGA(members, "mikang"), 
-        extractLGA(members, "pankshin"), 
-        extractLGA(members, "qua'an pan"), 
-        extractLGA(members, "riyom"), 
-        extractLGA(members, "shendam"), 
-        extractLGA(members, "wase"),
-        extractLGA(members, "wase")
+        extractLGA(members, "Barkin Ladi"), 
+        extractLGA(members, "Bassa"),
+        extractLGA(members, "Bokkos"), 
+        extractLGA(members, "Jos East"), 
+        extractLGA(members, "Jos North"), 
+        extractLGA(members, "Jos South"), 
+        extractLGA(members, "Kanam"), 
+        extractLGA(members, "Kanke"), 
+        extractLGA(members, "Langtang North"), 
+        extractLGA(members, "Langtang South"), 
+        extractLGA(members, "Mangu"), 
+        extractLGA(members, "Mikang"), 
+        extractLGA(members, "Pankshin"), 
+        extractLGA(members, "Qua'an Pan"), 
+        extractLGA(members, "Riyom"), 
+        extractLGA(members, "Shendam"), 
+        extractLGA(members, "Wase"),
+        extractLGA(members, "Others")
       ]]
     },
     options: {

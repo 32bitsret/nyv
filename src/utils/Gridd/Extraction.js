@@ -36,7 +36,7 @@
 export  const extractEducation = (arr, test) => {
    let result = [];
    arr.forEach(element => {
-       if(element.education === test){
+       if(element.education.educational_qualification === test){
          result.push(element)
        }
     });

@@ -52,11 +52,6 @@ export const updateBasicInfo = (data) => dispatch =>{
     .then(res => {
         // localStorage.setItem('user', res.data.data)
         console.log("PERSONAL INFO UPDATED", res.data.data)
-        // dispatch({
-        //     type:GET_PROFILE,
-        //     payload:res.data.data
-        // })
-        
         window.location.reload()
     })
     .catch(err => {
@@ -83,11 +78,6 @@ export const updatePhoto = (location, id) => dispatch => {
     })
     .then(res => {
         console.log("PHOTO UPDATE", res.data)
-        // dispatch({
-        //     type:SUCCESS_UPDATING_PHOTO,
-        //     payload:""
-        // })
-
         window.location.reload()
     })
     .catch(err => {
@@ -105,10 +95,6 @@ export const updateEducationalInfo = (data) => dispatch =>{
     })
     .then(res => {
         console.log("EDUCATION UPDATED", res.data)
-        // dispatch({
-        //     type:GET_PROFILE,
-        //     payload:res.data.data
-        // })
         window.location.reload()
     })
     .catch(err => {
