@@ -690,9 +690,11 @@ class UserProfile extends Component {
                   ):
                   (
                   <Button 
-                    onClick={this.onClickUpload}
                     className="btn bg-white text-success primary mb-3 float-right">
+                    <a href={this.props.dashboard.dashboard.resume} download>
                     Download Document
+                    </a>
+                    
                   </Button> 
                   )
                   }
