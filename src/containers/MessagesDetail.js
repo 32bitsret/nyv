@@ -32,6 +32,7 @@ import {
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import moreMembers from  "../variables/moreMembers"
+import {sendMessage} from "../redux/actions/messageActions"
 
 class MessagesDetail extends React.Component {
   constructor(props) {
@@ -93,6 +94,8 @@ class MessagesDetail extends React.Component {
       query: query
     }
     console.log("ARRAY OF SELECTION", data)
+    this.props.sendMessage(data)
+
   }
 
   render() {
@@ -731,4 +734,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(withStyles(regularFormsStyle)(MessagesDetail));
+export default connect(mapStateToProps, {sendMessage})(withStyles(regularFormsStyle)(MessagesDetail));
