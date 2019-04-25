@@ -94,6 +94,7 @@ export const updatePhoto = (location, id) => dispatch => {
 
 export const updateEducationalInfo = (data) => dispatch =>{
     //step3
+    console.log("STEP3", data)
     axios({
         method:"PUT",
         url:updateProfileURL,
@@ -125,7 +126,7 @@ export const uploadPicture = (data, id) => dispatch =>{
 
 
 
-export const updateContactInfo = data => {
+export const updateContactInfo = data => dispatch => {
     axios({
         method:"PUT",
         url:updateProfileURL,
