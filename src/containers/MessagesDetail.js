@@ -32,6 +32,7 @@ import {
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import moreMembers from  "../variables/moreMembers"
+import {sendMessage} from "../redux/actions/messageActions"
 
 class MessagesDetail extends React.Component {
   constructor(props) {
@@ -41,8 +42,8 @@ class MessagesDetail extends React.Component {
       selectedValue: "a",
       selectedEnabled: "b",
       lga: [],
-      profile: [],
-      education: [],
+      disability: [],
+      qualification: [],
       marital_status:[],
       gender:[],
       disableA: false,
@@ -51,6 +52,10 @@ class MessagesDetail extends React.Component {
       profileMembers: [],
       lgaMembers: [],
 
+      title: "",
+      message:"",
+      expo_tokens:[],
+      query:[]
     };
   }
 
@@ -69,27 +74,42 @@ class MessagesDetail extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onchange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   onSend = e => {
+    let query = []
+    query.push(this.state.lga)
+    query.push(this.state.gender)
+    query.push(this.state.disability)
+    query.push(this.state.marital_status)
+    query.push(this.state.qualification)
     const data = {
-      lga:this.state.lga,
-      profile: this.state.profile,
-      education: this.state.education,
-      marital_status: this.state.marital_status
+      message: this.state.message,
+      title: this.state.title,
+      expo_tokens:this.state.expo_tokens,
+      query: query
     }
     console.log("ARRAY OF SELECTION", data)
+    this.props.sendMessage(data)
+
   }
 
   render() {
+    console.log("TITLE", this.state)
     const { classes } = this.props;
-    let genderFiltered = genderFilter(this.state.gender, moreMembers)
-    let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
-    let lgaFiltered = lgaFilter(this.state.lga, moreMembers)
-    let profileFiltered = profileFilter(this.state.profile, moreMembers)
+    // let genderFiltered = genderFilter(this.state.gender, moreMembers)
+    // let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
+    // let lgaFiltered = lgaFilter(this.state.lga, moreMembers)
+    // let profileFiltered = profileFilter(this.state.profile, moreMembers)
     
-    console.log("FILTERED GENDER KAWAI",genderFiltered)
-    console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
-    console.log("FILTERED LGA KAWAI",lgaFiltered)
-    console.log("FILTERED PROFILE KAWAI",profileFiltered)
+    // console.log("FILTERED GENDER KAWAI",genderFiltered)
+    // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
+    // console.log("FILTERED LGA KAWAI",lgaFiltered)
+    // console.log("FILTERED disabilityKAWAI",profileFiltered)
     return (
       <div>
       <GridContainer justify="center">
@@ -111,12 +131,14 @@ class MessagesDetail extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={12} md={9}>
                     <CustomInput
-                      id="email_adress2"
+                      id="title"
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
-                        type: "text"
+                        type: "text",
+                        name:"title",
+                        onChange: (e) => {this.onchange(e)}
                       }}
                     />
                   </GridItem>
@@ -129,12 +151,15 @@ class MessagesDetail extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={12} md={9}>
                     <CustomInput
-                      id="password2"
+                      id="message"
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
-                        type: "text"
+                        value: this.state.message,
+                        type: "text",
+                        name: "message",
+                        onChange: (e) => this.onchange(e)
                       }}
                     />
                   </GridItem>
@@ -248,11 +273,11 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.profile}
+                      value={this.state.disability}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "profile",
-                        id: "profile"
+                        name: "disability",
+                        id: "disability"
                       }}
                     >
                       <MenuItem
@@ -277,7 +302,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="not-disabled"
+                        value="not disabled"
                       >
                         not-disabled
                       </MenuItem>
@@ -605,10 +630,10 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.education}
+                      value={this.state.qualification}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "education",
+                        name: "qualification",
                         id: "simple-select"
                       }}
                     >
@@ -709,4 +734,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(withStyles(regularFormsStyle)(MessagesDetail));
+export default connect(mapStateToProps, {sendMessage})(withStyles(regularFormsStyle)(MessagesDetail));

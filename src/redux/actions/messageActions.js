@@ -6,15 +6,16 @@ import {
 import { sendMessageURL } from "../../api/apiURL"
 
 export const sendMessage = (body) => dispatch => {
-    axios({
-        method:"POST",
-        url: sendMessageURL,
-        data: body
-    })
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+    console.log("INSIDE MESSAGE ACTION", body)
+    // axios({
+    //     method:"POST",
+    //     url: sendMessageURL,
+    //     data: body
+    // })
+    // .then(res => {
+    //     console.log(res)
+    // })
+    // .catch(err => {
+    //     console.log(err)
+    // })
 }
