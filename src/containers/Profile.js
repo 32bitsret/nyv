@@ -205,7 +205,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.state.user)
+    console.log("USER DASHBOARD",this.props.dashboard.dashboard.resume)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -681,11 +681,21 @@ class UserProfile extends Component {
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
+                  {isEmpty(this.props.dashboard.dashboard.resume)?
+                  (<Button 
+                    onClick={this.onClickUpload}
+                    className="btn bg-white text-success primary mb-3 float-right">
+                    Upload Document
+                  </Button> 
+                  ):
+                  (
                   <Button 
                     onClick={this.onClickUpload}
                     className="btn bg-white text-success primary mb-3 float-right">
-                    Edit
+                    Download Document
                   </Button> 
+                  )
+                  }
                   <Dialog
                     open={this.state.openUpload}
 
