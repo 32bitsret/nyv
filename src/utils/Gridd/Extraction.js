@@ -35,12 +35,20 @@
  
 export  const extractEducation = (arr, test) => {
    let result = [];
+   let number = [];
    arr.forEach(element => {
-       if(element.education === test){
-         result.push(element)
+       if(element.education){
+         console.log(element.education)
+         result.push(element.education)
        }
     });
-   return result.length;
+    result.map(res => {
+      console.log("RESULT",res)
+      if(res.educational_qualification === test){
+        number.push(res.educational_qualification)
+      }
+    })
+   return number.length;
  }
  
  //extract disability from general data
@@ -51,6 +59,7 @@ export  const extractEducation = (arr, test) => {
          result.push(element)
        }
      });
+    
    return result.length;
  }
 

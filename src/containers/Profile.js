@@ -16,14 +16,15 @@ import { getProfile } from "../redux/actions/dashboardAction"
 import {
   updateBasicInfo,
   updateEducationalInfo,
-  updateContactInfo
+  updateContactInfo,
+  uploadDocument
 } from "../redux/actions/createActions"
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 import ImageUpload from "./components/ImageUpload"
 import moment from "moment"
-
+import DocumentUpload from "./components/DocumentUpload"
 
 class UserProfile extends Component {
   state = {
@@ -35,20 +36,18 @@ class UserProfile extends Component {
     lga:"",
     gender:"",
     phone:"",
-    education:{
-      course:"",
-      institution:"",
-      year_of_graduation:"",
-      qualification:""
-    },
+   
+    course:"",
+    institution:"",
+    year_of_graduation:"",
+    educational_qualification:""
+    ,
     employed:"",
     marital_status:"",
     disability:"",
     address:"",
     resume:"",
-    // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
-    // photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
-   
+
     id:"",
     disable: true,
     editing: this.onButtonClick,
@@ -82,12 +81,10 @@ class UserProfile extends Component {
       lga:isEmpty(data.lga)?"":data.lga,
       gender:isEmpty(data.gender)?"":data.gender,
       phone:isEmpty(data.phone)?"":data.phone,
-      education:{
-        course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
-        institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
-        year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-        qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
-      },
+      course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
+      institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
+      year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
+      educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.educational_qualification,
       employed:isEmpty(data.employed)?"":data.employed,
       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
       disability:isEmpty(data.disability)?"":data.disability,
@@ -131,7 +128,7 @@ class UserProfile extends Component {
   }
 
   onClickUpload = e => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({
       openUpload: !this.state.openUpload
     })
@@ -189,10 +186,10 @@ class UserProfile extends Component {
     }
     let update ={
       education:{
-        course:"mech engineering",
-        educational_qualification:"OND",
-        institution: "FUT MINNA",
-        year_of_graduation:"2012"
+        course:isEmpty(this.state.course)?"":this.state.course,
+        educational_qualification:isEmpty(this.state.educational_qualification)?"": this.state.educational_qualification,
+        institution: isEmpty(this.state.institution)?"":this.state.institution,
+        year_of_graduation:isEmpty(this.state.year_of_graduation)?"":this.state.year_of_graduation
       }
     }
     let obj = {query, update}
@@ -208,7 +205,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.props.dashboard)
+    console.log("USER DASHBOARD",this.props.dashboard.dashboard.resume)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -223,10 +220,10 @@ class UserProfile extends Component {
     ];
 
     const optionsMaritalStatus = [
-      { label: 'Single', value: 'single' },
-      { label: 'Married', value: 'married' },
-      { label: 'Divorced', value: 'divorced' },
-      { label: 'Widowed', value: 'widowed' },
+      { label: 'Single', value: 'Single' },
+      { label: 'Married', value: 'Married' },
+      { label: 'Divorced', value: 'Divorced' },
+      { label: 'Widowed', value: 'Widowed' },
     ];
 
     const optionsDisability = [
@@ -236,23 +233,24 @@ class UserProfile extends Component {
 
     const optionsLGA = [
       { label: '', value: '' },
-      { label: 'Barkin Ladi', value: 'barkin ladi' },
-      { label: 'Bassa', value: 'bassa' },
-      { label: 'Bokkos', value: 'bokkos' },
-      { label: 'Jos East', value: 'jos east' },
-      { label: 'Jos North', value: 'jos north' },
-      { label: 'Jos South', value: 'jos south' },
-      { label: 'Kanam', value: 'kanam' },
-      { label: 'Kanke', value: 'kanke' },
-      { label: 'Langtang North', value: 'langtang north' },
-      { label: 'Langtang South', value: 'langtang south' },
-      { label: 'Mangu', value: 'mangu' },
-      { label: 'Mikang', value: 'mikang' },
-      { label: 'Pankshin', value: 'pankshin' },
-      { label: "Qua'an Pan", value: "qua'an pan" },
-      { label: 'Riyom', value: 'riyom' },
-      { label: 'Shendam', value: 'shendam' },
+      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
+      { label: 'Bassa', value: 'Bassa' },
+      { label: 'Bokkos', value: 'Bokkos' },
+      { label: 'Jos East', value: 'Jos East' },
+      { label: 'Jos North', value: 'Jos North' },
+      { label: 'Jos South', value: 'Jos South' },
+      { label: 'Kanam', value: 'Kanam' },
+      { label: 'Kanke', value: 'Kanke' },
+      { label: 'Langtang North', value: 'Langtang North' },
+      { label: 'Langtang South', value: 'Langtang South' },
+      { label: 'Mangu', value: 'Mangu' },
+      { label: 'Mikang', value: 'Mikang' },
+      { label: 'Pankshin', value: 'Pankshin' },
+      { label: "Qua'an Pan", value: "Qua'an Pan" },
+      { label: 'Riyom', value: 'Riyom' },
+      { label: 'Shendam', value: 'Shendam' },
       { label: 'Wase', value: 'Wase' },
+      { label: 'Others', value: 'Others' },
     ];
 
     const optionsYearofGrad = [
@@ -289,7 +287,7 @@ class UserProfile extends Component {
 
     const optionsQualification = [
       { label: 'School Cert', value: 'School Cert' },
-      { label: 'Olevel', value: 'Olevel' },
+      { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },
       { label: 'Degree', value: 'Degree' },
@@ -325,6 +323,10 @@ class UserProfile extends Component {
                   <div className="col-4 col-md-3 m-auto">
                     <img 
                       className="rounded-circle" 
+                      style={{width: "200px",
+                        left: "50%",
+                        position: "relative",
+                        transform: "translate(-50%,0)"}}
                       src={isEmpty(this.state.user.photo) ? "https://www.gravatar.com/avatar/anything?s=200&d=mm" : this.state.user.photo} 
                       alt="" 
                     />
@@ -387,7 +389,7 @@ class UserProfile extends Component {
                     <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> {isEmpty(this.state.user.employed)?"":this.state.user.employed}
+                    <strong>Employed:</strong> {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
@@ -396,7 +398,7 @@ class UserProfile extends Component {
                     <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
-                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.age}
+                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -572,7 +574,7 @@ class UserProfile extends Component {
                     <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.year_of_graduation)?"":this.state.user.education.year_of_graduation}
                   </p>
                   <p>
-                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.institution)?"":this.state.user.education.institution}
+                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.institution}
                   </p>
                   <p>
                     <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
@@ -609,7 +611,7 @@ class UserProfile extends Component {
                             <SelectListGroup
                               placeholder="Year of Graduation"
                               name="year_of_graduation"
-                              value={this.state.education.year_of_graduation}
+                              value={this.state.year_of_graduation}
                               onChange={this.onchange}
                               options={optionsYearofGrad}
                             />
@@ -626,7 +628,7 @@ class UserProfile extends Component {
                               className="form-control form-control-lg" 
                               placeholder="Institution" 
                               name="institution" 
-                              value={this.state.education.institution} 
+                              value={this.state.institution} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -641,7 +643,7 @@ class UserProfile extends Component {
                               className="form-control form-control-lg" 
                               placeholder="Course" 
                               name="course" 
-                              value={this.state.education.course} 
+                              value={this.state.course} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -653,8 +655,8 @@ class UserProfile extends Component {
                             </label> 
                             <SelectListGroup
                               placeholder="Highest Qualification"
-                              name="qualification"
-                              value={this.state.education.qualification}
+                              name="educational_qualification"
+                              value={this.state.educational_qualification}
                               onChange={this.onchange}
                               options={optionsQualification}
                             />
@@ -683,11 +685,23 @@ class UserProfile extends Component {
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
-                  <Button 
+                  {isEmpty(this.props.dashboard.dashboard.resume)?
+                  (<Button 
                     onClick={this.onClickUpload}
                     className="btn bg-white text-success primary mb-3 float-right">
-                    Edit
+                    Upload Document
                   </Button> 
+                  ):
+                  (
+                  <Button 
+                    className="btn bg-white text-success primary mb-3 float-right">
+                    <a href={this.props.dashboard.dashboard.resume} download>
+                    Download Document
+                    </a>
+                    
+                  </Button> 
+                  )
+                  }
                   <Dialog
                     open={this.state.openUpload}
 
@@ -706,21 +720,24 @@ class UserProfile extends Component {
                           className="col-md-6 col-form-label">
                           Resume
                         </label>
-                        <input 
+                        {/* <input 
                           type="file" 
                           className="form-control form-control-lg" 
                           placeholder="resume" 
                           name="resume" 
+                        /> */}
+                        <DocumentUpload
+                          cancel={this.onClickUpload}
                         />
                       </div>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={this.onClickUpload} color="danger">
+                      {/* <Button onClick={this.onClickUpload} color="danger">
                         Cancel
                       </Button>
                       <Button onClick={this.handleClose} color="success">
                         Update
-                      </Button>
+                      </Button> */}
                     </DialogActions>
                   </Dialog>  
                 </li>

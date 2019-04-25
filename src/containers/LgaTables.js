@@ -57,6 +57,7 @@ class LgaTables extends React.Component {
       tableData: {},
       isloading: true,
       data: dataRows.map((prop, key) => {
+        console.log(prop)
         return {
           id: key ,
           sn: key + 1,
@@ -65,18 +66,18 @@ class LgaTables extends React.Component {
           females: extractGender(this.props.dashboard.allMembers, "female", prop[0] ),
           age: prop[3],
           total: extractLGA(this.props.dashboard.allMembers,prop[0]),
-          married: extractMaritalStatus(this.props.dashboard.allMembers, "married", prop[0]),
-          single:  extractMaritalStatus(this.props.dashboard.allMembers, "single", prop[0]),
-          divorced: extractMaritalStatus(this.props.dashboard.allMembers, "divorced", prop[0]),
-          widowed: extractMaritalStatus(this.props.dashboard.allMembers, "widowed", prop[0]),
+          married: extractMaritalStatus(this.props.dashboard.allMembers, "Married", prop[0]),
+          single:  extractMaritalStatus(this.props.dashboard.allMembers, "Single", prop[0]),
+          divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
+          widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
           Degree: extractEducation(this.props.dashboard.allMembers,"degree", prop[0]),
           SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"school cert", prop[0]),
-          HND: extractEducation(this.props.dashboard.allMembers,"hnd", prop[0]),
-          ND: extractEducation(this.props.dashboard.allMembers,"nd", prop[0]),
-          NCE: extractEducation(this.props.dashboard.allMembers,"nce", prop[0]),
-          MSC: extractEducation(this.props.dashboard.allMembers,"msc", prop[0]),
-          PHD: extractEducation(this.props.dashboard.allMembers,"phd", prop[0]),
-          OLEVEL: extractEducation(this.props.dashboard.allMembers,"olevel", prop[0]),
+          HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
+          ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
+          NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
+          MSC: extractEducation(this.props.dashboard.allMembers,"MSC", prop[0]),
+          PHD: extractEducation(this.props.dashboard.allMembers,"PHD", prop[0]),
+          OLEVEL: extractEducation(this.props.dashboard.allMembers,"OLEVEL", prop[0]),
           Disabled: extractDisability(this.props.dashboard.allMembers, "yes", prop[0]),
           NotDisabled: extractDisability(this.props.dashboard.allMembers, "no", prop[0]),
           employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
@@ -140,12 +141,12 @@ class LgaTables extends React.Component {
           <hr/>
           <h3 className={classes.cardTitle}>EDUCATIONAL SUMMARY</h3>
           <hr/>
-          <h4 className={classes.cardTitle}>SCHOOL CERT:{"  "} {this.state.tableData.Bsc}</h4>
-          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.BEng}</h4>
-          <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.HND}</h4>
-          <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.ND}</h4>
+          <h4 className={classes.cardTitle}>SCHOOL CERT:{"  "} {this.state.tableData.SCHOOL_CERT}</h4>
+          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.OLEVEL}</h4>
+          <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.HND}</h4>
+          <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.ND}</h4>
           <h4 className={classes.cardTitle}>NCE:{"  "} {this.state.tableData.NCE}</h4>
-          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.OLEVEL}</h4>
+          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.Degree}</h4>
           <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
           <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
          
