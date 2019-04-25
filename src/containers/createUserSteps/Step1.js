@@ -197,7 +197,7 @@ class Step1 extends React.Component {
         }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
-        // this.props.createUserByAdmin(data)
+        this.props.createUserByAdmin(data)
       }
     }
   }

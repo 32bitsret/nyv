@@ -18,7 +18,8 @@ import {
 } from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
-     dispatch({
+    console.log("We are here") 
+    dispatch({
         type:CREATING_PROFILE,
     })
     axios({
@@ -27,6 +28,7 @@ export const createUserByAdmin = (data) => dispatch => {
         data: data
     })
     .then(res => {
+        console.log("SUCCESSFUL")
         dispatch({
             type: DONE_CREATING,
             payload: res.data.result
