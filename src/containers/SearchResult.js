@@ -15,6 +15,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
+import {extractLGA} from "../utils/Gridd/Extraction"
 
 const styles = {
   cardIconTitle: {
@@ -28,14 +29,18 @@ class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        user:{},
+      user:{},
       data: dataTable.dataRows.map((prop, key) => {
         return {
-          id: key,
-          name: prop[0],
-          position: prop[1],
-          office: prop[2],
-          age: prop[3],
+        //   id: key,
+        //   name: prop[0],
+        //   position: prop[1],
+        //   office: prop[2],
+        //   age: prop[3],
+         name:"",
+         DoB:"",
+         gender:"",
+         photo:"",
           actions: (
             <div className="actions-right">
               <Button
@@ -43,7 +48,8 @@ class SearchResult extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                    this.setState({
+                  console.log(obj) 
+                  this.setState({
                         user:obj
                     })
                 }}
@@ -52,7 +58,6 @@ class SearchResult extends React.Component {
               >
                View
               </Button>{" "}
-
             </div>
           )
         };
@@ -61,14 +66,16 @@ class SearchResult extends React.Component {
   }
   render() {
     const { classes } = this.props;
-
-    const display = false ?  <UserPreview/> :  
+    console.log("SELECTEDSER", this.state.user)
+    const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
                 <i className={classes.danger} /> No User Selected            
             </CardBody>
         </Card>
-  
+        :
+        <UserPreview user={this.state.user}/> 
+ 
     return (
         <div>
         <Heading
