@@ -36,19 +36,17 @@ class UserProfile extends Component {
     gender:"",
     phone:"",
    
-      course:"",
-      institution:"",
-      year_of_graduation:"",
-      educational_qualification:""
+    course:"",
+    institution:"",
+    year_of_graduation:"",
+    educational_qualification:""
     ,
     employed:"",
     marital_status:"",
     disability:"",
     address:"",
     resume:"",
-    // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
-    // photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
-   
+
     id:"",
     disable: true,
     editing: this.onButtonClick,

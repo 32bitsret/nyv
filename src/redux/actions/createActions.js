@@ -52,11 +52,12 @@ export const updateBasicInfo = (data) => dispatch =>{
     .then(res => {
         // localStorage.setItem('user', res.data.data)
         console.log("PERSONAL INFO UPDATED", res.data.data)
-        dispatch({
-            type:GET_PROFILE,
-            payload:res.data.data
-        })
+        // dispatch({
+        //     type:GET_PROFILE,
+        //     payload:res.data.data
+        // })
         
+        window.location.reload()
     })
     .catch(err => {
         console.log("ERROR FOR UPDATING BASIC DATA ", err)
@@ -82,10 +83,12 @@ export const updatePhoto = (location, id) => dispatch => {
     })
     .then(res => {
         console.log("PHOTO UPDATE", res.data)
-        dispatch({
-            type:SUCCESS_UPDATING_PHOTO,
-            payload:""
-        })
+        // dispatch({
+        //     type:SUCCESS_UPDATING_PHOTO,
+        //     payload:""
+        // })
+
+        window.location.reload()
     })
     .catch(err => {
         console.log("ERROR FROM PHOTO UPDATE", err)
@@ -102,6 +105,11 @@ export const updateEducationalInfo = (data) => dispatch =>{
     })
     .then(res => {
         console.log("EDUCATION UPDATED", res.data)
+        // dispatch({
+        //     type:GET_PROFILE,
+        //     payload:res.data.data
+        // })
+        window.location.reload()
     })
     .catch(err => {
         
@@ -134,6 +142,7 @@ export const updateContactInfo = data => dispatch => {
     })
     .then(res => {
         console.log("CONTACT UPDATE", res.data)
+        window.location.reload()
     })
     .catch(err => {
         
