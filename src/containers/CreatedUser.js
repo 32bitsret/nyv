@@ -66,7 +66,7 @@ class CreatedUser extends Component {
     let data = this.props.created.user
     console.log(data)
     this.setState({
-      // user: {...nextProps.dashboard.dashboard},
+      user: {...this.props.created.user},
       firstname:isEmpty(data.firstname) ? "":data.firstname,
       middlename: isEmpty(data.middlename)?"":data.middlename,
       lastname: isEmpty(data.lastname)?"":data.lastname,
@@ -282,7 +282,7 @@ class CreatedUser extends Component {
       { label: 'PHD', value: 'phd' }
     ];
 
-  const display = this.props.created.CreatedUser ?
+  const display = 
     (<div className="profile">
     <div className="container">
       <div className="row">
@@ -715,20 +715,8 @@ class CreatedUser extends Component {
     </div>
    </div>
    </div>
-  ):
-  (
-  <div>
-  <GridContainer justify="center">
-      <GridItem xs={12} sm={12} md={4}>
-      <div>
-        loading...
-      </div>
-    </GridItem>
-  </GridContainer>
-</div>
-) 
+  )
 
-  
   return (
     <div>
       <GridContainer justify="center">

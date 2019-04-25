@@ -17,7 +17,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile , getAllProfile} from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import moreMembers from "../variables/moreMembers"
+import members from "../variables/moreMembers"
 import {
   extractLGA,
   extractEducation,
@@ -78,14 +78,14 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(moreMembers, "CERT"), 
-        extractEducation(moreMembers, "OLEVEL"), 
-        extractEducation(moreMembers, "ND"), 
-        extractEducation(moreMembers, "HND"), 
-        extractEducation(moreMembers, "NCE"),
-        extractEducation(moreMembers, "Degree"), 
-        extractEducation(moreMembers, "MSC"), 
-        extractEducation(moreMembers, "PHD")
+        extractEducation(members, "CERT"), 
+        extractEducation(members, "OLEVEL"), 
+        extractEducation(members, "ND"), 
+        extractEducation(members, "HND"), 
+        extractEducation(members, "NCE"),
+        extractEducation(members, "Degree"), 
+        extractEducation(members, "MSC"), 
+        extractEducation(members, "PHD")
       ]]
     },
     options: {
@@ -138,8 +138,8 @@ class Gridd extends Component {
         "Not Employed",
       ],
       series: [[
-        extractEmployment(moreMembers, "employed"), 
-        extractEmployment(moreMembers, "not employed")
+        extractEmployment(members, "employed"), 
+        extractEmployment(members, "not employed")
       ]]
     },
     options: {

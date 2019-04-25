@@ -206,7 +206,6 @@ class Step1 extends React.Component {
 
     e.preventDefault();
     let newNumber = Number(this.state.searchValue.slice(1))
-    // localStorage.setItem("User", newNumber.toString())
     this.props.fetchUser(newNumber)
    
   }
@@ -214,20 +213,7 @@ class Step1 extends React.Component {
   render() {
     const { classes } = this.props;
    
-    const display = this.props.createUser.creatingProfile ?
-        (
-        <div>
-          <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={4}>
-              <div>
-                loading...
-              </div>
-            </GridItem>
-          </GridContainer>
-        </div>
-        )
-        :
-        (
+    const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>
             <Card>
@@ -720,7 +706,7 @@ class Step1 extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
-      )
+      
 
     return (
       <div>

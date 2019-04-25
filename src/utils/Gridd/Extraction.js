@@ -42,12 +42,12 @@ export  const extractEducation = (arr, test) => {
          result.push(element.education)
        }
     });
-    // result.map(res => {
-    //   console.log("RESULT",res)
-    //   if(res.educational_qualification === test){
-    //     number.push(res.educational_qualification)
-    //   }
-    // })
+    result.map(res => {
+      console.log("RESULT",res)
+      if(res.educational_qualification === test){
+        number.push(res.educational_qualification)
+      }
+    })
    return number.length;
  }
  
