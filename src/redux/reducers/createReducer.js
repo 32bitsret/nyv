@@ -32,6 +32,7 @@ export default (state = initialState, action) => {
             isloading: false,
             user: action.payload,
             userExist: true,
+            createdUser:!isEmpty(action.payload),
             creatingProfile:false
         }
     case FETCHING_USER:

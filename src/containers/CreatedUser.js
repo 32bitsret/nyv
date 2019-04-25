@@ -284,6 +284,10 @@ class CreatedUser extends Component {
                   <div className="col-4 col-md-3 m-auto">
                     <img 
                       className="rounded-circle" 
+                      style={{width: "200px",
+                        left: "50%",
+                        position: "relative",
+                        transform: "translate(-50%,0)"}}
                       src={isEmpty(this.state.user.photo) ? "https://www.gravatar.com/avatar/anything?s=200&d=mm" : this.state.user.photo} 
                       alt="" 
                     />
