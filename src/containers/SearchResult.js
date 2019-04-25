@@ -28,6 +28,7 @@ class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        user:{},
       data: dataTable.dataRows.map((prop, key) => {
         return {
           id: key,
@@ -42,6 +43,9 @@ class SearchResult extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
+                    this.setState({
+                        user:obj
+                    })
                 }}
                 color="success"
                 className="edit"
