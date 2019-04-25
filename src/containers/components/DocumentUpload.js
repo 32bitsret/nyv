@@ -38,6 +38,7 @@ class DocumentUpload extends React.Component {
 
   handleSubmit(e) {
     const id = this.props.state.dashboard.dashboard._id
+    console.log("ID", id)
     const data = {
         type: this.state.type,
         name: this.state.name,

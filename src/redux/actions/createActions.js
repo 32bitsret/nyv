@@ -171,7 +171,7 @@ export const uploadDocument = (data, id) => dispatch =>{
     })
     .then(res => {
         console.log("DOCUMENT UPLOAD", res.data)
-        updateDocument(res.data.location, id)
+        dispatch(updateDocument(res.data.Location, id))
     })
     .catch(err => {
         console.log("DOCUMENT FAILURE", err)
