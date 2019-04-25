@@ -20,6 +20,7 @@ import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import User from '../variables/UserData'
+import SearchResult from "./SearchResult"
 var ps;
 
 class Search extends React.Component {
@@ -129,6 +130,7 @@ class Search extends React.Component {
         <div className={classes.content}>
             <div className={classes.container}>
               {/* {display} */}
+              <SearchResult/>
             </div>
         </div>
         </div>

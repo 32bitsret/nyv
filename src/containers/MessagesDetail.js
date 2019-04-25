@@ -55,7 +55,13 @@ class MessagesDetail extends React.Component {
       title: "",
       message:"",
       expo_tokens:[],
-      query:[]
+      query:{
+        lga:[],
+        gender:[],
+        disability:[],
+        marital_status:[],
+        qualification:[]
+      }
     };
   }
 
@@ -81,12 +87,13 @@ class MessagesDetail extends React.Component {
   }
 
   onSend = e => {
-    let query = []
-    query.push(this.state.lga)
-    query.push(this.state.gender)
-    query.push(this.state.disability)
-    query.push(this.state.marital_status)
-    query.push(this.state.qualification)
+    let query = {
+      lga:[...this.state.lga],
+      gender:[...this.state.gender],
+      disability:[...this.state.disability],
+      marital_status:[...this.state.marital_status],
+      qualification:[...this.state.qualification]
+    }
     const data = {
       message: this.state.message,
       title: this.state.title,

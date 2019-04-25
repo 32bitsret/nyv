@@ -458,6 +458,7 @@ class Gridd extends Component {
           </Card>
         </GridItem>
       </GridContainer>
+      <GridContainer>
           <GridItem xs={12} sm={12} md={6} lg={4}>
           <Card chart >
             <CardHeader color="success" className={classes.cardHeaderHover}>
@@ -483,6 +484,20 @@ class Gridd extends Component {
             </CardFooter>
           </Card>
         </GridItem>
+        <GridItem xs={12} sm={12} md={6} lg={4}>
+          <Card chart >
+
+            <CardBody>
+              <h1>{members.length}{" "}MEMBERS</h1>
+              <h4 className={classes.cardTitle}>Total Population</h4>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        </GridContainer>
       </div>
       )
     return (
