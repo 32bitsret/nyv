@@ -6,13 +6,15 @@ import {
     FETCHING_USER,
     DONE_UPDATING,
     GET_PROFILE,
-    CREATING_PROFILE
+    CREATING_PROFILE,
+    SUCCESS_UPDATING_PHOTO
 } from "../Constants"
 import axios from "axios"
 import {
     registerURL,
     updateProfileURL,
-    profileURL
+    profileURL,
+    uploadImageURL
 } from "../../api/apiURL"
 
 export const createUserByAdmin = (data) => dispatch => {
@@ -62,8 +64,37 @@ export const updateBasicInfo = (data) => dispatch =>{
 }
 
 
+export const updatePhoto = (location, id) => dispatch => {
+    console.log("running...")
+    let query = {
+        _id: id
+    }
+    let update = {
+        photo: location
+    }
+    axios({
+        method:"PUT",
+        url:updateProfileURL,
+        data:{
+            query,
+            update
+        }
+    })
+    .then(res => {
+        console.log("PHOTO UPDATE", res.data)
+        dispatch({
+            type:SUCCESS_UPDATING_PHOTO,
+            payload:""
+        })
+    })
+    .catch(err => {
+        console.log("ERROR FROM PHOTO UPDATE", err)
+    })
+}
+
 export const updateEducationalInfo = (data) => dispatch =>{
     //step3
+    console.log("STEP3", data)
     axios({
         method:"PUT",
         url:updateProfileURL,
@@ -77,23 +108,25 @@ export const updateEducationalInfo = (data) => dispatch =>{
     })
 }
 
-export const uploadPicture = (data) => dispatch =>{
+export const uploadPicture = (data, id) => dispatch =>{
     //step4
     axios({
-        method:"PUT",
-        url:"",
-        data: ""
+        method:"POST",
+        url:uploadImageURL,
+        data: data
     })
     .then(res => {
-
+        console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
+        dispatch(updatePhoto(res.data.Location, id))
     })
     .catch(err => {
-        
+        console.log("ERROR FROM IMAGE UPLOAD")
     })
 }
 
 
-export const updateContactInfo = data => {
+
+export const updateContactInfo = data => dispatch => {
     axios({
         method:"PUT",
         url:updateProfileURL,

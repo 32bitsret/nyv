@@ -22,6 +22,8 @@ import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweet
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 import ImageUpload from "./components/ImageUpload"
+import moment from "moment"
+
 
 class UserProfile extends Component {
   state = {
@@ -45,7 +47,7 @@ class UserProfile extends Component {
     address:"",
     resume:"",
     // photo:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
-    photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
+    // photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
    
     id:"",
     disable: true,
@@ -136,11 +138,13 @@ class UserProfile extends Component {
   }
 
   onClickPhoto = e => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({
       openPhoto: !this.state.openPhoto
     })
   }
+
+
 //============================END OF MODAL OPS======================================
 //======================START OF SUBMISSION ROUTINES=============================
   onSubmitBasicInfo = e => {
@@ -150,10 +154,11 @@ class UserProfile extends Component {
     }
     let update = {
       gender: isEmpty(this.state.gender)?"":this.state.gender,
-      employed: isEmpty(this.state.employed)?"":this.state.employed,
+      employement_status: isEmpty(this.state.employed)?"":this.state.employed,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
       disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
-      DoB: isEmpty(this.state.DoB)?"":this.state.DoB
+      DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
+      type_of_work:"tailor"
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
@@ -169,14 +174,41 @@ class UserProfile extends Component {
       _id: this.props.dashboard.dashboard._id
     }
     let update = {
-      //update   
+      address:isEmpty(this.state.address)?"": this.state.address,
+      lga:isEmpty(this.state.lga) ? "" : this.state.lga 
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
-    this.props.updateBasicInfo({query,update})
+    this.props.updateContactInfo({query,update})
+  }
+
+  onSubmitEducationalInfo = e => {
+    e.preventDefault()
+    let query = {
+      _id: this.props.dashboard.dashboard._id
+    }
+    let update ={
+      education:{
+        course:"mech engineering",
+        educational_qualification:"OND",
+        institution: "FUT MINNA",
+        year_of_graduation:"2012"
+      }
+    }
+    let obj = {query, update}
+    console.log("BIG OBJECT", obj)
+    this.props.updateEducationalInfo({query, update})
+  }
+
+  age = () => {
+    const now = moment(new Date())
+    const end = moment(this.state.DoB)
+    const duration = moment.duration(now.diff(end))
+      return duration
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
+    console.log("USER DASHBOARD",this.props.dashboard)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -186,7 +218,7 @@ class UserProfile extends Component {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'no' },
+      { label: 'No', value: 'not employed' },
       { label: 'Yes', value: 'yes' },
     ];
 
@@ -198,8 +230,8 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'No', value: 'no' },
-      { label: 'Yes', value: 'yes' }
+      { label: 'No', value: 'not disabled' },
+      { label: 'Yes', value: 'disabled' }
     ];
 
     const optionsLGA = [
@@ -207,19 +239,19 @@ class UserProfile extends Component {
       { label: 'Barkin Ladi', value: 'barkin ladi' },
       { label: 'Bassa', value: 'bassa' },
       { label: 'Bokkos', value: 'bokkos' },
-      { label: 'Jos East', value: 'jos-east' },
-      { label: 'Jos North', value: 'jos-north' },
-      { label: 'Jos South', value: 'jos-south' },
+      { label: 'Jos East', value: 'jos east' },
+      { label: 'Jos North', value: 'jos north' },
+      { label: 'Jos South', value: 'jos south' },
       { label: 'Kanam', value: 'kanam' },
       { label: 'Kanke', value: 'kanke' },
-      { label: 'Langtang North', value: 'langtang North' },
-      { label: 'Langtang South', value: 'Langtang South' },
-      { label: 'Mangu', value: 'Mangu' },
-      { label: 'Mikang', value: 'Mikang' },
-      { label: 'Pankshin', value: 'Pankshin' },
-      { label: "Qua'an Pan", value: "Qua'an Pan" },
-      { label: 'Riyom', value: 'Riyom' },
-      { label: 'Shendam', value: 'Shendam' },
+      { label: 'Langtang North', value: 'langtang north' },
+      { label: 'Langtang South', value: 'langtang south' },
+      { label: 'Mangu', value: 'mangu' },
+      { label: 'Mikang', value: 'mikang' },
+      { label: 'Pankshin', value: 'pankshin' },
+      { label: "Qua'an Pan", value: "qua'an pan" },
+      { label: 'Riyom', value: 'riyom' },
+      { label: 'Shendam', value: 'shendam' },
       { label: 'Wase', value: 'Wase' },
     ];
 
@@ -320,29 +352,23 @@ class UserProfile extends Component {
                         <DialogContentText>
                           change you Profile Photo here
                         </DialogContentText>
-                        <ImageUpload 
+                        <ImageUpload
+                          cancel={this.onClickPhoto}
+                          avatar 
                           addButtonProps={{
-                            color: "rose",
+                            color: "success",
                             round: true
                           }}
                           changeButtonProps={{
-                            color: "rose",
+                            color: "danger",
                             round: true
                           }}
-                          removeButtonProps={{
-                            color: "danger",
+                          uploadButtonProps={{
+                            color: "success",
                             round: true
                           }}
                         />
                       </DialogContent>
-                      {/* <DialogActions>
-                        <Button onClick={this.onClickPhoto} color="danger">
-                          Cancel
-                        </Button>
-                        <Button onClick={this.handleClose} color="success">
-                          Update
-                        </Button>
-                      </DialogActions> */}
                     </Dialog>  
                 </div>
               </div>
@@ -370,7 +396,7 @@ class UserProfile extends Component {
                     <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
-                    <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
+                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.age}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -529,7 +555,7 @@ class UserProfile extends Component {
                           <Button onClick={this.onClickContact} color="danger">
                             Cancel
                           </Button>
-                          <Button onClick={this.handleClose} color="success">
+                          <Button onClick={this.onSubmitContactInfo} color="success">
                             Update
                           </Button>
                         </DialogActions>
@@ -552,7 +578,7 @@ class UserProfile extends Component {
                     <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
                   </p>
                   <p>
-                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.qualification)?"":this.state.user.education.qualification}
+                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.educational_qualification)?"":this.state.user.education.educational_qualification}
                   </p>
                   <br/>
                   <p>
@@ -639,7 +665,7 @@ class UserProfile extends Component {
                           <Button onClick={this.onClickEducation} color="danger">
                             Cancel
                           </Button>
-                          <Button onClick={this.handleClose} color="success">
+                          <Button onClick={this.onSubmitEducationalInfo} color="success">
                             Update
                           </Button>
                         </DialogActions>
