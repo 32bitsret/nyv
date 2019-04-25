@@ -21,7 +21,6 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import User from '../variables/UserData'
 import SearchResult from "./SearchResult"
-import Dialog from "./Dialog" 
 var ps;
 
 class Search extends React.Component {
@@ -131,8 +130,7 @@ class Search extends React.Component {
         <div className={classes.content}>
             <div className={classes.container}>
               {/* {display} */}
-              {/* <SearchResult/> */}
-              <Dialog/>
+              <SearchResult/>
             </div>
         </div>
         </div>

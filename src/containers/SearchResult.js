@@ -13,8 +13,8 @@ import { dataTable } from "variables/general.jsx";
 import Heading from "components/Heading/Heading.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
-import Dialogs from "./Dialog"
 import isEmpty from "../utils/isEmpty"
+import UserPreview from "./components/UserPreview"
 
 const styles = {
   cardIconTitle: {
@@ -42,7 +42,6 @@ class SearchResult extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                  <Dialogs />
                 }}
                 color="success"
                 className="edit"
@@ -69,8 +68,8 @@ class SearchResult extends React.Component {
                 </span>
             }
         />
-        <GridContainer justify="center">
-            <GridItem xs={12} lg={10}>
+        <GridContainer >
+            <GridItem xs={12} lg={6}>
             <Card>
                 <CardHeader color="success" icon>
                 <CardIcon color="success">
@@ -105,13 +104,15 @@ class SearchResult extends React.Component {
                         filterable: false
                     }
                     ]}
-                    defaultPageSize={10}
+                    defaultPageSize={16}
                     showPaginationTop
                     showPaginationBottom={false}
-                    // className="-striped -highlight"
                 />
                 </CardBody>
             </Card>
+            </GridItem>
+            <GridItem xs={6} md={6} xs={6} lg={6}>
+                <UserPreview/>
             </GridItem>
         </GridContainer>
         </div>
