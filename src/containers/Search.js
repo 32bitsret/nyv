@@ -21,6 +21,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import User from '../variables/UserData'
 import SearchDetail from "./SearchDetail"
+
 var ps;
 
 class Search extends React.Component {
