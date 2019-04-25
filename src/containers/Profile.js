@@ -35,12 +35,12 @@ class UserProfile extends Component {
     lga:"",
     gender:"",
     phone:"",
-    education:{
+   
       course:"",
       institution:"",
       year_of_graduation:"",
-      qualification:""
-    },
+      educational_qualification:""
+    ,
     employed:"",
     marital_status:"",
     disability:"",
@@ -82,12 +82,10 @@ class UserProfile extends Component {
       lga:isEmpty(data.lga)?"":data.lga,
       gender:isEmpty(data.gender)?"":data.gender,
       phone:isEmpty(data.phone)?"":data.phone,
-      education:{
-        course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
-        institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
-        year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-        qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
-      },
+      course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
+      institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
+      year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
+      educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.educational_qualification,
       employed:isEmpty(data.employed)?"":data.employed,
       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
       disability:isEmpty(data.disability)?"":data.disability,
@@ -189,10 +187,10 @@ class UserProfile extends Component {
     }
     let update ={
       education:{
-        course:"mech engineering",
-        educational_qualification:"OND",
-        institution: "FUT MINNA",
-        year_of_graduation:"2012"
+        course:isEmpty(this.state.course)?"":this.state.course,
+        educational_qualification:isEmpty(this.state.educational_qualification)?"": this.state.educational_qualification,
+        institution: isEmpty(this.state.institution)?"":this.state.institution,
+        year_of_graduation:isEmpty(this.state.year_of_graduation)?"":this.state.year_of_graduation
       }
     }
     let obj = {query, update}
@@ -208,7 +206,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.props.dashboard)
+    console.log("USER DASHBOARD",this.state.user)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -387,7 +385,7 @@ class UserProfile extends Component {
                     <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> {isEmpty(this.state.user.employed)?"":this.state.user.employed}
+                    <strong>Employed:</strong> {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
@@ -396,7 +394,7 @@ class UserProfile extends Component {
                     <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
-                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.age}
+                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -572,7 +570,7 @@ class UserProfile extends Component {
                     <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.year_of_graduation)?"":this.state.user.education.year_of_graduation}
                   </p>
                   <p>
-                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.institution)?"":this.state.user.education.institution}
+                    <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":this.state.user.education.institution}
                   </p>
                   <p>
                     <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
@@ -609,7 +607,7 @@ class UserProfile extends Component {
                             <SelectListGroup
                               placeholder="Year of Graduation"
                               name="year_of_graduation"
-                              value={this.state.education.year_of_graduation}
+                              value={this.state.year_of_graduation}
                               onChange={this.onchange}
                               options={optionsYearofGrad}
                             />
@@ -626,7 +624,7 @@ class UserProfile extends Component {
                               className="form-control form-control-lg" 
                               placeholder="Institution" 
                               name="institution" 
-                              value={this.state.education.institution} 
+                              value={this.state.institution} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -641,7 +639,7 @@ class UserProfile extends Component {
                               className="form-control form-control-lg" 
                               placeholder="Course" 
                               name="course" 
-                              value={this.state.education.course} 
+                              value={this.state.course} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -653,8 +651,8 @@ class UserProfile extends Component {
                             </label> 
                             <SelectListGroup
                               placeholder="Highest Qualification"
-                              name="qualification"
-                              value={this.state.education.qualification}
+                              name="educational_qualification"
+                              value={this.state.educational_qualification}
                               onChange={this.onchange}
                               options={optionsQualification}
                             />
