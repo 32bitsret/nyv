@@ -18,6 +18,7 @@ import Table from './Table'
 import {getAllProfile} from "../redux/actions/dashboardAction"
 import {connect} from "react-redux"
 import LgaTables from "./LgaTables"
+import SearchResult from "./SearchResult"
 
 
 const styles = {
@@ -40,23 +41,23 @@ class SearchDetail extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    // const display = this.props.dashboard.isloading ? 
-    //     <GridContainer>
-    //       <GridItem xs={6} lg={8}>
-    //         <Card>
-    //            <CardHeader color="primary" icon>
-    //            </CardHeader>
-    //           <CardBody>
-    //             <h4 className={classes.cardIconTitle}>Loading...</h4>
-    //           </CardBody>
-    //         </Card>
-    //       </GridItem>
-    //       <GridItem xs={6} md={6} xs={6} lg={12}>
-    //           {display}
-    //       </GridItem>
-    //     </GridContainer>
-    //     :
-    //     <LgaTables stat={this.props.dashboard}/>
+    const display = this.props.dashboard.isloading ? 
+        <GridContainer>
+          <GridItem xs={6} lg={8}>
+            <Card>
+               <CardHeader color="primary" icon>
+               </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardIconTitle}>Loading...</h4>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={6} md={6} xs={6} lg={12}>
+              {display}
+          </GridItem>
+        </GridContainer>
+        :
+        <SearchResult/>
     return (
       <div>
         <GridContainer justify="center">
@@ -64,13 +65,13 @@ class SearchDetail extends React.Component {
             <Card>
               <CardHeader>
                 <h4 className={classes.cardTitle}>
-                  DATA STATISTICS FOR LOCAL GOVERNMENT AREA
+                  DATA STATISTICS FOR {} LOCAL GOVERNMENT AREA
                 </h4>
                   <p className={classes.cardCategory}>                  
                 </p>
               </CardHeader>
               <CardBody>
-                
+                {display}
               </CardBody>
             </Card>
           </GridItem>

@@ -57,6 +57,14 @@ class SearchResult extends React.Component {
   }
   render() {
     const { classes } = this.props;
+
+    const display = false ?  <UserPreview/> :  
+        <Card>
+            <CardBody  className={classes.cardFooter}>
+                <i className={classes.danger} /> No User Selected            
+            </CardBody>
+        </Card>
+  
     return (
         <div>
         <Heading
@@ -112,7 +120,7 @@ class SearchResult extends React.Component {
             </Card>
             </GridItem>
             <GridItem xs={6} md={6} xs={6} lg={6}>
-                <UserPreview/>
+               {display}
             </GridItem>
         </GridContainer>
         </div>
