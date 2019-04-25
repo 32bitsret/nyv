@@ -59,16 +59,14 @@ class CreatedUser extends Component {
 
   
   componentDidMount(){
-    this.setState({
-      user:this.props.getProfile(this.props.auth.user.phone)
-    })
-  }
-
-  componentWillReceiveProps(nextProps){
-    let data = nextProps.dashboard.dashboard
+    console.log("PASSED IN USER", this.props.created)
+    // this.setState({
+    //   user:this.props.getProfile(this.props.auth.user.phone)
+    // })
+    let data = this.props.created.user
     console.log(data)
     this.setState({
-      user: {...nextProps.dashboard.dashboard},
+      // user: {...nextProps.dashboard.dashboard},
       firstname:isEmpty(data.firstname) ? "":data.firstname,
       middlename: isEmpty(data.middlename)?"":data.middlename,
       lastname: isEmpty(data.lastname)?"":data.lastname,
@@ -88,8 +86,36 @@ class CreatedUser extends Component {
       disability:isEmpty(data.disability)?"":data.disability,
       address:isEmpty(data.address)?"":data.address,
       resume:isEmpty(data.resume)?"":data.resume,
-      photo:nextProps.dashboard.dashboard.photo,
+      photo:isEmpty(data.photo)?"https://www.gravatar.com/avatar/anything?s=200&d=mm" :data.photo,
     })
+  }
+
+  componentWillReceiveProps(nextProps){
+    // let data = nextProps.dashboard.dashboard
+    // console.log(data)
+    // this.setState({
+    //   user: {...nextProps.dashboard.dashboard},
+    //   firstname:isEmpty(data.firstname) ? "":data.firstname,
+    //   middlename: isEmpty(data.middlename)?"":data.middlename,
+    //   lastname: isEmpty(data.lastname)?"":data.lastname,
+    //   email:isEmpty(data.email)?"":data.email,
+    //   DoB:isEmpty(data.DoB)?"":data.DoB,
+    //   lga:isEmpty(data.lga)?"":data.lga,
+    //   gender:isEmpty(data.gender)?"":data.gender,
+    //   phone:isEmpty(data.phone)?"":data.phone,
+    //   education:{
+    //     course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
+    //     institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
+    //     year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
+    //     qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
+    //   },
+    //   employed:isEmpty(data.employed)?"":data.employed,
+    //   marital_status:isEmpty(data.marital_status)?"":data.marital_status,
+    //   disability:isEmpty(data.disability)?"":data.disability,
+    //   address:isEmpty(data.address)?"":data.address,
+    //   resume:isEmpty(data.resume)?"":data.resume,
+    //   photo:nextProps.dashboard.dashboard.photo,
+    // })
   }
 
   onchange = (e) => {
@@ -256,20 +282,8 @@ class CreatedUser extends Component {
       { label: 'PHD', value: 'phd' }
     ];
 
-    const display = this.props.dashboard.isloading ?
-    (
-    <div>
-        <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={4}>
-            <div>
-              loading...
-            </div>
-          </GridItem>
-        </GridContainer>
-    </div>
-    ) 
-    :(
-    <div className="profile">
+  const display = this.props.created.CreatedUser ?
+    (<div className="profile">
     <div className="container">
       <div className="row">
         <div className="col-md-12">
@@ -294,7 +308,7 @@ class CreatedUser extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{this.state.user.firstname+ " " +this.state.user.middlename+ " "+this.state.user.lastname}</h2>
+                  <h2 className="display-4 text-center">{this.state.user.firstname+ " " +this.state.user.lastname}</h2>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
@@ -701,7 +715,19 @@ class CreatedUser extends Component {
     </div>
    </div>
    </div>
-  )
+  ):
+  (
+  <div>
+  <GridContainer justify="center">
+      <GridItem xs={12} sm={12} md={4}>
+      <div>
+        loading...
+      </div>
+    </GridItem>
+  </GridContainer>
+</div>
+) 
+
   
   return (
     <div>
