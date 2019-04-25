@@ -131,7 +131,7 @@ class Gridd extends Component {
     }
   };
 
-
+console.log("Number", extractEducation(moreMembers, "hnd"))
    employment = {
     data: {
       labels: [

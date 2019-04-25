@@ -85,6 +85,32 @@ export const updatePhoto = (location, id) => dispatch => {
     })
 }
 
+
+export const updateDocument = (location, id) => dispatch => {
+    console.log("document uploadrunning...")
+    let query = {
+        _id: id
+    }
+    let update = {
+        resume: location
+    }
+    axios({
+        method:"PUT",
+        url:updateProfileURL,
+        data:{
+            query,
+            update
+        }
+    })
+    .then(res => {
+        console.log("PHOTO UPDATE", res.data)
+        window.location.reload()
+    })
+    .catch(err => {
+        console.log("ERROR FROM PHOTO UPDATE", err)
+    })
+}
+
 export const updateEducationalInfo = (data) => dispatch =>{
     //step3
     console.log("STEP3", data)
@@ -135,18 +161,20 @@ export const updateContactInfo = data => dispatch => {
     })
 }
 
-export const uploadDocument = (data) => dispatch =>{
+export const uploadDocument = (data, id) => dispatch =>{
     //step4
+    console.log("DOCUMENT UPLOAD IN ROGRESS")
     axios({
-        method:"PUT",
-        url:"",
-        data: ""
+        method:"POST",
+        url:uploadImageURL,
+        data: data
     })
     .then(res => {
-
+        console.log("DOCUMENT UPLOAD", res.data)
+        updateDocument(res.data.location, id)
     })
     .catch(err => {
-        
+        console.log("DOCUMENT FAILURE", err)
     })
 }
 

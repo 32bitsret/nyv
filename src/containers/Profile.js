@@ -16,14 +16,15 @@ import { getProfile } from "../redux/actions/dashboardAction"
 import {
   updateBasicInfo,
   updateEducationalInfo,
-  updateContactInfo
+  updateContactInfo,
+  uploadDocument
 } from "../redux/actions/createActions"
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 import ImageUpload from "./components/ImageUpload"
 import moment from "moment"
-
+import DocumentUpload from "./components/DocumentUpload"
 
 class UserProfile extends Component {
   state = {
@@ -127,7 +128,7 @@ class UserProfile extends Component {
   }
 
   onClickUpload = e => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({
       openUpload: !this.state.openUpload
     })
@@ -703,21 +704,24 @@ class UserProfile extends Component {
                           className="col-md-6 col-form-label">
                           Resume
                         </label>
-                        <input 
+                        {/* <input 
                           type="file" 
                           className="form-control form-control-lg" 
                           placeholder="resume" 
                           name="resume" 
+                        /> */}
+                        <DocumentUpload
+                          cancel={this.onClickUpload}
                         />
                       </div>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={this.onClickUpload} color="danger">
+                      {/* <Button onClick={this.onClickUpload} color="danger">
                         Cancel
                       </Button>
                       <Button onClick={this.handleClose} color="success">
                         Update
-                      </Button>
+                      </Button> */}
                     </DialogActions>
                   </Dialog>  
                 </li>
