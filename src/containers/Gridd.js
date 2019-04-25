@@ -17,7 +17,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile , getAllProfile} from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import members from "../variables/moreMembers"
+import moreMembers from "../variables/moreMembers"
 import {
   extractLGA,
   extractEducation,
