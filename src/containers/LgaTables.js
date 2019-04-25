@@ -141,12 +141,12 @@ class LgaTables extends React.Component {
           <hr/>
           <h3 className={classes.cardTitle}>EDUCATIONAL SUMMARY</h3>
           <hr/>
-          <h4 className={classes.cardTitle}>SCHOOL CERT:{"  "} {this.state.tableData.Bsc}</h4>
-          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.BEng}</h4>
+          <h4 className={classes.cardTitle}>SCHOOL CERT:{"  "} {this.state.tableData.SCHOOL_CERT}</h4>
+          <h4 className={classes.cardTitle}>OLEVEL:{"  "} {this.state.tableData.OLEVEL}</h4>
           <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.HND}</h4>
           <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.ND}</h4>
           <h4 className={classes.cardTitle}>NCE:{"  "} {this.state.tableData.NCE}</h4>
-          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.OLEVEL}</h4>
+          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.Degree}</h4>
           <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
           <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
          
