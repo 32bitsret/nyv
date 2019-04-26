@@ -78,12 +78,12 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(members, "CERT"), 
+        extractEducation(members, "SCHOOL CERT"), 
         extractEducation(members, "OLEVEL"), 
         extractEducation(members, "ND"), 
         extractEducation(members, "HND"), 
         extractEducation(members, "NCE"),
-        extractEducation(members, "Degree"), 
+        extractEducation(members, "DEGREE"), 
         extractEducation(members, "MSC"), 
         extractEducation(members, "PHD")
       ]]
