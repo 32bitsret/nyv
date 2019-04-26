@@ -78,7 +78,7 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(members, "SCHOOL CERT"), 
+        extractEducation(members, "CERT"), 
         extractEducation(members, "OLEVEL"), 
         extractEducation(members, "ND"), 
         extractEducation(members, "HND"), 
@@ -138,8 +138,8 @@ class Gridd extends Component {
         "Not Employed",
       ],
       series: [[
-        extractEmployment(members, "employed"), 
-        extractEmployment(members, "not employed")
+        extractEmployment(members, "Employed"), 
+        extractEmployment(members, "Not Employed")
       ]]
     },
     options: {
@@ -367,7 +367,7 @@ class Gridd extends Component {
     }
   };
   
-  console.log("PIE CHART", extractEmployment(members,"employed"))
+  console.log("PIE CHART", extractEmployment(members,"Employed"))
      const display = this.props.dashboard.isloading ? (       
      <GridContainer justify="center">
        <div>loading...</div>

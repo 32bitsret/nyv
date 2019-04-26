@@ -215,8 +215,8 @@ class UserProfile extends Component {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'not employed' },
-      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'Not Employed' },
+      { label: 'Yes', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
@@ -286,7 +286,7 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'School Cert', value: 'SCHOOL CERT' },
+      { label: 'School Cert', value: 'CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },

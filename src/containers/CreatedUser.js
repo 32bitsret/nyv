@@ -243,8 +243,8 @@ onSubmitEducationalInfo = e => {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'no' },
-      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'Not Employed' },
+      { label: 'Yes', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
@@ -317,7 +317,7 @@ onSubmitEducationalInfo = e => {
     ];
 
     const optionsQualification = [
-      { label: 'School Cert', value: 'SCHOOL CERT' },
+      { label: 'School Cert', value: 'CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },

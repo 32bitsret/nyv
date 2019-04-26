@@ -71,7 +71,7 @@ class LgaTables extends React.Component {
           divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
           widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
           Degree: extractEducation(this.props.dashboard.allMembers,"DEGREE", prop[0]),
-          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"SCHOOL CERT", prop[0]),
+          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"CERT", prop[0]),
           HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
           ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
           NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
@@ -80,8 +80,8 @@ class LgaTables extends React.Component {
           OLEVEL: extractEducation(this.props.dashboard.allMembers,"OLEVEL", prop[0]),
           Disabled: extractDisability(this.props.dashboard.allMembers, "Disabled", prop[0]),
           NotDisabled: extractDisability(this.props.dashboard.allMembers, "Not Disabled", prop[0]),
-          employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
-          notEmployed:extractEmployment(this.props.dashboard.allMembers,"not employed",prop[0]),
+          employed:extractEmployment(this.props.dashboard.allMembers,"Employed",prop[0]),
+          notEmployed:extractEmployment(this.props.dashboard.allMembers,"Not Employed",prop[0]),
           actions: (
             <div className="actions-right">
               <Button

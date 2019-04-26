@@ -208,6 +208,7 @@ export const createUserByAdmin = (data) => dispatch => {
         })
     })
 }
+//======================REGISTRATION==========================
 
 export const updateBasicInfoA = (data) => dispatch =>{
     //step3
@@ -228,12 +229,13 @@ export const updateBasicInfoA = (data) => dispatch =>{
 
 
 export const updatePhotoA = (location, id) => dispatch => {
-    console.log("running...")
+    console.log("running... ID",id)
+    console.log("URL FOR PHOTO", location)
     let query = {
         _id: id
     }
     let update = {
-        photo: location
+        photo: "https://s3.amazonaws.com/snow-africa-bucket-test/14095970_1835618916724698_8403375028931806167_n.jpg"//location
     }
     axios({
         method:"PUT",
