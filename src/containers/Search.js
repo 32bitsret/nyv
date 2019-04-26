@@ -76,7 +76,6 @@ class Search extends React.Component {
   }
 
     checkUserRole = User => {
-    console.log("CONSOLE", User)
     let status = User.map(user => {
       if(user.userRole === "Admin" || user.userRole === "admin"){
         return true
@@ -85,7 +84,6 @@ class Search extends React.Component {
         return false
       }
     })
-    console.log("CONSOLE STATUS", status)
     return status
   }
 

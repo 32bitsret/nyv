@@ -28,16 +28,17 @@ const styles = {
   }
 };
 
-let members
+let members = []
+let arra = []
+
 class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       arr : [],
-      members :[],
       user:{},
       data:this.props.result.map((prop, key) => {
-        console.log("PROPS",members)
+          console.log("PROP", prop)
         return {
             sn: key ,
             id:prop._id,
@@ -81,17 +82,20 @@ class SearchResult extends React.Component {
   }
 
   componentDidMount(){
-    
-      console.log(this.props.result)
     if(localStorage.ln){
         console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
-        members = [...extractLGAArr(this.props.result, localStorage.ln)]
+        members = extractLGAArr(this.props.result, localStorage.ln)
         console.log("MEMBERS ",members)
         store.dispatch({
             type:FILTERATION_DONE,
-            payload:members
+            payload:[...members]
+        })
+        
+        Object.keys(members).map(val => {
+            console.log("VALUES MODAFUCKA",members[val].firstname)
         })
     }
+    // console.log("ARRA", arra.map())
      this.setState({
         arr : this.props.result
     })
@@ -103,8 +107,10 @@ class SearchResult extends React.Component {
 
   render() {
     const { classes,result } = this.props;
+    console.log("STATE DATA", this.state.data)
     console.log("SELECTEDSER", this.state.user)
     console.log("ALL MEMBERS", this.state.arr)
+    console.log("SEARCH", typeof(this.props.search))
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -175,6 +181,7 @@ class SearchResult extends React.Component {
 
 const mapStateToProps = state => {
     return{
+        search: state.search,
         result: state.dashboard.allMembers
     }
 }
