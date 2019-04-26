@@ -87,12 +87,13 @@ class MessagesDetail extends React.Component {
   }
 
   onSend = e => {
+
     let query = {
-      lga:[...this.state.lga],
-      gender:[...this.state.gender],
-      disability:[...this.state.disability],
-      marital_status:[...this.state.marital_status],
-      qualification:[...this.state.qualification]
+      lga:this.state.lga.join(),
+      gender:this.state.gender.join(),
+      disability:this.state.disability.join(),
+      marital_status:this.state.marital_status.join(),
+      qualification:this.state.qualification.join()
     }
     const data = {
       message: this.state.message,
@@ -300,7 +301,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="disabled"
+                        value="Disabled"
                       >
                         disabled
                       </MenuItem>
@@ -309,7 +310,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="not disabled"
+                        value="Not Disabled"
                       >
                         not-disabled
                       </MenuItem>
@@ -365,36 +366,36 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="married"
+                        value="Married"
                       >
-                        married
+                        Married
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="singles"
+                        value="Singles"
                       >
-                        singles
+                        Singles
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="divorced"
+                        value="Divorced"
                       >
-                        divorced
+                        Divorced
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="widowed"
+                        value="Widowed"
                       >
-                        widowed
+                        Widowed
                       </MenuItem>
                     </Select>
                   </FormControl>
