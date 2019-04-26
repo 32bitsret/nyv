@@ -203,12 +203,14 @@ class CreatedUser extends Component {
                     <div className="col-md-12" style={{marginTop:"5px"}}>
                     <div className="card card-body bg-white text-white mb-3">
                         <div className=" text-success mb-3">
-                       
+                       {isEmpty(user.resume)?"":(
                         <Button 
-                            onClick={this.onDone}
                             className="btn btn-success bg-success mb-3 text-white float-right">
-                            Done
+                            <a download href={user.resume}>
+                                Download CV
+                            </a>
                         </Button> 
+                       )}
                         </div>
                     </div>
                     </div>
