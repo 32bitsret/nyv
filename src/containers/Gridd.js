@@ -139,7 +139,8 @@ class Gridd extends Component {
         "Not Employed",
       ],
       series: [[
-        extractEmploymentE(members), 
+        
+        extractEmployment(members, "Employed"), 
         extractEmployment(members, "Not Employed")
       ]]
     },

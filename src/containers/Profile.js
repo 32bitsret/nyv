@@ -42,7 +42,7 @@ class UserProfile extends Component {
     year_of_graduation:"",
     educational_qualification:""
     ,
-    employed:"",
+    employment_status:"",
     marital_status:"",
     disability:"",
     address:"",
@@ -160,9 +160,9 @@ class UserProfile extends Component {
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
     this.props.updateBasicInfo({query,update})
-    this.setState({
-      openPersonal: !this.state.openPersonal
-    })
+    // this.setState({
+    //   openPersonal: !this.state.openPersonal
+    // })
   }
 
   onSubmitContactInfo = e => {
@@ -389,7 +389,7 @@ class UserProfile extends Component {
                     <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
+                    <strong>Employed:</strong> {isEmpty(this.state.user.employment_status)?"":this.state.user.employment_status}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}

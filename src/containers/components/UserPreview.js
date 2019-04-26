@@ -30,7 +30,7 @@ class CreatedUser extends Component {
       year_of_graduation:"",
       qualification:""
     },
-    employed:"",
+    employment_status:"",
     marital_status:"",
     disability:"",
     address:"",
@@ -102,7 +102,7 @@ class CreatedUser extends Component {
                                 <strong>Gender:</strong> {isEmpty(user.gender) ? "": user.gender}
                             </p>
                             <p>
-                                <strong>Employed:</strong> {isEmpty(user.employed)?"":user.employed}
+                                <strong>Employed:</strong> {isEmpty(user.employment_status)?"":user.employment_status}
                             </p>
                             <p>
                                 <strong>Marital Status:</strong> {isEmpty(user.marital_status)?"":user.marital_status}
