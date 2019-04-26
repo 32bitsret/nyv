@@ -16,6 +16,9 @@ import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
 import {extractLGAArr} from "../utils/Gridd/Extraction"
+import {FILTERATION_DONE} from "../redux/Constants"
+// import 
+import store from '../store'; 
 
 const styles = {
   cardIconTitle: {
@@ -25,13 +28,13 @@ const styles = {
   }
 };
 
-let members = []
-
+let members
 class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        arr : [],
+      arr : [],
+      members :[],
       user:{},
       data:this.props.result.map((prop, key) => {
         console.log("PROPS",members)
@@ -78,16 +81,25 @@ class SearchResult extends React.Component {
   }
 
   componentDidMount(){
+    
       console.log(this.props.result)
     if(localStorage.ln){
         console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
         members = [...extractLGAArr(this.props.result, localStorage.ln)]
         console.log("MEMBERS ",members)
+        store.dispatch({
+            type:FILTERATION_DONE,
+            payload:members
+        })
     }
      this.setState({
         arr : this.props.result
     })
     }
+
+  componentWillUnmount(){
+      localStorage.removeItem("ln")
+  }
 
   render() {
     const { classes,result } = this.props;
@@ -109,7 +121,7 @@ class SearchResult extends React.Component {
             textAlign="center"
             category={
                 <span>
-                    {members.length+ "  "}Total
+                    {/* {members.length+ "  "}Total */}
                 </span>
             }
         />

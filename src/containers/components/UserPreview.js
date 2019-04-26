@@ -50,35 +50,6 @@ class CreatedUser extends Component {
     openUpload:false
   }
 
-//   componentWillReceiveProps(nextProps){
-//       console.log("RECEIVED PROPS", nextProps.user)
-//     let data = nextProps.user
-//     console.log(data)
-//     this.setState({
-//         user: {...data},
-//       firstname:isEmpty(data.name) ? "":data.name,
-//       middlename: isEmpty(data.middlename)?"":data.middlename,
-//       lastname: isEmpty(data.lastname)?"":data.lastname,
-//       email:isEmpty(data.email)?"":data.email,
-//       DoB:isEmpty(data.DoB)?"":data.DoB,
-//       lga:isEmpty(data.lga)?"":data.lga,
-//       gender:isEmpty(data.gender)?"":data.gender,
-//       phone:isEmpty(data.phone)?"":data.phone,
-//       education:{
-//         course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
-//         institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
-//         year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-//         qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
-//       },
-//       employed:isEmpty(data.employed)?"":data.employed,
-//       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
-//       disability:isEmpty(data.disability)?"":data.disability,
-//       address:isEmpty(data.address)?"":data.address,
-//       resume:isEmpty(data.resume)?"":data.resume,
-//       photo:nextProps.dashboard.dashboard.photo,
-//     })
-//   }
-
   render(){
     const { classes, user } = this.props;  
     console.log("PROPS TO PREVIEW",user) 

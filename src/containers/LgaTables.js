@@ -78,8 +78,8 @@ class LgaTables extends React.Component {
           MSC: extractEducation(this.props.dashboard.allMembers,"MSC", prop[0]),
           PHD: extractEducation(this.props.dashboard.allMembers,"PHD", prop[0]),
           OLEVEL: extractEducation(this.props.dashboard.allMembers,"OLEVEL", prop[0]),
-          Disabled: extractDisability(this.props.dashboard.allMembers, "yes", prop[0]),
-          NotDisabled: extractDisability(this.props.dashboard.allMembers, "no", prop[0]),
+          Disabled: extractDisability(this.props.dashboard.allMembers, "Disabled", prop[0]),
+          NotDisabled: extractDisability(this.props.dashboard.allMembers, "Not Disabled", prop[0]),
           employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
           notEmployed:extractEmployment(this.props.dashboard.allMembers,"not employed",prop[0]),
           actions: (
