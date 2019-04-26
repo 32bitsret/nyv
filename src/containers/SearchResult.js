@@ -37,7 +37,8 @@ class SearchResult extends React.Component {
       data:this.props.result.map((prop, key) => {
         console.log("PROPS",members)
         return {
-            sn: key +1,
+            sn: key ,
+            id:prop._id,
             name: prop.firstname+" "+prop.lastname,
             DoB:isEmpty(prop.DoB)?"":prop.DoB,
             gender:isEmpty(prop.gender)?"":prop.gender,
@@ -58,7 +59,7 @@ class SearchResult extends React.Component {
                     round
                     simple
                     onClick={() => {
-                    let obj = this.state.data.find(o => o.sn === key +1);
+                    let obj = this.state.arr.find(o => o._id === prop._id );
                     console.log(obj) 
                     this.setState({
                             user:obj
@@ -82,14 +83,14 @@ class SearchResult extends React.Component {
      members = [...extractLGAArr(this.props.result, "Barkin Ladi")]
      console.log("MEMBERS ",members)
      this.setState({
-        arr : [...members]
+        arr : this.props.result
     })
     }
 
   render() {
     const { classes,result } = this.props;
     console.log("SELECTEDSER", this.state.user)
-    console.log("ALL MEMBERS", result)
+    console.log("ALL MEMBERS", this.state.arr)
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>

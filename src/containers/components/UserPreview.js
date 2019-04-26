@@ -50,14 +50,13 @@ class CreatedUser extends Component {
     openUpload:false
   }
 
-  
-  componentDidMount(){
-    console.log("PASSED IN USER", this.props.user)
-    let data = this.props.created.user
+  componentWillReceiveProps(nextProps){
+      console.log("RECEIVED PROPS", nextProps.user)
+    let data = nextProps.user
     console.log(data)
     this.setState({
-      user: {...this.props.created.user},
-      firstname:isEmpty(data.firstname) ? "":data.firstname,
+        user: {...data},
+      firstname:isEmpty(data.name) ? "":data.name,
       middlename: isEmpty(data.middlename)?"":data.middlename,
       lastname: isEmpty(data.lastname)?"":data.lastname,
       email:isEmpty(data.email)?"":data.email,
@@ -76,41 +75,13 @@ class CreatedUser extends Component {
       disability:isEmpty(data.disability)?"":data.disability,
       address:isEmpty(data.address)?"":data.address,
       resume:isEmpty(data.resume)?"":data.resume,
-      photo:isEmpty(data.photo)?"https://www.gravatar.com/avatar/anything?s=200&d=mm" :data.photo,
+      photo:nextProps.dashboard.dashboard.photo,
     })
   }
 
-  componentWillReceiveProps(nextProps){
-    // let data = nextProps.dashboard.dashboard
-    // console.log(data)
-    // this.setState({
-    //   user: {...nextProps.dashboard.dashboard},
-    //   firstname:isEmpty(data.firstname) ? "":data.firstname,
-    //   middlename: isEmpty(data.middlename)?"":data.middlename,
-    //   lastname: isEmpty(data.lastname)?"":data.lastname,
-    //   email:isEmpty(data.email)?"":data.email,
-    //   DoB:isEmpty(data.DoB)?"":data.DoB,
-    //   lga:isEmpty(data.lga)?"":data.lga,
-    //   gender:isEmpty(data.gender)?"":data.gender,
-    //   phone:isEmpty(data.phone)?"":data.phone,
-    //   education:{
-    //     course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
-    //     institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
-    //     year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-    //     qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
-    //   },
-    //   employed:isEmpty(data.employed)?"":data.employed,
-    //   marital_status:isEmpty(data.marital_status)?"":data.marital_status,
-    //   disability:isEmpty(data.disability)?"":data.disability,
-    //   address:isEmpty(data.address)?"":data.address,
-    //   resume:isEmpty(data.resume)?"":data.resume,
-    //   photo:nextProps.dashboard.dashboard.photo,
-    // })
-  }
-
   render(){
-    const { classes } = this.props;  
-    console.log("PROPS TO PREVIEW", this.props.user) 
+    const { classes, user } = this.props;  
+    console.log("PROPS TO PREVIEW",user) 
     return (
         <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12} lg={12}>
@@ -133,15 +104,15 @@ class CreatedUser extends Component {
                                     left: "50%",
                                     position: "relative",
                                     transform: "translate(-50%,0)"}}
-                                src={isEmpty(this.state.user.photo) ? "https://www.gravatar.com/avatar/anything?s=200&d=mm" : this.state.user.photo} 
+                                src={isEmpty(user.photo) ? "https://www.gravatar.com/avatar/anything?s=200&d=mm" : user.photo} 
                                 alt="" 
                                 />
                             </div>
                             </div>
                             <div className="text-center">
-                            <h2 className="display-4 text-center">{this.state.user.firstname+ " " +this.state.user.lastname}</h2>
+                            <h2 className="display-4 text-center">{user.firstname+ " "+user.lastname}</h2>
                             <p>
-                                <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
+                                <strong>{isEmpty(user.phone)?"":"0"+user.phone}</strong> 
                             </p>
                             </div>
                         </div>
@@ -157,19 +128,19 @@ class CreatedUser extends Component {
                             <h4>Personal Detail</h4>
                             <hr/>
                             <p>
-                                <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
+                                <strong>Gender:</strong> {isEmpty(user.gender) ? "": user.gender}
                             </p>
                             <p>
-                                <strong>Employed:</strong> {isEmpty(this.state.user.employed)?"":this.state.user.employed}
+                                <strong>Employed:</strong> {isEmpty(user.employed)?"":user.employed}
                             </p>
                             <p>
-                                <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
+                                <strong>Marital Status:</strong> {isEmpty(user.marital_status)?"":user.marital_status}
                             </p>
                             <p>
-                                <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
+                                <strong>Disability:</strong> {isEmpty(user.disability)?"":user.disability}
                             </p>
                             <p>
-                                <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
+                                <strong>DoB:</strong> {isEmpty(user.DoB)?"":user.DoB}
                             </p>
                             
                             </li>
@@ -177,13 +148,13 @@ class CreatedUser extends Component {
                             <h4>Contact Info</h4>
                             <hr/>
                             <p>
-                                <strong>Address:</strong> {isEmpty(this.state.user.address)?"":this.state.user.address}
+                                <strong>Address:</strong> {isEmpty(user.address)?"":user.address}
                             </p>
                             <p>
-                                <strong>LGA:</strong>{isEmpty(this.state.user.lga)?"":this.state.user.lga}
+                                <strong>LGA:</strong>{isEmpty(user.lga)?"":user.lga}
                             </p>
                             <p>
-                                <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
+                                <strong>Email Address: </strong> {isEmpty(user.email)?"":user.email}
                             </p>  
                             </li>
                         </ul>
@@ -194,16 +165,16 @@ class CreatedUser extends Component {
                             <h4>Educational Info</h4>
                             <hr/>
                             <p>
-                                <strong>Year of Graduation:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.year_of_graduation)?"":this.state.user.education.year_of_graduation}
+                                <strong>Year of Graduation:</strong> {isEmpty(user.education)?"":isEmpty(user.education.year_of_graduation)?"":user.education.year_of_graduation}
                             </p>
                             <p>
-                                <strong>Institution:</strong> {isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.institution)?"":this.state.user.education.institution}
+                                <strong>Institution:</strong> {isEmpty(user.education)?"":isEmpty(user.education.institution)?"":user.education.institution}
                             </p>
                             <p>
-                                <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
+                                <strong>Course:</strong>{isEmpty(user.education)?"":isEmpty(user.education.course)?"":user.education.course}
                             </p>
                             <p>
-                                <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.qualification)?"":this.state.user.education.qualification}
+                                <strong>Highest Qualification:</strong>{isEmpty(user.education)?"":isEmpty(user.education.qualification)?"":user.education.qualification}
                             </p>
                             <br/>
                             <p>
@@ -217,7 +188,7 @@ class CreatedUser extends Component {
                                 <strong>Description:</strong>Personal CV
                             </p>
                             <p>
-                                <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
+                                <strong>Email Address: </strong> {isEmpty(user.email)?"":user.email}
                             </p>
                             <p>
                                 <strong>Document Name: </strong> CV
@@ -232,6 +203,7 @@ class CreatedUser extends Component {
                     <div className="col-md-12" style={{marginTop:"5px"}}>
                     <div className="card card-body bg-white text-white mb-3">
                         <div className=" text-success mb-3">
+                       
                         <Button 
                             onClick={this.onDone}
                             className="btn btn-success bg-success mb-3 text-white float-right">
