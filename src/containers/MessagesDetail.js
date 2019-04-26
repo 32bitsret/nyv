@@ -31,6 +31,7 @@ import {
   educationFilter
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
+import { getAllProfile } from "../redux/actions/dashboardAction"
 import moreMembers from  "../variables/moreMembers"
 import {sendMessage} from "../redux/actions/messageActions"
 
@@ -87,7 +88,6 @@ class MessagesDetail extends React.Component {
   }
 
   onSend = e => {
-
     let query = {
       lga:this.state.lga.join(),
       gender:this.state.gender.join(),
@@ -103,7 +103,6 @@ class MessagesDetail extends React.Component {
     }
     console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
-
   }
 
   render() {
@@ -118,9 +117,17 @@ class MessagesDetail extends React.Component {
     // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
     // console.log("FILTERED LGA KAWAI",lgaFiltered)
     // console.log("FILTERED disabilityKAWAI",profileFiltered)
-    return (
-      <div>
+
+    const display = true ? 
+      (
       <GridContainer justify="center">
+        <div>loading...</div>
+      </GridContainer>
+      ) 
+      : 
+      (
+        <div>
+        <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="success" icon>
@@ -476,7 +483,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-east"
+                        value="jos east"
                       >
                         jos-east
                       </MenuItem>
@@ -485,7 +492,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-north"
+                        value="jos north"
                       >
                         jos-north
                       </MenuItem>
@@ -494,7 +501,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-south"
+                        value="jos south"
                       >
                         jos-south
                       </MenuItem>
@@ -521,7 +528,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-north"
+                        value="langtang north"
                       >
                         langtang-north
                       </MenuItem>
@@ -530,7 +537,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-south"
+                        value="langtang south"
                       >
                         langtang-south
                       </MenuItem>
@@ -731,6 +738,12 @@ class MessagesDetail extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+        </div>
+      )
+
+    return (
+      <div>
+        {display}
       </div>
     );
   }
@@ -738,8 +751,8 @@ class MessagesDetail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    state
+    members: state
   }
 }
 
-export default connect(mapStateToProps, {sendMessage})(withStyles(regularFormsStyle)(MessagesDetail));
+export default connect(mapStateToProps, {sendMessage, getAllProfile})(withStyles(regularFormsStyle)(MessagesDetail));
