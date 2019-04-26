@@ -32,16 +32,12 @@ class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        arr : [],
       user:{},
-      data: members.map((prop, key) => {
-          console.log("PROPS",prop)
+      data:this.props.result.map((prop, key) => {
+        console.log("PROPS",members)
         return {
-            //   id: key,
-            //   name: prop[0],
-            //   position: prop[1],
-            //   office: prop[2],
-            //   age: prop[3],
-            sn: key + 1,
+            sn: key +1,
             name: prop.firstname+" "+prop.lastname,
             DoB:isEmpty(prop.DoB)?"":prop.DoB,
             gender:isEmpty(prop.gender)?"":prop.gender,
@@ -62,7 +58,7 @@ class SearchResult extends React.Component {
                     round
                     simple
                     onClick={() => {
-                    let obj = this.state.data.find(o => o.id === key);
+                    let obj = this.state.data.find(o => o.sn === key +1);
                     console.log(obj) 
                     this.setState({
                             user:obj
@@ -82,14 +78,18 @@ class SearchResult extends React.Component {
 
   componentDidMount(){
       console.log(this.props.result)
+
      members = [...extractLGAArr(this.props.result, "Barkin Ladi")]
      console.log("MEMBERS ",members)
+     this.setState({
+        arr : [...members]
+    })
     }
 
   render() {
-    const { classes } = this.props;
+    const { classes,result } = this.props;
     console.log("SELECTEDSER", this.state.user)
-    console.log("ALL MEMBERS", this.props.result)
+    console.log("ALL MEMBERS", result)
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -129,18 +129,14 @@ class SearchResult extends React.Component {
                     },
                     {
                         Header: "Name",
-                        accessor: "firstname"
+                        accessor: "name"
                     },
                     {
                         Header: "Phone",
                         accessor: "phone"
                     },
                     {
-                        Header: "Age",
-                        accessor: "age"
-                    },
-                    {
-                        Header: "Actions",
+                        Header: "",
                         accessor: "actions",
                         sortable: false,
                         filterable: false

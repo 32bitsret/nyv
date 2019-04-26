@@ -52,10 +52,7 @@ class CreatedUser extends Component {
 
   
   componentDidMount(){
-    console.log("PASSED IN USER", this.props.created)
-    // this.setState({
-    //   user:this.props.getProfile(this.props.auth.user.phone)
-    // })
+    console.log("PASSED IN USER", this.props.user)
     let data = this.props.created.user
     console.log(data)
     this.setState({
