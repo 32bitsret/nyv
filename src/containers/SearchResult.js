@@ -15,7 +15,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
-import {extractLGA} from "../utils/Gridd/Extraction"
+import {extractLGAArr} from "../utils/Gridd/Extraction"
 
 const styles = {
   cardIconTitle: {
@@ -25,48 +25,71 @@ const styles = {
   }
 };
 
+let members = []
+
 class SearchResult extends React.Component {
+//   console.log("STATE", this.props.result)
   constructor(props) {
     super(props);
     this.state = {
       user:{},
-      data: dataTable.dataRows.map((prop, key) => {
+      data: members.map((prop, key) => {
+          console.log("PROPS",prop)
         return {
-        //   id: key,
-        //   name: prop[0],
-        //   position: prop[1],
-        //   office: prop[2],
-        //   age: prop[3],
-         name:"",
-         DoB:"",
-         gender:"",
-         photo:"",
-          actions: (
-            <div className="actions-right">
-              <Button
-                round
-                simple
-                onClick={() => {
-                  let obj = this.state.data.find(o => o.id === key);
-                  console.log(obj) 
-                  this.setState({
-                        user:obj
-                    })
-                }}
-                color="success"
-                className="edit"
-              >
-               View
-              </Button>{" "}
+            //   id: key,
+            //   name: prop[0],
+            //   position: prop[1],
+            //   office: prop[2],
+            //   age: prop[3],
+            sn: key + 1,
+            name: prop.firstname+" "+prop.lastname,
+            DoB:isEmpty(prop.DoB)?"":prop.DoB,
+            gender:isEmpty(prop.gender)?"":prop.gender,
+            photo:isEmpty(prop.photo)?"":prop.photo,
+            education:{
+                course:isEmpty(prop.education)?"":isEmpty(prop.education.course)?"":prop.education.course,
+                institution:isEmpty(prop.education)?"":isEmpty(prop.education.institution)?"":prop.education.institution,
+                year_of_graduation:isEmpty(prop.education)?"":isEmpty(prop.education.year_of_graduation)?"":prop.education.year_of_graduation,
+                Educational_Qualification:isEmpty(prop.education)?"":isEmpty(prop.education.educational_qualification)?"":prop.education.educational_qualification
+            },
+            email:isEmpty(prop.email)?"":prop.email,
+            resume:isEmpty(prop.resume)?"":prop.resume,
+            lga:isEmpty(prop.lga)?"":prop.lga,
+            address:isEmpty(prop.address)?"":prop.address,
+            actions: (
+                <div className="actions-right">
+                <Button
+                    round
+                    simple
+                    onClick={() => {
+                    let obj = this.state.data.find(o => o.id === key);
+                    console.log(obj) 
+                    this.setState({
+                            user:obj
+                        })
+                    }}
+                    color="success"
+                    className="edit"
+                >
+                View
+                </Button>{" "}
             </div>
           )
         };
       })
     };
   }
+
+  componentDidMount(){
+      console.log(this.props.result)
+     members = [...extractLGAArr(this.props.result, "Barkin Ladi")]
+     console.log("MEMBERS ",members)
+    }
+
   render() {
     const { classes } = this.props;
     console.log("SELECTEDSER", this.state.user)
+    console.log("ALL MEMBERS", this.props.result)
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -101,16 +124,16 @@ class SearchResult extends React.Component {
                     data={this.state.data}
                     columns={[
                     {
+                        Header: "S/N",
+                        accessor: "sn"
+                    },
+                    {
                         Header: "Name",
-                        accessor: "name"
+                        accessor: "firstname"
                     },
                     {
-                        Header: "Position",
-                        accessor: "position"
-                    },
-                    {
-                        Header: "Office",
-                        accessor: "office"
+                        Header: "Phone",
+                        accessor: "phone"
                     },
                     {
                         Header: "Age",
@@ -141,7 +164,7 @@ class SearchResult extends React.Component {
 
 const mapStateToProps = state => {
     return{
-        state
+        result: state.dashboard.allMembers
     }
 }
 
