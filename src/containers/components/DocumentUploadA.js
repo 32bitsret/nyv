@@ -4,7 +4,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import {connect} from "react-redux"
 import defaultImage from "assets/img/image_placeholder.jpg";
 import defaultAvatar from "assets/img/placeholder.jpg";
-import {uploadDocument} from "../../redux/actions/createActions"
+import {uploadDocumentA} from "../../redux/actions/createActions"
 
 class DocumentUploadA extends React.Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class DocumentUploadA extends React.Component {
         photo: this.state.file.split(',')[1]
     }
      console.log("DATA",data)
-     this.props.uploadDocument(data, id)
+     this.props.uploadDocumentA(data, id)
   }
   handleClick() {
     this.refs.fileInput.click();
@@ -97,4 +97,4 @@ const mapStateToProps = state => {
         state
     }
 }
-export default connect(mapStateToProps, {uploadDocument})(DocumentUploadA);
+export default connect(mapStateToProps, {uploadDocumentA})(DocumentUploadA);

@@ -26,7 +26,7 @@ componentWillReceiveProps(nextProps){
   render() {
     let user = this.state.user
     console.log("TOGGLE STATE", this.props.createUser.createdUser)
-    const display = !this.props.createUser.createdUser ? <CreatedUser /> : <Step1/> 
+    const display = this.props.createUser.createdUser ? <CreatedUser /> : <Step1/> 
       return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12} lg={12}>

@@ -301,7 +301,7 @@ export const uploadPictureA = (data, id) => dispatch =>{
     })
     .then(res => {
         console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
-        dispatch(updatePhoto(res.data.Location, id))
+        dispatch(updatePhotoA(res.data.Location, id))
     })
     .catch(err => {
         console.log("ERROR FROM IMAGE UPLOAD")
@@ -334,7 +334,7 @@ export const uploadDocumentA = (data, id) => dispatch =>{
     })
     .then(res => {
         console.log("DOCUMENT UPLOAD", res.data)
-        dispatch(updateDocument(res.data.Location, id))
+        dispatch(updateDocumentA(res.data.Location, id))
     })
     .catch(err => {
         console.log("DOCUMENT FAILURE", err)

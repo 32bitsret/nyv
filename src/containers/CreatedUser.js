@@ -176,7 +176,7 @@ class CreatedUser extends Component {
 onSubmitBasicInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update = {
     gender: isEmpty(this.state.gender)?"":this.state.gender,
@@ -197,7 +197,7 @@ onSubmitBasicInfo = e => {
 onSubmitContactInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update = {
     address:isEmpty(this.state.address)?"": this.state.address,
@@ -211,7 +211,7 @@ onSubmitContactInfo = e => {
 onSubmitEducationalInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update ={
     education:{
@@ -375,6 +375,7 @@ onSubmitEducationalInfo = e => {
                         </DialogContentText>
                       </DialogContent>
                       <ImageUploadA
+                        user_id={this.state.user._id}
                         cancel={this.onClickPhoto}
                         avatar 
                         addButtonProps={{
