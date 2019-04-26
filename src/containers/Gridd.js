@@ -24,7 +24,8 @@ import {
   extractDisability,
   extractMaritalStatus,
   extractGender,
-  extractEmployment
+  extractEmployment,
+  extractEmploymentE
 } from "../utils/Gridd/Extraction"
 import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
 
@@ -138,7 +139,7 @@ class Gridd extends Component {
         "Not Employed",
       ],
       series: [[
-        extractEmployment(members, "Employed"), 
+        extractEmploymentE(members), 
         extractEmployment(members, "Not Employed")
       ]]
     },
@@ -409,9 +410,9 @@ class Gridd extends Component {
                 className="ct-chart-white-colors"
                 data={education.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={education.options}
+                responsiveOptions={education.responsiveOptions}
+                listener={education.animation}
               />
               
             </CardHeader>
@@ -466,9 +467,9 @@ class Gridd extends Component {
                 className="ct-chart-white-colors"
                 data={employment.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={employment.options}
+                responsiveOptions={employment.responsiveOptions}
+                listener={employment.animation}
               />
               
             </CardHeader>

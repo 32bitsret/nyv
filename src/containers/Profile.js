@@ -85,7 +85,7 @@ class UserProfile extends Component {
       institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
       year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
       educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.educational_qualification,
-      employed:isEmpty(data.employed)?"":data.employed,
+      employment_status:isEmpty(data.employment_status)?"":data.employment_status,
       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
       disability:isEmpty(data.disability)?"":data.disability,
       address:isEmpty(data.address)?"":data.address,
@@ -151,9 +151,9 @@ class UserProfile extends Component {
     }
     let update = {
       gender: isEmpty(this.state.gender)?"":this.state.gender,
-      employement_status: isEmpty(this.state.employed)?"":this.state.employed,
+      employment_status: isEmpty(this.state.employed)?"":this.state.employed,
+      disability: isEmpty(this.state.disability)?"":this.state.disability,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
-      disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
       type_of_work:"tailor"
     }
@@ -215,8 +215,8 @@ class UserProfile extends Component {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'Not Employed' },
-      { label: 'Yes', value: 'Employed' },
+      { label: 'Not Employed', value: 'Not Employed' },
+      { label: 'Employed', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
@@ -227,8 +227,8 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'No', value: 'Not Disabled' },
-      { label: 'Yes', value: 'Disabled' }
+      { label: 'Not Disabled', value: 'Not Disabled' },
+      { label: 'Disabled', value: 'Disabled' }
     ];
 
     const optionsLGA = [

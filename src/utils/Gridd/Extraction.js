@@ -1,4 +1,4 @@
-
+import isEmpty from "../isEmpty"
  //extract local governments  
  export  const extractLGA = (arr, test) => {
     let result = [];
@@ -20,6 +20,17 @@
   });
   return result.length;
   }
+
+  export  const extractEmploymentE = (arr) => {
+    let result = [];
+    arr.forEach(element => {
+      if(element.employment_status !== "Not Employed" && !isEmpty(element.employment_status)){
+        result.push(element)
+      }
+    });
+    return result.length;
+    }
+  
 
  //extract gender from general data
  export  const extractGender = (arr, test) => {
