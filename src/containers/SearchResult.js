@@ -28,7 +28,6 @@ const styles = {
 let members = []
 
 class SearchResult extends React.Component {
-//   console.log("STATE", this.props.result)
   constructor(props) {
     super(props);
     this.state = {
@@ -53,6 +52,7 @@ class SearchResult extends React.Component {
             resume:isEmpty(prop.resume)?"":prop.resume,
             lga:isEmpty(prop.lga)?"":prop.lga,
             address:isEmpty(prop.address)?"":prop.address,
+            phone:isEmpty(prop.phone)?"":"0"+prop.phone,
             actions: (
                 <div className="actions-right">
                 <Button
@@ -79,9 +79,11 @@ class SearchResult extends React.Component {
 
   componentDidMount(){
       console.log(this.props.result)
-
-     members = [...extractLGAArr(this.props.result, "Barkin Ladi")]
-     console.log("MEMBERS ",members)
+    if(localStorage.ln){
+        console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
+        members = [...extractLGAArr(this.props.result, localStorage.ln)]
+        console.log("MEMBERS ",members)
+    }
      this.setState({
         arr : this.props.result
     })
@@ -103,11 +105,11 @@ class SearchResult extends React.Component {
     return (
         <div>
         <Heading
-            title="Search Results"
+            title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
             textAlign="center"
             category={
                 <span>
-                    Bassa
+                    {members.length+ "  "}Total
                 </span>
             }
         />
