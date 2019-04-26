@@ -1,11 +1,9 @@
 import React from "react";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import Step1 from "./createUserSteps/Step1"
 import {connect} from "react-redux"
 import CreatedUser from "./CreatedUser"
-import { withRouter } from "react-router-dom"
 import {
   fetchUser
 } from "../redux/actions/createActions"
