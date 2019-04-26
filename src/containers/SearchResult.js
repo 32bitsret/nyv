@@ -95,7 +95,6 @@ class SearchResult extends React.Component {
             console.log("VALUES MODAFUCKA",members[val].firstname)
         })
     }
-    // console.log("ARRA", arra.map())
      this.setState({
         arr : this.props.result
     })
@@ -127,7 +126,7 @@ class SearchResult extends React.Component {
             textAlign="center"
             category={
                 <span>
-                    {/* {members.length+ "  "}Total */}
+                    {members.length+ "  "}Total
                 </span>
             }
         />
@@ -146,18 +145,25 @@ class SearchResult extends React.Component {
                     columns={[
                     {
                         Header: "S/N",
-                        accessor: "sn"
+                        accessor: "sn",
+                        sortable: false,
+                        filterable: false
+
                     },
                     {
                         Header: "Name",
-                        accessor: "name"
+                        accessor: "name",
+                        sortable: false,
+                        filterable: false
                     },
                     {
                         Header: "Phone",
-                        accessor: "phone"
+                        accessor: "phone",
+                        sortable: false,
+                        filterable: false
                     },
                     {
-                        Header: "",
+                        Header: "View",
                         accessor: "actions",
                         sortable: false,
                         filterable: false
