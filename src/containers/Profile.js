@@ -227,8 +227,8 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'No', value: 'not disabled' },
-      { label: 'Yes', value: 'disabled' }
+      { label: 'No', value: 'Not Disabled' },
+      { label: 'Yes', value: 'Disabled' }
     ];
 
     const optionsLGA = [
@@ -286,11 +286,11 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'School Cert', value: 'School Cert' },
+      { label: 'School Cert', value: 'SCHOOL CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },
-      { label: 'Degree', value: 'Degree' },
+      { label: 'Degree', value: 'DEGREE' },
       { label: 'MSC', value: 'MSC' },
       { label: 'PHD', value: 'PHD' }
     ];

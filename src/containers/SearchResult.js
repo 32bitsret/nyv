@@ -15,7 +15,10 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
-import {extractLGA} from "../utils/Gridd/Extraction"
+import {extractLGAArr} from "../utils/Gridd/Extraction"
+import {FILTERATION_DONE} from "../redux/Constants"
+// import 
+import store from '../store'; 
 
 const styles = {
   cardIconTitle: {
@@ -25,48 +28,88 @@ const styles = {
   }
 };
 
+let members = []
+let arra = []
+
 class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      arr : [],
       user:{},
-      data: dataTable.dataRows.map((prop, key) => {
+      data:this.props.result.map((prop, key) => {
+          console.log("PROP", prop)
         return {
-        //   id: key,
-        //   name: prop[0],
-        //   position: prop[1],
-        //   office: prop[2],
-        //   age: prop[3],
-         name:"",
-         DoB:"",
-         gender:"",
-         photo:"",
-          actions: (
-            <div className="actions-right">
-              <Button
-                round
-                simple
-                onClick={() => {
-                  let obj = this.state.data.find(o => o.id === key);
-                  console.log(obj) 
-                  this.setState({
-                        user:obj
-                    })
-                }}
-                color="success"
-                className="edit"
-              >
-               View
-              </Button>{" "}
+            sn: key ,
+            id:prop._id,
+            name: prop.firstname+" "+prop.lastname,
+            DoB:isEmpty(prop.DoB)?"":prop.DoB,
+            gender:isEmpty(prop.gender)?"":prop.gender,
+            photo:isEmpty(prop.photo)?"":prop.photo,
+            education:{
+                course:isEmpty(prop.education)?"":isEmpty(prop.education.course)?"":prop.education.course,
+                institution:isEmpty(prop.education)?"":isEmpty(prop.education.institution)?"":prop.education.institution,
+                year_of_graduation:isEmpty(prop.education)?"":isEmpty(prop.education.year_of_graduation)?"":prop.education.year_of_graduation,
+                Educational_Qualification:isEmpty(prop.education)?"":isEmpty(prop.education.educational_qualification)?"":prop.education.educational_qualification
+            },
+            email:isEmpty(prop.email)?"":prop.email,
+            resume:isEmpty(prop.resume)?"":prop.resume,
+            lga:isEmpty(prop.lga)?"":prop.lga,
+            address:isEmpty(prop.address)?"":prop.address,
+            phone:isEmpty(prop.phone)?"":"0"+prop.phone,
+            actions: (
+                <div className="actions-right">
+                <Button
+                    round
+                    simple
+                    onClick={() => {
+                    let obj = this.state.arr.find(o => o._id === prop._id );
+                    console.log(obj) 
+                    this.setState({
+                            user:obj
+                        })
+                    }}
+                    color="success"
+                    className="edit"
+                >
+                View
+                </Button>{" "}
             </div>
           )
         };
       })
     };
   }
+
+  componentDidMount(){
+    if(localStorage.ln){
+        console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
+        members = extractLGAArr(this.props.result, localStorage.ln)
+        console.log("MEMBERS ",members)
+        store.dispatch({
+            type:FILTERATION_DONE,
+            payload:[...members]
+        })
+        
+        Object.keys(members).map(val => {
+            console.log("VALUES MODAFUCKA",members[val].firstname)
+        })
+    }
+     this.setState({
+        arr : this.props.result
+    })
+    }
+
+  componentWillUnmount(){
+      localStorage.removeItem("ln")
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes,result } = this.props;
+    console.log("STATE DATA", this.state.data)
     console.log("SELECTEDSER", this.state.user)
+    console.log("ALL MEMBERS", this.state.arr)
+    console.log("SEARCH", typeof(this.props.search))
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -79,11 +122,11 @@ class SearchResult extends React.Component {
     return (
         <div>
         <Heading
-            title="Search Results"
+            title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
             textAlign="center"
             category={
                 <span>
-                    Bassa
+                    {members.length+ "  "}Total
                 </span>
             }
         />
@@ -101,23 +144,26 @@ class SearchResult extends React.Component {
                     data={this.state.data}
                     columns={[
                     {
+                        Header: "S/N",
+                        accessor: "sn",
+                        sortable: false,
+                        filterable: false
+
+                    },
+                    {
                         Header: "Name",
-                        accessor: "name"
+                        accessor: "name",
+                        sortable: false,
+                        filterable: false
                     },
                     {
-                        Header: "Position",
-                        accessor: "position"
+                        Header: "Phone",
+                        accessor: "phone",
+                        sortable: false,
+                        filterable: false
                     },
                     {
-                        Header: "Office",
-                        accessor: "office"
-                    },
-                    {
-                        Header: "Age",
-                        accessor: "age"
-                    },
-                    {
-                        Header: "Actions",
+                        Header: "View",
                         accessor: "actions",
                         sortable: false,
                         filterable: false
@@ -141,7 +187,8 @@ class SearchResult extends React.Component {
 
 const mapStateToProps = state => {
     return{
-        state
+        search: state.search,
+        result: state.dashboard.allMembers
     }
 }
 

@@ -14,12 +14,14 @@ import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/use
 import { connect } from "react-redux"
 import { getProfile } from "../redux/actions/dashboardAction"
 import {
-  updateBasicInfo,
-  updateEducationalInfo,
-  updateContactInfo
+  updateBasicInfoA,
+  updateEducationalInfoA,
+  updateContactInfoA,
 } from "../redux/actions/createActions"
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
+import DocumentUploadA from "./components/DocumentUploadA"
+import ImageUploadA from "./components/ImageUploadA"
 
 class CreatedUser extends Component {
   state = {
@@ -162,32 +164,74 @@ class CreatedUser extends Component {
   }
 
   onClickPhoto = e => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({
       openPhoto: !this.state.openPhoto
     })
   }
 //============================END OF MODAL OPS======================================
   
-  onSubmitBasicInfo = e => {
-    e.preventDefault()
-    let query = {
-      _id: this.props.dashboard.dashboard._id
-    }
-    let update = {
-      gender: isEmpty(this.state.gender)?"":this.state.gender,
-      employed: isEmpty(this.state.employed)?"":this.state.employed,
-      marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
-      disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
-      DoB: isEmpty(this.state.DoB)?"":this.state.DoB
-    }
-    let obj = {query, update}
-    console.log("BIG OBJECT", obj)
-    this.props.updateBasicInfo({query,update})
-    this.setState({
-      openPersonal: !this.state.openPersonal
-    })
+//============================END OF MODAL OPS======================================
+//======================START OF SUBMISSION ROUTINES=============================
+onSubmitBasicInfo = e => {
+  e.preventDefault()
+  let query = {
+    _id: this.props.dashboard.dashboard._id
   }
+  let update = {
+    gender: isEmpty(this.state.gender)?"":this.state.gender,
+    employement_status: isEmpty(this.state.employed)?"":this.state.employed,
+    marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
+    disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
+    DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
+    type_of_work:"tailor"
+  }
+  let obj = {query, update}
+  console.log("BIG OBJECT", obj)
+  this.props.updateBasicInfoA({query,update})
+  this.setState({
+    openPersonal: !this.state.openPersonal
+  })
+}
+
+onSubmitContactInfo = e => {
+  e.preventDefault()
+  let query = {
+    _id: this.props.dashboard.dashboard._id
+  }
+  let update = {
+    address:isEmpty(this.state.address)?"": this.state.address,
+    lga:isEmpty(this.state.lga) ? "" : this.state.lga 
+  }
+  let obj = {query, update}
+  console.log("BIG OBJECT", obj)
+  this.props.updateContactInfoA({query,update})
+}
+
+onSubmitEducationalInfo = e => {
+  e.preventDefault()
+  let query = {
+    _id: this.props.dashboard.dashboard._id
+  }
+  let update ={
+    education:{
+      course:isEmpty(this.state.course)?"":this.state.course,
+      educational_qualification:isEmpty(this.state.educational_qualification)?"": this.state.educational_qualification,
+      institution: isEmpty(this.state.institution)?"":this.state.institution,
+      year_of_graduation:isEmpty(this.state.year_of_graduation)?"":this.state.year_of_graduation
+    }
+  }
+  let obj = {query, update}
+  console.log("BIG OBJECT", obj)
+  this.props.updateEducationalInfoA({query, update})
+}
+
+// age = () => {
+//   const now = moment(new Date())
+//   const end = moment(this.state.DoB)
+//   const duration = moment.duration(now.diff(end))
+//     return duration
+// }
 
   render(){
     const { classes } = this.props;
@@ -205,37 +249,38 @@ class CreatedUser extends Component {
 
     const optionsMaritalStatus = [
       { label: '', value: '' },
-      { label: 'Single', value: 'single' },
-      { label: 'Married', value: 'married' },
-      { label: 'Divorced', value: 'divorced' },
-      { label: 'Widowed', value: 'widowed' },
+      { label: 'Single', value: 'Single' },
+      { label: 'Married', value: 'Married' },
+      { label: 'Divorced', value: 'Divorced' },
+      { label: 'Widowed', value: 'Widowed' },
     ];
 
     const optionsDisability = [
       { label: '', value: '' },
-      { label: 'No', value: 'no' },
-      { label: 'Yes', value: 'yes' }
+      { label: 'No', value: 'Not Disabled' },
+      { label: 'Yes', value: 'Disabled' }
     ];
 
     const optionsLGA = [
       { label: '', value: '' },
-      { label: 'Barkin Ladi', value: 'barkin ladi' },
-      { label: 'Bassa', value: 'bassa' },
-      { label: 'Bokkos', value: 'bokkos' },
-      { label: 'Jos East', value: 'jos-east' },
-      { label: 'Jos North', value: 'jos-north' },
-      { label: 'Jos South', value: 'jos-south' },
-      { label: 'Kanam', value: 'kanam' },
-      { label: 'Kanke', value: 'kanke' },
-      { label: 'Langtang North', value: 'langtang-north' },
-      { label: 'Langtang South', value: 'langtang-south' },
-      { label: 'Mangu', value: 'mangu' },
-      { label: 'Mikang', value: 'mikang' },
-      { label: 'Pankshin', value: 'pankshin' },
-      { label: "Qua'an Pan", value: "qua'an pan" },
-      { label: 'Riyom', value: 'riyom' },
-      { label: 'Shendam', value: 'shendam' },
-      { label: 'Wase', value: 'wase' },
+      { label: 'Barkin Ladi', value: 'Barkin Ladi' },
+      { label: 'Bassa', value: 'Bassa' },
+      { label: 'Bokkos', value: 'Bokkos' },
+      { label: 'Jos East', value: 'Jos East' },
+      { label: 'Jos North', value: 'Jos North' },
+      { label: 'Jos South', value: 'Jos South' },
+      { label: 'Kanam', value: 'Kanam' },
+      { label: 'Kanke', value: 'Kanke' },
+      { label: 'Langtang North', value: 'Langtang North' },
+      { label: 'Langtang South', value: 'Langtang South' },
+      { label: 'Mangu', value: 'Mangu' },
+      { label: 'Mikang', value: 'Mikang' },
+      { label: 'Pankshin', value: 'Pankshin' },
+      { label: "Qua'an Pan", value: "Qua'an Pan" },
+      { label: 'Riyom', value: 'Riyom' },
+      { label: 'Shendam', value: 'Shendam' },
+      { label: 'Wase', value: 'Wase' },
+      { label: 'Others', value: 'Others' },
     ];
 
     const optionsYearofGrad = [
@@ -272,14 +317,13 @@ class CreatedUser extends Component {
     ];
 
     const optionsQualification = [
-      { label: '', value: '' },
-      { label: 'School Cert', value: 'cert' },
-      { label: 'Olevel', value: 'olevel' },
-      { label: 'ND', value: 'nd' },
-      { label: 'HND', value: 'hnd' },
-      { label: 'Degree', value: 'degree' },
-      { label: 'MSC', value: 'msc' },
-      { label: 'PHD', value: 'phd' }
+      { label: 'School Cert', value: 'SCHOOL CERT' },
+      { label: 'Olevel', value: 'OLEVEL' },
+      { label: 'ND', value: 'ND' },
+      { label: 'HND', value: 'HND' },
+      { label: 'Degree', value: 'DEGREE' },
+      { label: 'MSC', value: 'MSC' },
+      { label: 'PHD', value: 'PHD' }
     ];
 
   const display = 
@@ -329,16 +373,23 @@ class CreatedUser extends Component {
                         <DialogContentText>
                           change you Profile Photo here
                         </DialogContentText>
-                        
                       </DialogContent>
-                      <DialogActions>
-                        <Button onClick={this.onClickPhoto} color="danger">
-                          Cancel
-                        </Button>
-                        <Button onClick={this.handleClose} color="success">
-                          Update
-                        </Button>
-                      </DialogActions>
+                      <ImageUploadA
+                        cancel={this.onClickPhoto}
+                        avatar 
+                        addButtonProps={{
+                          color: "success",
+                          round: true
+                        }}
+                        changeButtonProps={{
+                          color: "danger",
+                          round: true
+                        }}
+                        uploadButtonProps={{
+                          color: "success",
+                          round: true
+                        }}
+                      />
                     </Dialog>  
                 </div>
               </div>
@@ -675,13 +726,14 @@ class CreatedUser extends Component {
                               className="col-md-6 col-form-label">
                               Resume
                             </label>
-                            <input 
+                            {/* <input 
                               type="file" 
                               className="form-control form-control-lg" 
                               placeholder="resume" 
                               name="resume" 
-                              // value={this.state.email} 
-                              // onChange={this.onchange}
+                            /> */}
+                            <DocumentUploadA
+                              cancel={this.onClickUpload}
                             />
                           </div>
                         </DialogContent>
@@ -740,7 +792,7 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, {
   getProfile,
-  updateBasicInfo,
-  updateContactInfo,
-  updateEducationalInfo
+  updateBasicInfoA,
+  updateContactInfoA,
+  updateEducationalInfoA
 })(withStyles(userProfileStyles)(CreatedUser));

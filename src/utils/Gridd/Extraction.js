@@ -134,3 +134,12 @@ export const extractMaritalStatusData = (arr, test) => {
 
 
 
+export  const extractLGAArr = (arr, test) => {
+  let result = [];
+  arr.forEach(element => {
+    if(element.lga === test){
+      result.push(element)
+    }
+  });
+  return result;
+}

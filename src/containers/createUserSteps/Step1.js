@@ -203,11 +203,9 @@ class Step1 extends React.Component {
   }
 
   editExistingUser = (e) => {
-
     e.preventDefault();
     let newNumber = Number(this.state.searchValue.slice(1))
     this.props.fetchUser(newNumber)
-   
   }
 
   render() {

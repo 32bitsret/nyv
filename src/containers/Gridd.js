@@ -78,12 +78,12 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(members, "CERT"), 
+        extractEducation(members, "SCHOOL CERT"), 
         extractEducation(members, "OLEVEL"), 
         extractEducation(members, "ND"), 
         extractEducation(members, "HND"), 
         extractEducation(members, "NCE"),
-        extractEducation(members, "Degree"), 
+        extractEducation(members, "DEGREE"), 
         extractEducation(members, "MSC"), 
         extractEducation(members, "PHD")
       ]]
@@ -193,7 +193,7 @@ class Gridd extends Component {
         "Males",
         "Females",
         "Disabled",
-        "Not disabled",
+        "Not Disabled",
         "Divorced",
         "Single",
         "Widowed",
@@ -203,8 +203,8 @@ class Gridd extends Component {
         members.length, 
         extractGender(members,"male"), 
         extractGender(members,"female"), 
-        extractDisability(members,"yes"),       
-        extractDisability(members,"no"), 
+        extractDisability(members,"Disabled"),       
+        extractDisability(members,"Not Disabled"), 
         extractMaritalStatus(members,"Divorced"), 
         extractMaritalStatus(members,"Single"), 
         extractMaritalStatus(members,"Widowed")||extractMaritalStatus(members,"Widowed"), 

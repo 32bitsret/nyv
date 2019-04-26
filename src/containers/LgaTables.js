@@ -70,16 +70,16 @@ class LgaTables extends React.Component {
           single:  extractMaritalStatus(this.props.dashboard.allMembers, "Single", prop[0]),
           divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
           widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
-          Degree: extractEducation(this.props.dashboard.allMembers,"Degree", prop[0]),
-          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"School Cert", prop[0]),
+          Degree: extractEducation(this.props.dashboard.allMembers,"DEGREE", prop[0]),
+          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"SCHOOL CERT", prop[0]),
           HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
           ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
           NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
           MSC: extractEducation(this.props.dashboard.allMembers,"MSC", prop[0]),
           PHD: extractEducation(this.props.dashboard.allMembers,"PHD", prop[0]),
           OLEVEL: extractEducation(this.props.dashboard.allMembers,"OLEVEL", prop[0]),
-          Disabled: extractDisability(this.props.dashboard.allMembers, "yes", prop[0]),
-          NotDisabled: extractDisability(this.props.dashboard.allMembers, "no", prop[0]),
+          Disabled: extractDisability(this.props.dashboard.allMembers, "Disabled", prop[0]),
+          NotDisabled: extractDisability(this.props.dashboard.allMembers, "Not Disabled", prop[0]),
           employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
           notEmployed:extractEmployment(this.props.dashboard.allMembers,"not employed",prop[0]),
           actions: (
@@ -114,8 +114,17 @@ class LgaTables extends React.Component {
       // tableData:nextProps.dashboard.allMembers
     })
   }
+
+  onViewClick = e => {
+    e.preventDefault()
+    console.log("CURRENT TABLE NAME", this.state.tableData.name)
+    localStorage.setItem("ln",this.state.tableData.name)
+    window.location.href="/search"
+  }
+
   render() {
     const { classes } = this.props;
+    console.log("PROPERTIES", this)
     const display = this.state.isloading ? ( 
     <Card>
       <CardBody  className={classes.cardFooter}>
@@ -165,6 +174,7 @@ class LgaTables extends React.Component {
             simple
             color="info"
             className="like"
+            onClick={this.onViewClick}
           >
             View
           </Button>

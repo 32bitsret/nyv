@@ -1,23 +1,15 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Dashboard from "@material-ui/icons/Dashboard";
-import Schedule from "@material-ui/icons/Schedule";
-import Info from "@material-ui/icons/Info";
-import LocationOn from "@material-ui/icons/LocationOn";
-import Gavel from "@material-ui/icons/Gavel";
-import HelpOutline from "@material-ui/icons/HelpOutline";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
-import Accordion from "components/Accordion/Accordion.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import Table from './Table'
 import {getAllProfile} from "../redux/actions/dashboardAction"
 import {connect} from "react-redux"
 import LgaTables from "./LgaTables"
+import Heading from "components/Heading/Heading.jsx";
 
 
 const styles = {
@@ -59,6 +51,15 @@ class MemberDetail extends React.Component {
         <LgaTables stat={this.props.dashboard}/>
     return (
       <div>
+        <Heading
+          title="GENERAL STATISTICS"
+          textAlign="center"
+          category={
+              <span>
+                  {/* {members.length+ "  "}Total */}
+              </span>
+          }
+        />
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12}>
             <Card>
