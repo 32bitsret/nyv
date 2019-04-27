@@ -18,7 +18,9 @@ import UserPreview from "./components/UserPreview"
 import {extractLGAArr} from "../utils/Gridd/Extraction"
 import {FILTERATION_DONE} from "../redux/Constants"
 // import 
-import store from '../store'; 
+import store from '../store';
+import {getSpecificProfiles} from "../redux/actions/searchingAction"
+
 
 const styles = {
   cardIconTitle: {
@@ -37,8 +39,8 @@ class SearchResult extends React.Component {
     this.state = {
       arr : [],
       user:{},
-      data:this.props.result.map((prop, key) => {
-          console.log("PROP", prop)
+      data:this.props.search.result.map((prop, key) => {
+        console.log("PROP", prop)
         return {
             sn: key ,
             id:prop._id,
@@ -84,21 +86,16 @@ class SearchResult extends React.Component {
   componentDidMount(){
     if(localStorage.ln){
         console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
-        members = extractLGAArr(this.props.result, localStorage.ln)
-        console.log("MEMBERS ",members)
-        store.dispatch({
-            type:FILTERATION_DONE,
-            payload:[...members]
-        })
-        
-        Object.keys(members).map(val => {
-            console.log("VALUES MODAFUCKA",members[val].firstname)
+        this.props.getSpecificProfiles({
+            query:{
+                lga:localStorage.ln
+            }
         })
     }
      this.setState({
         arr : this.props.result
     })
-    }
+   }
 
   componentWillUnmount(){
       localStorage.removeItem("ln")
@@ -109,7 +106,7 @@ class SearchResult extends React.Component {
     console.log("STATE DATA", this.state.data)
     console.log("SELECTEDSER", this.state.user)
     console.log("ALL MEMBERS", this.state.arr)
-    console.log("SEARCH", typeof(this.props.search))
+    console.log("SEARCH",this.props.search.result)
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -118,9 +115,20 @@ class SearchResult extends React.Component {
         </Card>
         :
         <UserPreview user={this.state.user}/> 
- 
-    return (
-        <div>
+    
+    
+    const main = this.props.search.isloading ? 
+    <Heading
+        title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
+        textAlign="center"
+        category={
+            <span>
+                {members.length+ "  "}Total
+            </span>
+        }
+    />
+     :
+     <div>
         <Heading
             title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
             textAlign="center"
@@ -181,6 +189,10 @@ class SearchResult extends React.Component {
             </GridItem>
         </GridContainer>
         </div>
+    return (
+        <div>
+            {main}
+        </div>
     );
   }
 }
@@ -192,4 +204,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(withStyles(styles)(SearchResult));
+export default connect(mapStateToProps, {getSpecificProfiles})(withStyles(styles)(SearchResult));

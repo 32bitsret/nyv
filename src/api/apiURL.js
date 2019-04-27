@@ -21,6 +21,7 @@ export const findAllMessagesURL =  `${BASE_URL}/pyc/message/`
 
 //get all profiles
 export const getAllProfileURL = `${BASE_URL}/pyc/profile`
+export const profileQuery =  `${BASE_URL}/pyc/profile/query/`
 
 //upload image
 export const uploadImageURL = `${BASE_URL}/pyc/upload`

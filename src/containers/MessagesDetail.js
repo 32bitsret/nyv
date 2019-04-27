@@ -28,6 +28,7 @@ import { getAllProfile } from "../redux/actions/dashboardAction"
 import moreMembers from  "../variables/moreMembers"
 import {sendMessage} from "../redux/actions/messageActions"
 
+
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -61,6 +62,11 @@ class MessagesDetail extends React.Component {
 
   componentDidMount(){
    this.props.getAllProfile()
+  //  this.props.getSpecificProfiles({
+  //    query:{
+  //      lga:"Barkin Ladi"
+  //    }
+  //  })
   }
 
   componentWillReceiveProps(nextProps){
