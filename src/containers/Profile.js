@@ -46,6 +46,7 @@ class UserProfile extends Component {
     marital_status:"",
     disability:"",
     address:"",
+    type_of_work:"",
     resume:"",
 
     id:"",
@@ -156,7 +157,7 @@ class UserProfile extends Component {
       disability: isEmpty(this.state.disability)?"":this.state.disability,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
-      type_of_work:"tailor"
+      type_of_work:isEmpty(this.state.type_of_work)?"":this.state.type_of_work
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
@@ -335,7 +336,7 @@ class UserProfile extends Component {
                 </div>
                 <div className="text-center">
                   <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
-                    {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
+                    {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
                   <p>
                   </p>
                   <p>
@@ -438,7 +439,7 @@ class UserProfile extends Component {
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employed</label>
                             <SelectListGroup
                               placeholder="Employed"
-                              name="employed"
+                              name="employment_status"
                               value={this.state.employment_status}
                               onChange={this.onchange}
                               options={optionsEmployed}
