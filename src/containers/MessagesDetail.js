@@ -43,7 +43,7 @@ class MessagesDetail extends React.Component {
       disableA: false,
       disableB: false,
       disableC: false,
-      profileMembers: [],
+      allMembers: [],
       lgaMembers: [],
 
       title: "",
@@ -60,8 +60,15 @@ class MessagesDetail extends React.Component {
   }
 
   componentDidMount(){
-   console.log("MORE MEMBERS",moreMembers) 
+   this.props.getAllProfile()
   }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      allMembers:nextProps.members.allMembers
+    })
+  }
+
   handleChange = (event) => {
     this.setState({ selectedValue: event.target.value });
   }
@@ -109,8 +116,7 @@ class MessagesDetail extends React.Component {
     // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
     // console.log("FILTERED LGA KAWAI",lgaFiltered)
     // console.log("FILTERED disabilityKAWAI",profileFiltered)
-
-    const display = false ? 
+    const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
         <div>loading...</div>
@@ -120,13 +126,8 @@ class MessagesDetail extends React.Component {
       (
         <div>
         <Heading
-          title="FILTER MESSAGE RECIPIENTS"
+          title="SEND MESSAGES"
           textAlign="center"
-          category={
-              <span>
-                  {/* {members.length+ "  "}Total */}
-              </span>
-          }
         />
         <GridContainer>
         <GridItem xs={12} sm={12} md={4} lg={3}>
@@ -774,7 +775,7 @@ class MessagesDetail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    members: state
+    members: state.dashboard
   }
 }
 

@@ -18,6 +18,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile , getAllProfile} from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import moreMembers from "../variables/moreMembers"
+import Heading from "components/Heading/Heading.jsx";
 import {
   extractLGA,
   extractEducation,
@@ -64,6 +65,10 @@ class Gridd extends Component {
   
   render() {
     const { classes } = this.props;
+    // setTimeout(()=>{
+    //   this.props.getAllProfile(),
+    //   50000
+    // })
     let members = this.state.members
     if(this.state.members !== null){   
     education = {
@@ -377,6 +382,10 @@ class Gridd extends Component {
     ) :
       ( 
       <div>
+        <Heading
+          title="GENERAL ANALYTICS"
+          textAlign="center"
+        />
       <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <Card chart >
