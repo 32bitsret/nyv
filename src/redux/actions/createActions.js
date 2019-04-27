@@ -208,6 +208,7 @@ export const createUserByAdmin = (data) => dispatch => {
         })
     })
 }
+//======================REGISTRATION==========================
 
 export const updateBasicInfoA = (data) => dispatch =>{
     //step3
@@ -228,12 +229,13 @@ export const updateBasicInfoA = (data) => dispatch =>{
 
 
 export const updatePhotoA = (location, id) => dispatch => {
-    console.log("running...")
+    console.log("running... ID",id)
+    console.log("URL FOR PHOTO", location)
     let query = {
         _id: id
     }
     let update = {
-        photo: location
+        photo: "https://s3.amazonaws.com/snow-africa-bucket-test/14095970_1835618916724698_8403375028931806167_n.jpg"//location
     }
     axios({
         method:"PUT",
@@ -301,7 +303,7 @@ export const uploadPictureA = (data, id) => dispatch =>{
     })
     .then(res => {
         console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
-        dispatch(updatePhoto(res.data.Location, id))
+        dispatch(updatePhotoA(res.data.Location, id))
     })
     .catch(err => {
         console.log("ERROR FROM IMAGE UPLOAD")
@@ -334,7 +336,7 @@ export const uploadDocumentA = (data, id) => dispatch =>{
     })
     .then(res => {
         console.log("DOCUMENT UPLOAD", res.data)
-        dispatch(updateDocument(res.data.Location, id))
+        dispatch(updateDocumentA(res.data.Location, id))
     })
     .catch(err => {
         console.log("DOCUMENT FAILURE", err)

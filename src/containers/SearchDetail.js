@@ -19,6 +19,9 @@ import {getAllProfile} from "../redux/actions/dashboardAction"
 import {connect} from "react-redux"
 import LgaTables from "./LgaTables"
 import SearchResult from "./SearchResult"
+import {FILTERATION_DONE} from "../redux/Constants"
+import axios from "axios"
+import store from "../store"
 
 
 const styles = {
@@ -35,9 +38,12 @@ const styles = {
 };
 
 class SearchDetail extends React.Component {
-
+   state = {
+    arr:[]
+  }
   componentDidMount(){
-    this.props.getAllProfile()
+    this.props.getAllProfile()//needed for toggling displays
+
   }
   render() {
     const { classes } = this.props;

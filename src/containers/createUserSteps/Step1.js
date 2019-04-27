@@ -21,6 +21,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
 import logoo from '../../assets/img/logo.jpg'
+import Heading from "components/Heading/Heading.jsx";
 import {
   createUserByAdmin,
   updateBasicInfo,
@@ -708,6 +709,10 @@ class Step1 extends React.Component {
 
     return (
       <div>
+        <Heading
+          title=" USER REGISTRATION"
+          textAlign="center"
+        />
         {display}
       </div>
     );

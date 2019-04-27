@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -30,10 +29,11 @@ class CreatedUser extends Component {
       year_of_graduation:"",
       qualification:""
     },
-    employed:"",
+    employment_status:"",
     marital_status:"",
     disability:"",
     address:"",
+    type_of_work:"",
     resume:"",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
    
@@ -83,6 +83,9 @@ class CreatedUser extends Component {
                             <div className="text-center">
                             <h2 className="display-4 text-center">{user.firstname+ " "+user.lastname}</h2>
                             <p>
+                                {user.employment_status === "Not Employed" ? "" :( isEmpty(user.type_of_work)?"":user.type_of_work)}
+                            </p>
+                            <p>
                                 <strong>{isEmpty(user.phone)?"":"0"+user.phone}</strong> 
                             </p>
                             </div>
@@ -102,7 +105,7 @@ class CreatedUser extends Component {
                                 <strong>Gender:</strong> {isEmpty(user.gender) ? "": user.gender}
                             </p>
                             <p>
-                                <strong>Employed:</strong> {isEmpty(user.employed)?"":user.employed}
+                                <strong>Employed:</strong> {isEmpty(user.employment_status)?"":user.employment_status}
                             </p>
                             <p>
                                 <strong>Marital Status:</strong> {isEmpty(user.marital_status)?"":user.marital_status}
@@ -156,7 +159,7 @@ class CreatedUser extends Component {
                             <h4>Uploads</h4>
                             <hr/>
                             <p>
-                                <strong>Description:</strong>Personal CV
+                                <strong>Description:</strong>{isEmpty(user.resume)?"":"Personal CV"}
                             </p>
                             <p>
                                 <strong>Email Address: </strong> {isEmpty(user.email)?"":user.email}

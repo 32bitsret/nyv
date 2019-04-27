@@ -1,9 +1,6 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
 import MailOutline from "@material-ui/icons/MailOutline";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -11,18 +8,14 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardText from "components/Card/CardText.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from "@material-ui/core/Switch";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import { connect } from "react-redux"
+import Heading from "components/Heading/Heading.jsx";
 import {
   maritalstatusFilter,
   profileFilter,
@@ -31,8 +24,10 @@ import {
   educationFilter
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
+import { getAllProfile } from "../redux/actions/dashboardAction"
 import moreMembers from  "../variables/moreMembers"
 import {sendMessage} from "../redux/actions/messageActions"
+
 
 class MessagesDetail extends React.Component {
   constructor(props) {
@@ -49,12 +44,12 @@ class MessagesDetail extends React.Component {
       disableA: false,
       disableB: false,
       disableC: false,
-      profileMembers: [],
+      allMembers: [],
       lgaMembers: [],
 
       title: "",
       message:"",
-      expo_tokens:[],
+      expo_tokens:["5cc0ab345eb25600172175bd"],
       query:{
         lga:[],
         gender:[],
@@ -66,8 +61,20 @@ class MessagesDetail extends React.Component {
   }
 
   componentDidMount(){
-   console.log("MORE MEMBERS",moreMembers) 
+   this.props.getAllProfile()
+  //  this.props.getSpecificProfiles({
+  //    query:{
+  //      lga:"Barkin Ladi"
+  //    }
+  //  })
   }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      allMembers:nextProps.members.allMembers
+    })
+  }
+
   handleChange = (event) => {
     this.setState({ selectedValue: event.target.value });
   }
@@ -88,11 +95,11 @@ class MessagesDetail extends React.Component {
 
   onSend = e => {
     let query = {
-      lga:[...this.state.lga],
-      gender:[...this.state.gender],
-      disability:[...this.state.disability],
-      marital_status:[...this.state.marital_status],
-      qualification:[...this.state.qualification]
+      lga:this.state.lga,//.join(),
+      gender:this.state.gender,//.join(),
+      disability:this.state.disability,//.join(),
+      marital_status:this.state.marital_status,//.join(),
+      qualification:this.state.qualification,//.join()
     }
     const data = {
       message: this.state.message,
@@ -100,13 +107,11 @@ class MessagesDetail extends React.Component {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
-    console.log("ARRAY OF SELECTION", data)
+    // console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
-
   }
 
   render() {
-    console.log("TITLE", this.state)
     const { classes } = this.props;
     // let genderFiltered = genderFilter(this.state.gender, moreMembers)
     // let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
@@ -117,78 +122,19 @@ class MessagesDetail extends React.Component {
     // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
     // console.log("FILTERED LGA KAWAI",lgaFiltered)
     // console.log("FILTERED disabilityKAWAI",profileFiltered)
-    return (
-      <div>
+    const display = this.props.members.isloading ? 
+      (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
-          <Card>
-            <CardHeader color="success" icon>
-              <CardIcon color="success">
-                <MailOutline />
-              </CardIcon>
-              <h4 className={classes.cardIconTitle}>Send Messages</h4>
-            </CardHeader>
-            <CardBody>
-              <form>
-                <GridContainer>
-                  <GridItem xs={12} sm={12} md={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                     Message Title
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={9}>
-                    <CustomInput
-                      id="title"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        name:"title",
-                        onChange: (e) => {this.onchange(e)}
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <GridContainer>
-                  <GridItem xs={12} sm={12} md={3} lg={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                     Message Body
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={9}>
-                    <CustomInput
-                      id="message"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        value: this.state.message,
-                        type: "text",
-                        name: "message",
-                        onChange: (e) => this.onchange(e)
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <GridContainer justify="flex-end">
-                </GridContainer>
-                <GridContainer justify="flex-end">
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Button 
-                      color="success"
-                      onClick={this.onSend}
-                    >
-                      Send
-                    </Button>
-                  </GridItem>
-                </GridContainer>
-              </form>
-            </CardBody>
-          </Card>
-        </GridItem>
+        <div>loading...</div>
       </GridContainer>
-  
+      ) 
+      : 
+      (
+        <div>
+        <Heading
+          title="SEND MESSAGES"
+          textAlign="center"
+        />
         <GridContainer>
         <GridItem xs={12} sm={12} md={4} lg={3}>
             <Card>
@@ -300,7 +246,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="disabled"
+                        value="Disabled"
                       >
                         disabled
                       </MenuItem>
@@ -309,7 +255,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="not disabled"
+                        value="Not Disabled"
                       >
                         not-disabled
                       </MenuItem>
@@ -365,36 +311,36 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="married"
+                        value="Married"
                       >
-                        married
+                        Married
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="singles"
+                        value="Singles"
                       >
-                        singles
+                        Singles
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="divorced"
+                        value="Divorced"
                       >
-                        divorced
+                        Divorced
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="widowed"
+                        value="Widowed"
                       >
-                        widowed
+                        Widowed
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -475,7 +421,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-east"
+                        value="jos east"
                       >
                         jos-east
                       </MenuItem>
@@ -484,7 +430,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-north"
+                        value="jos north"
                       >
                         jos-north
                       </MenuItem>
@@ -493,7 +439,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-south"
+                        value="jos south"
                       >
                         jos-south
                       </MenuItem>
@@ -520,7 +466,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-north"
+                        value="langtang north"
                       >
                         langtang-north
                       </MenuItem>
@@ -529,7 +475,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-south"
+                        value="langtang south"
                       >
                         langtang-south
                       </MenuItem>
@@ -729,7 +675,105 @@ class MessagesDetail extends React.Component {
                </CardBody>
             </Card>
           </GridItem>
+          <GridItem xs={12} sm={12} md={4} lg={3}>
+            <Card>
+              <CardHeader color="success" icon>
+                <div
+                      className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                      }
+                    >
+                      <h4 className={classes.cardIconTitle}>Total Recipients</h4>
+                    </div>
+              </CardHeader>
+              <CardBody>
+                <p>
+                  RECIPIENTS: {}
+                </p>
+               </CardBody>
+            </Card>
+          </GridItem>
         </GridContainer>
+
+        <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={8}>
+          <Card>
+            <CardHeader color="success" icon>
+              <CardIcon color="success">
+                <MailOutline />
+              </CardIcon>
+              <h4 className={classes.cardIconTitle}>Send Messages</h4>
+            </CardHeader>
+            <CardBody>
+              <form>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                     Message Title
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={9}>
+                    <CustomInput
+                    error={true}
+                      id="title"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "text",
+                        name:"title",
+                        onChange: (e) => {this.onchange(e)}
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={3} lg={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                     Message Body
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={9}>
+                    <CustomInput
+                      id="message"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        value: this.state.message,
+                        type: "text",
+                        name: "message",
+                        onChange: (e) => this.onchange(e)
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer justify="flex-end">
+                </GridContainer>
+                <GridContainer justify="flex-end">
+                  <GridItem xs={12} sm={12} md={9}>
+                    <Button 
+                      color="success"
+                      onClick={this.onSend}
+                    >
+                      Send
+                    </Button>
+                  </GridItem>
+                </GridContainer>
+              </form>
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+
+        </div>
+      )
+
+    return (
+      <div>
+        {display}
       </div>
     );
   }
@@ -737,8 +781,8 @@ class MessagesDetail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    state
+    members: state.dashboard
   }
 }
 
-export default connect(mapStateToProps, {sendMessage})(withStyles(regularFormsStyle)(MessagesDetail));
+export default connect(mapStateToProps, {sendMessage, getAllProfile})(withStyles(regularFormsStyle)(MessagesDetail));

@@ -18,7 +18,9 @@ import UserPreview from "./components/UserPreview"
 import {extractLGAArr} from "../utils/Gridd/Extraction"
 import {FILTERATION_DONE} from "../redux/Constants"
 // import 
-import store from '../store'; 
+import store from '../store';
+import {getSpecificProfiles} from "../redux/actions/searchingAction"
+import axios from "axios"
 
 const styles = {
   cardIconTitle: {
@@ -29,18 +31,52 @@ const styles = {
 };
 
 let members = []
-let arra = []
-
 class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       arr : [],
+      search:[],
       user:{},
-      data:this.props.result.map((prop, key) => {
-          console.log("PROP", prop)
+    };
+  }
+
+  componentDidMount(){
+    if(localStorage.ln){
+        axios({
+            method:"POST",
+            url: "https://plateauyc.herokuapp.com/pyc/profile/query/",
+            data:{
+              query:{
+                lga:localStorage.ln
+              }
+            }
+           })
+        .then(res => {
+            console.log("FROM INSIDE LGA SEARCH",res.data.data)
+            this.setState({
+              arr : res.data.data
+            })
+        }).catch(err => {})
+    }
+    else{
+        this.setState({
+            arr:this.props.result
+        })
+    }
+  }
+
+  componentWillUnmount(){
+      localStorage.removeItem("ln")
+  }
+  
+
+  render() {
+    const { classes,result } = this.props;
+
+   let results = this.state.arr.map((prop, key) => {
         return {
-            sn: key ,
+            sn: key +1,
             id:prop._id,
             name: prop.firstname+" "+prop.lastname,
             DoB:isEmpty(prop.DoB)?"":prop.DoB,
@@ -77,39 +113,13 @@ class SearchResult extends React.Component {
             </div>
           )
         };
-      })
-    };
-  }
 
-  componentDidMount(){
-    if(localStorage.ln){
-        console.log("THIS VALUE EXISTS IN LOCALSTORAGE", localStorage.ln)
-        members = extractLGAArr(this.props.result, localStorage.ln)
-        console.log("MEMBERS ",members)
-        store.dispatch({
-            type:FILTERATION_DONE,
-            payload:[...members]
-        })
-        
-        Object.keys(members).map(val => {
-            console.log("VALUES MODAFUCKA",members[val].firstname)
-        })
-    }
-     this.setState({
-        arr : this.props.result
     })
-    }
 
-  componentWillUnmount(){
-      localStorage.removeItem("ln")
-  }
+    
 
-  render() {
-    const { classes,result } = this.props;
-    console.log("STATE DATA", this.state.data)
-    console.log("SELECTEDSER", this.state.user)
-    console.log("ALL MEMBERS", this.state.arr)
-    console.log("SEARCH", typeof(this.props.search))
+
+
     const display = isEmpty(this.state.user) ?        
         <Card>
             <CardBody  className={classes.cardFooter}>
@@ -118,15 +128,26 @@ class SearchResult extends React.Component {
         </Card>
         :
         <UserPreview user={this.state.user}/> 
- 
-    return (
-        <div>
+    
+    
+    const main = this.props.search.isloading ? 
+    <Heading
+        title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
+        textAlign="center"
+        category={
+            <span>
+                {results.length+ "  "}Total
+            </span>
+        }
+    />
+     :
+     <div>
         <Heading
             title={isEmpty(localStorage.ln)?"Search Results":"Search Results for "+localStorage.ln}
             textAlign="center"
             category={
                 <span>
-                    {members.length+ "  "}Total
+                    {results.length+ "  "}Total
                 </span>
             }
         />
@@ -141,7 +162,7 @@ class SearchResult extends React.Component {
                 </CardHeader>
                 <CardBody>
                 <ReactTable
-                    data={this.state.data}
+                    data={results}
                     columns={[
                     {
                         Header: "S/N",
@@ -181,15 +202,20 @@ class SearchResult extends React.Component {
             </GridItem>
         </GridContainer>
         </div>
+    return (
+        <div>
+            {main}
+        </div>
     );
   }
 }
 
 const mapStateToProps = state => {
     return{
-        search: state.search,
-        result: state.dashboard.allMembers
+        // search: state.search.result,
+        result: state.dashboard.searchMembers,
+        search:state.dashboard
     }
 }
 
-export default connect(mapStateToProps, {})(withStyles(styles)(SearchResult));
+export default connect(mapStateToProps, {getSpecificProfiles})(withStyles(styles)(SearchResult));

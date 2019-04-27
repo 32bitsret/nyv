@@ -18,13 +18,15 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile , getAllProfile} from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import moreMembers from "../variables/moreMembers"
+import Heading from "components/Heading/Heading.jsx";
 import {
   extractLGA,
   extractEducation,
   extractDisability,
   extractMaritalStatus,
   extractGender,
-  extractEmployment
+  extractEmployment,
+  extractEmploymentE
 } from "../utils/Gridd/Extraction"
 import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
 
@@ -63,6 +65,10 @@ class Gridd extends Component {
   
   render() {
     const { classes } = this.props;
+    // setTimeout(()=>{
+    //   this.props.getAllProfile(),
+    //   50000
+    // })
     let members = this.state.members
     if(this.state.members !== null){   
     education = {
@@ -78,7 +84,7 @@ class Gridd extends Component {
         "PHD"
       ],
       series: [[
-        extractEducation(members, "SCHOOL CERT"), 
+        extractEducation(members, "CERT"), 
         extractEducation(members, "OLEVEL"), 
         extractEducation(members, "ND"), 
         extractEducation(members, "HND"), 
@@ -138,8 +144,9 @@ class Gridd extends Component {
         "Not Employed",
       ],
       series: [[
-        extractEmployment(members, "employed"), 
-        extractEmployment(members, "not employed")
+        
+        extractEmployment(members, "Employed"), 
+        extractEmployment(members, "Not Employed")
       ]]
     },
     options: {
@@ -367,7 +374,7 @@ class Gridd extends Component {
     }
   };
   
-  console.log("PIE CHART", extractEmployment(members,"employed"))
+  console.log("PIE CHART", extractEmployment(members,"Employed"))
      const display = this.props.dashboard.isloading ? (       
      <GridContainer justify="center">
        <div>loading...</div>
@@ -375,6 +382,10 @@ class Gridd extends Component {
     ) :
       ( 
       <div>
+        <Heading
+          title="GENERAL ANALYTICS"
+          textAlign="center"
+        />
       <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <Card chart >
@@ -409,9 +420,9 @@ class Gridd extends Component {
                 className="ct-chart-white-colors"
                 data={education.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={education.options}
+                responsiveOptions={education.responsiveOptions}
+                listener={education.animation}
               />
               
             </CardHeader>
@@ -466,9 +477,9 @@ class Gridd extends Component {
                 className="ct-chart-white-colors"
                 data={employment.data}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={employment.options}
+                responsiveOptions={employment.responsiveOptions}
+                listener={employment.animation}
               />
               
             </CardHeader>

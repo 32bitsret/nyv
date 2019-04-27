@@ -71,7 +71,7 @@ class LgaTables extends React.Component {
           divorced: extractMaritalStatus(this.props.dashboard.allMembers, "Divorced", prop[0]),
           widowed: extractMaritalStatus(this.props.dashboard.allMembers, "Widowed", prop[0]),
           Degree: extractEducation(this.props.dashboard.allMembers,"DEGREE", prop[0]),
-          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"SCHOOL CERT", prop[0]),
+          SCHOOL_CERT: extractEducation(this.props.dashboard.allMembers,"CERT", prop[0]),
           HND: extractEducation(this.props.dashboard.allMembers,"HND", prop[0]),
           ND: extractEducation(this.props.dashboard.allMembers,"ND", prop[0]),
           NCE: extractEducation(this.props.dashboard.allMembers,"NCE", prop[0]),
@@ -80,8 +80,8 @@ class LgaTables extends React.Component {
           OLEVEL: extractEducation(this.props.dashboard.allMembers,"OLEVEL", prop[0]),
           Disabled: extractDisability(this.props.dashboard.allMembers, "Disabled", prop[0]),
           NotDisabled: extractDisability(this.props.dashboard.allMembers, "Not Disabled", prop[0]),
-          employed:extractEmployment(this.props.dashboard.allMembers,"employed",prop[0]),
-          notEmployed:extractEmployment(this.props.dashboard.allMembers,"not employed",prop[0]),
+          employed:extractEmployment(this.props.dashboard.allMembers,"Employed",prop[0]),
+          notEmployed:extractEmployment(this.props.dashboard.allMembers,"Not Employed",prop[0]),
           actions: (
             <div className="actions-right">
               <Button
@@ -137,6 +137,7 @@ class LgaTables extends React.Component {
           <h1 className={classes.cardTitle}>{" "} {this.state.tableData.name}</h1>
           <hr/>
           <h4 className={classes.cardTitle}>TOTAL:{"  "} {this.state.tableData.total}</h4>
+          <hr/>
           <h4 className={classes.cardTitle}>MALES:{"  "} {this.state.tableData.males}</h4>
           <h4 className={classes.cardTitle}>FEMALES:{"  "} {this.state.tableData.females}</h4>
           <hr/>
@@ -145,6 +146,7 @@ class LgaTables extends React.Component {
           <h4 className={classes.cardTitle}>MARRIED:{"  "} {this.state.tableData.married}</h4>
           <h4 className={classes.cardTitle}>DIVORCED:{"  "} {this.state.tableData.divorced}</h4>
           <h4 className={classes.cardTitle}>WIDOWED:{"  "} {this.state.tableData.widowed}</h4>
+          <hr/>
           <h4 className={classes.cardTitle}>DISABLED:{"  "} {this.state.tableData.Disabled}</h4>
           <h4 className={classes.cardTitle}>NOT DISABLED:{"  "} {this.state.tableData.NotDisabled}</h4>
           <hr/>
@@ -155,7 +157,7 @@ class LgaTables extends React.Component {
           <h4 className={classes.cardTitle}>HND:{"  "} {this.state.tableData.HND}</h4>
           <h4 className={classes.cardTitle}>ND:{"  "} {this.state.tableData.ND}</h4>
           <h4 className={classes.cardTitle}>NCE:{"  "} {this.state.tableData.NCE}</h4>
-          <h4 className={classes.cardTitle}>Degree:{"  "} {this.state.tableData.Degree}</h4>
+          <h4 className={classes.cardTitle}>DEGREE:{"  "} {this.state.tableData.Degree}</h4>
           <h4 className={classes.cardTitle}>MSC:{"  "} {this.state.tableData.MSC}</h4>
           <h4 className={classes.cardTitle}>PHD:{"  "} {this.state.tableData.PHD}</h4>
          

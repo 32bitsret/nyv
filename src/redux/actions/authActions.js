@@ -64,9 +64,7 @@ export const setCurrentUser = decoded => {
 // Log user out
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('pyc_token')
-  localStorage.removeItem("f")
-  localStorage.removeItem("l")
-  localStorage.removeItem("pic")
+  localStorage.removeItem("ln")
    dispatch({
      type: LOGOUT,
      payload: {}
