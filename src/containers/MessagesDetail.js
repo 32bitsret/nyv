@@ -95,11 +95,11 @@ class MessagesDetail extends React.Component {
 
   onSend = e => {
     let query = {
-      lga:this.state.lga.join(),
-      gender:this.state.gender.join(),
-      disability:this.state.disability.join(),
-      marital_status:this.state.marital_status.join(),
-      qualification:this.state.qualification.join()
+      lga:this.state.lga,//.join(),
+      gender:this.state.gender,//.join(),
+      disability:this.state.disability,//.join(),
+      marital_status:this.state.marital_status,//.join(),
+      qualification:this.state.qualification,//.join()
     }
     const data = {
       message: this.state.message,
@@ -107,7 +107,7 @@ class MessagesDetail extends React.Component {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
-    console.log("ARRAY OF SELECTION", data)
+    // console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
   }
 

@@ -4,13 +4,15 @@ import {GET_PROFILE,
   GET_ALLL_PROFILE,
   GET_RID_OF_WELCOME,
   START_WELCOME,
-  SET_SIDEBAR
+  SET_SIDEBAR,
+  FILTERATION_DONE
   } from "../Constants"
 
 const initialState = {
     dashboard :{},
     isloading: true,
     allMembers: [],
+    searchMembers: [],
     isWelcome: true,
     sidebarImage:"https://www.gravatar.com/avatar/anything?s=200&d=mm"
 };
@@ -43,6 +45,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         sidebar:action.payload
+      }
+    case FILTERATION_DONE:
+      return {
+        ...state,
+        searchMembers:action.payload,
+        isloading:isEmpty(action.payload)
       }
     default:
       return state;
