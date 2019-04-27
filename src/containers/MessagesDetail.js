@@ -118,7 +118,7 @@ class MessagesDetail extends React.Component {
     // console.log("FILTERED LGA KAWAI",lgaFiltered)
     // console.log("FILTERED disabilityKAWAI",profileFiltered)
 
-    const display = true ? 
+    const display = false ? 
       (
       <GridContainer justify="center">
         <div>loading...</div>

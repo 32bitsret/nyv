@@ -90,6 +90,7 @@ class UserProfile extends Component {
       disability:isEmpty(data.disability)?"":data.disability,
       address:isEmpty(data.address)?"":data.address,
       resume:isEmpty(data.resume)?"":data.resume,
+      type_of_work:isEmpty(data.type_of_work)?"":data.type_of_work,
       photo:nextProps.dashboard.dashboard.photo,
     })
   }
@@ -151,7 +152,7 @@ class UserProfile extends Component {
     }
     let update = {
       gender: isEmpty(this.state.gender)?"":this.state.gender,
-      employment_status: isEmpty(this.state.employed)?"":this.state.employed,
+      employment_status: isEmpty(this.state.employment_status)?"":this.state.employment_status,
       disability: isEmpty(this.state.disability)?"":this.state.disability,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
@@ -205,7 +206,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.props.dashboard.dashboard.resume)
+    console.log("USER DASHBOARD",this.state.user)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -334,6 +335,9 @@ class UserProfile extends Component {
                 </div>
                 <div className="text-center">
                   <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
+                    {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
+                  <p>
+                  </p>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
@@ -398,7 +402,7 @@ class UserProfile extends Component {
                     <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
-                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
+                    <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -422,7 +426,7 @@ class UserProfile extends Component {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Gender</label>
                             <SelectListGroup
-                            
+                              disable={true}
                               placeholder="Gender"
                               name="gender"
                               value={this.state.gender}
@@ -435,7 +439,7 @@ class UserProfile extends Component {
                             <SelectListGroup
                               placeholder="Employed"
                               name="employed"
-                              value={this.state.employed}
+                              value={this.state.employment_status}
                               onChange={this.onchange}
                               options={optionsEmployed}
                             />
@@ -544,6 +548,7 @@ class UserProfile extends Component {
                               Email
                             </label>
                             <input 
+                              disabled
                               type="email" 
                               className="form-control form-control-lg" 
                               placeholder="Email Address" 
