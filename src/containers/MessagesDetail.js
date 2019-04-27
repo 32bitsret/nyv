@@ -15,6 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { connect } from "react-redux"
+import Heading from "components/Heading/Heading.jsx";
 import {
   maritalstatusFilter,
   profileFilter,
@@ -47,7 +48,7 @@ class MessagesDetail extends React.Component {
 
       title: "",
       message:"",
-      expo_tokens:[],
+      expo_tokens:["5cc0ab345eb25600172175bd"],
       query:{
         lga:[],
         gender:[],
@@ -98,7 +99,6 @@ class MessagesDetail extends React.Component {
   }
 
   render() {
-    console.log("TITLE", this.state)
     const { classes } = this.props;
     // let genderFiltered = genderFilter(this.state.gender, moreMembers)
     // let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
@@ -119,77 +119,15 @@ class MessagesDetail extends React.Component {
       : 
       (
         <div>
-        <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
-          <Card>
-            <CardHeader color="success" icon>
-              <CardIcon color="success">
-                <MailOutline />
-              </CardIcon>
-              <h4 className={classes.cardIconTitle}>Send Messages</h4>
-            </CardHeader>
-            <CardBody>
-              <form>
-                <GridContainer>
-                  <GridItem xs={12} sm={12} md={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                     Message Title
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={9}>
-                    <CustomInput
-                    error={true}
-                      id="title"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        name:"title",
-                        onChange: (e) => {this.onchange(e)}
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <GridContainer>
-                  <GridItem xs={12} sm={12} md={3} lg={3}>
-                    <FormLabel className={classes.labelHorizontal}>
-                     Message Body
-                    </FormLabel>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={9}>
-                    <CustomInput
-                      id="message"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        value: this.state.message,
-                        type: "text",
-                        name: "message",
-                        onChange: (e) => this.onchange(e)
-                      }}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <GridContainer justify="flex-end">
-                </GridContainer>
-                <GridContainer justify="flex-end">
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Button 
-                      color="success"
-                      onClick={this.onSend}
-                    >
-                      Send
-                    </Button>
-                  </GridItem>
-                </GridContainer>
-              </form>
-            </CardBody>
-          </Card>
-        </GridItem>
-      </GridContainer>
-  
+        <Heading
+          title="FILTER MESSAGE RECIPIENTS"
+          textAlign="center"
+          category={
+              <span>
+                  {/* {members.length+ "  "}Total */}
+              </span>
+          }
+        />
         <GridContainer>
         <GridItem xs={12} sm={12} md={4} lg={3}>
             <Card>
@@ -730,7 +668,99 @@ class MessagesDetail extends React.Component {
                </CardBody>
             </Card>
           </GridItem>
+          <GridItem xs={12} sm={12} md={4} lg={3}>
+            <Card>
+              <CardHeader color="success" icon>
+                <div
+                      className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                      }
+                    >
+                      <h4 className={classes.cardIconTitle}>Total Recipients</h4>
+                    </div>
+              </CardHeader>
+              <CardBody>
+                <p>
+                  RECIPIENTS: {}
+                </p>
+               </CardBody>
+            </Card>
+          </GridItem>
         </GridContainer>
+
+        <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={8}>
+          <Card>
+            <CardHeader color="success" icon>
+              <CardIcon color="success">
+                <MailOutline />
+              </CardIcon>
+              <h4 className={classes.cardIconTitle}>Send Messages</h4>
+            </CardHeader>
+            <CardBody>
+              <form>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                     Message Title
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={9}>
+                    <CustomInput
+                    error={true}
+                      id="title"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "text",
+                        name:"title",
+                        onChange: (e) => {this.onchange(e)}
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={3} lg={3}>
+                    <FormLabel className={classes.labelHorizontal}>
+                     Message Body
+                    </FormLabel>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={9}>
+                    <CustomInput
+                      id="message"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        value: this.state.message,
+                        type: "text",
+                        name: "message",
+                        onChange: (e) => this.onchange(e)
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer justify="flex-end">
+                </GridContainer>
+                <GridContainer justify="flex-end">
+                  <GridItem xs={12} sm={12} md={9}>
+                    <Button 
+                      color="success"
+                      onClick={this.onSend}
+                    >
+                      Send
+                    </Button>
+                  </GridItem>
+                </GridContainer>
+              </form>
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+
         </div>
       )
 
