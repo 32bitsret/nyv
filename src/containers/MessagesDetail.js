@@ -138,6 +138,7 @@ class MessagesDetail extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={12} md={9}>
                     <CustomInput
+                    error={true}
                       id="title"
                       formControlProps={{
                         fullWidth: true

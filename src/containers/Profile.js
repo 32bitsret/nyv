@@ -51,7 +51,7 @@ class UserProfile extends Component {
 
     id:"",
     disable: true,
-    editing: this.onButtonClick,
+    editing: false,
     isLoading:  false,
     user: {},
 
@@ -143,6 +143,19 @@ class UserProfile extends Component {
     })
   }
 
+  onClickEdit = (e) => {
+    e.preventDefault()
+    this.setState({
+      editing: true
+    })
+  }
+
+  onDone = e => {
+    e.preventDefault()
+    this.setState({
+      editing: false
+    })
+  }
 
 //============================END OF MODAL OPS======================================
 //======================START OF SUBMISSION ROUTINES=============================
@@ -342,13 +355,13 @@ class UserProfile extends Component {
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
-
+                    {this.state.editing === true ? 
                       <Button 
                         onClick={this.onClickPhoto}
                         className="btn bg-warning mb-3 float-center"
                       >
                         Change
-                      </Button>
+                      </Button> :  "" }
                       <Dialog
                         open={this.state.openPhoto}
                         onClose={this.handleClose}
@@ -405,13 +418,18 @@ class UserProfile extends Component {
                   <p>
                     <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
-                  <Button 
-                    onClick={this.onClickPersonal}
-                    className="btn bg-white text-success btn-success mb-3 float-right"
-                    type="button"
-                    >
-                    Edit
-                  </Button>  
+                    {
+                      this.state.editing ?  
+                      <Button 
+                        onClick={this.onClickPersonal}
+                        className="btn bg-white text-success btn-success mb-3 float-right"
+                        type="button"
+                        >
+                        Edit
+                      </Button> 
+                       : 
+                       ""
+                    }
                       <Dialog
                         open={this.state.openPersonal}
                         onClose={this.handleClose}
@@ -500,11 +518,16 @@ class UserProfile extends Component {
                   <p>
                     <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
-                  <Button 
-                    onClick={this.onClickContact}
-                    className="btn bg-white text-success primary mb-3 float-right">
-                    Edit
-                  </Button>   
+                    {
+                      this.state.editing ?
+                      <Button 
+                        onClick={this.onClickContact}
+                        className="btn bg-white text-success primary mb-3 float-right">
+                        Edit
+                      </Button>
+                    :
+                    ""
+                    }
                       <Dialog
                         open={this.state.openContact}
                         onClose={this.handleClose}
@@ -592,11 +615,17 @@ class UserProfile extends Component {
                   <p>
                     {" "}
                   </p>
-                  <Button 
-                    onClick={this.onClickEducation}
-                    className="btn bg-white text-success primary mb-3 float-right">
-                    Edit
-                  </Button> 
+                  {
+                    this.state.editing
+                    ?
+                    <Button 
+                      onClick={this.onClickEducation}
+                      className="btn bg-white text-success primary mb-3 float-right">
+                      Edit
+                    </Button> 
+                    :
+                    ""
+                  }
                   <Dialog
                         open={this.state.openEducation}
                         onClose={this.handleClose}
@@ -691,7 +720,8 @@ class UserProfile extends Component {
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
-                  {isEmpty(this.props.dashboard.dashboard.resume)?
+                  {this.state.editing ? 
+                  isEmpty(this.props.dashboard.dashboard.resume)?
                   (<Button 
                     onClick={this.onClickUpload}
                     className="btn bg-white text-success primary mb-3 float-right">
@@ -707,6 +737,8 @@ class UserProfile extends Component {
                     
                   </Button> 
                   )
+                  :
+                  ""
                   }
                   <Dialog
                     open={this.state.openUpload}
@@ -756,11 +788,18 @@ class UserProfile extends Component {
         <div className="col-md-12" style={{marginTop:"5px"}}>
           <div className="card card-body bg-white text-white mb-3">
             <div className=" text-success mb-3">
-              <Button 
-                onClick={this.onClick}
-                className="btn btn-success bg-success mb-3 text-white float-right">
-                Edit
-              </Button> 
+                {this.state.editing ? 
+                <Button 
+                  onClick={this.onDone}
+                  className="btn btn-success bg-success mb-3 text-white float-right">
+                  Done
+                </Button> :
+                <Button 
+                  onClick={this.onClickEdit}
+                  className="btn btn-success bg-success mb-3 text-white float-right">
+                  Edit
+                </Button> 
+              }
             </div>
           </div>
         </div>
