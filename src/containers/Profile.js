@@ -336,8 +336,8 @@ class UserProfile extends Component {
                 </div>
                 <div className="text-center">
                   <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
-                    {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
                   <p>
+                    {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
                   </p>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
@@ -683,7 +683,7 @@ class UserProfile extends Component {
                   <h4>Uploads</h4>
                   <hr/>
                   <p>
-                    <strong>Description:</strong>Personal CV
+                    <strong>Description:</strong>{isEmpty(this.props.dashboard.dashboard.resume)?"":"Personal CV"}
                   </p>
                   <p>
                     <strong>Email Address: </strong>{isEmpty(this.state.user.email)?"":this.state.user.email}

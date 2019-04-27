@@ -42,9 +42,6 @@ export const getProfileInit = (phone) => dispatch => {
         data: { phone}
     })
     .then(res => {        
-        console.log("PROFILE RETURNED", res.data.data)
-        localStorage.setItem("f",res.data.data.firstname)
-        localStorage.setItem("l",res.data.data.lastname)
         if(isEmpty(res.data.data.photo)){
             localStorage.setItem("pic","https://www.gravatar.com/avatar/anything?s=200&d=mm")
         }else{

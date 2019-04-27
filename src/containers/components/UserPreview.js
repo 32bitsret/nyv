@@ -33,6 +33,7 @@ class CreatedUser extends Component {
     marital_status:"",
     disability:"",
     address:"",
+    type_of_work:"",
     resume:"",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
    
@@ -81,6 +82,9 @@ class CreatedUser extends Component {
                             </div>
                             <div className="text-center">
                             <h2 className="display-4 text-center">{user.firstname+ " "+user.lastname}</h2>
+                            <p>
+                                {user.employment_status === "Not Employed" ? "" :( isEmpty(user.type_of_work)?"":user.type_of_work)}
+                            </p>
                             <p>
                                 <strong>{isEmpty(user.phone)?"":"0"+user.phone}</strong> 
                             </p>
@@ -155,7 +159,7 @@ class CreatedUser extends Component {
                             <h4>Uploads</h4>
                             <hr/>
                             <p>
-                                <strong>Description:</strong>Personal CV
+                                <strong>Description:</strong>{isEmpty(user.resume)?"":"Personal CV"}
                             </p>
                             <p>
                                 <strong>Email Address: </strong> {isEmpty(user.email)?"":user.email}
