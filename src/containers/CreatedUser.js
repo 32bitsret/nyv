@@ -176,7 +176,7 @@ class CreatedUser extends Component {
 onSubmitBasicInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update = {
     gender: isEmpty(this.state.gender)?"":this.state.gender,
@@ -197,7 +197,7 @@ onSubmitBasicInfo = e => {
 onSubmitContactInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update = {
     address:isEmpty(this.state.address)?"": this.state.address,
@@ -211,7 +211,7 @@ onSubmitContactInfo = e => {
 onSubmitEducationalInfo = e => {
   e.preventDefault()
   let query = {
-    _id: this.props.dashboard.dashboard._id
+    _id: this.state.user._id
   }
   let update ={
     education:{
@@ -243,8 +243,8 @@ onSubmitEducationalInfo = e => {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'no' },
-      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'Not Employed' },
+      { label: 'Yes', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
@@ -317,7 +317,7 @@ onSubmitEducationalInfo = e => {
     ];
 
     const optionsQualification = [
-      { label: 'School Cert', value: 'SCHOOL CERT' },
+      { label: 'School Cert', value: 'CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },
@@ -375,6 +375,7 @@ onSubmitEducationalInfo = e => {
                         </DialogContentText>
                       </DialogContent>
                       <ImageUploadA
+                        user_id={this.state.user._id}
                         cancel={this.onClickPhoto}
                         avatar 
                         addButtonProps={{

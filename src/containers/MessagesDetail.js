@@ -1,9 +1,6 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import FormLabel from "@material-ui/core/FormLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
 import MailOutline from "@material-ui/icons/MailOutline";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -11,17 +8,12 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardText from "components/Card/CardText.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import InputLabel from "@material-ui/core/InputLabel";
-import Switch from "@material-ui/core/Switch";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import { connect } from "react-redux"
 import {
   maritalstatusFilter,
@@ -31,6 +23,7 @@ import {
   educationFilter
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
+import { getAllProfile } from "../redux/actions/dashboardAction"
 import moreMembers from  "../variables/moreMembers"
 import {sendMessage} from "../redux/actions/messageActions"
 
@@ -88,11 +81,11 @@ class MessagesDetail extends React.Component {
 
   onSend = e => {
     let query = {
-      lga:[...this.state.lga],
-      gender:[...this.state.gender],
-      disability:[...this.state.disability],
-      marital_status:[...this.state.marital_status],
-      qualification:[...this.state.qualification]
+      lga:this.state.lga.join(),
+      gender:this.state.gender.join(),
+      disability:this.state.disability.join(),
+      marital_status:this.state.marital_status.join(),
+      qualification:this.state.qualification.join()
     }
     const data = {
       message: this.state.message,
@@ -102,7 +95,6 @@ class MessagesDetail extends React.Component {
     }
     console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
-
   }
 
   render() {
@@ -117,9 +109,17 @@ class MessagesDetail extends React.Component {
     // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
     // console.log("FILTERED LGA KAWAI",lgaFiltered)
     // console.log("FILTERED disabilityKAWAI",profileFiltered)
-    return (
-      <div>
+
+    const display = false ? 
+      (
       <GridContainer justify="center">
+        <div>loading...</div>
+      </GridContainer>
+      ) 
+      : 
+      (
+        <div>
+        <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="success" icon>
@@ -300,7 +300,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="disabled"
+                        value="Disabled"
                       >
                         disabled
                       </MenuItem>
@@ -309,7 +309,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="not disabled"
+                        value="Not Disabled"
                       >
                         not-disabled
                       </MenuItem>
@@ -365,36 +365,36 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="married"
+                        value="Married"
                       >
-                        married
+                        Married
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="singles"
+                        value="Singles"
                       >
-                        singles
+                        Singles
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="divorced"
+                        value="Divorced"
                       >
-                        divorced
+                        Divorced
                       </MenuItem>
                       <MenuItem
                         classes={{
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="widowed"
+                        value="Widowed"
                       >
-                        widowed
+                        Widowed
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -475,7 +475,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-east"
+                        value="jos east"
                       >
                         jos-east
                       </MenuItem>
@@ -484,7 +484,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-north"
+                        value="jos north"
                       >
                         jos-north
                       </MenuItem>
@@ -493,7 +493,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos-south"
+                        value="jos south"
                       >
                         jos-south
                       </MenuItem>
@@ -520,7 +520,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-north"
+                        value="langtang north"
                       >
                         langtang-north
                       </MenuItem>
@@ -529,7 +529,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang-south"
+                        value="langtang south"
                       >
                         langtang-south
                       </MenuItem>
@@ -730,6 +730,12 @@ class MessagesDetail extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+        </div>
+      )
+
+    return (
+      <div>
+        {display}
       </div>
     );
   }
@@ -737,8 +743,8 @@ class MessagesDetail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    state
+    members: state
   }
 }
 
-export default connect(mapStateToProps, {sendMessage})(withStyles(regularFormsStyle)(MessagesDetail));
+export default connect(mapStateToProps, {sendMessage, getAllProfile})(withStyles(regularFormsStyle)(MessagesDetail));

@@ -4,7 +4,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import {connect} from "react-redux"
 import defaultImage from "assets/img/image_placeholder.jpg";
 import defaultAvatar from "assets/img/placeholder.jpg";
-import {uploadPicture} from "../../redux/actions/createActions"
+import {uploadPictureA} from "../../redux/actions/createActions"
 
 class ImageUploadA extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class ImageUploadA extends React.Component {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
-    console.log(file.name)
+    console.log("File NAme",file.name)
     reader.onloadend = () => {
       this.setState({
         name: file.name,
@@ -37,21 +37,22 @@ class ImageUploadA extends React.Component {
   }
 
   handleSubmit(e) {
-    const id = this.props.state.dashboard.dashboard._id
+    const id = this.props.user_id
+    console.log("MY ID", id)
     const data = {
         type: this.state.type,
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
      console.log("DATA",data)
-     this.props.uploadPicture(data, id)
+     this.props.uploadPictureA(data, id)
   }
   handleClick() {
     this.refs.fileInput.click();
   }
 
   render() {
-      console.log("IMAGE", this.props.state.dashboard.dashboard._id)
+      console.log("IMAGE", this.props.user_id)
     var {
       avatar,
       addButtonProps,
@@ -98,7 +99,7 @@ ImageUploadA.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        state
+       dashboard: state.dashboard
     }
 }
-export default connect(mapStateToProps, {uploadPicture})(ImageUploadA);
+export default connect(mapStateToProps, {uploadPictureA})(ImageUploadA);

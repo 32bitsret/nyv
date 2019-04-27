@@ -27,7 +27,7 @@
       let result = [];
       arr.forEach(element => {
         if(element.lga === lga){
-          if(element.employment === test){
+          if(element.employment_status === test){
             result.push(element)
           }
         }

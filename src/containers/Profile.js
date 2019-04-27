@@ -42,10 +42,11 @@ class UserProfile extends Component {
     year_of_graduation:"",
     educational_qualification:""
     ,
-    employed:"",
+    employment_status:"",
     marital_status:"",
     disability:"",
     address:"",
+    type_of_work:"",
     resume:"",
 
     id:"",
@@ -85,11 +86,12 @@ class UserProfile extends Component {
       institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
       year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
       educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.educational_qualification,
-      employed:isEmpty(data.employed)?"":data.employed,
+      employment_status:isEmpty(data.employment_status)?"":data.employment_status,
       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
       disability:isEmpty(data.disability)?"":data.disability,
       address:isEmpty(data.address)?"":data.address,
       resume:isEmpty(data.resume)?"":data.resume,
+      type_of_work:isEmpty(data.type_of_work)?"":data.type_of_work,
       photo:nextProps.dashboard.dashboard.photo,
     })
   }
@@ -151,18 +153,18 @@ class UserProfile extends Component {
     }
     let update = {
       gender: isEmpty(this.state.gender)?"":this.state.gender,
-      employement_status: isEmpty(this.state.employed)?"":this.state.employed,
+      employment_status: isEmpty(this.state.employment_status)?"":this.state.employment_status,
+      disability: isEmpty(this.state.disability)?"":this.state.disability,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
-      disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
-      type_of_work:"tailor"
+      type_of_work:isEmpty(this.state.type_of_work)?"":this.state.type_of_work
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
     this.props.updateBasicInfo({query,update})
-    this.setState({
-      openPersonal: !this.state.openPersonal
-    })
+    // this.setState({
+    //   openPersonal: !this.state.openPersonal
+    // })
   }
 
   onSubmitContactInfo = e => {
@@ -205,7 +207,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.props.dashboard.dashboard.resume)
+    console.log("USER DASHBOARD",this.state.user)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -215,8 +217,8 @@ class UserProfile extends Component {
 
     const optionsEmployed = [
       { label: '', value: '' },
-      { label: 'No', value: 'not employed' },
-      { label: 'Yes', value: 'yes' },
+      { label: 'Not Employed', value: 'Not Employed' },
+      { label: 'Employed', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
@@ -227,8 +229,8 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'No', value: 'Not Disabled' },
-      { label: 'Yes', value: 'Disabled' }
+      { label: 'Not Disabled', value: 'Not Disabled' },
+      { label: 'Disabled', value: 'Disabled' }
     ];
 
     const optionsLGA = [
@@ -286,7 +288,7 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
-      { label: 'School Cert', value: 'SCHOOL CERT' },
+      { label: 'School Cert', value: 'CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
       { label: 'HND', value: 'HND' },
@@ -334,6 +336,9 @@ class UserProfile extends Component {
                 </div>
                 <div className="text-center">
                   <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
+                  <p>
+                    {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
+                  </p>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
@@ -389,7 +394,7 @@ class UserProfile extends Component {
                     <strong>Gender:</strong> {isEmpty(this.state.user.gender) ? "": this.state.user.gender}
                   </p>
                   <p>
-                    <strong>Employed:</strong> {isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work}
+                    <strong>Employed:</strong> {isEmpty(this.state.user.employment_status)?"":this.state.user.employment_status}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
@@ -398,7 +403,7 @@ class UserProfile extends Component {
                     <strong>Disability:</strong> {isEmpty(this.state.user.disability)?"":this.state.user.disability}
                   </p>
                   <p>
-                    <strong>Age:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
+                    <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
                   <Button 
                     onClick={this.onClickPersonal}
@@ -422,7 +427,7 @@ class UserProfile extends Component {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Gender</label>
                             <SelectListGroup
-                            
+                              disable={true}
                               placeholder="Gender"
                               name="gender"
                               value={this.state.gender}
@@ -434,8 +439,8 @@ class UserProfile extends Component {
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employed</label>
                             <SelectListGroup
                               placeholder="Employed"
-                              name="employed"
-                              value={this.state.employed}
+                              name="employment_status"
+                              value={this.state.employment_status}
                               onChange={this.onchange}
                               options={optionsEmployed}
                             />
@@ -544,6 +549,7 @@ class UserProfile extends Component {
                               Email
                             </label>
                             <input 
+                              disabled
                               type="email" 
                               className="form-control form-control-lg" 
                               placeholder="Email Address" 
@@ -677,7 +683,7 @@ class UserProfile extends Component {
                   <h4>Uploads</h4>
                   <hr/>
                   <p>
-                    <strong>Description:</strong>Personal CV
+                    <strong>Description:</strong>{isEmpty(this.props.dashboard.dashboard.resume)?"":"Personal CV"}
                   </p>
                   <p>
                     <strong>Email Address: </strong>{isEmpty(this.state.user.email)?"":this.state.user.email}
