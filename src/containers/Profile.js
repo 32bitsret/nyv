@@ -171,7 +171,7 @@ class UserProfile extends Component {
       disability: isEmpty(this.state.disability)?"":this.state.disability,
       marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
-      type_of_work:isEmpty(this.state.type_of_work)?"":this.state.type_of_work
+      type_of_work:(!isEmpty(this.state.employment_status)&&this.state.employment_status === "Not Employed")?"":this.state.type_of_work
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
@@ -230,7 +230,7 @@ class UserProfile extends Component {
     ];
 
     const optionsEmployed = [
-      { label: '', value: '' },
+      // { label: '', value: '' },
       { label: 'Not Employed', value: 'Not Employed' },
       { label: 'Employed', value: 'Employed' },
     ];
@@ -670,9 +670,9 @@ class UserProfile extends Component {
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Job Description</label>
                             <SelectListGroup
                               disable={(!isEmpty(this.state.employment_status)&& this.state.employment_status === "Not Employed")?true:false}
-                              placeholder="Employed"
+                              placeholder="job description"
                               name="type_of_work"
-                              value={(!isEmpty(this.state.employment_status)&&this.state.employment_status !== "Not Employed")?this.state.type_of_work:""}
+                              value={(!isEmpty(this.state.employment_status)&&this.state.employment_status === "Not Employed")?"":this.state.type_of_work}
                               onChange={this.onchange}
                               options={optionsTypeOfEmployment}
                             />
