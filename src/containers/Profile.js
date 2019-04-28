@@ -93,6 +93,7 @@ class UserProfile extends Component {
       address:isEmpty(data.address)?"":data.address,
       resume:isEmpty(data.resume)?"":data.resume,
       type_of_work:isEmpty(data.type_of_work)?"":data.type_of_work,
+      state:isEmpty(data.state)?"":data.state,
       photo:nextProps.dashboard.dashboard.photo,
     })
   }
@@ -183,12 +184,20 @@ class UserProfile extends Component {
 
   onSubmitContactInfo = e => {
     e.preventDefault()
+    let state = ""
+    if(this.state.lga !== "Others"){
+      state = "Plateau State"
+    }
+    else {
+      state = this.state.state
+    }
     let query = {
       _id: this.props.dashboard.dashboard._id
     }
     let update = {
       address:isEmpty(this.state.address)?"": this.state.address,
-      lga:isEmpty(this.state.lga) ? "" : this.state.lga 
+      lga:isEmpty(this.state.lga) ? "" : this.state.lga,
+      state: state//isEmpty(this.state.state) ?"": this.state.state 
     }
     let obj = {query, update}
     console.log("BIG OBJECT", obj)
@@ -250,7 +259,7 @@ class UserProfile extends Component {
     ];
 
     const optionsLGA = [
-      { label: '', value: '' },
+      // { label: '', value: '' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -273,43 +282,43 @@ class UserProfile extends Component {
 
     const optionsStates = [
       { label: '', value: '' },
-      { title : 'Abia State', value : 'Abia State' },
-      { title : 'Adamawa State', value : 'Adamawa State' },
-      { title : 'Akwa Ibom State', value : 'Akwa Ibom State' },
-      { title : 'Anambra State	', value : 'Anambra State	' },
-      { title : 'Bauchi State', value : 'Bauchi State' },
-      { title : 'Bayelsa State', value : 'Bayelsa State' },
-      { title : 'Benue State', value : 'Benue State' },
-      { title : 'Borno State	', value : 'Borno State	' },
-      { title : 'Cross River State', value : 'Cross River State' },
-      { title : 'Delta State', value : 'Delta State' },
-      { title : 'Ebonyi State', value : 'Ebonyi State' },
-      { title : 'Edo State', value : 'Edo State' },
-      { title : 'Ekiti State	', value : 'Ekiti State	' },
-      { title : 'Enugu State', value : 'Enugu State' },
-      { title : 'FCT	Abuja', value : 'FCT	Abuja' },
-      { title : 'Gombe State	', value : 'Gombe State	' },
-      { title : 'Imo State', value : 'Imo State'},
-      { title : 'Jigawa State', value : 'Jigawa State' },
-      { title : 'Kaduna State', value : 'Kaduna State' },
-      { title : 'Kano State', value : 'Kano State' },
-      { title : 'Katsina State', value : 'Katsina State'	 },
-      { title : 'Kebbi State	Birnin', value : 'Kebbi State	Birnin' },
-      { title : 'Kogi State', value : 'Kogi State' },
-      { title : 'Kwara State', value : 'Kwara State' },
-      { title : 'Lagos State', value : 'Lagos State' },
-      { title : 'Nasarawa State', value : 'Nasarawa State' },
-      { title : 'Niger State', value : 'Niger State' },
-      { title : 'Ogun State', value : 'Ogun State' },
-      { title : 'Ondo State', value : 'Ondo State' },
-      { title : 'Osun State', value : 'Osun State' },
-      { title : 'Oyo State', value : 'Oyo State' },
-      { title : 'Plateau State', value : 'Plateau State' },
-      { title : 'Rivers State', value : 'Rivers State' },
-      { title : 'Sokoto State', value : 'Sokoto State' },
-      { title : 'Taraba State', value : 'Taraba State' },
-      { title : 'Yobe State', value : 'Yobe State' },
-      { title : 'Zamfara State', value : 'Zamfara State' },
+      { label : 'Abia State', value : 'Abia State' },
+      { label : 'Adamawa State', value : 'Adamawa State' },
+      { label : 'Akwa Ibom State', value : 'Akwa Ibom State' },
+      { label : 'Anambra State	', value : 'Anambra State	' },
+      { label : 'Bauchi State', value : 'Bauchi State' },
+      { label : 'Bayelsa State', value : 'Bayelsa State' },
+      { label : 'Benue State', value : 'Benue State' },
+      { label : 'Borno State	', value : 'Borno State	' },
+      { label : 'Cross River State', value : 'Cross River State' },
+      { label : 'Delta State', value : 'Delta State' },
+      { label : 'Ebonyi State', value : 'Ebonyi State' },
+      { label : 'Edo State', value : 'Edo State' },
+      { label : 'Ekiti State	', value : 'Ekiti State	' },
+      { label : 'Enugu State', value : 'Enugu State' },
+      { label : 'FCT	Abuja', value : 'FCT	Abuja' },
+      { label : 'Gombe State	', value : 'Gombe State	' },
+      { label : 'Imo State', value : 'Imo State'},
+      { label : 'Jigawa State', value : 'Jigawa State' },
+      { label : 'Kaduna State', value : 'Kaduna State' },
+      { label : 'Kano State', value : 'Kano State' },
+      { label : 'Katsina State', value : 'Katsina State'	 },
+      { label : 'Kebbi State	Birnin', value : 'Kebbi State	Birnin' },
+      { label : 'Kogi State', value : 'Kogi State' },
+      { label : 'Kwara State', value : 'Kwara State' },
+      { label : 'Lagos State', value : 'Lagos State' },
+      { label : 'Nasarawa State', value : 'Nasarawa State' },
+      { label : 'Niger State', value : 'Niger State' },
+      { label : 'Ogun State', value : 'Ogun State' },
+      { label : 'Ondo State', value : 'Ondo State' },
+      { label : 'Osun State', value : 'Osun State' },
+      { label : 'Oyo State', value : 'Oyo State' },
+      // { label : 'Plateau State', value : 'Plateau State' },
+      { label : 'Rivers State', value : 'Rivers State' },
+      { label : 'Sokoto State', value : 'Sokoto State' },
+      { label : 'Taraba State', value : 'Taraba State' },
+      { label : 'Yobe State', value : 'Yobe State' },
+      { label : 'Zamfara State', value : 'Zamfara State' },
     ];
 
     const optionsYearofGrad = [
@@ -784,10 +793,10 @@ class UserProfile extends Component {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">State</label>
                             <SelectListGroup
-                              disable={this.state.lga !== "Others" ? true: false}
-                              placeholder="LGA"
-                              name="lga"
-                              value={this.state.lga === "Others" ? this.state.state : "Plateau State"}
+                              disable={(!isEmpty(this.state.lga)&&this.state.lga!=="Others")?true:false}
+                              placeholder="states"
+                              name="state"
+                              value={(!isEmpty(this.state.lga)&&this.state.lga==="Others")?this.state.state:this.state.lga ==="Others"?this.state.state:"Plateau State"}
                               onChange={this.onchange}
                               options={optionsStates}
                             />
