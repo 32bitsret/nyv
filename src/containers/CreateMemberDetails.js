@@ -15,11 +15,11 @@ class WizardView extends React.Component {
     user: {}
   }
 
-componentWillReceiveProps(nextProps){
-  this.setState({
-    user: nextProps.createUser.user
-  })
-}
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      user: nextProps.createUser.user
+    })
+  }
  
   render() {
     let user = this.state.user
