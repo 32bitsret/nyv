@@ -236,6 +236,7 @@ class UserProfile extends Component {
     ];
 
     const optionsMaritalStatus = [
+      { label: '', value: '' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -243,6 +244,7 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
+      { label: '', value: '' },
       { label: 'Not Disabled', value: 'Not Disabled' },
       { label: 'Disabled', value: 'Disabled' }
     ];
@@ -270,6 +272,7 @@ class UserProfile extends Component {
     ];
 
     const optionsStates = [
+      { label: '', value: '' },
       { title : 'Abia State', value : 'Abia State' },
       { title : 'Adamawa State', value : 'Adamawa State' },
       { title : 'Akwa Ibom State', value : 'Akwa Ibom State' },
@@ -310,6 +313,7 @@ class UserProfile extends Component {
     ];
 
     const optionsYearofGrad = [
+      { label: '', value: '' },
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
       { label: '1993', value: '1993' },
@@ -342,6 +346,7 @@ class UserProfile extends Component {
     ];
 
     const optionsTypeOfEmployment = [
+      { label: '', value: '' },
       { label: 'Student', value: 'Student' },
       { label: 'Corper', value: 'Corper' },
       { label: 'Accounting', value: 'Accounting' },
@@ -495,6 +500,7 @@ class UserProfile extends Component {
     ];
 
     const optionsQualification = [
+      { label: '', value: '' },
       { label: 'School Cert', value: 'CERT' },
       { label: 'Olevel', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
@@ -604,7 +610,7 @@ class UserProfile extends Component {
                     <strong>Employed:</strong> {isEmpty(this.state.user.employment_status)?"":this.state.user.employment_status}
                   </p>
                   <p>
-                    <strong>Job Description:</strong> {isEmpty(this.state.user.employment_status === "Not Employed")?"":( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
+                    <strong>Job Description:</strong> {isEmpty(this.state.user.employment_status )?"":( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
@@ -651,7 +657,7 @@ class UserProfile extends Component {
                             />
                             </div>
                             <div className="form-group mb-2">
-                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employed</label>
+                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employment Status</label>
                             <SelectListGroup
                               placeholder="Employed"
                               name="employment_status"
@@ -663,9 +669,10 @@ class UserProfile extends Component {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Job Description</label>
                             <SelectListGroup
+                              disable={(!isEmpty(this.state.employment_status)&& this.state.employment_status === "Not Employed")?true:false}
                               placeholder="Employed"
-                              name="employment_status"
-                              value={this.state.type_of_work}
+                              name="type_of_work"
+                              value={(!isEmpty(this.state.employment_status)&&this.state.employment_status !== "Not Employed")?this.state.type_of_work:""}
                               onChange={this.onchange}
                               options={optionsTypeOfEmployment}
                             />
