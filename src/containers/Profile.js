@@ -48,6 +48,7 @@ class UserProfile extends Component {
     address:"",
     type_of_work:"",
     resume:"",
+    state:"",
 
     id:"",
     disable: true,
@@ -268,6 +269,46 @@ class UserProfile extends Component {
       { label: 'Others', value: 'Others' },
     ];
 
+    const optinsStates = [
+      { title : 'Abia State', value : 'Abia State' },
+      { title : 'Adamawa State', value : 'Adamawa State' },
+      { title : 'Akwa Ibom State', value : 'Akwa Ibom State' },
+      { title : 'Anambra State	', value : 'Anambra State	' },
+      { title : 'Bauchi State', value : 'Bauchi State' },
+      { title : 'Bayelsa State', value : 'Bayelsa State' },
+      { title : 'Benue State', value : 'Benue State' },
+      { title : 'Borno State	', value : 'Borno State	' },
+      { title : 'Cross River State', value : 'Cross River State' },
+      { title : 'Delta State', value : 'Delta State' },
+      { title : 'Ebonyi State', value : 'Ebonyi State' },
+      { title : 'Edo State', value : 'Edo State' },
+      { title : 'Ekiti State	', value : 'Ekiti State	' },
+      { title : 'Enugu State', value : 'Enugu State' },
+      { title : 'FCT	Abuja', value : 'FCT	Abuja' },
+      { title : 'Gombe State	', value : 'Gombe State	' },
+      { title : 'Imo State', value : 'Imo State'},
+      { title : 'Jigawa State', value : 'Jigawa State' },
+      { title : 'Kaduna State', value : 'Kaduna State' },
+      { title : 'Kano State', value : 'Kano State' },
+      { title : 'Katsina State', value : 'Katsina State'	 },
+      { title : 'Kebbi State	Birnin', value : 'Kebbi State	Birnin' },
+      { title : 'Kogi State', value : 'Kogi State' },
+      { title : 'Kwara State', value : 'Kwara State' },
+      { title : 'Lagos State', value : 'Lagos State' },
+      { title : 'Nasarawa State', value : 'Nasarawa State' },
+      { title : 'Niger State', value : 'Niger State' },
+      { title : 'Ogun State', value : 'Ogun State' },
+      { title : 'Ondo State', value : 'Ondo State' },
+      { title : 'Osun State', value : 'Osun State' },
+      { title : 'Oyo State', value : 'Oyo State' },
+      { title : 'Plateau State', value : 'Plateau State' },
+      { title : 'Rivers State', value : 'Rivers State' },
+      { title : 'Sokoto State', value : 'Sokoto State' },
+      { title : 'Taraba State', value : 'Taraba State' },
+      { title : 'Yobe State', value : 'Yobe State' },
+      { title : 'Zamfara State', value : 'Zamfara State' },
+    ];
+
     const optionsYearofGrad = [
       { label: '1991', value: '1991' },
       { label: '1992', value: '1992' },
@@ -350,7 +391,7 @@ class UserProfile extends Component {
                 <div className="text-center">
                   <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
                   <p>
-                    {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
+                    {/* {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)} */}
                   </p>
                   <p>
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
@@ -408,6 +449,9 @@ class UserProfile extends Component {
                   </p>
                   <p>
                     <strong>Employed:</strong> {isEmpty(this.state.user.employment_status)?"":this.state.user.employment_status}
+                  </p>
+                  <p>
+                    <strong>Job Description:</strong> {isEmpty(this.state.user.employment_status === "Not Employed")?"":( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)}
                   </p>
                   <p>
                     <strong>Marital Status:</strong> {isEmpty(this.state.user.marital_status)?"":this.state.user.marital_status}
@@ -516,6 +560,9 @@ class UserProfile extends Component {
                     <strong>LGA:</strong>{isEmpty(this.state.user.lga)?"":this.state.user.lga}
                   </p>
                   <p>
+                    <strong>State:</strong>{isEmpty(this.state.user.lga === "Others")?this.state.user.state: "Plateau State"}
+                  </p>
+                  <p>
                     <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
                     {
@@ -611,6 +658,7 @@ class UserProfile extends Component {
                   <p>
                     <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.educational_qualification)?"":this.state.user.education.educational_qualification}
                   </p>
+                  <br/>
                   <br/>
                   <p>
                     {" "}
@@ -720,6 +768,8 @@ class UserProfile extends Component {
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
+                  <br/>
+                  <br/>
                   {this.state.editing ? 
                   isEmpty(this.props.dashboard.dashboard.resume)?
                   (<Button 
