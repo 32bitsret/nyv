@@ -34,6 +34,7 @@ class CreatedUser extends Component {
     disability:"",
     address:"",
     type_of_work:"",
+    state:"",
     resume:"",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
    
@@ -108,6 +109,9 @@ class CreatedUser extends Component {
                                 <strong>Employed:</strong> {isEmpty(user.employment_status)?"":user.employment_status}
                             </p>
                             <p>
+                                <strong>Job Description:</strong> {isEmpty(user.type_of_work)?"":user.type_of_work}
+                            </p>
+                            <p>
                                 <strong>Marital Status:</strong> {isEmpty(user.marital_status)?"":user.marital_status}
                             </p>
                             <p>
@@ -126,6 +130,9 @@ class CreatedUser extends Component {
                             </p>
                             <p>
                                 <strong>LGA:</strong>{isEmpty(user.lga)?"":user.lga}
+                            </p>
+                            <p>
+                                <strong>State:</strong>{isEmpty(user.state)?"":user.state}
                             </p>
                             <p>
                                 <strong>Email Address: </strong> {isEmpty(user.email)?"":user.email}

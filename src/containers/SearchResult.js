@@ -93,6 +93,7 @@ class SearchResult extends React.Component {
             lga:isEmpty(prop.lga)?"":prop.lga,
             address:isEmpty(prop.address)?"":prop.address,
             phone:isEmpty(prop.phone)?"":"0"+prop.phone,
+            state:isEmpty(prop.state)?"":prop.state,
             actions: (
                 <div className="actions-right">
                 <Button
