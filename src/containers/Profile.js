@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -17,9 +15,7 @@ import {
   updateBasicInfo,
   updateEducationalInfo,
   updateContactInfo,
-  uploadDocument
 } from "../redux/actions/createActions"
-import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 import ImageUpload from "./components/ImageUpload"
@@ -40,8 +36,7 @@ class UserProfile extends Component {
     course:"",
     institution:"",
     year_of_graduation:"",
-    educational_qualification:""
-    ,
+    educational_qualification:"",
     employment_status:"",
     marital_status:"",
     disability:"",
@@ -239,13 +234,13 @@ class UserProfile extends Component {
     ];
 
     const optionsEmployed = [
-      // { label: '', value: '' },
+      { label: '', value: '' },
       { label: 'Not Employed', value: 'Not Employed' },
       { label: 'Employed', value: 'Employed' },
     ];
 
     const optionsMaritalStatus = [
-      { label: '', value: '' },
+      { label: 'choose', value: '' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -253,13 +248,13 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: '', value: '' },
+      { label: 'choose', value: ''},
       { label: 'Not Disabled', value: 'Not Disabled' },
       { label: 'Disabled', value: 'Disabled' }
     ];
 
     const optionsLGA = [
-      // { label: '', value: '' },
+      { label: '', value: '' },
       { label: 'Barkin Ladi', value: 'Barkin Ladi' },
       { label: 'Bassa', value: 'Bassa' },
       { label: 'Bokkos', value: 'Bokkos' },
@@ -281,6 +276,7 @@ class UserProfile extends Component {
     ];
 
     const optionsStates = [
+      { label: 'choose', value: '' },
       { label : 'Abia State', value : 'Abia State' },
       { label : 'Adamawa State', value : 'Adamawa State' },
       { label : 'Akwa Ibom State', value : 'Akwa Ibom State' },

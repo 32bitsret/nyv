@@ -2,6 +2,7 @@ import isEmpty from "../isEmpty"
 
 export const genderFilter = (testArr, dataArr) => {
     let genderResult = []
+   if(!isEmpty(testArr)){
     testArr.map(resg => {
         if(resg === "female"){
           dataArr.forEach(o => {
@@ -20,31 +21,32 @@ export const genderFilter = (testArr, dataArr) => {
         else if(isEmpty(resg)){
             genderResult.push(...dataArr)
         }
-    })
+    })}
     return genderResult
 }
 
 
 export const profileFilter = (testArr, dataArr) => {
   let profileResult = []
+  if(!isEmpty(testArr)){
     testArr.map(resp => {
-        if(resp === "disabled"){
+        if(resp === "Disabled"){
             dataArr.forEach(o => {
-                if(o.disability === "yes"){
+                if(o.disability === "Disabled"){
                     profileResult.push(o)
                 }
             })
         }
-        if(resp === "not-disabled"){
+        if(resp === "Not Disabled"){
             dataArr.forEach(o => {
-                if(o.disability === "no")
+                if(o.disability === "Not Disabled")
                     profileResult.push(o)
             })
         }
         else if(isEmpty(resp )){
             profileResult.push(...dataArr)
         }
-    })
+    })}
     return profileResult
 }
 
@@ -72,7 +74,7 @@ export const lgaFilter = (testArr, dataArr) => {
         'wase',  
         'others' 
     ]
-
+    
    testArr.map(resl => {
        if(resl === list[0]){
            dataArr.forEach(o => {

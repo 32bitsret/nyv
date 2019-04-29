@@ -113,10 +113,13 @@ class MessagesDetail extends React.Component {
 
   render() {
     const { classes } = this.props;
-    // let genderFiltered = genderFilter(this.state.gender, moreMembers)
-    // let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, moreMembers)
-    // let lgaFiltered = lgaFilter(this.state.lga, moreMembers)
-    // let profileFiltered = profileFilter(this.state.profile, moreMembers)
+    const data = this.props.members.allMembers
+    console.log("ALL USERS", this.props.members.allMembers)
+    
+    {let genderFiltered = genderFilter(this.state.gender, data)
+    let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
+    let lgaFiltered = lgaFilter(this.state.lga, data)
+    let profileFiltered = profileFilter(this.state.profile, data)}
     
     // console.log("FILTERED GENDER KAWAI",genderFiltered)
     // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
