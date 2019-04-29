@@ -83,7 +83,6 @@ export const getAllProfile = () => dispatch =>{
         url: getAllProfileURL
     })
     .then(res => {
-        // console.log("GET ALL PROFILE",res.data.data)
         dispatch({
             type: GET_ALLL_PROFILE,
             payload: res.data.data

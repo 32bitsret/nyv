@@ -22,7 +22,7 @@ import data from '../variables/data'
 import Profile from './Profile'
 import Tablex from '../views/Tables/ReactTables'
 import MessagesDetail from "./MessagesDetail"
-import User from '../variables/UserData'
+// import User from '../variables/UserData'
 var ps;
 
 class Messages extends React.Component {
@@ -43,7 +43,7 @@ class Messages extends React.Component {
       });
       document.body.style.overflow = "hidden";
     }
-    this.setState({isAdmin: this.checkUserRole(User)[0]})
+    // this.setState({isAdmin: this.checkUserRole(User)[0]})
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
@@ -78,7 +78,6 @@ class Messages extends React.Component {
   }
 
     checkUserRole = User => {
-    console.log("CONSOLE", User)
     let status = User.map(user => {
       if(user.userRole === "Admin" || user.userRole === "admin"){
         return true
@@ -118,7 +117,7 @@ class Messages extends React.Component {
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
-          userData={User}
+          // userData={User}
           {...rest}
         />
         <div className={mainPanel} ref="mainPanel">
