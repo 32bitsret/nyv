@@ -13,7 +13,7 @@ export const sendMessage = (body) => dispatch => {
         data: body
     })
     .then(res => {
-        console.log("FROM INSIDE MESSAGE CREATOR",res)
+        console.log("FROM INSIDE MESSAGE CREATOR",res.data)
     })
     .catch(err => {
         console.log(err)

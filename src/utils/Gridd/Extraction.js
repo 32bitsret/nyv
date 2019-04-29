@@ -49,12 +49,10 @@ export  const extractEducation = (arr, test) => {
    let number = [];
    arr.forEach(element => {
        if(element.education){
-         console.log(element.education)
          result.push(element.education)
        }
     });
     result.map(res => {
-      console.log("RESULT",res)
       if(res.educational_qualification === test){
         number.push(res.educational_qualification)
       }

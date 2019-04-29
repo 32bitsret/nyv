@@ -49,7 +49,7 @@ class MessagesDetail extends React.Component {
 
       title: "",
       message:"",
-      expo_tokens:["5cc0ab345eb25600172175bd"],
+      expo_tokens:[],
       query:{
         lga:[],
         gender:[],
@@ -107,7 +107,7 @@ class MessagesDetail extends React.Component {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
-    // console.log("ARRAY OF SELECTION", data)
+    console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
   }
 
