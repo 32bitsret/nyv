@@ -28,16 +28,16 @@ export const genderFilter = (testArr, dataArr) => {
 export const profileFilter = (testArr, dataArr) => {
   let profileResult = []
     testArr.map(resp => {
-        if(resp === "disabled"){
+        if(resp === "Disabled"){
             dataArr.forEach(o => {
-                if(o.disability === "yes"){
+                if(o.disability === "Disabled"){
                     profileResult.push(o)
                 }
             })
         }
-        if(resp === "not-disabled"){
+        if(resp === "Not Disabled"){
             dataArr.forEach(o => {
-                if(o.disability === "no")
+                if(o.disability === "Not Disabled")
                     profileResult.push(o)
             })
         }

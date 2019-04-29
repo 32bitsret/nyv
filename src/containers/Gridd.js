@@ -1,12 +1,6 @@
 import React ,{Component} from "react";
-import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from "react-redux"
-import Timeline from "@material-ui/icons/Timeline";
-import CardIcon from "components/Card/CardIcon.jsx";
-import {
-  emailsSubscriptionChart,
-} from "variables/charts";
 import ChartistGraph from "react-chartist";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -17,7 +11,6 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { getProfile , getAllProfile} from "../redux/actions/dashboardAction"
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import moreMembers from "../variables/moreMembers"
 import Heading from "components/Heading/Heading.jsx";
 import {
   extractLGA,
