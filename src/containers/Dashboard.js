@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
     this.props.getProfile(this.props.auth.user.phone)
     this.setState({user:this.props.auth.user })
     window.addEventListener("resize", this.resizeFunction);
-    console.log("USER INSIDE STATE+++++++", this.props.auth.user)
+    // console.log("USER INSIDE STATE+++++++", this.props.auth.user)
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -84,7 +84,7 @@ class Dashboard extends React.Component {
   }
 
   checkUserRole = User => {
-    console.log("CONSOLE", User)
+    // console.log("CONSOLE", User)
       if(User.role === "Admin" || User.role === "admin"){
         return true
       }
@@ -96,7 +96,7 @@ class Dashboard extends React.Component {
   extract = (arr, value) => {
     arr.map(o => {
       if(o.lga === value){
-        console.log(o)
+        // console.log(o)
         newLGA.push(o)
       }
     })

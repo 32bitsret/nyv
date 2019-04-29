@@ -281,7 +281,6 @@ class UserProfile extends Component {
     ];
 
     const optionsStates = [
-      { label: '', value: '' },
       { label : 'Abia State', value : 'Abia State' },
       { label : 'Adamawa State', value : 'Adamawa State' },
       { label : 'Akwa Ibom State', value : 'Akwa Ibom State' },

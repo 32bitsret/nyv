@@ -33,18 +33,20 @@ class CreatedUser extends Component {
     lga:"",
     gender:"",
     phone:"",
-    education:{
-      course:"",
-      institution:"",
-      year_of_graduation:"",
-      qualification:""
-    },
-    employed:"",
+
+    course:"",
+    institution:"",
+    year_of_graduation:"",
+    educational_qualification:"",
+    
+    employment_status:"",
     marital_status:"",
     disability:"",
+    type_of_work:"",
     address:"",
     resume:"",
     photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
+    state:"",
    
     id:"",
     disable: true,
@@ -77,12 +79,12 @@ class CreatedUser extends Component {
       lga:isEmpty(data.lga)?"":data.lga,
       gender:isEmpty(data.gender)?"":data.gender,
       phone:isEmpty(data.phone)?"":data.phone,
-      education:{
+      // education:{
         course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
         institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
         year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-        qualification:isEmpty(data.education)?"":isEmpty(data.education.qualification)?"":data.education.qualification
-      },
+        educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.qualification
+    ,//  },
       employed:isEmpty(data.employed)?"":data.employed,
       marital_status:isEmpty(data.marital_status)?"":data.marital_status,
       disability:isEmpty(data.disability)?"":data.disability,
@@ -93,8 +95,8 @@ class CreatedUser extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    // let data = nextProps.dashboard.dashboard
-    // console.log(data)
+    let data = nextProps.dashboard.dashboard
+    console.log(data)
     // this.setState({
     //   user: {...nextProps.dashboard.dashboard},
     //   firstname:isEmpty(data.firstname) ? "":data.firstname,
@@ -129,6 +131,8 @@ class CreatedUser extends Component {
 
   onDone = e => {
     //dispatch an action the destroys created User in the store
+    e.preventDefault()
+    window.location.reload()
   }
 
   handleSimple = event => {
@@ -180,11 +184,11 @@ onSubmitBasicInfo = e => {
   }
   let update = {
     gender: isEmpty(this.state.gender)?"":this.state.gender,
-    employement_status: isEmpty(this.state.employed)?"":this.state.employed,
+    employement_status: isEmpty(this.state.employement_status)?"":this.state.employement_status,
     marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
     disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
     DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
-    type_of_work:"tailor"
+    // type_of_work:"tailor"
   }
   let obj = {query, update}
   console.log("BIG OBJECT", obj)
@@ -357,12 +361,12 @@ onSubmitEducationalInfo = e => {
                     <strong>{isEmpty(this.state.user.phone)?"":"0"+this.state.user.phone}</strong> 
                   </p>
 
-                      <Button 
+                     {true? "" : <Button 
                         onClick={this.onClickPhoto}
                         className="btn bg-warning mb-3 float-center"
                       >
                         Change
-                      </Button>
+                      </Button>}
                       <Dialog
                         open={this.state.openPhoto}
                         onClose={this.handleClose}
@@ -420,13 +424,13 @@ onSubmitEducationalInfo = e => {
                   <p>
                     <strong>DoB:</strong> {isEmpty(this.state.user.DoB)?"":this.state.user.DoB}
                   </p>
-                  <Button 
+                  {true?"":<Button 
                     onClick={this.onClickPersonal}
                     className="btn bg-white text-success btn-success mb-3 float-right"
                     type="button"
                     >
                     Edit
-                  </Button>  
+                  </Button> } 
                       <Dialog
                         open={this.state.openPersonal}
                         onClose={this.handleClose}
@@ -452,9 +456,9 @@ onSubmitEducationalInfo = e => {
                             <div className="form-group mb-2">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Employed</label>
                             <SelectListGroup
-                              placeholder="Employed"
-                              name="employed"
-                              value={this.state.employed}
+                              placeholder="employment_status"
+                              name="employment_status"
+                              value={this.state.employment_status}
                               onChange={this.onchange}
                               options={optionsEmployed}
                             />
@@ -514,11 +518,11 @@ onSubmitEducationalInfo = e => {
                   <p>
                     <strong>Email Address: </strong> {isEmpty(this.state.user.email)?"":this.state.user.email}
                   </p>
-                  <Button 
+                  {true?"":<Button 
                     onClick={this.onClickContact}
                     className="btn bg-white text-success primary mb-3 float-right">
                     Edit
-                  </Button>   
+                  </Button> }  
                       <Dialog
                         open={this.state.openContact}
                         onClose={this.handleClose}
@@ -599,17 +603,17 @@ onSubmitEducationalInfo = e => {
                     <strong>Course:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.course)?"":this.state.user.education.course}
                   </p>
                   <p>
-                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.qualification)?"":this.state.user.education.qualification}
+                    <strong>Highest Qualification:</strong>{isEmpty(this.state.user.education)?"":isEmpty(this.state.user.education.educational_qualification)?"":this.state.user.education.educational_qualification}
                   </p>
                   <br/>
                   <p>
                     {" "}
                   </p>
-                  <Button 
+                  {true? "":<Button 
                     onClick={this.onClickEducation}
                     className="btn bg-white text-success primary mb-3 float-right">
                     Edit
-                  </Button> 
+                  </Button>} 
                   <Dialog
                         open={this.state.openEducation}
                         onClose={this.handleClose}
@@ -630,7 +634,7 @@ onSubmitEducationalInfo = e => {
                             <SelectListGroup
                               placeholder="Year of Graduation"
                               name="year_of_graduation"
-                              value={this.state.education.year_of_graduation}
+                              value={this.state.year_of_graduation}
                               onChange={this.onchange}
                               options={optionsYearofGrad}
                             />
@@ -647,7 +651,7 @@ onSubmitEducationalInfo = e => {
                               className="form-control form-control-lg" 
                               placeholder="Institution" 
                               name="institution" 
-                              value={this.state.education.institution} 
+                              value={this.state.institution} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -662,7 +666,7 @@ onSubmitEducationalInfo = e => {
                               className="form-control form-control-lg" 
                               placeholder="Course" 
                               name="course" 
-                              value={this.state.education.course} 
+                              value={this.state.course} 
                               onChange={this.onchange}
                             />
                           </div>
@@ -675,7 +679,7 @@ onSubmitEducationalInfo = e => {
                             <SelectListGroup
                               placeholder="Highest Qualification"
                               name="qualification"
-                              value={this.state.education.qualification}
+                              value={this.state.educational_qualification}
                               onChange={this.onchange}
                               options={optionsQualification}
                             />
@@ -704,11 +708,11 @@ onSubmitEducationalInfo = e => {
                   <p>
                     <strong>Document Name: </strong> CV
                   </p>
-                  <Button 
+                  {true?"":<Button 
                     onClick={this.onClickUpload}
                     className="btn bg-white text-success primary mb-3 float-right">
                     Edit
-                  </Button> 
+                  </Button>} 
                   <Dialog
                         open={this.state.openUpload}
 

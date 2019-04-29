@@ -34,7 +34,7 @@ class MemberDetail extends React.Component {
     const { classes } = this.props;
     const display = this.props.dashboard.isloading ? 
         <GridContainer>
-          <GridItem xs={6} lg={8}>
+          <GridItem xs={6} lg={6}>
             <Card>
                <CardHeader color="primary" icon>
                </CardHeader>
@@ -43,9 +43,9 @@ class MemberDetail extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-          <GridItem xs={6} md={6} xs={6} lg={12}>
+          {/* <GridItem xs={6} md={6} xs={6} lg={12}>
               {display}
-          </GridItem>
+          </GridItem> */}
         </GridContainer>
         :
         <LgaTables stat={this.props.dashboard}/>
