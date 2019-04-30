@@ -5,7 +5,7 @@ import PagesHeader from "./PagesHeader";
 import Footer from "./Footer";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 import bgImage from "assets/img/riyo.jpg";
-
+import Header from "./website/Header"
 import Landing from './Landing'
 import Aboutus from "./AboutusDetails"
 
@@ -18,7 +18,8 @@ class Pages extends React.Component {
     console.log("STYLES", classes)
     return (
       <div>
-        <PagesHeader {...rest} />
+          {/* <PagesHeader {...rest} /> */}
+          <Header/>
           <div className={classes.wrapper} ref="wrapper">
               <div
                   className={classes.fullPage}

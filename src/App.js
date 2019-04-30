@@ -122,7 +122,6 @@ class App extends Component {
                         component={Speech4}
                     />
                     <Route 
-    // setAuthToken(localStorage.pyc_token)
                         exact 
                         path="/SPEECH DELIVERED AT THE YOUTH SUMMIT ORGANIZED BY THE OPERATION
                         SAFE HAVEN IN COLLABORATION WITH THE CIVIL MILITARY RELIEF 

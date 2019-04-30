@@ -9,6 +9,10 @@ import pricingPageStyle from "assets/jss/material-dashboard-pro-react/views/pric
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import priceImage2 from "assets/img/card-3.jpeg";
+// import img1 from "../assets/img/img1.jpg"
+// import img2 from "../assets/img/img2.jpg"
+// import img3 from "../assets/img/img3.jpg"
+// import img4 from "../assets/img/img4.jpg"
 import img1 from "../assets/img/img1.jpg"
 import img2 from "../assets/img/img2.jpg"
 import img3 from "../assets/img/img3.jpg"
@@ -236,8 +240,6 @@ class Landing extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-
-          
         </GridContainer>
       </div>
     );
