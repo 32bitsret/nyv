@@ -48,7 +48,6 @@ class Speech4Details extends React.Component {
                 The Chairman, Nigerian Medical Association,
                 Other Guests present, men of the Security Agencies, Gentlemen of the press,
                 Distinguished Ladies and Gentlemen
-
                 </p>    
                 <p>
                 May 22nd 2018 was our first anniversary after 10 long years of despair and hopelessness. 
@@ -130,6 +129,10 @@ class Speech4Details extends React.Component {
                 The Youth Council with principal officers of the Central Working Committee visited Miango to commiserate with the Bra Ngwe and the Irigwe Youth Movement. Plateau State Youth Council made a strong appeal to His Excellency the President of the Federal Republic Muhammadu Buhari in March 2018 on the need to return our people who were displaced to their ancestral homes. We also appealed that Plateau State should be included in the Presidential Initaitive on Security in north central Nigeria, besides the creation of jobs and employment opportunities for the youths on the Plateau. 
                 Plateau State Youth Council took immunization campaigns to Laranto and Busa Buji communities in Jos north local government. This was done in collaboration with representatives of UNICEF.
                 </p>
+
+
+
+
                 <p>
                 As part of recognition to the growing talents on the Plateau and also considering the place of Plateau State in the entertainment industry, Plateau State Youth Council had a meeting with Performing Musicians Association of Nigeria (PMAN) Plateau State. Matters arising were forwarded to Plateau State Government and we are expecting a rapid turnaround and departure from the present situation. 
                 As an EXCO, we have supported so many youth groups on the Plateau. We have supported an art exhibition with Simeon Bitson, an enterprising and heavily talented young man. We have extended support to the Girls Guide, AIESEC University of Jos, Man ‘O War Plateau State Command. We have also supported Plateau State Youth Council Kanam, Shendam, Mangu, Pankshin, Kanke in the various sensitization programmes they organized during these period in review. We also supported a Football Peace Tournament organized by Goodman Shedul Nanven in Langtang north Local Government Area. The Directorate of welfare organized a children Fan fare where we had close to 200 children in attendance at the last Children’s Day. 

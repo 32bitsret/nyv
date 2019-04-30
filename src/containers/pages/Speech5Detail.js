@@ -43,6 +43,9 @@ class Speech5Details extends React.Component {
                 What is happening here today is history and as I walked in, I saw youths from the nook and cranny of Plateau state and I wondered how the General achieve this. 
                 The question of peace building is our collective responsibility as a people, and the one way to survive this carnage is to come together as we just did today to agree on the way forward. I deliberately coined my campaign slogan the age of reason. So many at times as a people, we have put cleverness before common sense, and in which case, we have not progressed as a people.
                 </p>
+
+
+
                 <p>
                 It’s no longer news that 60 - 70% of the entire population of any given society is in the youth constituency. Again the UNICEF puts it that 45 – 50% is under the age of 30 and close to 89% of this population is under the age of 17 years. The crises on the Plateau had taken different dimensions, but it started actively in 2001, so I may be right to state here that these under 17’s know nothing beside violence to our shame. 
                 Many seated here today have a little idea on the concept of peace, but most importantly is our poor understanding of the concept of Truth, Mercy, Justice and Peace. I shall share with you from my continuous studies on the concept of peace from this great book they titled ‘RECONCILE’ written by John Paul Lederach. 
@@ -91,6 +94,11 @@ class Speech5Details extends React.Component {
                 A question chewed at my mind, and I had to ask it: “But, Brother Justice, everybody in this room feels they have been wronged. Most are willing to justify their actions, even violent deeds, as doing your bidding. Is this not true?” “It is indeed,” Justice responded. “Most do not understand.” He paused as he thought for a minute. “You see, I am most concerned about accountability. Often we think that anything and everything is acceptable. True and committed relationships have accounting and steadfast love. 
                 Love without accountability is nothing but words. Love with accountability is changed behavior and action. This is the real meaning of restoration.  My purpose is to bring action and accountability to words.”
                 </p>
+
+
+
+
+
                 <p>
                 “Then whom do you fear?” I inquired.
                 </p>
@@ -130,6 +138,10 @@ class Speech5Details extends React.Component {
                 <p>
                 “This place,” they responded in unison, “is reconciliation.”
                 </p>
+
+
+
+                
                 <p>
                 Then suddenly and without signal, they touched hands and danced. It was as if the dance came only rarely, like the weaving of lines and bodies around a Maypole. I could hardly distinguish one from the other as they swung from the room. No one said a word. No music was in the air, only the images of the interwoven bodies of Truth, Mercy, Justice and Peace.
                 </p>

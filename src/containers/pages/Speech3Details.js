@@ -88,6 +88,8 @@ class Speech3Details extends React.Component {
                 Under my leadership, the Youth Council has started in earnest partnership with the Peace Building Agency and PLASMEDA in training, mentorship, education and empowerment schemes. Through this, we intend to create an egalitarian society where opportunities abound not just for those with the most money and influence, but for every youth on the Plateau who is willing to lead a meaningful and productive life.
 
                 </p>
+
+
                 <p>
                 A major problem that has confronted our dear state for more than a decade ago is the issue of peace and security. Plateau state has gone through series of violent conflicts which left behind certain legacies that our people are still struggling to overturn. As Plateau Youths, we understand the role young people have played in either preventing or perpetrating these conflicts. 
                 Yet it is quite unfortunate that the PYC has for more than a decade been unable to play any significant role in either preventing the outbreak of violent conflict or at least, contribute to deepening the peace that has returned since the advent of the Lalong Administration.

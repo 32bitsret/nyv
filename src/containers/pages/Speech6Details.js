@@ -62,6 +62,8 @@ class Speech6Details extends React.Component {
                Our quest for youth engagement and empowerment took us to the United Nations Development Fund. With the help and support of the UNDP, we had 100 youths trained at the Citizenship and Leadership Training Centre Shere Hill on character modeling. Presently, we have 100 youths who are currently training in Abuja and Kaduna in footwear production, Leather works and GSM repairs. Furthermore, in collaboration with the Interfaith Mediation Centre, we organized a two day capacity building workshop on the culture of forgiveness and reconciliation. 
                Over 500 youths from the entire Plateau had the opportunity of engaging themselves, and hence pledged to forgive each other. The commissioning of the Garden of Forgiveness last week is symbolic of our reflections on the subject of forgiveness, and was the hall mark of the event.
                </p>
+
+               
                <p>
                The Plateau State Youth Council had programmes with the Humanitarian Dialogue in the three senatorial zones all towards achieving peaceful elections in 2019. We also had programmes with Independent National Electoral Commission (INEC), Youth Initiative against Violence and Human Rights Abuse (YIAVHA), Women and Positive Peace Building Initiative (WOPPI), Akedanvarsity, all in concerted efforts to have a peaceful election this year. We have also supported Plateau State Youth Council Kanam, Shendam, Mangu, Pankshin, Kanke in the various sensitization programmes they organized during these period in review.
                </p>
