@@ -25,7 +25,6 @@ import {
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import { getAllProfile } from "../redux/actions/dashboardAction"
-import moreMembers from  "../variables/moreMembers"
 import {sendMessage} from "../redux/actions/messageActions"
 
 
@@ -38,7 +37,7 @@ class MessagesDetail extends React.Component {
       selectedEnabled: "b",
       lga: [],
       disability: [],
-      qualification: [],
+      educational_qualification: [],
       marital_status:[],
       gender:[],
       disableA: false,
@@ -62,11 +61,6 @@ class MessagesDetail extends React.Component {
 
   componentDidMount(){
    this.props.getAllProfile()
-  //  this.props.getSpecificProfiles({
-  //    query:{
-  //      lga:"Barkin Ladi"
-  //    }
-  //  })
   }
 
   componentWillReceiveProps(nextProps){
@@ -112,19 +106,26 @@ class MessagesDetail extends React.Component {
   }
 
   render() {
+    let genderFiltered= []
+    let maritalstatusFiltererd = []
+    let lgaFiltered = []
+    let profileFiltered = []
+
     const { classes } = this.props;
     const data = this.props.members.allMembers
     console.log("ALL USERS", this.props.members.allMembers)
     
-    {let genderFiltered = genderFilter(this.state.gender, data)
-    let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
-    let lgaFiltered = lgaFilter(this.state.lga, data)
-    let profileFiltered = profileFilter(this.state.profile, data)}
+  //   { 
+  //   genderFiltered = genderFilter(this.state.gender, data)
+  //   maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
+  //   lgaFiltered = lgaFilter(this.state.lga, data)
+  //   profileFiltered = profileFilter(this.state.profile, data)
+  // }
     
-    // console.log("FILTERED GENDER KAWAI",genderFiltered)
-    // console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
-    // console.log("FILTERED LGA KAWAI",lgaFiltered)
-    // console.log("FILTERED disabilityKAWAI",profileFiltered)
+    console.log("FILTERED GENDER KAWAI",genderFiltered)
+    console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
+    console.log("FILTERED LGA KAWAI",lgaFiltered)
+    console.log("FILTERED disabilityKAWAI",profileFiltered)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -586,10 +587,10 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.qualification}
+                      value={this.state.educational_qualification}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "qualification",
+                        name: "educational_qualification",
                         id: "simple-select"
                       }}
                     >

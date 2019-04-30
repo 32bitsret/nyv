@@ -92,6 +92,8 @@ class Speech2Details extends React.Component {
                 The campaign was tagged ‘‘The Age of Reasoning’’. Agreeing on issues and finding a common front is not an option if we must survive. We need to think beyond the idea that has brought us this low. We must find a way of looking at our circumstances and finding the good in it. We cannot be the cradle of leadership in this great nation, a great people with a rich heritage, 
                 an intelligent heterogeneous clusters with influence all over, and yet our blessings has turned into an entrapment. We must come together and agree on a way forward.
                 </p>
+
+
                 <p>
                 1.  My first duty as Chairman of Plateau Youth Council is to call a Solemn Assembly of Plateau Youths tagged ‘PLATEAU YOUTH SUMMIT’ to be convened and supported by Government. The Plateau Peace Building Agency will be our major partner in this project. It’s time for reconciliation, recreation and reintegration. We shall gather as a people who seek to restart our lives all over again. 
                 We need to acquire the skills to function properly in a post conflict society. Our prosperity will largely depend on these skills. The solutions to the issues that have plagued us will emanate from this summit. Arising also from this summit is a Youth Development Plan that would be formulated and adopted.
