@@ -45,16 +45,16 @@ class MessagesDetail extends React.Component {
       disableC: false,
       allMembers: [],
       lgaMembers: [],
-
+// ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]
       title: "",
       message:"",
-      expo_tokens:["ExponentPushToken[BN-lqKKTkZN3n4EeOSSi6R]"],
+      expo_tokens:["ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]" ],
       query:{
         lga:[],
         gender:[],
         disability:[],
         marital_status:[],
-        qualification:[]
+        educational_qualification:[]
       }
     };
   }
