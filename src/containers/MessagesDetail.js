@@ -93,7 +93,7 @@ class MessagesDetail extends React.Component {
       gender:this.state.gender,//.join(),
       disability:this.state.disability,//.join(),
       marital_status:this.state.marital_status,//.join(),
-      qualification:this.state.qualification,//.join()
+      educational_qualification:this.state.educational_qualification,//.join()
     }
     const data = {
       message: this.state.message,
@@ -324,7 +324,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="Singles"
+                        value="Single"
                       >
                         Singles
                       </MenuItem>
@@ -398,7 +398,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="barkin ladi"
+                        value="Barkin Ladi"
                       >
                           barkin ladi
                       </MenuItem>
@@ -407,7 +407,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="bassa"
+                        value="Bassa"
                       >
                         bassa
                       </MenuItem>
