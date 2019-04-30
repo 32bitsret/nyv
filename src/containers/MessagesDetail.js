@@ -398,7 +398,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="Barkin Ladi"
+                        value="barkin ladi"
                       >
                           barkin ladi
                       </MenuItem>
@@ -407,7 +407,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="Bassa"
+                        value="bassa"
                       >
                         bassa
                       </MenuItem>
