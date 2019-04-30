@@ -48,7 +48,7 @@ class MessagesDetail extends React.Component {
 
       title: "",
       message:"",
-      expo_tokens:[],
+      expo_tokens:["ExponentPushToken[BN-lqKKTkZN3n4EeOSSi6R]"],
       query:{
         lga:[],
         gender:[],

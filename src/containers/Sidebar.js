@@ -91,7 +91,7 @@ class Sidebar extends React.Component {
 
   render() {
     const sidebarImage = this.props.dashboard.sidebarImage
-    console.log("################################", this.props.dashboard.dashboard.photo)
+    // console.log("################################", this.props.dashboard.dashboard.photo)
     const userName = this.props.auth.user
     const {
       classes,

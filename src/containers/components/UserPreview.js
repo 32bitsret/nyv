@@ -27,7 +27,7 @@ class CreatedUser extends Component {
       course:"",
       institution:"",
       year_of_graduation:"",
-      qualification:""
+      educational_qualification:""
     },
     employment_status:"",
     marital_status:"",
@@ -155,7 +155,7 @@ class CreatedUser extends Component {
                                 <strong>Course:</strong>{isEmpty(user.education)?"":isEmpty(user.education.course)?"":user.education.course}
                             </p>
                             <p>
-                                <strong>Highest Qualification:</strong>{isEmpty(user.education)?"":isEmpty(user.education.qualification)?"":user.education.qualification}
+                                <strong>Highest Qualification:</strong>{isEmpty(user.education)?"":isEmpty(user.education.educational_qualification)?"":user.education.educational_qualification}
                             </p>
                             <br/>
                             <p>
