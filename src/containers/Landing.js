@@ -7,13 +7,8 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import pricingPageStyle from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import priceImage2 from "assets/img/card-3.jpeg";
-// import img1 from "../assets/img/img1.jpg"
-// import img2 from "../assets/img/img2.jpg"
-// import img3 from "../assets/img/img3.jpg"
-// import img4 from "../assets/img/img4.jpg"
 import img1 from "../assets/img/img1.jpg"
+import CardFooter from "components/Card/CardFooter.jsx";
 import img2 from "../assets/img/img2.jpg"
 import img3 from "../assets/img/img3.jpg"
 import img4 from "../assets/img/img4.jpg"
