@@ -32,6 +32,7 @@ import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
 
 
+let togg = false
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -172,6 +173,22 @@ class MessagesDetail extends React.Component {
     }
   }
 
+  filter = (test, arr) => {
+  
+    arr.map(name => {
+        console.log("NAME", name)
+        console.log("TEST", test)
+        if(test === name){
+        //  return true
+            
+        }
+        else if(test !== name){
+          return false
+        }
+    })
+    return togg
+}
+
   extractExpoToken = (totalArr) => {
     let obj = {
       gender: this.state.gender,
@@ -183,9 +200,8 @@ class MessagesDetail extends React.Component {
     console.log("THE OBJECT CONTENT", obj)
     console.log("ALL MEMBERS FROM INSIDE EXTRACTION", totalArr)
     totalArr.map(o => {
-      console.log("ITERATING THOUGH EACH USER", o.firstname)
-      if(!isEmpty(o.lga)){
-        console.log(o.lga)
+      if(!isEmpty(o.lga) && !isEmpty(obj.lga)){
+        console.log(this.filter(o.lga, obj.lga))
       }
     })
   }

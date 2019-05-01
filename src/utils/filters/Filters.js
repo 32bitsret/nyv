@@ -228,14 +228,20 @@ export const maritalstatusFilter = (testArr, dataArr) => {
 }
 
 export const filter = (test, arr) => {
-    // if(!isEmpty(arr)){
-        arr.map(name => {
-            if(test === name){
-                return true
+    let togg = false
+    console.log("INSIDE FUNCTION", test)
+    console.log("INSIED FUNCTION", arr)
+    arr.map(name => {
+        console.log("NAME", name)
+        console.log("TEST", test)
+        if(test === name){
+            return{ 
+               togg: true
             }
-            else {
-                return false
-            }
-        })
-    // }
+        }
+        else {
+            return false
+        }
+    })
+    // return togg
 }
