@@ -193,10 +193,10 @@ class MessagesDetail extends React.Component {
   }
 
   render() {
-    let genderFiltered= []
-    let maritalstatusFiltererd = []
-    let lgaFiltered = []
-    let profileFiltered = []
+    // let genderFiltered= []
+    // let maritalstatusFiltererd = []
+    // let lgaFiltered = []
+    // let profileFiltered = []
 
     const { classes } = this.props;
     const data = this.props.members.allMembers
@@ -207,10 +207,10 @@ class MessagesDetail extends React.Component {
     console.log("QUALIFICATION FROM STATE", this.state.educational_qualification)
     console.log("STATUS FROM STATE", this.state.marital_status)
     // { 
-    genderFiltered = genderFilter(this.state.gender, data)
-    maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
-    lgaFiltered = lgaFilter(this.state.lga, data)
-    profileFiltered = profileFilter(this.state.profile, data)
+      let genderFiltered = genderFilter(this.state.gender, data)
+      let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
+      let lgaFiltered = lgaFilter(this.state.lga, data)
+      let profileFiltered = profileFilter(this.state.profile, data)
   // }
     
     console.log("FILTERED GENDER KAWAI",genderFiltered)

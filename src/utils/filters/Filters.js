@@ -52,19 +52,20 @@ export const profileFilter = (testArr, dataArr) => {
 
 
 export const lgaFilter = (testArr, dataArr) => {
-    let lgaResult = []
+    console.log("INSIDE EXTRACTION FUNCTION", testArr)
+     let lgaResult = []
 
      const list = [ 
         'barkin ladi',
         'bassa', 
         'bokkos', 
-        'jos-east',
-        'jos-north', 
-        'jos-south', 
+        'jos east',
+        'jos north', 
+        'jos south', 
         'kanam', 
         'kanke', 
-        'langtang-north', 
-        'langtang-south', 
+        'langtang north', 
+        'langtang south', 
         'mangu', 
         'mikang', 
         'pankshin', 
@@ -73,7 +74,7 @@ export const lgaFilter = (testArr, dataArr) => {
         'shendam',
         'wase',  
         'others' 
-    ]
+      ]
     
    testArr.map(resl => {
        if(resl === list[0]){
@@ -114,6 +115,7 @@ export const lgaFilter = (testArr, dataArr) => {
        }       
        if(resl === list[6]){
         dataArr.forEach(o => {
+            console.log(list[6])
             if(o.lga === list[6])
              lgaResult.push(o)
         })
@@ -178,7 +180,7 @@ export const lgaFilter = (testArr, dataArr) => {
              lgaResult.push(o)
         })
        }
-       else if(isEmpty(resl )){
+       else if(isEmpty(resl)){
            lgaResult.push(...dataArr)
        }
    })
