@@ -10,12 +10,15 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import Check from "@material-ui/icons/Check";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Checkbox from "@material-ui/core/Checkbox";
 import { connect } from "react-redux"
 import Heading from "components/Heading/Heading.jsx";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {
   maritalstatusFilter,
   profileFilter,
@@ -114,11 +117,11 @@ class MessagesDetail extends React.Component {
     const data = this.props.members.allMembers
     console.log("ALL USERS", this.props.members.allMembers)
     
-  //   { 
-  //   genderFiltered = genderFilter(this.state.gender, data)
-  //   maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
-  //   lgaFiltered = lgaFilter(this.state.lga, data)
-  //   profileFiltered = profileFilter(this.state.profile, data)
+    // { 
+    genderFiltered = genderFilter(this.state.gender, data)
+    maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
+    lgaFiltered = lgaFilter(this.state.lga, data)
+    profileFiltered = profileFilter(this.state.profile, data)
   // }
     
     console.log("FILTERED GENDER KAWAI",genderFiltered)
@@ -151,6 +154,26 @@ class MessagesDetail extends React.Component {
                     >
                     <h4 className={classes.cardIconTitle}>Filter By Gender</h4>
                     </div>
+                <div className={classes.checkboxAndRadio}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        tabIndex={-1}
+                        // onClick={() => this.handleToggle(2)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.checkRoot
+                        }}
+                      />
+                    }
+                    classes={{
+                      label: classes.label
+                    }}
+                    label="Select All"
+                  />
+                </div>
               </CardHeader>
               <CardBody>
               <FormControl
@@ -159,6 +182,7 @@ class MessagesDetail extends React.Component {
                   >
                     <Select
                       multiple
+                      // disabled
                       MenuProps={{
                         className: classes.selectMenu
                       }}
@@ -214,7 +238,27 @@ class MessagesDetail extends React.Component {
                       }
                     >
                     <h4 className={classes.cardIconTitle}>Filter By Profile</h4>
-                    </div>
+                </div>
+                <div className={classes.checkboxAndRadio}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        tabIndex={-1}
+                        // onClick={() => this.handleToggle(2)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.checkRoot
+                        }}
+                      />
+                    }
+                    classes={{
+                      label: classes.label
+                    }}
+                    label="Select All"
+                  />
+                </div>
               </CardHeader>
               <CardBody>
               <FormControl
@@ -279,6 +323,26 @@ class MessagesDetail extends React.Component {
                     >
                       <h4 className={classes.cardIconTitle}>Filter By Marital Status</h4>
                     </div>
+                <div className={classes.checkboxAndRadio}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        tabIndex={-1}
+                        // onClick={() => this.handleToggle(2)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.checkRoot
+                        }}
+                      />
+                    }
+                    classes={{
+                      label: classes.label
+                    }}
+                    label="Select All"
+                  />
+                </div>
               </CardHeader>
               <CardBody>
               <FormControl
@@ -362,6 +426,26 @@ class MessagesDetail extends React.Component {
                     >
                       <h4 className={classes.cardIconTitle}>Filter By LGA</h4>
                     </div>
+                    <div className={classes.checkboxAndRadio}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        tabIndex={-1}
+                        // onClick={() => this.handleToggle(2)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.checkRoot
+                        }}
+                      />
+                    }
+                    classes={{
+                      label: classes.label
+                    }}
+                    label="Select All"
+                  />
+                </div>
               </CardHeader>
               <CardBody>
               <FormControl
@@ -570,7 +654,27 @@ class MessagesDetail extends React.Component {
                       }
                     >
                       <h4 className={classes.cardIconTitle}>Filter By Qualification</h4>
-                    </div>
+                </div>
+                <div className={classes.checkboxAndRadio}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        tabIndex={-1}
+                        // onClick={() => this.handleToggle(2)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.checkRoot
+                        }}
+                      />
+                    }
+                    classes={{
+                      label: classes.label
+                    }}
+                    label="Select All"
+                  />
+                </div>
               </CardHeader>
               <CardBody>
               <FormControl
