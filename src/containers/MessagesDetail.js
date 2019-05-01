@@ -98,41 +98,86 @@ class MessagesDetail extends React.Component {
   }
 
   handleToggleProfile = () => {
-    this.setState({
-      allProfile:!this.state.allProfile
-    })
+    if(this.state.allProfile === false){
+      this.setState({
+        allProfile: true,
+        disability:["Disabled", "Not Disabled"]
+      })
+    }
+    else {
+      this.setState({
+        allProfile: false,
+        disability: []
+      })
+    }
   }
   handleToggleGender = () => {
-    this.setState({
-      allGender:!this.state.allGender
-    })
+    if(this.state.allGender === false){
+      this.setState({
+        allGender:true,
+        gender: ["female", "male"]
+      })
+    }
+    else{
+      this.setState({
+        allGender: false,
+        gender: []
+      })
+    }
   }
 
   handleToggleLGA = () => {
-    this.setState({
-      allLGA: !this.state.allLGA
-    })
+    if(this.state.allLGA === false){
+      this.setState({
+        allLGA:true,
+        lga:["barkin ladi", "bassa", "bokkos", "jos east", "jos north", "jos south", "kanam", "kanke", "langtang north", "langtang south", "mangu", "mikang", "qua'an pan", "pankshin", "riyom", "shendam", "wase", "others"]
+      })
+    }
+    else {
+      this.setState({
+        allLGA:false,
+        lga:[]
+      })
+    }
   }
 
   handleToggleQualification = () => {
-    this.setState({
-      allQualification: !this.state.allQualification
-    })
+    if(this.state.allQualification === false){
+      this.setState({
+        allQualification: true,
+        educational_qualification:["School Cert", "Olevel", "Degree", "HND", "ND", "NCE", "MSC", "PHD"]
+      })
+    }
+    else {
+      this.setState({
+        allQualification: false,
+        educational_qualification: []
+      })
+    }
   }
 
   handleToggleMaritalStatus = () => {
-    this.setState({
-      allMaritalStatus:!this.state.allMaritalStatus
-    })
+    if(this.state.allMaritalStatus === false){
+      this.setState({
+        allMaritalStatus: true,
+        marital_status: ["Married", "Single", "Divorced", "Widowed"]
+      })
+    }
+    else {
+      this.setState({
+        allMaritalStatus: false,
+        marital_status: []
+      })
+    }
   }
 
   onSend = e => {
     let query = {
-      lga:this.state.allLGA === false?this.state.lga:["ALL LGAs"],
-      gender:this.state.allGender === false?(this.state.gender):(["ALL GENDER"]),
-      disability:this.state.allProfile===false?this.state.disability:["ALL PROFILE"],//.join(),
-      marital_status:this.state.allMaritalStatus===false?this.state.marital_status:["ALL MARITAL STATUS"],//.join(),
-      educational_qualification:this.state.allQualification===false?this.state.educational_qualification:["ALL QUALIFICATIONS"],//.join()
+      lga:this.state.lga,
+      gender:this.state.gender,
+      disability:this.state.disability,
+      marital_status:this.state.marital_status,
+      educational_qualification:this.state.educational_qualification,
     }
     const data = {
       message: this.state.message,
@@ -156,7 +201,11 @@ class MessagesDetail extends React.Component {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     console.log("ALL USERS", this.props.members.allMembers)
-    
+    console.log("GENDER FROM STATE", this.state.gender)
+    console.log("PROFILE FROM STATE", this.state.disability)
+    console.log("LGA FROM STATE", this.state.lga)
+    console.log("QUALIFICATION FROM STATE", this.state.educational_qualification)
+    console.log("STATUS FROM STATE", this.state.marital_status)
     // { 
     genderFiltered = genderFilter(this.state.gender, data)
     maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
@@ -387,12 +436,12 @@ class MessagesDetail extends React.Component {
               </CardHeader>
               <CardBody>
               <FormControl
-                    disabled={this.state.disableC}
+                    // disabled={this.state.disableC}
                     fullWidth
                     className={classes.selectFormControl}
                   >
                     <Select
-                      disabled={this.state.allMaritalStatus}
+                      disabled={this.state.allMaritalStatus} 
                       multiple
                       MenuProps={{
                         className: classes.selectMenu
@@ -756,7 +805,16 @@ class MessagesDetail extends React.Component {
                         }}
                         value="School Cert"
                       >
-                      School Cert
+                      CERT
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelected
+                        }}
+                        value="Olevel"
+                      >
+                        OLEVEL
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -765,7 +823,7 @@ class MessagesDetail extends React.Component {
                         }}
                         value="Degree"
                       >
-                        Degree
+                        DEGREE
                       </MenuItem>
                       <MenuItem
                         classes={{
@@ -811,15 +869,6 @@ class MessagesDetail extends React.Component {
                         value="PHD"
                       >
                         PHD
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected
-                        }}
-                        value="Olevel"
-                      >
-                        Olevel
                       </MenuItem>
                     </Select>
                   </FormControl>
