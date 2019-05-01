@@ -35,14 +35,22 @@ class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allMaritalStatus:false,
+      allProfile:false,
+      allGender:false,
+      allLGA:false,
+      allQualification:false,
+
       checked: [24, 22],
       selectedValue: "a",
       selectedEnabled: "b",
+
       lga: [],
       disability: [],
       educational_qualification: [],
       marital_status:[],
       gender:[],
+      
       disableA: false,
       disableB: false,
       disableC: false,
@@ -89,13 +97,42 @@ class MessagesDetail extends React.Component {
     })
   }
 
+  handleToggleProfile = () => {
+    this.setState({
+      allProfile:!this.state.allProfile
+    })
+  }
+  handleToggleGender = () => {
+    this.setState({
+      allGender:!this.state.allGender
+    })
+  }
+
+  handleToggleLGA = () => {
+    this.setState({
+      allLGA: !this.state.allLGA
+    })
+  }
+
+  handleToggleQualification = () => {
+    this.setState({
+      allQualification: !this.state.allQualification
+    })
+  }
+
+  handleToggleMaritalStatus = () => {
+    this.setState({
+      allMaritalStatus:!this.state.allMaritalStatus
+    })
+  }
+
   onSend = e => {
     let query = {
-      lga:this.state.lga,//.join(),
-      gender:this.state.gender,//.join(),
-      disability:this.state.disability,//.join(),
-      marital_status:this.state.marital_status,//.join(),
-      educational_qualification:this.state.educational_qualification,//.join()
+      lga:this.state.allLGA === false?this.state.lga:["ALL LGAs"],
+      gender:this.state.allGender === false?(this.state.gender):(["ALL GENDER"]),
+      disability:this.state.allProfile===false?this.state.disability:["ALL PROFILE"],//.join(),
+      marital_status:this.state.allMaritalStatus===false?this.state.marital_status:["ALL MARITAL STATUS"],//.join(),
+      educational_qualification:this.state.allQualification===false?this.state.educational_qualification:["ALL QUALIFICATIONS"],//.join()
     }
     const data = {
       message: this.state.message,
@@ -103,6 +140,9 @@ class MessagesDetail extends React.Component {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
+    console.log(this.state.lga)
+    console.log("LGA", query.lga)
+    console.log("TOGGLE STATE", this.state.allLGA)
     console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
   }
@@ -159,7 +199,7 @@ class MessagesDetail extends React.Component {
                     control={
                       <Checkbox
                         tabIndex={-1}
-                        // onClick={() => this.handleToggle(2)}
+                        onClick={() => this.handleToggleGender()}
                         checkedIcon={<Check className={classes.checkedIcon} />}
                         icon={<Check className={classes.uncheckedIcon} />}
                         classes={{
@@ -182,7 +222,7 @@ class MessagesDetail extends React.Component {
                   >
                     <Select
                       multiple
-                      // disabled
+                      disabled={this.state.allGender}
                       MenuProps={{
                         className: classes.selectMenu
                       }}
@@ -244,7 +284,7 @@ class MessagesDetail extends React.Component {
                     control={
                       <Checkbox
                         tabIndex={-1}
-                        // onClick={() => this.handleToggle(2)}
+                        onClick={() => this.handleToggleProfile()}
                         checkedIcon={<Check className={classes.checkedIcon} />}
                         icon={<Check className={classes.uncheckedIcon} />}
                         classes={{
@@ -266,6 +306,7 @@ class MessagesDetail extends React.Component {
                     className={classes.selectFormControl}
                   >
                     <Select
+                      disabled={this.state.allProfile}
                       multiple
                       MenuProps={{
                         className: classes.selectMenu
@@ -328,7 +369,7 @@ class MessagesDetail extends React.Component {
                     control={
                       <Checkbox
                         tabIndex={-1}
-                        // onClick={() => this.handleToggle(2)}
+                        onClick={() => this.handleToggleMaritalStatus()}
                         checkedIcon={<Check className={classes.checkedIcon} />}
                         icon={<Check className={classes.uncheckedIcon} />}
                         classes={{
@@ -351,6 +392,7 @@ class MessagesDetail extends React.Component {
                     className={classes.selectFormControl}
                   >
                     <Select
+                      disabled={this.state.allMaritalStatus}
                       multiple
                       MenuProps={{
                         className: classes.selectMenu
@@ -431,7 +473,7 @@ class MessagesDetail extends React.Component {
                     control={
                       <Checkbox
                         tabIndex={-1}
-                        // onClick={() => this.handleToggle(2)}
+                        onClick={() => this.handleToggleLGA()}
                         checkedIcon={<Check className={classes.checkedIcon} />}
                         icon={<Check className={classes.uncheckedIcon} />}
                         classes={{
@@ -454,6 +496,7 @@ class MessagesDetail extends React.Component {
                     className={classes.selectFormControl}
                   >
                     <Select
+                      disabled={this.state.allLGA}
                       multiple
                       MenuProps={{
                         className: classes.selectMenu
@@ -660,7 +703,7 @@ class MessagesDetail extends React.Component {
                     control={
                       <Checkbox
                         tabIndex={-1}
-                        // onClick={() => this.handleToggle(2)}
+                        onClick={() => this.handleToggleQualification()}
                         checkedIcon={<Check className={classes.checkedIcon} />}
                         icon={<Check className={classes.uncheckedIcon} />}
                         classes={{
@@ -683,6 +726,7 @@ class MessagesDetail extends React.Component {
                     className={classes.selectFormControl}
                   >
                     <Select
+                      disabled={this.state.allQualification}
                       multiple
                       MenuProps={{
                         className: classes.selectMenu
