@@ -24,7 +24,8 @@ import {
   profileFilter,
   genderFilter,
   lgaFilter,
-  educationFilter
+  educationFilter,
+  filter
 } from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import { getAllProfile } from "../redux/actions/dashboardAction"
@@ -130,7 +131,7 @@ class MessagesDetail extends React.Component {
     if(this.state.allLGA === false){
       this.setState({
         allLGA:true,
-        lga:["barkin ladi", "bassa", "bokkos", "jos east", "jos north", "jos south", "kanam", "kanke", "langtang north", "langtang south", "mangu", "mikang", "qua'an pan", "pankshin", "riyom", "shendam", "wase", "others"]
+        lga:["Barkin Ladi", "Bassa", "Bokkos", "Jos East", "Jos North", "jos south", "Kanam", "Kanke", "Langtang North", "Langtang South", "Mangu", "Mikang", "Qua'an Pan", "Pankshin", "Riyom", "Shendam", "Wase", "Others"]
       })
     }
     else {
@@ -145,7 +146,7 @@ class MessagesDetail extends React.Component {
     if(this.state.allQualification === false){
       this.setState({
         allQualification: true,
-        educational_qualification:["School Cert", "Olevel", "Degree", "HND", "ND", "NCE", "MSC", "PHD"]
+        educational_qualification:["CERT", "OLEVEL", "DEGREE", "HND", "ND", "NCE", "MSC", "PHD"]
       })
     }
     else {
@@ -169,6 +170,24 @@ class MessagesDetail extends React.Component {
         marital_status: []
       })
     }
+  }
+
+  extractExpoToken = (totalArr) => {
+    let obj = {
+      gender: this.state.gender,
+      lga: this.state.lga,
+      marital_status: this.state.marital_status,
+      educational_qualification: this.state.educational_qualification,
+      disability: this.state.disability
+    }
+    console.log("THE OBJECT CONTENT", obj)
+    console.log("ALL MEMBERS FROM INSIDE EXTRACTION", totalArr)
+    totalArr.map(o => {
+      console.log("ITERATING THOUGH EACH USER", o.firstname)
+      if(!isEmpty(o.lga)){
+        console.log(o.lga)
+      }
+    })
   }
 
   onSend = e => {
@@ -197,26 +216,10 @@ class MessagesDetail extends React.Component {
     // let maritalstatusFiltererd = []
     // let lgaFiltered = []
     // let profileFiltered = []
-
+    this.extractExpoToken(this.state.allMembers)
     const { classes } = this.props;
     const data = this.props.members.allMembers
-    console.log("ALL USERS", this.props.members.allMembers)
-    console.log("GENDER FROM STATE", this.state.gender)
-    console.log("PROFILE FROM STATE", this.state.disability)
-    console.log("LGA FROM STATE", this.state.lga)
-    console.log("QUALIFICATION FROM STATE", this.state.educational_qualification)
-    console.log("STATUS FROM STATE", this.state.marital_status)
-    // { 
-      let genderFiltered = genderFilter(this.state.gender, data)
-      let maritalstatusFiltererd = maritalstatusFilter(this.state.marital_status, data)
-      let lgaFiltered = lgaFilter(this.state.lga, data)
-      let profileFiltered = profileFilter(this.state.profile, data)
-  // }
-    
-    console.log("FILTERED GENDER KAWAI",genderFiltered)
-    console.log("FILTERED MARITAL STATUS KAWAI",maritalstatusFiltererd)
-    console.log("FILTERED LGA KAWAI",lgaFiltered)
-    console.log("FILTERED disabilityKAWAI",profileFiltered)
+
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -573,7 +576,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="barkin ladi"
+                        value="Barkin Ladi"
                       >
                           barkin ladi
                       </MenuItem>
@@ -582,7 +585,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="bassa"
+                        value="Bassa"
                       >
                         bassa
                       </MenuItem>
@@ -591,7 +594,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="bokkos"
+                        value="Bokkos"
                       >
                         bokkos
                       </MenuItem>
@@ -600,7 +603,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos east"
+                        value="Jos East"
                       >
                         jos-east
                       </MenuItem>
@@ -609,7 +612,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos north"
+                        value="Jos North"
                       >
                         jos-north
                       </MenuItem>
@@ -618,7 +621,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="jos south"
+                        value="Jos South"
                       >
                         jos-south
                       </MenuItem>
@@ -627,7 +630,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="kanam"
+                        value="Kanam"
                       >
                         kanam
                       </MenuItem>
@@ -636,7 +639,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="kanke"
+                        value="Kanke"
                       >
                         kanke
                       </MenuItem>
@@ -645,7 +648,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang north"
+                        value="Langtang North"
                       >
                         langtang-north
                       </MenuItem>
@@ -654,7 +657,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="langtang south"
+                        value="Langtang South"
                       >
                         langtang-south
                       </MenuItem>
@@ -663,7 +666,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="mangu"
+                        value="Mangu"
                       >
                         mangu
                       </MenuItem>
@@ -672,7 +675,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="mikang"
+                        value="Mikang"
                       >
                         mikang
                       </MenuItem>
@@ -681,7 +684,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="pankshin"
+                        value="Pankshin"
                       >
                         pankshin
                       </MenuItem>
@@ -690,7 +693,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="qua'an pan"
+                        value="Qua'an Pan"
                       >
                         qua'an pan
                       </MenuItem>
@@ -699,7 +702,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="riyom"
+                        value="Riyom"
                       >
                         riyom
                       </MenuItem>
@@ -708,7 +711,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="shendam"
+                        value="Shendam"
                       >
                         shendam
                       </MenuItem>
@@ -717,7 +720,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="wase"
+                        value="Wase"
                       >
                         wase
                       </MenuItem>
@@ -726,7 +729,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="others"
+                        value="Others"
                       >
                         others
                       </MenuItem>
@@ -803,7 +806,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="School Cert"
+                        value="CERT"
                       >
                       CERT
                       </MenuItem>
@@ -812,7 +815,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="Olevel"
+                        value="OLEVEL"
                       >
                         OLEVEL
                       </MenuItem>
@@ -821,7 +824,7 @@ class MessagesDetail extends React.Component {
                           root: classes.selectMenuItem,
                           selected: classes.selectMenuItemSelected
                         }}
-                        value="Degree"
+                        value="DEGREE"
                       >
                         DEGREE
                       </MenuItem>

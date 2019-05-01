@@ -226,3 +226,16 @@ export const maritalstatusFilter = (testArr, dataArr) => {
         })
     return maritalResult
 }
+
+export const filter = (test, arr) => {
+    // if(!isEmpty(arr)){
+        arr.map(name => {
+            if(test === name){
+                return true
+            }
+            else {
+                return false
+            }
+        })
+    // }
+}
