@@ -33,6 +33,7 @@ import {sendMessage} from "../redux/actions/messageActions"
 
 
 let togg = false
+let value
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +50,7 @@ class MessagesDetail extends React.Component {
 
       lga: [],
       disability: [],
-      educational_qualification: [],
+      qualification: [],
       marital_status:[],
       gender:[],
       
@@ -66,7 +67,7 @@ class MessagesDetail extends React.Component {
         gender:[],
         disability:[],
         marital_status:[],
-        educational_qualification:[]
+        qualification:[]
       }
     };
   }
@@ -147,13 +148,13 @@ class MessagesDetail extends React.Component {
     if(this.state.allQualification === false){
       this.setState({
         allQualification: true,
-        educational_qualification:["CERT", "OLEVEL", "DEGREE", "HND", "ND", "NCE", "MSC", "PHD"]
+        qualification:["CERT", "OLEVEL", "DEGREE", "HND", "ND", "NCE", "MSC", "PHD"]
       })
     }
     else {
       this.setState({
         allQualification: false,
-        educational_qualification: []
+        qualification: []
       })
     }
   }
@@ -174,36 +175,29 @@ class MessagesDetail extends React.Component {
   }
 
   filter = (test, arr) => {
-  
-    arr.map(name => {
-        console.log("NAME", name)
-        console.log("TEST", test)
-        if(test === name){
-        //  return true
-            
-        }
-        else if(test !== name){
-          return false
-        }
-    })
-    return togg
-}
+    if(!isEmpty(arr)){
+      value = (test === "male" || test === "female")  ? true: false
+    }
+  }
 
   extractExpoToken = (totalArr) => {
+    let result = []
     let obj = {
       gender: this.state.gender,
       lga: this.state.lga,
       marital_status: this.state.marital_status,
-      educational_qualification: this.state.educational_qualification,
+      qualification: this.state.qualification,
       disability: this.state.disability
     }
     console.log("THE OBJECT CONTENT", obj)
     console.log("ALL MEMBERS FROM INSIDE EXTRACTION", totalArr)
     totalArr.map(o => {
-      if(!isEmpty(o.lga) && !isEmpty(obj.lga)){
-        console.log(this.filter(o.lga, obj.lga))
-      }
+      // if(!isEmpty(o.lga) && !isEmpty(obj.lga)){
+        let val = this.filter(o.lga, obj.lga)
+        //} 
+        console.log("VAL", val)
     })
+    console.log("SELECTION", result)
   }
 
   onSend = e => {
@@ -212,7 +206,7 @@ class MessagesDetail extends React.Component {
       gender:this.state.gender,
       disability:this.state.disability,
       marital_status:this.state.marital_status,
-      educational_qualification:this.state.educational_qualification,
+      qualification:this.state.qualification,
     }
     const data = {
       message: this.state.message,
@@ -802,10 +796,10 @@ class MessagesDetail extends React.Component {
                       classes={{
                         select: classes.select
                       }}
-                      value={this.state.educational_qualification}
+                      value={this.state.qualification}
                       onChange={this.handleSimple}
                       inputProps={{
-                        name: "educational_qualification",
+                        name: "qualification",
                         id: "simple-select"
                       }}
                     >
