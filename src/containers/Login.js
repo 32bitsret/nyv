@@ -30,7 +30,8 @@ class Login extends React.Component {
       password: "",
       emailState:"",
       passwordState:"",
-      error:{}
+      error:{},
+      isloading: false
     };
   }
   componentDidMount() {
@@ -93,6 +94,9 @@ class Login extends React.Component {
         password: this.state.password 
       }
       if(this.state.emailState !== "" && this.state.passwordState !== ""){
+        this.setState({ 
+          isloading: true
+        })
         this.props.loginUser(userData)
       }
     }
@@ -176,9 +180,16 @@ class Login extends React.Component {
                   />
                 </CardBody>
                 <CardFooter className={classes.justifyContentCenter}>
+                  {
+                  this.state.isloading?
+                  <Button color="success" simple size="sm" block disabled>
+                   loading...
+                  </Button>
+                  :
                   <Button color="success" simple size="sm" block onClick={(e) => this.submit(e)}>
                     Log In
-                  </Button>
+                  </Button>            
+                  }
                  </CardFooter>
                  <br/>
                   <p style={{textAlign:"center"}}>don't have an account? <a href="/register">sign up</a></p>

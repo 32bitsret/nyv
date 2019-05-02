@@ -252,10 +252,12 @@ filterGender = (test, arr) => {
       // }
 
     })
-    console.log("USER EXISTS",totalArr[0])
-    if(_.includes(this.state.fitleredMembersLGA, totalArr[0])){
-      console.log("USER EXISTS",)
+    for(let i = 0; i < totalArr.length; i++){
+      if(_.includes(this.state.fitleredMembersLGA, totalArr[i])){
+        console.log("USER EXISTS",totalArr[i])
+      }
     }
+
     console.log("FILTERED LGA ", _.uniq(this.state.fitleredMembersLGA))
     console.log("FILTERED GENDER",_.uniq(this.state.filteredMembersGender) )
     console.log("FILTERED DISABILITY", _.uniq(this.state.filteredMembersDisability))
