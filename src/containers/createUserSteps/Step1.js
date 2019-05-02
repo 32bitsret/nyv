@@ -42,7 +42,9 @@ class Step1 extends React.Component {
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
-    
+      
+      isCreating:false,
+
       firstname:"",
       middlename:"",
       lastname:"",
@@ -691,12 +693,21 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={6} lg={4}>
                       <div className={classes.inlineChecks}>
-                        <Button
-                          color="success"
-                          onClick={this.submit}
-                        >
-                          Create Profile
-                        </Button>
+                        { this.state.isCreating ?
+                          <Button
+                            color="warning"
+                            disabled
+                          >
+                            Creating...
+                          </Button>
+                          :
+                          <Button
+                            color="success"
+                            onClick={this.submit}
+                          >
+                            Create Profile
+                          </Button>
+                        }
                       </div>
                     </GridItem>
                   </GridContainer>
