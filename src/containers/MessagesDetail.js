@@ -41,6 +41,7 @@ class MessagesDetail extends React.Component {
       filteredMembersDisability:[],
       filteredMembersEducation:[],
       filteredMembersMaritalStatus:[],
+      filteredResult: [],
 
       allMaritalStatus:false,
       allProfile:false,
@@ -240,18 +241,28 @@ filterGender = (test, arr) => {
       disability: this.state.disability
     }
     totalArr.map(o => {
-      
       this.filterLGA(o, obj.lga) 
       this.filterGender(o, obj.gender)
       this.filterDisability(o, obj.disability)
       this.filterMartitalStatus(o, obj.marital_status)
       this.filterQualification(o, obj.qualification)
+
+      // if(_.includes(this.state.fitleredMembersLGA, o._id) && _.includes(this.state.filteredMembersGender, o._id) && _.includes(this.state.filteredMembersDisability, o._id) && _.includes(this.state.filteredMembersMaritalStatus, o._id) && _.includes(this.state.filteredMembersEducation, o._id)){
+      //   this.state.filteredResult.push(o)
+      // }
+
     })
+    console.log("USER EXISTS",totalArr[0]._id)
+    if(_.includes(this.state.fitleredMembersLGA, totalArr[0])){
+      console.log("USER EXISTS",)
+    }
     console.log("FILTERED LGA ", _.uniq(this.state.fitleredMembersLGA))
     console.log("FILTERED GENDER",_.uniq(this.state.filteredMembersGender) )
     console.log("FILTERED DISABILITY", _.uniq(this.state.filteredMembersDisability))
     console.log("FILTERED MARITAL STATUS", _.uniq(this.state.filteredMembersMaritalStatus))
     console.log(("FILTERED QUALIFICATION", _.uniq(this.state.filteredMembersEducation)))
+
+    console.log(this.state.filteredResult)
   }
 
   onSend = e => {
