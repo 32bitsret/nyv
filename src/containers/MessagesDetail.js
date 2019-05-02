@@ -32,12 +32,16 @@ import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
 import _ from "lodash"
 
-let togg = false
-let value
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      fitleredMembersLGA: [],
+      filteredMembersGender: [],
+      filteredMembersDisability:[],
+      filteredMembersEducation:[],
+      filteredMembersMaritalStatus:[],
+
       allMaritalStatus:false,
       allProfile:false,
       allGender:false,
@@ -100,6 +104,7 @@ class MessagesDetail extends React.Component {
     })
   }
 
+  // ========================TOGGLERS BEGIN================
   handleToggleProfile = () => {
     if(this.state.allProfile === false){
       this.setState({
@@ -173,11 +178,13 @@ class MessagesDetail extends React.Component {
       })
     }
   }
-
-  filterGender = (test, arr) => {
+// ==========================START OF FILTERS================= 
+filterGender = (test, arr) => {
     if(!isEmpty(arr)){
       arr.map(name => {
-          console.log(_.isEqual(test, name ))
+          if(_.isEqual(test.gender, name )){
+            this.state.filteredMembersGender.push(test)
+          }
       })
     }
   }
@@ -186,24 +193,45 @@ class MessagesDetail extends React.Component {
     if(!isEmpty(arr)){
       arr.map(name => {
         if( _.isEqual(test.lga, name)){
-          console.log("TEST", test)
+          this.state.fitleredMembersLGA.push(test)
         }
       })
     }
   }
 
   filterDisability = (test, arr) => {
-    let value
     if(!isEmpty(arr)){
-    //  console.log( _.isEqual(test, "Disabled") || _.isEqual(test, "Not Disabled"))
-      arr.map(name => {
-        console.log(_.isEqual(test, name) )
+        arr.map(name => {
+        if(_.isEqual(test.disability, name) ){
+          this.state.filteredMembersDisability.push(test)
+        }
       })
     }
   }
 
+  filterMartitalStatus = (test, arr) => {
+    if(!isEmpty(arr)){
+      arr.map(name => {
+        if(_.isEqual(test.marital_status, name)){
+          this.state.filteredMembersMaritalStatus.push(test)
+        }
+      })
+    }
+  }
+
+  filterQualification = (test, arr) => {
+    if(!isEmpty(arr)){
+      arr.map(name => {
+        if(!isEmpty(test.education)){
+          if(_.isEqual(test.education.educational_qualification, name)){
+            this.state.filteredMembersEducation.push(test)
+          }
+        }
+      })
+    }
+  }
+// ===================EXTRACTION========================
   extractExpoToken = (totalArr) => {
-    let lgaBool
     let obj = {
       gender: this.state.gender,
       lga: this.state.lga,
@@ -211,16 +239,19 @@ class MessagesDetail extends React.Component {
       qualification: this.state.qualification,
       disability: this.state.disability
     }
-    // console.log("ARRAY",genderFilter(totalArr, obj.gender))
     totalArr.map(o => {
-      console.log(o)
-      console.log("ARRAY",obj.lga)
-      console.log("ARRAY",obj.disability)
-      // this.genderFilter(o.gender, obj.gender)
+      
       this.filterLGA(o, obj.lga) 
-      this.filterDisability(o.disability, obj.disability)
-     
+      this.filterGender(o, obj.gender)
+      this.filterDisability(o, obj.disability)
+      this.filterMartitalStatus(o, obj.marital_status)
+      this.filterQualification(o, obj.qualification)
     })
+    console.log("FILTERED LGA ", _.uniq(this.state.fitleredMembersLGA))
+    console.log("FILTERED GENDER",_.uniq(this.state.filteredMembersGender) )
+    console.log("FILTERED DISABILITY", _.uniq(this.state.filteredMembersDisability))
+    console.log("FILTERED MARITAL STATUS", _.uniq(this.state.filteredMembersMaritalStatus))
+    console.log(("FILTERED QUALIFICATION", _.uniq(this.state.filteredMembersEducation)))
   }
 
   onSend = e => {
@@ -246,6 +277,7 @@ class MessagesDetail extends React.Component {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
+     
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
