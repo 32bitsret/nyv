@@ -36,6 +36,8 @@ class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSending: false,
+ 
       fitleredMembersLGA: [],
       filteredMembersGender: [],
       filteredMembersDisability:[],
@@ -1028,13 +1030,23 @@ filterGender = (test, arr) => {
                 </GridContainer>
                 <GridContainer justify="flex-end">
                   <GridItem xs={12} sm={12} md={9}>
-                    <Button 
-                      disabled={(isEmpty(this.state.lga) && isEmpty(this.state.gender))}
-                      color="success"
-                      onClick={this.onSend}
-                    >
-                      Send
-                    </Button>
+                    {
+                      this.state.isSending?
+                      <Button 
+                        disabled
+                        color="warning"
+                      >
+                        Sending...
+                      </Button>
+                      :
+                      <Button 
+                        disabled={(isEmpty(this.state.lga) && isEmpty(this.state.gender))}
+                        color="success"
+                        onClick={this.onSend}
+                      >
+                        Send
+                      </Button>
+                    }
                   </GridItem>
                 </GridContainer>
               </form>
