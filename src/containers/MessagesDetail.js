@@ -252,7 +252,7 @@ filterGender = (test, arr) => {
       // }
 
     })
-    console.log("USER EXISTS",totalArr[0]._id)
+    console.log("USER EXISTS",totalArr[0])
     if(_.includes(this.state.fitleredMembersLGA, totalArr[0])){
       console.log("USER EXISTS",)
     }
