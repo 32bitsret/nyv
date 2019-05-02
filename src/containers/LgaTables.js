@@ -207,6 +207,11 @@ class LgaTables extends React.Component {
                     accessor: "name",
                     sortable: false,
                     filterable: false
+                  },                  {
+                    Header: "Total",
+                    accessor: "total",
+                    sortable: false,
+                    filterable: false
                   },
                   {
                     Header: "  View      ",

@@ -35,6 +35,7 @@ class LoginPage extends React.Component {
     super(props);
     this.state = {
       cardAnimaton: "cardHidden",
+      isloading: false,
       firstname:'',
       email: '',
       password: '',
@@ -169,10 +170,13 @@ class LoginPage extends React.Component {
         lastname:  this.state.lastname,
         gender: this.state.gender,
         // lga: this.state.lga,
-        role:"admin" 
+        // role:"admin" 
       }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
+        this.setState({
+          isloading: true
+        })
         this.props.registerUser(data, this.props.history)
       }
     }
@@ -592,9 +596,16 @@ class LoginPage extends React.Component {
                   />
                 </CardBody>
                 <CardFooter className={classes.justifyContentCenter}>
-                  <Button color="success" simple size="lg" block onClick={this.submit}>
-                    Sign Up
-                  </Button>
+                  {
+                   this.state.isloading?
+                    <Button color="success" simple size="lg" block disabled>
+                     loading...
+                    </Button>
+                    : 
+                    <Button color="success" simple size="lg" block onClick={this.submit}>
+                      Sign Up
+                    </Button>
+                  }
                 </CardFooter>
                 <br/>
                   <p style={{textAlign:"center", paddingBottom: "5px"}}>have an account already? <a href="/login">Log in</a></p>
