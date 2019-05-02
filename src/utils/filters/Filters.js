@@ -5,11 +5,11 @@ export const genderFilter = (testArr, dataArr) => {
    if(!isEmpty(testArr)){
     testArr.map(resg => {
         if(resg === "female"){
-          dataArr.forEach(o => {
-            if(o.gender === "female"){
-                genderResult.push(o)
-            }
-          })   
+        //   dataArr.forEach(o => {
+        //     if(o.gender === "female"){
+        //         genderResult.push(o)
+        //     }
+        //   })   
         }
         if(resg === "male"){
             dataArr.forEach(o => {

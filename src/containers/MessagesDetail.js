@@ -30,7 +30,7 @@ import {
 import isEmpty from "../utils/isEmpty"
 import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
-
+import _ from "lodash"
 
 let togg = false
 let value
@@ -174,14 +174,36 @@ class MessagesDetail extends React.Component {
     }
   }
 
-  filter = (test, arr) => {
+  filterGender = (test, arr) => {
     if(!isEmpty(arr)){
-      value = (test === "male" || test === "female")  ? true: false
+      arr.map(name => {
+          console.log(_.isEqual(test, name ))
+      })
+    }
+  }
+
+  filterLGA = (test, arr) => {
+    if(!isEmpty(arr)){
+      arr.map(name => {
+        if( _.isEqual(test.lga, name)){
+          console.log("TEST", test)
+        }
+      })
+    }
+  }
+
+  filterDisability = (test, arr) => {
+    let value
+    if(!isEmpty(arr)){
+    //  console.log( _.isEqual(test, "Disabled") || _.isEqual(test, "Not Disabled"))
+      arr.map(name => {
+        console.log(_.isEqual(test, name) )
+      })
     }
   }
 
   extractExpoToken = (totalArr) => {
-    let result = []
+    let lgaBool
     let obj = {
       gender: this.state.gender,
       lga: this.state.lga,
@@ -189,15 +211,16 @@ class MessagesDetail extends React.Component {
       qualification: this.state.qualification,
       disability: this.state.disability
     }
-    console.log("THE OBJECT CONTENT", obj)
-    console.log("ALL MEMBERS FROM INSIDE EXTRACTION", totalArr)
+    // console.log("ARRAY",genderFilter(totalArr, obj.gender))
     totalArr.map(o => {
-      // if(!isEmpty(o.lga) && !isEmpty(obj.lga)){
-        let val = this.filter(o.lga, obj.lga)
-        //} 
-        console.log("VAL", val)
+      console.log(o)
+      console.log("ARRAY",obj.lga)
+      console.log("ARRAY",obj.disability)
+      // this.genderFilter(o.gender, obj.gender)
+      this.filterLGA(o, obj.lga) 
+      this.filterDisability(o.disability, obj.disability)
+     
     })
-    console.log("SELECTION", result)
   }
 
   onSend = e => {
@@ -214,22 +237,15 @@ class MessagesDetail extends React.Component {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
-    console.log(this.state.lga)
     console.log("LGA", query.lga)
-    console.log("TOGGLE STATE", this.state.allLGA)
     console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
   }
 
   render() {
-    // let genderFiltered= []
-    // let maritalstatusFiltererd = []
-    // let lgaFiltered = []
-    // let profileFiltered = []
-    this.extractExpoToken(this.state.allMembers)
     const { classes } = this.props;
     const data = this.props.members.allMembers
-
+    this.extractExpoToken(this.state.allMembers)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -968,6 +984,7 @@ class MessagesDetail extends React.Component {
                 <GridContainer justify="flex-end">
                   <GridItem xs={12} sm={12} md={9}>
                     <Button 
+                      disabled={(isEmpty(this.state.lga) && isEmpty(this.state.gender))}
                       color="success"
                       onClick={this.onSend}
                     >
