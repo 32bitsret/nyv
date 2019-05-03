@@ -68,7 +68,9 @@ class MessagesDetail extends React.Component {
       lgaMembers: [],
       title: "",
       message:"",
-      expo_tokens:["ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]"],
+      // expo_tokens: ["ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
+      // expo_tokens:["ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
+      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
       query:{
         lga:[],
         gender:[],
@@ -233,8 +235,16 @@ filterGender = (test, arr) => {
       })
     }
   }
+
 // ===================EXTRACTION========================
   extractExpoToken = (totalArr) => {
+    let lgaMembersUniq = []
+    let genderMembersUniq = []
+    let qualificationMembersUniq = []
+    let disabilityMembersUniq = []
+    let maritalStatusMembersUniq  = []
+    let totalNotUniq = []
+    let totalUniq = []
     let obj = {
       gender: this.state.gender,
       lga: this.state.lga,
@@ -259,14 +269,26 @@ filterGender = (test, arr) => {
         console.log("USER EXISTS",totalArr[i])
       }
     }
+    lgaMembersUniq = _.uniq(this.state.fitleredMembersLGA)
+    genderMembersUniq = _.uniq(this.state.filteredMembersGender)
+    disabilityMembersUniq = _.uniq(this.state.filteredMembersDisability)
+    maritalStatusMembersUniq = _.uniq(this.state.filteredMembersMaritalStatus)
+    qualificationMembersUniq = _.uniq(this.state.filteredMembersEducation)
+    
+    totalNotUniq = _.concat([],lgaMembersUniq, genderMembersUniq, disabilityMembersUniq, maritalStatusMembersUniq, qualificationMembersUniq)
+    totalUniq = _.uniq(totalNotUniq)
 
-    console.log("FILTERED LGA ", _.uniq(this.state.fitleredMembersLGA))
-    console.log("FILTERED GENDER",_.uniq(this.state.filteredMembersGender) )
-    console.log("FILTERED DISABILITY", _.uniq(this.state.filteredMembersDisability))
-    console.log("FILTERED MARITAL STATUS", _.uniq(this.state.filteredMembersMaritalStatus))
-    console.log(("FILTERED QUALIFICATION", _.uniq(this.state.filteredMembersEducation)))
+    console.log("TOTAL NOT UNIQ", totalNotUniq)
+    console.log("TOTLA UNIQED", totalUniq)
+    console.log("FILTERED LGA ",lgaMembersUniq )
+    console.log("FILTERED GENDER", genderMembersUniq)
+    console.log("FILTERED DISABILITY", disabilityMembersUniq)
+    console.log("FILTERED MARITAL STATUS", maritalStatusMembersUniq)
+    console.log("FILTERED QUALIFICATION", qualificationMembersUniq )
 
     console.log(this.state.filteredResult)
+
+
   }
 
   onSend = e => {
@@ -292,7 +314,7 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-     
+     console.log(this.state.allMembers)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
