@@ -19,20 +19,12 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { connect } from "react-redux"
 import Heading from "components/Heading/Heading.jsx";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import {
-  maritalstatusFilter,
-  profileFilter,
-  genderFilter,
-  lgaFilter,
-  educationFilter,
-  filter
-} from "../utils/filters/Filters"
 import isEmpty from "../utils/isEmpty"
 import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
 import _ from "lodash"
 
-
+  
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +54,7 @@ class MessagesDetail extends React.Component {
       marital_status:[],
       gender:[],
 
-      tokens: [],
+      recipients: [],
       
       disableA: false,
       disableB: false,
@@ -72,8 +64,7 @@ class MessagesDetail extends React.Component {
       title: "",
       message:"",
       expo_tokens:[],
-      // expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
-      query:{
+        query:{
         lga:[],
         gender:[],
         disability:[],
@@ -82,6 +73,7 @@ class MessagesDetail extends React.Component {
       }
     };
   }
+// expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
 
   componentDidMount(){
    this.props.getAllProfile()
@@ -111,7 +103,6 @@ class MessagesDetail extends React.Component {
     })
   }
 
-  // ========================TOGGLERS BEGIN================
   handleToggleProfile = () => {
     if(this.state.allProfile === false){
       this.setState({
@@ -185,7 +176,7 @@ class MessagesDetail extends React.Component {
       })
     }
   }
-// ==========================START OF FILTERS================= 
+
 filterGender = (test, arr) => {
     if(!isEmpty(arr)){
       arr.map(name => {
@@ -238,7 +229,6 @@ filterGender = (test, arr) => {
     }
   }
 
-// ===================EXTRACTION========================
   extractExpoToken = (totalArr) => {
     let lgaMembersUniq = []
     let genderMembersUniq = []
@@ -247,6 +237,7 @@ filterGender = (test, arr) => {
     let maritalStatusMembersUniq  = []
     let totalNotUniq = []
     let totalUniq = []
+    
     let obj = {
       gender: this.state.gender,
       lga: this.state.lga,
@@ -254,6 +245,7 @@ filterGender = (test, arr) => {
       qualification: this.state.qualification,
       disability: this.state.disability
     }
+    
     totalArr.map(o => {
       this.filterLGA(o, obj.lga) 
       this.filterGender(o, obj.gender)
@@ -270,7 +262,7 @@ filterGender = (test, arr) => {
     
     totalNotUniq = _.concat([],lgaMembersUniq, genderMembersUniq, disabilityMembersUniq, maritalStatusMembersUniq, qualificationMembersUniq)
     totalUniq = _.uniq(totalNotUniq)
-
+    console.log("TOTAL UNIQ", totalUniq)
     totalUniq.map(o => {
       let count = 0
       for(let i = 0; i <totalNotUniq.length; i++ ){
@@ -279,6 +271,13 @@ filterGender = (test, arr) => {
         }
       }
       if(count === 5){
+        let tempRecipient = []
+        tempRecipient.push(o)
+        // this.setState({
+        //   recipients: _.uniq(tempRecipient)
+        // })
+        // _.concat(this.state.recipients, _.uniq(tempRecipient))
+        this.state.recipients.push(o)
         if(!isEmpty(o.expo_token)){
           this.state.expo_tokens.push(o.expo_token)
         }
@@ -307,7 +306,7 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-    // console.log(this.state.allMembers)
+    console.log("RECIPIENTS", this.state.recipients)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -976,12 +975,15 @@ filterGender = (test, arr) => {
                         classes.checkboxAndRadioHorizontal
                       }
                     >
-                      <h4 className={classes.cardIconTitle}>Total Recipients</h4>
+                      <h4 className={classes.cardIconTitle}>RECIPIENT STATISTICS</h4>
                     </div>
               </CardHeader>
               <CardBody>
                 <p>
-                  RECIPIENTS: {}
+                 GENERAL: {" "+ _.uniq(this.state.recipients).length}
+                </p>
+                <p>
+                 MOBILE APP: {" "+ this.state.expo_tokens.length}
                 </p>
                </CardBody>
             </Card>
