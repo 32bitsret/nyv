@@ -1060,7 +1060,21 @@ filterGender = (test, arr) => {
                         Send
                       </Button>
                     }
+                    {"  "}
+                    {
+                      this.props.message.doneSending?
+                      <Button 
+                        disabled= {false}
+                        color="success"
+                        onClick={()=>window.location.reload()}
+                      >
+                        Done
+                      </Button>
+                      :
+                      ""
+                    }
                   </GridItem>
+                  
                 </GridContainer>
               </form>
             </CardBody>

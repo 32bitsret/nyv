@@ -18,8 +18,16 @@ export const sendMessage = (body) => dispatch => {
     })
     .then(res => {
         console.log("FROM INSIDE MESSAGE CREATOR",res.data)
+        dispatch({
+            type:SEND_SUCCESS,
+            payload: res.data
+        })
     })
     .catch(err => {
         console.log(err)
+        dispatch({
+            type:SEND_MESSAGE_ERROR,
+            payload: err
+        })
     })
 }
