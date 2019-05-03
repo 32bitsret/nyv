@@ -57,7 +57,6 @@ export  const extractEducation = (arr, test) => {
         number.push(res.educational_qualification)
       }
     })
-    console.log("NUMBER", number)
    return number.length;
  }
  

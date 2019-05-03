@@ -185,7 +185,6 @@ export const uploadDocument = (data, id) => dispatch =>{
 //===================ADMIN FUNCTIONS==================================
 
 export const createUserByAdmin = (data) => dispatch => {
-    console.log("We are here") 
     dispatch({
         type:CREATING_PROFILE,
     })

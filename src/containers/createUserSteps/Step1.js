@@ -693,7 +693,7 @@ class Step1 extends React.Component {
                     </GridItem>
                     <GridItem xs={12} sm={6} lg={4}>
                       <div className={classes.inlineChecks}>
-                        { this.state.isCreating ?
+                        { this.props.createUser.creatingProfile ?
                           <Button
                             color="warning"
                             disabled

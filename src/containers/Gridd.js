@@ -367,7 +367,6 @@ class Gridd extends Component {
     }
   };
   
-  console.log("PIE CHART", extractEmployment(members,"Employed"))
      const display = this.props.dashboard.isloading ? (       
      <GridContainer justify="center">
        <div>loading...</div>

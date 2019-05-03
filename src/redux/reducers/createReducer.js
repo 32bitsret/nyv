@@ -43,7 +43,8 @@ export default (state = initialState, action) => {
     case ERROR:
         return{
             ...state,
-            error: action.payload
+            error: action.payload,
+            creatingProfile: false
         }
     case DONE_UPDATING:
         return {
