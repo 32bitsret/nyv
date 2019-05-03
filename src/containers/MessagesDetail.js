@@ -70,7 +70,7 @@ class MessagesDetail extends React.Component {
       message:"",
       // expo_tokens: ["ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
       // expo_tokens:["ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
-      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
+      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
       query:{
         lga:[],
         gender:[],
@@ -258,17 +258,14 @@ filterGender = (test, arr) => {
       this.filterDisability(o, obj.disability)
       this.filterMartitalStatus(o, obj.marital_status)
       this.filterQualification(o, obj.qualification)
-
-      // if(_.includes(this.state.fitleredMembersLGA, o._id) && _.includes(this.state.filteredMembersGender, o._id) && _.includes(this.state.filteredMembersDisability, o._id) && _.includes(this.state.filteredMembersMaritalStatus, o._id) && _.includes(this.state.filteredMembersEducation, o._id)){
-      //   this.state.filteredResult.push(o)
-      // }
-
     })
-    for(let i = 0; i < totalArr.length; i++){
-      if(_.includes(this.state.fitleredMembersLGA, totalArr[i])){
-        console.log("USER EXISTS",totalArr[i])
-      }
-    }
+
+    // for(let i = 0; i < totalArr.length; i++){
+    //   if(_.includes(this.state.fitleredMembersLGA, totalArr[i])){
+    //     console.log("USER EXISTS",totalArr[i])
+    //   }
+    // }
+
     lgaMembersUniq = _.uniq(this.state.fitleredMembersLGA)
     genderMembersUniq = _.uniq(this.state.filteredMembersGender)
     disabilityMembersUniq = _.uniq(this.state.filteredMembersDisability)
@@ -280,13 +277,15 @@ filterGender = (test, arr) => {
 
     console.log("TOTAL NOT UNIQ", totalNotUniq)
     console.log("TOTLA UNIQED", totalUniq)
-    console.log("FILTERED LGA ",lgaMembersUniq )
-    console.log("FILTERED GENDER", genderMembersUniq)
-    console.log("FILTERED DISABILITY", disabilityMembersUniq)
-    console.log("FILTERED MARITAL STATUS", maritalStatusMembersUniq)
-    console.log("FILTERED QUALIFICATION", qualificationMembersUniq )
 
-    console.log(this.state.filteredResult)
+    totalUniq.map()
+    
+    // console.log("FILTERED LGA ",lgaMembersUniq )
+    // console.log("FILTERED GENDER", genderMembersUniq)
+    // console.log("FILTERED DISABILITY", disabilityMembersUniq)
+    // console.log("FILTERED MARITAL STATUS", maritalStatusMembersUniq)
+    // console.log("FILTERED QUALIFICATION", qualificationMembersUniq )
+    // console.log(this.state.filteredResult)
 
 
   }
