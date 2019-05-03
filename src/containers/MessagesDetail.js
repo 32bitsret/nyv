@@ -32,6 +32,7 @@ import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
 import _ from "lodash"
 
+
 class MessagesDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -60,6 +61,8 @@ class MessagesDetail extends React.Component {
       qualification: [],
       marital_status:[],
       gender:[],
+
+      tokens: [],
       
       disableA: false,
       disableB: false,
@@ -68,9 +71,7 @@ class MessagesDetail extends React.Component {
       lgaMembers: [],
       title: "",
       message:"",
-      // expo_tokens: ["ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
-      // expo_tokens:["ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]"],
-      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]","ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
+      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
       query:{
         lga:[],
         gender:[],
@@ -260,12 +261,6 @@ filterGender = (test, arr) => {
       this.filterQualification(o, obj.qualification)
     })
 
-    // for(let i = 0; i < totalArr.length; i++){
-    //   if(_.includes(this.state.fitleredMembersLGA, totalArr[i])){
-    //     console.log("USER EXISTS",totalArr[i])
-    //   }
-    // }
-
     lgaMembersUniq = _.uniq(this.state.fitleredMembersLGA)
     genderMembersUniq = _.uniq(this.state.filteredMembersGender)
     disabilityMembersUniq = _.uniq(this.state.filteredMembersDisability)
@@ -278,16 +273,21 @@ filterGender = (test, arr) => {
     console.log("TOTAL NOT UNIQ", totalNotUniq)
     console.log("TOTLA UNIQED", totalUniq)
 
-    totalUniq.map()
-    
-    // console.log("FILTERED LGA ",lgaMembersUniq )
-    // console.log("FILTERED GENDER", genderMembersUniq)
-    // console.log("FILTERED DISABILITY", disabilityMembersUniq)
-    // console.log("FILTERED MARITAL STATUS", maritalStatusMembersUniq)
-    // console.log("FILTERED QUALIFICATION", qualificationMembersUniq )
-    // console.log(this.state.filteredResult)
-
-
+    totalUniq.map(o => {
+      let count = 0
+      for(let i = 0; i <totalNotUniq.length; i++ ){
+        if(_.isEqual(o,totalNotUniq[i])){
+         count =  count + 1
+          console.log("MATCHES COMPARISON", count )
+        }
+      }
+      if(count === 5){
+        console.log("OBJECT MEETING THE REQUIREMENT", o)
+        if(!isEmpty(o.expo_tokens)){
+          this.state.tokens.push(o.expo_tokens)
+        }
+      }
+    })
   }
 
   onSend = e => {
@@ -304,8 +304,6 @@ filterGender = (test, arr) => {
       expo_tokens:this.state.expo_tokens,
       query: query
     }
-    console.log("LGA", query.lga)
-    console.log("ARRAY OF SELECTION", data)
     this.props.sendMessage(data)
   }
 
@@ -313,7 +311,8 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-     console.log(this.state.allMembers)
+    console.log("TOKENS", this.state.tokens)
+    console.log(this.state.allMembers)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
