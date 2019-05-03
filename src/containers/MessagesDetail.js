@@ -983,7 +983,7 @@ filterGender = (test, arr) => {
                  GENERAL: {" "+ _.uniq(this.state.recipients).length}
                 </p>
                 <p>
-                 MOBILE APP: {" "+ this.state.expo_tokens.length}
+                 MOBILE APP: {" "+ _.uniq(this.state.expo_tokens).length}
                 </p>
                </CardBody>
             </Card>
@@ -1057,7 +1057,7 @@ filterGender = (test, arr) => {
                       </Button>
                       :
                       <Button 
-                        disabled={(isEmpty(this.state.lga) && isEmpty(this.state.gender))}
+                        disabled={!(!isEmpty(this.state.lga) && !isEmpty(this.state.gender) && !isEmpty(this.state.marital_status) && !isEmpty(this.state.disability) && !isEmpty(this.state.qualification) && !isEmpty(this.state.title) && !isEmpty(this.state.message))}
                         color="success"
                         onClick={this.onSend}
                       >
