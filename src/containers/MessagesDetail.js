@@ -71,7 +71,8 @@ class MessagesDetail extends React.Component {
       lgaMembers: [],
       title: "",
       message:"",
-      expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
+      expo_tokens:[],
+      // expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
       query:{
         lga:[],
         gender:[],
@@ -270,21 +271,16 @@ filterGender = (test, arr) => {
     totalNotUniq = _.concat([],lgaMembersUniq, genderMembersUniq, disabilityMembersUniq, maritalStatusMembersUniq, qualificationMembersUniq)
     totalUniq = _.uniq(totalNotUniq)
 
-    console.log("TOTAL NOT UNIQ", totalNotUniq)
-    console.log("TOTLA UNIQED", totalUniq)
-
     totalUniq.map(o => {
       let count = 0
       for(let i = 0; i <totalNotUniq.length; i++ ){
         if(_.isEqual(o,totalNotUniq[i])){
          count =  count + 1
-          console.log("MATCHES COMPARISON", count )
         }
       }
       if(count === 5){
-        console.log("OBJECT MEETING THE REQUIREMENT", o)
-        if(!isEmpty(o.expo_tokens)){
-          this.state.tokens.push(o.expo_tokens)
+        if(!isEmpty(o.expo_token)){
+          this.state.expo_tokens.push(o.expo_token)
         }
       }
     })
@@ -301,7 +297,7 @@ filterGender = (test, arr) => {
     const data = {
       message: this.state.message,
       title: this.state.title,
-      expo_tokens:this.state.expo_tokens,
+      expo_tokens:_.uniq(this.state.expo_tokens),
       query: query
     }
     this.props.sendMessage(data)
@@ -311,8 +307,7 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-    console.log("TOKENS", this.state.tokens)
-    console.log(this.state.allMembers)
+    // console.log(this.state.allMembers)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
