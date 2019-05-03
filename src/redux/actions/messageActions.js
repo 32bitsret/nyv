@@ -1,12 +1,16 @@
 import axios from "axios"
 import {
-    SEND_MESSAGE, 
-    SEND_MESSAGE_ERROR
+    SENDING_MESSAGE, 
+    SEND_MESSAGE_ERROR,
+    SEND_SUCCESS
 } from "../Constants"
 import { sendMessageURL } from "../../api/apiURL"
 
 export const sendMessage = (body) => dispatch => {
     console.log("INSIDE MESSAGE ACTION", body)
+    dispatch({
+        type: SENDING_MESSAGE
+    })
     axios({
         method:"POST",
         url: sendMessageURL,

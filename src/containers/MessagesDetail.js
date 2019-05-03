@@ -273,10 +273,6 @@ filterGender = (test, arr) => {
       if(count === 5){
         let tempRecipient = []
         tempRecipient.push(o)
-        // this.setState({
-        //   recipients: _.uniq(tempRecipient)
-        // })
-        // _.concat(this.state.recipients, _.uniq(tempRecipient))
         this.state.recipients.push(o)
         if(!isEmpty(o.expo_token)){
           this.state.expo_tokens.push(o.expo_token)
@@ -306,7 +302,7 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-    console.log("RECIPIENTS", this.state.recipients)
+    console.log("MESSAGES REDUX", this.props.message)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -1048,7 +1044,7 @@ filterGender = (test, arr) => {
                 <GridContainer justify="flex-end">
                   <GridItem xs={12} sm={12} md={9}>
                     {
-                      this.state.isSending?
+                      this.props.message.isSending?
                       <Button 
                         disabled
                         color="warning"
@@ -1085,7 +1081,8 @@ filterGender = (test, arr) => {
 
 const mapStateToProps = state => {
   return {
-    members: state.dashboard
+    members: state.dashboard,
+    message: state.message
   }
 }
 

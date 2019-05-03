@@ -32,8 +32,9 @@ export const GET_PROFILE_ERROR = "GET_PROFILE_ERROR"
 export const GET_MEMBER = "GET_MEMBER"
 
 //Messages
-export const SEND_MESSAGE = "SEND_MESSAGE"
+export const SENDING_MESSAGE = "SEND_MESSAGE"
 export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR"
+export const SEND_SUCCESS = "SEND_SUCCESS"
 
 //Notifications
 export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS"
