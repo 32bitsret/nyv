@@ -23,6 +23,7 @@ import {
 } from "../utils/Gridd/Extraction"
 import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
 import isEmpty from "../utils/isEmpty";
+import _ from "lodash"
 
 
 let general
@@ -60,13 +61,38 @@ class Gridd extends Component {
       this.setState({ value: index });
   };
   
+  countWeb = (total) => {
+    total.map(o => {
+      if(isEmpty(o.expo_token)){
+        this.state.web.push(o)
+      }
+    })
+  }
+
+  countMobile = (total) => {
+    total.map(o => {
+      if(!isEmpty(o.expo_token)){
+        this.state.mobile.push(o)
+      }
+    })
+  }
+
+  countAdmin = (total) => {
+    total.map(o => {
+      console.log(o)
+      if(isEmpty(o.expo_token)){
+        this.state.admins.push(o)
+      }
+    })
+  }
+
   render() {
     const { classes } = this.props;
-    // setTimeout(()=>{
-    //   this.props.getAllProfile(),
-    //   50000
-    // })
     let members = this.state.members
+    this.countWeb(members)
+    this.countMobile(members)
+    // this.countAdmin(members)
+
     if(this.state.members !== null){   
     education = {
     data: {
@@ -257,33 +283,6 @@ class Gridd extends Component {
       }
     }
   };
-  
-  const pieChart = {
-    data: {
-      labels: ["62%", "32%"],
-      series: [
-        62,
-         32]
-    },
-    options: {
-      height: "230px"
-    }
-  };
-  
-
-  
-  // const employment = {
-  //   data: {
-  //     labels: ["%", "32%"],
-  //     series: [
-  //       extractEmployment(members,"employed"), 
-  //       extractEmployment(members,"not employed")]
-  //   },
-  //   options: {
-  //     height: "230px"
-  //   }
-  // };
-
 
   gender = {
     data: {
@@ -498,11 +497,11 @@ class Gridd extends Component {
             <CardBody>
               <h1>{members.length}{" "}TOTAL</h1>
               <hr/>
-              <h4>{!isEmpty(this.state.mobile)?this.state.mobile.length:"0"}{" "}(MOBILE USERS)</h4>
+              <h4>{!isEmpty(this.state.mobile)?_.uniq(this.state.mobile).length:"0"}{" "}(MOBILE USERS)</h4>
               <hr/>
-              <h4>{!isEmpty(this.state.web)?this.state.web.length:"0"}{" "}(WEB USERS)</h4>
-              <hr/>
-              <h4>{!isEmpty(this.state.admin)?this.state.admin.length:"0"}{" "}(ADMINS)</h4>
+              <h4>{!isEmpty(this.state.web)?_.uniq(this.state.web).length:"0"}{" "}(WEB USERS)</h4>
+              {/* <hr/>
+              <h4>{!isEmpty(this.state.admins)?_.uniq(this.state.admins).length:"0"}{" "}(ADMINS)</h4> */}
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>

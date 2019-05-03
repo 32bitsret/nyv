@@ -975,6 +975,7 @@ filterGender = (test, arr) => {
                     </div>
               </CardHeader>
               <CardBody>
+                <hr/>
                 <p>
                  GENERAL: {" "+ _.uniq(this.state.recipients).length}
                 </p>
