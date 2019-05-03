@@ -22,6 +22,7 @@ import {
   extractEmploymentE
 } from "../utils/Gridd/Extraction"
 import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
+import isEmpty from "../utils/isEmpty";
 
 
 let general
@@ -34,7 +35,10 @@ class Gridd extends Component {
     super(props)
     this.state = {
       value: 0,
-      members: []
+      members: [],
+      admins:[],
+      mobile:[],
+      web:[]
     }
   }
 
@@ -492,8 +496,13 @@ class Gridd extends Component {
           <Card chart >
 
             <CardBody>
-              <h1>{members.length}{" "}MEMBERS</h1>
-              <h4 className={classes.cardTitle}>Total Population</h4>
+              <h1>{members.length}{" "}TOTAL</h1>
+              <hr/>
+              <h4>{!isEmpty(this.state.mobile)?this.state.mobile.length:"0"}{" "}(MOBILE USERS)</h4>
+              <hr/>
+              <h4>{!isEmpty(this.state.web)?this.state.web.length:"0"}{" "}(WEB USERS)</h4>
+              <hr/>
+              <h4>{!isEmpty(this.state.admin)?this.state.admin.length:"0"}{" "}(ADMINS)</h4>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
