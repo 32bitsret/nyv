@@ -1,8 +1,7 @@
 import axios from 'axios';
-//import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import {loginURL, registerURL} from "../../api/apiURL"
-import { TEST_REGISTER,
+import {
    GET_ERRORS, 
    SET_CURRENT_USER,
   LOGIN_SUCCESS,
@@ -47,8 +46,6 @@ export const loginUser = (user) => dispatch => {
     const user = jwt_decode(token)
     localStorage.setItem("pyc_token", token)
     dispatch(getProfileInit(user.phone)) 
-    console.log("USER", user)
-    console.log("TOKEN", token)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data.payload
