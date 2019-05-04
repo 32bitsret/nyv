@@ -961,9 +961,9 @@ class UserProfile extends Component {
                           </div>
 
                         </DialogContent>
-                        { this.state.isUpdating
+                        { 
+                          this.state.isUpdating
                           ?
-                          
                           <DialogActions>
                             <Button disabled color="warning">
                               updating...

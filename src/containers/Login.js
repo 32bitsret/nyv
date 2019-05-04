@@ -20,6 +20,7 @@ import {
   verifyEmail, 
   verifyLength
 }from "../utils/validation"
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,11 +32,11 @@ class Login extends React.Component {
       emailState:"",
       passwordState:"",
       error:{},
-      isloading: false
+      isloading: false,
+      iserror:false
     };
   }
   componentDidMount() {
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     this.timeOutFunction = setTimeout(
       function() {
         this.setState({ cardAnimaton: "" });
@@ -45,6 +46,9 @@ class Login extends React.Component {
     if(this.props.auth.isAuthenticated){
       this.props.history.push("/dashboard")
     }
+    this.setState({
+      iserror: this.props.created.isError
+    })
   }
 
   componentWillReceiveProps(nextProps){
@@ -102,16 +106,27 @@ class Login extends React.Component {
     }
   }
 
+
   
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props.auth)
+    console.log("PROPERTIES",this.props)
     console.log(this.state.error)
     if(this.props.auth.error !== null || this.props.auth.error !== "" ){ 
     }
     return (
       <div className={classes.container}>
       <div style={{height:"80px"}}></div>
+          <Snackbar
+            place="tc"
+            color="danger"
+            open={this.state.iserror}
+            message="An Error Occurred. Check Password or Email"
+            closeNotification={() => this.setState({
+               iserror: false 
+              })}
+            close
+          />
         <GridContainer justify="center">
           <GridItem xs={12} sm={6} md={4}>
             <form>
@@ -208,7 +223,8 @@ Login.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    created: state.createUser
   }
 }
 export default connect(mapStateToProps, {loginUser})(withRouter(withStyles(loginPageStyle)(Login)));

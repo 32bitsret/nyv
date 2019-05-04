@@ -4,10 +4,7 @@ import {
     ERROR,
     FETCH_USER,
     FETCHING_USER,
-    DONE_UPDATING,
-    GET_PROFILE,
     CREATING_PROFILE,
-    SUCCESS_UPDATING_PHOTO,
     UPDATE_ERROR
 } from "../Constants"
 import axios from "axios"
