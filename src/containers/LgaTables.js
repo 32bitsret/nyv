@@ -90,7 +90,6 @@ class LgaTables extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                  console.log("DATA", obj)
                   this.setState({
                     tableData: obj,
                     isloading: false
@@ -111,7 +110,7 @@ class LgaTables extends React.Component {
 
   componentWillReceiveProps(nextProps){
     this.setState({
-      // tableData:nextProps.dashboard.allMembers
+
     })
   }
 
@@ -124,7 +123,6 @@ class LgaTables extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES", this)
     const display = this.state.isloading ? ( 
     <Card>
       <CardBody  className={classes.cardFooter}>

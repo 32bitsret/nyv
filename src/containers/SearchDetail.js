@@ -34,7 +34,6 @@ class SearchDetail extends React.Component {
 
   }
   render() {
-    console.log("SEARCH DETAIL PROPS",this.props)
     const { classes } = this.props;
     const display = this.props.dashboard.isloading ? 
         <GridContainer>
@@ -50,6 +49,7 @@ class SearchDetail extends React.Component {
         </GridContainer>
         :
         <SearchResult/>
+
     return (
       <div>
         <GridContainer justify="center">

@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => dispatch => {
     data: userData
   }).then(res => {
     console.log(res)
-    history.push("/login")
+    // history.push("/login")
   }).catch(err => {
     console.log("LOGIN ERROR",err.response.data.message)
   })

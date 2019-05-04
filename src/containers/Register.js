@@ -128,6 +128,8 @@ class LoginPage extends React.Component {
     }
   }
 
+  continue = () => this.props.history.push("/login")
+
   selectChange = e => {
     e.preventDefault()
     this.setState({ [e.target.name]: e.target.value });
@@ -173,7 +175,6 @@ class LoginPage extends React.Component {
         // role:"admin" 
       }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
-        console.log("REGISTRATION::::::",data)
         this.setState({
           isloading: true
         })
@@ -183,11 +184,38 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { classes } = this.props;
-    return (
-      <div className={classes.container}>
-      <div style={{height:"80px"}}></div>
-        <GridContainer justify="center">
+    const display = true 
+    ?
+    (
+      <div>
+          <GridContainer justify="center">
+          <GridItem xs={12} sm={6} md={4}>
+            <form>
+              <Card login className={classes[this.state.cardAnimaton]}>
+                <CardBody>
+                <Button color="success" simple size="lg" block disabled>
+                      SUCCESSFULLY REGISTERED!
+                    </Button>
+                </CardBody>
+                <CardFooter className={classes.justifyContentCenter}>
+                  {
+                    <Button color="success" simple size="lg" block onClick={this.continue}>
+                      continue
+                    </Button>
+                  }
+                </CardFooter>
+              </Card>
+            </form>
+          </GridItem>
+        </GridContainer>
+      </div>
+    ) 
+    :
+    (
+      <div>
+      <GridContainer justify="center">
           <GridItem xs={12} sm={6} md={4}>
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
@@ -284,197 +312,7 @@ class LoginPage extends React.Component {
                   }}
                 />
                  <GridContainer justify="center">
-                      {/* <GridItem xs={12} sm={6} md={5} lg={6}>
-                        <FormControl
-                          fullWidth
-                          className={classes.selectFormControl}
-                        >
-                          <InputLabel
-                            htmlFor="simple-select"
-                            className={classes.selectLabel}
-                          >
-                            LGA
-                          </InputLabel>
-                          <Select
-                            error={this.state.lgaState === "error" ? true: false}
-                              MenuProps={{
-                              className: classes.selectMenu
-                            }}
-                            classes={{
-                              select: classes.select
-                            }}
-                            value={this.state.lga}
-                            onChange={e => this.onChange(e, "lga", "lga")}
-                            inputProps={{
-                              name: "lga",
-                              id: "lga"
-                            }}
-                          >
-                            <MenuItem
-                              disabled
-                              classes={{
-                                root: classes.selectMenuItem
-                              }}
-                            >
-                              Choose 
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Barkin Ladi"
-                            >
-                              Barkin Ladi
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Bassa"
-                            >
-                              Bassa
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Bokkos"
-                            >
-                              Bokkos
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos East"
-                            >
-                              Jos East
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos North"
-                            >
-                              Jos North
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos South"
-                            >
-                              Jos South
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Kanam"
-                            >
-                              Kanam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Kanam"
-                            >
-                              Kanam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Langtang North"
-                            >
-                              Langtang North
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Langtang South"
-                            >
-                              Langtang South
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value=" Mangu"
-                            >
-                              Mangu
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value=" Mikang"
-                            >
-                              Mikang
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Pankshin"
-                            >
-                              Pankshin
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Qua'an Pan"
-                            >
-                              Qua'an Pan
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Riyom"
-                            >
-                              Riyom
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Shendam"
-                            >
-                              Shendam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Wase"
-                            >
-                              Wase
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                      </GridItem> */}
-                              {"  "}
+                      {"  "}
                       <GridItem xs={12} sm={6} md={5} lg={12}>
                         <FormControl
                           fullWidth
@@ -613,6 +451,13 @@ class LoginPage extends React.Component {
             </form>
           </GridItem>
         </GridContainer>
+        </div>
+    )
+
+    return (
+      <div className={classes.container}>
+      <div style={{height:"80px"}}></div>
+        {display}
       </div>
     );
   }
