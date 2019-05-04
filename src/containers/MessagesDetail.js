@@ -1075,7 +1075,6 @@ filterGender = (test, arr) => {
                       ""
                     }
                   </GridItem>
-                  
                 </GridContainer>
               </form>
             </CardBody>

@@ -63,7 +63,7 @@ class SearchDetail extends React.Component {
                 </p>
                 <Button
                   color="success"
-                  onClick={() => this.props.history.goBack()}
+                  onClick={() => this.props.history.push("/statistics")}
                 >
                   Back
                 </Button>
