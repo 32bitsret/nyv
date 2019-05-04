@@ -1033,24 +1033,14 @@ class UserProfile extends Component {
                           className="col-md-6 col-form-label">
                           Resume
                         </label>
-                        {/* <input 
-                          type="file" 
-                          className="form-control form-control-lg" 
-                          placeholder="resume" 
-                          name="resume" 
-                        /> */}
+
                         <DocumentUpload
                           cancel={this.onClickUpload}
                         />
                       </div>
                     </DialogContent>
                     <DialogActions>
-                      {/* <Button onClick={this.onClickUpload} color="danger">
-                        Cancel
-                      </Button>
-                      <Button onClick={this.handleClose} color="success">
-                        Update
-                      </Button> */}
+  
                     </DialogActions>
                   </Dialog>  
                 </li>
@@ -1092,7 +1082,7 @@ class UserProfile extends Component {
             place="tc"
             color="danger"
             open= {this.props.created.isError}
-            message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+            message="An Error Occurred. Check some fields"
             closeNotification={() => this.setState({ tl: false })}
             close
           />
