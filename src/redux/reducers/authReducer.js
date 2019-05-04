@@ -4,13 +4,17 @@ import {
   LOGIN_SUCCESS, 
   LOGOUT,
   SET_USER,
-  ERROR_LOGIN
+  ERROR_LOGIN,
+  REGISTER_SUCCESS,
+  GET_ERRORS
 } from '../Constants';
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  error: {}
+  error: {},
+  isSuccess: false,
+  isError: false
 };
 
 export default (state = initialState, action) => {
@@ -38,10 +42,20 @@ export default (state = initialState, action) => {
       isAuthenticated: !isEmpty(action.payload),
       user: action.payload
      }
-     case ERROR_LOGIN:
+    case GET_ERRORS:
+     return {
+       ...state,
+       isError: !isEmpty(action.payload)
+     }
+    case ERROR_LOGIN:
       return{
         ...state,
         error: action.payload
+      }
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isSuccess: !isEmpty(action.payload)
       }
     default:
       return state;

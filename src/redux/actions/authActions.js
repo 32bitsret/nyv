@@ -7,7 +7,8 @@ import { TEST_REGISTER,
    SET_CURRENT_USER,
   LOGIN_SUCCESS,
   LOGOUT,
-  ERROR_LOGIN
+  ERROR_LOGIN,
+  REGISTER_SUCCESS
   } from '../Constants';
 import {getProfileInit} from "./dashboardAction"
 
@@ -20,8 +21,16 @@ export const registerUser = (userData, history) => dispatch => {
   }).then(res => {
     console.log(res)
     // history.push("/login")
+    dispatch({
+      type:REGISTER_SUCCESS,
+      payload: res.data
+    })
   }).catch(err => {
     console.log("LOGIN ERROR",err.response.data.message)
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    })
   })
 };
 

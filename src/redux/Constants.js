@@ -6,6 +6,7 @@ export const SET_SIDEBAR = "SET_SIDEBAR"
 export const GET_ERRORS = "GET_ERRORS"
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const TEST_REGISTER = "TEST_REGISTER"
+export  const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 
 //login
 export const LOGIN_START = "LOGIN_START"

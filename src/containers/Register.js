@@ -184,9 +184,9 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.register)
     const { classes } = this.props;
-    const display = true 
+    const display = this.props.register.isSuccess 
     ?
     (
       <div>
@@ -436,7 +436,7 @@ class LoginPage extends React.Component {
                 <CardFooter className={classes.justifyContentCenter}>
                   {
                    this.state.isloading?
-                    <Button color="success" simple size="lg" block disabled>
+                    <Button color="warning" simple size="lg" block disabled>
                      loading...
                     </Button>
                     : 
@@ -469,7 +469,7 @@ LoginPage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    state
+    register: state.auth
   }
 }
 
