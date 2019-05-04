@@ -16,6 +16,7 @@ import {
   updateEducationalInfo,
   updateContactInfo,
 } from "../redux/actions/createActions"
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
 import ImageUpload from "./components/ImageUpload"
@@ -24,6 +25,8 @@ import DocumentUpload from "./components/DocumentUpload"
 
 class UserProfile extends Component {
   state = {
+    tc: false,
+
     isUpdating: false,
     firstname:"",
     middlename:"",
@@ -231,7 +234,7 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.state.user)
+    console.log("USER DASHBOARD",this.props.created)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -1085,6 +1088,14 @@ class UserProfile extends Component {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12} lg={10}>
           <div>
+          <Snackbar
+            place="tc"
+            color="danger"
+            open= {this.props.created.isError}
+            message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
+            closeNotification={() => this.setState({ tl: false })}
+            close
+          />
            {display}
           </div>
         </GridItem>

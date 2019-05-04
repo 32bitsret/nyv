@@ -60,6 +60,11 @@ export default (state = initialState, action) => {
             user: action.payload,
             userExist: true
         }
+    case UPDATE_ERROR:
+        return {
+            ...state,
+            isError: !isEmpty(action.payload)
+        }
     default:
       return state;
   }

@@ -58,6 +58,10 @@ export const updateBasicInfo = (data) => dispatch =>{
     })
     .catch(err => {
         console.log("ERROR FOR UPDATING BASIC DATA ", err)
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
@@ -84,6 +88,10 @@ export const updatePhoto = (location, id) => dispatch => {
     })
     .catch(err => {
         console.log("ERROR FROM PHOTO UPDATE", err)
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
@@ -110,6 +118,10 @@ export const updateDocument = (location, id) => dispatch => {
     })
     .catch(err => {
         console.log("ERROR FROM PHOTO UPDATE", err)
+        dispatch({
+            type:UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
@@ -126,7 +138,10 @@ export const updateEducationalInfo = (data) => dispatch =>{
         window.location.reload()
     })
     .catch(err => {
-        
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
@@ -143,6 +158,10 @@ export const uploadPicture = (data, id) => dispatch =>{
     })
     .catch(err => {
         console.log("ERROR FROM IMAGE UPLOAD")
+        dispatch({
+            type:UPDATE_ERROR,
+            payload:err
+        })
     })
 }
 
@@ -159,7 +178,10 @@ export const updateContactInfo = data => dispatch => {
         window.location.reload()
     })
     .catch(err => {
-        
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
@@ -177,6 +199,10 @@ export const uploadDocument = (data, id) => dispatch =>{
     })
     .catch(err => {
         console.log("DOCUMENT FAILURE", err)
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: err
+        })
     })
 }
 
