@@ -7,7 +7,8 @@ import {
     DONE_UPDATING,
     GET_PROFILE,
     CREATING_PROFILE,
-    SUCCESS_UPDATING_PHOTO
+    SUCCESS_UPDATING_PHOTO,
+    UPDATE_ERROR
 } from "../Constants"
 import axios from "axios"
 import {
@@ -52,7 +53,6 @@ export const updateBasicInfo = (data) => dispatch =>{
         data: data
     })
     .then(res => {
-        // localStorage.setItem('user', res.data.data)
         console.log("PERSONAL INFO UPDATED", res.data.data)
         window.location.reload()
     })

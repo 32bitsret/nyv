@@ -6,7 +6,8 @@ import {
     FETCH_USER,
     FETCHING_USER,
     DONE_UPDATING,
-    CREATING_PROFILE
+    CREATING_PROFILE,
+    UPDATE_ERROR
 } from "../Constants"
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     isloading: false,
     user:{},
     createdUser:false,
-    creatingProfile:false
+    creatingProfile:false,
+    isError: false
 };
 
 export default (state = initialState, action) => {

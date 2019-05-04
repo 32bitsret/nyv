@@ -63,3 +63,6 @@ export const SUCCESS_UPDATING_PHOTO = "SUCCESS_UPDATING_PHOTO"
 
 //searching
 export const FILTERATION_DONE = "FILTERATION_DONE"
+
+//updating
+export const UPDATE_ERROR = "UPDATE_ERROR"

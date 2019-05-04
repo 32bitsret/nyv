@@ -24,6 +24,7 @@ import DocumentUpload from "./components/DocumentUpload"
 
 class UserProfile extends Component {
   state = {
+    isUpdating: false,
     firstname:"",
     middlename:"",
     lastname:"",
@@ -158,6 +159,9 @@ class UserProfile extends Component {
 //======================START OF SUBMISSION ROUTINES=============================
   onSubmitBasicInfo = e => {
     e.preventDefault()
+    this.setState({
+      isUpdating: true
+    })
     let query = {
       _id: this.props.dashboard.dashboard._id
     }
@@ -170,15 +174,14 @@ class UserProfile extends Component {
       type_of_work:(!isEmpty(this.state.employment_status)&&this.state.employment_status === "Not Employed")?"":this.state.type_of_work
     }
     let obj = {query, update}
-    console.log("BIG OBJECT", obj)
     this.props.updateBasicInfo({query,update})
-    // this.setState({
-    //   openPersonal: !this.state.openPersonal
-    // })
   }
 
   onSubmitContactInfo = e => {
     e.preventDefault()
+    this.setState({
+      isUpdating: true
+    })
     let state = ""
     if(this.state.lga !== "Others"){
       state = "Plateau State"
@@ -201,6 +204,9 @@ class UserProfile extends Component {
 
   onSubmitEducationalInfo = e => {
     e.preventDefault()
+    this.setState({
+      isUpdating: true
+    })
     let query = {
       _id: this.props.dashboard.dashboard._id
     }
@@ -714,14 +720,26 @@ class UserProfile extends Component {
                             </div>
                         </form>
                         </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.onClickPersonal} color="danger">
-                            Cancel
+                        {
+                          this.state.isUpdating
+                           ?
+                          <DialogActions>
+                          <Button  
+                            disabled
+                            color="warning">
+                            Updating...
                           </Button>
-                          <Button onClick={this.onSubmitBasicInfo} color="success">
-                            Update
-                          </Button>
-                        </DialogActions>
+                          </DialogActions>
+                        :
+                          <DialogActions>
+                            <Button onClick={this.onClickPersonal} color="danger">
+                              Cancel
+                            </Button>
+                            <Button onClick={this.onSubmitBasicInfo} color="success">
+                              Update
+                            </Button>
+                          </DialogActions>
+                        }
                       </Dialog>  
                 </li>
                 <li className="list-group-item">
@@ -814,14 +832,23 @@ class UserProfile extends Component {
                             />
                           </div>
                         </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.onClickContact} color="danger">
-                            Cancel
-                          </Button>
-                          <Button onClick={this.onSubmitContactInfo} color="success">
-                            Update
-                          </Button>
-                        </DialogActions>
+                        { this.state.isUpdating
+                          ?
+                          <DialogActions>
+                            <Button disabled color="warning">
+                              Updating...
+                            </Button>
+                          </DialogActions>
+                        :
+                          <DialogActions>
+                            <Button onClick={this.onClickContact} color="danger">
+                              Cancel
+                            </Button>
+                            <Button onClick={this.onSubmitContactInfo} color="success">
+                              Update
+                            </Button>
+                          </DialogActions>
+                        }
                       </Dialog>  
                 </li>
               </ul>
@@ -931,14 +958,24 @@ class UserProfile extends Component {
                           </div>
 
                         </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.onClickEducation} color="danger">
-                            Cancel
-                          </Button>
-                          <Button onClick={this.onSubmitEducationalInfo} color="success">
-                            Update
-                          </Button>
-                        </DialogActions>
+                        { this.state.isUpdating
+                          ?
+                          
+                          <DialogActions>
+                            <Button disabled color="warning">
+                              updating...
+                            </Button>
+                          </DialogActions>
+                          :
+                          <DialogActions>
+                            <Button onClick={this.onClickEducation} color="danger">
+                              Cancel
+                            </Button>
+                            <Button onClick={this.onSubmitEducationalInfo} color="success">
+                              Update
+                            </Button>
+                          </DialogActions>
+                        }
                       </Dialog>  
                 </li>
                 <li className="list-group-item">
