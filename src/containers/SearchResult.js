@@ -9,16 +9,11 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { dataTable } from "variables/general.jsx";
 import Heading from "components/Heading/Heading.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import { connect } from "react-redux"
 import isEmpty from "../utils/isEmpty"
 import UserPreview from "./components/UserPreview"
-import {extractLGAArr} from "../utils/Gridd/Extraction"
-import {FILTERATION_DONE} from "../redux/Constants"
-// import 
-import store from '../store';
 import {getSpecificProfiles} from "../redux/actions/searchingAction"
 import axios from "axios"
 
@@ -213,7 +208,6 @@ class SearchResult extends React.Component {
 
 const mapStateToProps = state => {
     return{
-        // search: state.search.result,
         result: state.dashboard.searchMembers,
         search:state.dashboard
     }

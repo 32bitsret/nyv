@@ -9,7 +9,8 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import {getAllProfile} from "../redux/actions/dashboardAction"
 import {connect} from "react-redux"
 import SearchResult from "./SearchResult"
-
+import Button from "components/CustomButtons/Button.jsx";
+import {withRouter} from "react-router-dom"
 
 const styles = {
   cardTitle,
@@ -33,6 +34,7 @@ class SearchDetail extends React.Component {
 
   }
   render() {
+    console.log("SEARCH DETAIL PROPS",this.props)
     const { classes } = this.props;
     const display = this.props.dashboard.isloading ? 
         <GridContainer>
@@ -44,9 +46,6 @@ class SearchDetail extends React.Component {
                 <h4 className={classes.cardIconTitle}>Loading...</h4>
               </CardBody>
             </Card>
-          </GridItem>
-          <GridItem xs={6} md={6} xs={6} lg={12}>
-              {display}
           </GridItem>
         </GridContainer>
         :
@@ -62,6 +61,12 @@ class SearchDetail extends React.Component {
                 </h4>
                   <p className={classes.cardCategory}>                  
                 </p>
+                <Button
+                  color="success"
+                  onClick={() => this.props.history.goBack()}
+                >
+                  Back
+                </Button>
               </CardHeader>
               <CardBody>
                 {display}
@@ -80,4 +85,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {getAllProfile})(withStyles(styles)(SearchDetail));
+export default connect(mapStateToProps, {getAllProfile})(withRouter(withStyles(styles)(SearchDetail)));
