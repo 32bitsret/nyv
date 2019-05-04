@@ -977,7 +977,7 @@ filterGender = (test, arr) => {
               <CardBody>
                 <hr/>
                 <p>
-                 GENERAL: {" "+ _.uniq(this.state.recipients).length}
+                 ALL: {" "+ _.uniq(this.state.recipients).length}
                 </p>
                 <p>
                  MOBILE APP: {" "+ _.uniq(this.state.expo_tokens).length}
