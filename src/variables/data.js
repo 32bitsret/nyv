@@ -34,13 +34,13 @@ const dashAdmin = [
     state: "openPages",
     icon: Person
   },
-  {
-    collapse: false,
-    path: "/search",
-    name: "Search",
-    state: "openPages",
-    icon: Search
-  },
+  // {
+  //   collapse: false,
+  //   path: "/search",
+  //   name: "Search",
+  //   state: "openPages",
+  //   icon: Search
+  // },
  
 ]
 

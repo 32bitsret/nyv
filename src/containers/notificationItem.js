@@ -158,7 +158,7 @@ class Notifications extends React.Component {
                     </GridItem>
                   </GridContainer>
                   {/* {notificationDisplay} */}
-                  <ReactTable />
+                  {/* <ReactTable /> */}
                 </div>
               </CardBody>
             </Card>
