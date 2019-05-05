@@ -3,12 +3,9 @@ import cx from "classnames";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
-// creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
@@ -72,8 +69,6 @@ class Notifications extends React.Component {
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("Notifications",this.props)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -91,7 +86,7 @@ class Notifications extends React.Component {
           routes={route}
           logoText={"PYC"}
           logo={logo}
-          // image={image}
+          // image={logo}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
           color="green"

@@ -16,6 +16,8 @@ import CardBody from "components/Card/CardBody.jsx";
 import notificationsStyle from "assets/jss/material-dashboard-pro-react/views/notificationsStyle.jsx";
 import notify from "../variables/notificationData"
 import {connect} from "react-redux"
+import { getNotification } from "../redux/actions/notificationActions";
+import ReactTable from "./Table"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -30,8 +32,20 @@ class Notifications extends React.Component {
       smallModal: false,
     };
   }
-  // to stop the warning of calling setState of unmounted component
-  componentWillUnmount() {
+
+  componentDidMount(){
+    this.props.getNotification(
+      {
+        lga:"",
+        qualification:"CERT",
+        marital_status:"Single",
+        disability:"Disabled",
+        gender:"female"
+    }
+    )
+  }
+
+   componentWillUnmount() {
     var id = window.setTimeout(null, 0);
     while (id--) {
       window.clearTimeout(id);
@@ -62,7 +76,6 @@ class Notifications extends React.Component {
     this.setState(x);
   }
   render() {
-
     const { classes } = this.props;
     const notificationDisplay = notify.map( (one,key) =>(
           <GridContainer justify="center" key={key} >
@@ -72,21 +85,12 @@ class Notifications extends React.Component {
               md={12}
               className={classes.center}
             >
-              <div
-                className={
-                  classes.cardHeader +
-                  " " +
-                  classes.center +
-                  " " +
-                  classes.modalSectionTitle
-                }
-              >
-              </div>
-                 <SnackbarContent
-                  message={one.message}
-                  icon={AddAlert}
-                  color="success"
-                />
+              <SnackbarContent
+                onClick={() => this.setState({classicModal: true})}
+                message={one.message}
+                // icon={AddAlert}
+                color="success"
+              />
               <Dialog
                 classes={{
                   root: classes.center + " " + classes.modalRoot,
@@ -141,7 +145,7 @@ class Notifications extends React.Component {
     return (
       <div>
         <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
+          <GridItem xs={12} sm={12} md={8}>
             <Card>
               <CardBody>
                 <div>
@@ -150,16 +154,11 @@ class Notifications extends React.Component {
                       <div
                         className={classes.cardHeader + " " + classes.center}
                       >
-                        {/* <h4 className={classes.cardTitle}>
-                          Notifications Places
-                        </h4>
-                        <p className={classes.cardSubtitle}>
-                         notifications
-                        </p> */}
                       </div>
                     </GridItem>
                   </GridContainer>
-                  {notificationDisplay}
+                  {/* {notificationDisplay} */}
+                  <ReactTable />
                 </div>
               </CardBody>
             </Card>
@@ -176,4 +175,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(withStyles(notificationsStyle)(Notifications));
+export default connect(mapStateToProps, {getNotification})(withStyles(notificationsStyle)(Notifications));
