@@ -8,19 +8,12 @@ import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Image from "@material-ui/icons/Image";
-// core components
 import Header from "./Header";
-import Footer from "./Footer";
 import Sidebar from "./Sidebar";
-import Gridd from './Gridd'
-import ProtectedRoute from '../utils/ProtectedRoute'
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
 import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
-import Profile from './Profile'
-import Tablex from '../views/Tables/ReactTables'
 import MessagesDetail from "./MessagesDetail"
 // import User from '../variables/UserData'
 var ps;
@@ -111,7 +104,7 @@ class Messages extends React.Component {
           routes={route}
           logoText={"PYC"}
           logo={logo}
-          // image={image}
+          image={image}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
           color="green"

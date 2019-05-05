@@ -411,7 +411,7 @@ class Gridd extends Component {
         </GridItem>
         <GridItem xs={12} sm={12} md={6}>
           <Card chart >
-            <CardHeader color="success" className={classes.cardHeaderHover}>
+            <CardHeader color="info" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
                 data={education.data}
@@ -440,7 +440,7 @@ class Gridd extends Component {
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <Card chart >
-            <CardHeader color="success" className={classes.cardHeaderHover}>
+            <CardHeader color="warning" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
                 data={gender.data}
@@ -468,7 +468,7 @@ class Gridd extends Component {
       <GridContainer>
           <GridItem xs={12} sm={12} md={6} lg={4}>
           <Card chart >
-            <CardHeader color="success" className={classes.cardHeaderHover}>
+            <CardHeader color="danger" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
                 data={employment.data}

@@ -13,6 +13,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import NotificationItem from './notificationItem'
 import User from '../variables/UserData'
+import image from "assets/img/sidebar-2.jpg";
 
 var ps;
 
@@ -86,7 +87,7 @@ class Notifications extends React.Component {
           routes={route}
           logoText={"PYC"}
           logo={logo}
-          // image={logo}
+          image={image}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
           color="green"
