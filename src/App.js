@@ -89,7 +89,7 @@ class App extends Component {
                         path="/register" 
                         component={Register} 
                     />  
-                    <Route 
+                    {/* <Route 
                         exact 
                         path="/aboutus" 
                         component={Aboutus}
@@ -134,7 +134,7 @@ class App extends Component {
                         THE THREE ZONES OF THE COUNCIL ON THE 7TH, 20TH AND 21ST OF 
                         FEBRUARY 2019 IN JOS, PANKSHIN AND SHENDAM RESPECTIVELY"
                         component={Speech6}
-                    />
+                    /> */}
                     <Switch>
                         <ProtectedRoute 
                             exact 

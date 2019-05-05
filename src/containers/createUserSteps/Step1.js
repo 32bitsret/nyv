@@ -34,6 +34,7 @@ import {
   compare
 }from "../../utils/validation"
 import { withRouter } from "react-router-dom"
+import isEmpty from "../../utils/isEmpty"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -145,10 +146,14 @@ class Step1 extends React.Component {
       case "lga":
         if(verifyLength(e.target.value, 1)){
           this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
         }
       case "gender":
         if(verifyLength(e.target.value, 1)){
           this.setState({[stateName+"State"]: "success"})
+        }else{
+          this.setState({[stateName+"State"]: "error"})
         }
     }
   }
