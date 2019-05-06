@@ -23,6 +23,7 @@ import isEmpty from "../utils/isEmpty"
 import { getAllProfile } from "../redux/actions/dashboardAction"
 import {sendMessage} from "../redux/actions/messageActions"
 import _ from "lodash"
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 
   
 class MessagesDetail extends React.Component {
@@ -323,6 +324,16 @@ filterGender = (test, arr) => {
         />
         <GridContainer>
         <GridItem xs={12} sm={12} md={4} lg={3}>
+          <Snackbar
+              place="tc"
+              open= {this.props.message.doneSending}
+              color="success"
+              message="Message sent successfully"
+              closeNotification={() => this.setState({
+                iserror: false 
+                })}
+              close
+            />
             <Card>
               <CardHeader color="success" icon>
                 <div
