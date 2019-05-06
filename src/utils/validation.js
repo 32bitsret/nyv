@@ -1,4 +1,4 @@
-
+import isEmpty from "./isEmpty"
 
   // function that returns true if value is email, false otherwise
   export const verifyEmail = (value) =>{
@@ -10,9 +10,11 @@
   }
   // function that verifies if a string has a given length or not
   export const  verifyLength = (value, length) => {
-    if (value.length >= length) {
+    if(!isEmpty(value)){ 
+      if (value.length >= length) {
       return true;
     }
+   }
     return false;
   }
   // function that verifies if two strings are equal

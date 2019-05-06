@@ -28,7 +28,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Phone from "@material-ui/icons/Phone";
-
+// import bgImage from "assets/img/register.jpg";
+import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -456,7 +457,7 @@ class LoginPage extends React.Component {
 
     return (
       <div className={classes.container}>
-      <div style={{height:"80px"}}></div>
+      <div style={{height:"80px" }}></div>
         {display}
       </div>
     );

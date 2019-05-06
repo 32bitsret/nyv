@@ -16,6 +16,7 @@ import logo from "assets/img/logo.jpg";
 import data from '../variables/data'
 import User from '../variables/UserData'
 import SearchDetail from "./SearchDetail"
+import image from "assets/img/sidebar-2.jpg";
 
 var ps;
 
@@ -106,6 +107,7 @@ class Search extends React.Component {
           logo={logo}
           handleDrawerToggle={this.handleDrawerToggle}
           open={this.state.mobileOpen}
+          image={image}
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}

@@ -186,7 +186,7 @@ class Step1 extends React.Component {
     // if(this.state.lgaState === ""){
     //   this.setState({lgaState: "error"})
     // }
-    if(this.state.genderState === ""){
+    if(isEmpty(this.state.genderState)){
       this.setState({genderState:"error"})
     }
     if(this.state.confirm_passwordState === ""){
@@ -200,12 +200,15 @@ class Step1 extends React.Component {
           phone: Number(this.state.phone),
           lastname:  this.state.lastname,
           gender: this.state.gender,
-          // lga: this.state.lga,
           role:this.state.role
         }
-      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+      
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
         this.props.createUserByAdmin(data)
+      }
+      else{
+        console.log("MISSING SOME FIELDS::::::::::::::::::::")
       }
     }
   }
