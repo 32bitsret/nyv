@@ -524,7 +524,7 @@ class UserProfile extends Component {
       { label: 'PHD', value: 'PHD' }
     ];
 
-    const display = this.props.dashboard.isloading ?
+    const display = isEmpty(this.state.user) ?
     (
     <div>
         <GridContainer justify="center">
@@ -562,7 +562,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{this.state.user.firstname+ " "+this.state.user.lastname}</h2>
+                  <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
                   <p>
                     {/* {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)} */}
                   </p>
