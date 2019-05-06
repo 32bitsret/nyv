@@ -251,8 +251,6 @@ class Step1 extends React.Component {
 
   render() {
     const { classes } = this.props;
-   console.log("STEP ERROR", this.props.createUser.error.data)
-   console.log("MESSAGE", this.state.errorMessage)
     const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>

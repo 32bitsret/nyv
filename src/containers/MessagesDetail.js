@@ -262,7 +262,7 @@ filterGender = (test, arr) => {
     
     totalNotUniq = _.concat([],lgaMembersUniq, genderMembersUniq, disabilityMembersUniq, maritalStatusMembersUniq, qualificationMembersUniq)
     totalUniq = _.uniq(totalNotUniq)
-    console.log("TOTAL UNIQ", totalUniq)
+    // console.log("TOTAL UNIQ", totalUniq)
     totalUniq.map(o => {
       let count = 0
       for(let i = 0; i <totalNotUniq.length; i++ ){
@@ -302,7 +302,7 @@ filterGender = (test, arr) => {
     const { classes } = this.props;
     const data = this.props.members.allMembers
     this.extractExpoToken(this.state.allMembers)
-    console.log("MESSAGES REDUX", this.props.message)
+    // console.log("MESSAGES REDUX", this.props.message)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -315,6 +315,11 @@ filterGender = (test, arr) => {
         <Heading
           title="SEND MESSAGES"
           textAlign="center"
+          category={
+            <span>
+                Incase of mistake in filter selection, click <a href="/messages">HERE</a>
+            </span>
+        }
         />
         <GridContainer>
         <GridItem xs={12} sm={12} md={4} lg={3}>

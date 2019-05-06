@@ -132,7 +132,7 @@ class SearchResult extends React.Component {
         textAlign="center"
         category={
             <span>
-                {results.length+ "  "}Total
+                {results.length+ "  "}Total, <a href="/search">Refresh</a>
             </span>
         }
     />

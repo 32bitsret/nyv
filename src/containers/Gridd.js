@@ -381,6 +381,11 @@ class Gridd extends Component {
         <Heading
           title="GENERAL ANALYTICS"
           textAlign="center"
+          category={
+            <span>
+                Click to <a href="/dashboard">Refresh</a>
+            </span>
+        }
         />
       <GridContainer>
         <GridItem xs={12} sm={12} md={6}>

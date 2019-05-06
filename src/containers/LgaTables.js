@@ -57,7 +57,7 @@ class LgaTables extends React.Component {
       tableData: {},
       isloading: true,
       data: dataRows.map((prop, key) => {
-        console.log(prop)
+        // console.log(prop)
         return {
           id: key ,
           sn: key + 1,

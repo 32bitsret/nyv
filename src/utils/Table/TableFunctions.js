@@ -41,7 +41,7 @@
     arr.forEach(element => {
       if(element.lga === lga){
         if(element.education ){
-          console.log(typeof(element)),  
+          // console.log(typeof(element)),  
           result.push(element.education)
          
         }}
