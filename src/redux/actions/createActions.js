@@ -224,6 +224,7 @@ export const createUserByAdmin = (data) => dispatch => {
         })
     })
     .catch(err => {
+        console.log("ERROR", err)
         dispatch({
             type:ERROR,
             payload:err.response

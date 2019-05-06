@@ -42,6 +42,7 @@ class Step1 extends React.Component {
     super(props);
     this.state = {
       errorMessage: "",
+      error:{},
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
@@ -79,7 +80,12 @@ class Step1 extends React.Component {
   componentWillReceiveProps(nextProps){
     if(!isEmpty(nextProps.createUser.error)){
       this.setState({
-        errorMessage: nextProps.createUser.error.message
+        errorMessage: nextProps.createUser.error.data.message,
+        error: nextProps.createUser.error,
+        password: "",
+        confirm_password: "",
+        passwordState:"",
+        confirm_passwordState:""
       })
     }
   }
@@ -193,9 +199,9 @@ class Step1 extends React.Component {
     if(this.state.middlenameState === ""){
       this.setState({middlenameState:"error"})
     }
-    // if(this.state.emailState === ""){
-    //   this.setState({emailState:"error"})
-    // }
+    if(this.state.emailState === ""){
+      this.setState({emailState:"error"})
+    }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
@@ -245,17 +251,18 @@ class Step1 extends React.Component {
 
   render() {
     const { classes } = this.props;
-   
+   console.log("STEP ERROR", this.props.createUser.error.data)
+   console.log("MESSAGE", this.state.errorMessage)
     const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>
             <Snackbar
               place="tc"
               color="danger"
-              open={this.state.isError}
+              open={!isEmpty(this.state.error)}
               message={this.state.errorMessage}
               closeNotification={() => this.setState({
-                isError: false 
+                error: {} 
                 })}
               close
             />
