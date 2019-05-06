@@ -30,12 +30,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Phone from "@material-ui/icons/Phone";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 import isEmpty from "../utils/isEmpty"
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error:{},
       cardAnimaton: "cardHidden",
+      errorMessage: "",
       isloading: false,
       firstname:'',
       email: '',
@@ -71,6 +74,20 @@ class LoginPage extends React.Component {
     this.timeOutFunction = null;
   }
 
+  componentWillReceiveProps(nextProps){
+    if(!isEmpty(nextProps.register.error)){
+      this.setState({
+        error: nextProps.register.error,
+        errorMessage:nextProps.register.error.message,
+        password: '',
+        confirm_password:'',
+        confirm_passwordState:'',
+        passwordState:'',
+        isloading:false
+      })
+    }
+  }
+
   onChange = (e, stateName, type, stateNameEquivalence) => {
     e.preventDefault()
     this.setState({ [e.target.name]: e.target.value });
@@ -83,7 +100,7 @@ class LoginPage extends React.Component {
         }
         break;
       case "password":
-        if(verifyLength(e.target.value, 6)){
+        if(verifyLength(e.target.value, 8)){
           this.setState({[stateName+"State"]: "success"})
         }else {
           this.setState({[stateName+"State"]: "error"})
@@ -97,6 +114,11 @@ class LoginPage extends React.Component {
         }
         break;
       case "number":
+        if(verifyLength(e.target.value, 11)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
         if(verifyNumber(e.target.value)){
           this.setState({[stateName+"State"]: "success"})
         }else{
@@ -123,6 +145,11 @@ class LoginPage extends React.Component {
           this.setState({[stateName+"State"]: "success"})
         }
       case "gender":
+        if(e.target.value === undefined){
+          this.setState({
+            gender:""
+          })
+        }
         if(verifyLength(e.target.value, 1)){
           this.setState({[stateName+"State"]: "success"})
         }
@@ -223,6 +250,16 @@ class LoginPage extends React.Component {
       <div>
       <GridContainer justify="center">
           <GridItem xs={12} sm={6} md={4}>
+          <Snackbar
+            place="tc"
+            open={!isEmpty(this.state.error)}
+            color="danger"
+            message={isEmpty(this.state.error)?"":this.state.errorMessage}
+            closeNotification={() => this.setState({
+               error: {} 
+              })}
+            close
+          />
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
                 <div className={"center-style"}>
@@ -393,6 +430,7 @@ class LoginPage extends React.Component {
                       </InputAdornment>
                     )
                   }}
+                  // helpText="Phone Number cannot be changed after registration"
                 />
                  <CustomInput
                     success={this.state.passwordState === "success"}
@@ -415,6 +453,8 @@ class LoginPage extends React.Component {
                         </InputAdornment>
                       )
                     }}
+                    helpText="password must be minimum of 8 characters"
+
                   />
                   <CustomInput
                     success={this.state.confirm_passwordState === "success"}

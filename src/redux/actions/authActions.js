@@ -18,8 +18,6 @@ export const registerUser = (userData, history) => dispatch => {
     url: registerURL,
     data: userData
   }).then(res => {
-    console.log(res)
-    // history.push("/login")
     dispatch({
       type:REGISTER_SUCCESS,
       payload: res.data
@@ -28,7 +26,7 @@ export const registerUser = (userData, history) => dispatch => {
     console.log("LOGIN ERROR",err.response.data.message)
     dispatch({
       type: GET_ERRORS,
-      payload: err
+      payload: err.response.data
     })
   })
 };

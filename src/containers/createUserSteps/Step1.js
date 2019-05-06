@@ -41,6 +41,7 @@ class Step1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      errorMessage: "",
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
@@ -73,6 +74,14 @@ class Step1 extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(!isEmpty(nextProps.createUser.error)){
+      this.setState({
+        errorMessage: nextProps.createUser.error.message
+      })
+    }
   }
 
   handleChange(e) {
@@ -108,7 +117,7 @@ class Step1 extends React.Component {
         }
         break;
       case "password":
-        if(verifyLength(e.target.value, 6)){
+        if(verifyLength(e.target.value, 8)){
           this.setState({[stateName+"State"]: "success"})
         }else {
           this.setState({[stateName+"State"]: "error"})
@@ -122,6 +131,11 @@ class Step1 extends React.Component {
         }
         break;
       case "number":
+        if(verifyLength(e.target.value, 11)){
+          this.setState({[stateName+"State"]: "success"})
+        }else {
+          this.setState({[stateName+"State"]: "error"})
+        }
         if(verifyNumber(e.target.value)){
           this.setState({[stateName+"State"]: "success"})
         }else{
@@ -150,6 +164,11 @@ class Step1 extends React.Component {
           this.setState({[stateName+"State"]: "error"})
         }
       case "gender":
+        if(e.target.value === undefined){
+          this.setState({
+            gender:""
+          })
+        }
         if(verifyLength(e.target.value, 1)){
           this.setState({[stateName+"State"]: "success"})
         }else{
@@ -204,14 +223,13 @@ class Step1 extends React.Component {
         }
       
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""){
-        console.log("REGISTRATION::::::",data)
+        // console.log("REGISTRATION::::::",data)
         this.setState({
           isError:false
         })
         this.props.createUserByAdmin(data)
       }
       else{
-        console.log("MISSING SOME FIELDS::::::::::::::::::::")
         this.setState({
           isError: true
         })
@@ -235,7 +253,7 @@ class Step1 extends React.Component {
               place="tc"
               color="danger"
               open={this.state.isError}
-              message="some fields missing"
+              message={this.state.errorMessage}
               closeNotification={() => this.setState({
                 isError: false 
                 })}

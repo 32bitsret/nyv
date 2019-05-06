@@ -45,7 +45,8 @@ export default (state = initialState, action) => {
     case GET_ERRORS:
      return {
        ...state,
-       isError: !isEmpty(action.payload)
+       isError: !isEmpty(action.payload),
+       error: action.payload
      }
     case ERROR_LOGIN:
       return{
