@@ -35,11 +35,11 @@ class Notifications extends React.Component {
 
   componentDidMount(){
     let data = {
-        lga:"Kanam",
-        qualification:"PHD",
-        marital_status:"Married",
+        lga:"Wase",
+        qualification:"DEGREE",
+        marital_status:"Divorced",
         disability:"Not Disabled",
-        gender:"female"
+        gender:"male"
       }
     this.props.getNotification({ query: data})
   }
@@ -90,6 +90,14 @@ class Notifications extends React.Component {
                 // icon={AddAlert}
                 color="success"
               />
+                            
+            </GridItem>
+          </GridContainer>
+        ))
+    return (
+      <div>
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={8}>
               <Dialog
                 classes={{
                   root: classes.center + " " + classes.modalRoot,
@@ -124,7 +132,7 @@ class Notifications extends React.Component {
                   className={classes.modalBody}
                 >
                   <p>
-                  {one.message}
+                  {/* {one.message} */}
                   </p>
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
@@ -137,14 +145,7 @@ class Notifications extends React.Component {
                   </Button>
                 </DialogActions>
               </Dialog>
-              
-            </GridItem>
-          </GridContainer>
-        ))
-    return (
-      <div>
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={8}>
+
             <Card>
               <CardBody>
                 <div>
