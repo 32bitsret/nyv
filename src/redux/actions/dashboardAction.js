@@ -22,6 +22,7 @@ export const getProfile = (phone) => dispatch => {
         data: { phone}
     })
     .then(res => {
+        console.log("PROFILE", res.data)
         dispatch({
             type: GET_PROFILE,
             payload: res.data.data

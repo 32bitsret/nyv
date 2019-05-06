@@ -235,6 +235,7 @@ class UserProfile extends Component {
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
     console.log("USER DASHBOARD",this.props.created)
+    console.log("USER", this.state.user)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -561,7 +562,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h2 className="display-4 text-center">{userProfile.firstname+ " "+userProfile.lastname}</h2>
+                  <h2 className="display-4 text-center">{this.state.user.firstname+ " "+this.state.user.lastname}</h2>
                   <p>
                     {/* {this.state.user.employment_status === "Not Employed" ? "" :( isEmpty(this.state.user.type_of_work)?"":this.state.user.type_of_work)} */}
                   </p>

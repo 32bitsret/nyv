@@ -34,15 +34,14 @@ class Notifications extends React.Component {
   }
 
   componentDidMount(){
-    this.props.getNotification(
-      {
-        lga:"",
-        qualification:"CERT",
-        marital_status:"Single",
-        disability:"Disabled",
+    let data = {
+        lga:"Kanam",
+        qualification:"PHD",
+        marital_status:"Married",
+        disability:"Not Disabled",
         gender:"female"
-    }
-    )
+      }
+    this.props.getNotification({ query: data})
   }
 
    componentWillUnmount() {
