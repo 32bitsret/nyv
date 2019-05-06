@@ -28,8 +28,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Phone from "@material-ui/icons/Phone";
-// import bgImage from "assets/img/register.jpg";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
+import isEmpty from "../utils/isEmpty"
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -146,9 +146,9 @@ class LoginPage extends React.Component {
     if(this.state.middlenameState === ""){
       this.setState({middlenameState:"error"})
     }
-    // if(this.state.emailState === ""){
-    //   this.setState({emailState:"error"})
-    // }
+    if(this.state.emailState === ""){
+      this.setState({emailState:"error"})
+    }
     if(this.state.passwordState === ""){
       this.setState({passwordState: "error"})
     }
@@ -175,11 +175,16 @@ class LoginPage extends React.Component {
         // lga: this.state.lga,
         // role:"admin" 
       }
-      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&&this.state.genderState !== ""&&this.state.confirm_passwordState !== ""){
+      if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""&&this.state.emailState !== ""){
         this.setState({
           isloading: true
         })
         this.props.registerUser(data, this.props.history)
+      }
+      else {
+        this.setState({
+          isloading: false
+        })
       }
     }
   }

@@ -62,9 +62,7 @@ class Login extends React.Component {
         error: nextProps.auth.error,
         iserror: nextProps.auth.isError,
         errorMessage: nextProps.auth.error.data.message,
-        isloading:false,
-        passwordState: "",
-        emailState: "",
+        isloading:false
       })
     }
   }
