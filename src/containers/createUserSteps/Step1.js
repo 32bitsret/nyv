@@ -22,6 +22,7 @@ import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/reg
 import {connect} from "react-redux"
 import logoo from '../../assets/img/logo.jpg'
 import Heading from "components/Heading/Heading.jsx";
+import Snackbar from "components/Snackbar/Snackbar.jsx";
 import {
   createUserByAdmin,
   updateBasicInfo,
@@ -43,9 +44,8 @@ class Step1 extends React.Component {
       checked: [24, 22],
       selectedValue: null,
       selectedEnabled: "b",
-      
+      isError: false,
       isCreating:false,
-
       firstname:"",
       middlename:"",
       lastname:"",
@@ -205,10 +205,16 @@ class Step1 extends React.Component {
       
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""){
         console.log("REGISTRATION::::::",data)
+        this.setState({
+          isError:false
+        })
         this.props.createUserByAdmin(data)
       }
       else{
         console.log("MISSING SOME FIELDS::::::::::::::::::::")
+        this.setState({
+          isError: true
+        })
       }
     }
   }
@@ -225,9 +231,18 @@ class Step1 extends React.Component {
     const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>
+            <Snackbar
+              place="tc"
+              color="danger"
+              open={this.state.isError}
+              message="some fields missing"
+              closeNotification={() => this.setState({
+                isError: false 
+                })}
+              close
+            />
             <Card>
               <div className={"center-style"}>
-              {/* <a href="/"> */}
                 <img
                   className={classes.cardImgTop}
                   data-src="holder.js/100px180/"
@@ -236,7 +251,6 @@ class Step1 extends React.Component {
                   src={logoo}
                   data-holder-rendered="true"
                 />
-              {/* </a> */}
               </div>
               <CardBody>
                 <form>

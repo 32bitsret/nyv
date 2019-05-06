@@ -50,7 +50,8 @@ export default (state = initialState, action) => {
     case ERROR_LOGIN:
       return{
         ...state,
-        error: action.payload
+        error: action.payload,
+        isError:!isEmpty(action.payload)
       }
     case REGISTER_SUCCESS:
       return {

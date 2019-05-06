@@ -21,6 +21,7 @@ import {
   verifyLength
 }from "../utils/validation"
 import Snackbar from "components/Snackbar/Snackbar.jsx";
+import isEmpty from "../utils/isEmpty";
 
 class Login extends React.Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class Login extends React.Component {
       passwordState:"",
       error:{},
       isloading: false,
-      iserror:false
+      iserror:false,
+      errorMessage: "Missing fields or bad entry"
     };
   }
   componentDidMount() {
@@ -55,6 +57,16 @@ class Login extends React.Component {
     if(nextProps.auth.isAuthenticated){
       this.props.history.push("/dashboard")
     }
+    if(!isEmpty(nextProps.auth.error)){ 
+      this.setState({
+        error: nextProps.auth.error,
+        iserror: nextProps.auth.isError,
+        errorMessage: nextProps.auth.error.data.message,
+        isloading:false,
+        passwordState: "",
+        emailState: "",
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -64,6 +76,13 @@ class Login extends React.Component {
   
   change = (e, stateName, type, stateNameEqualTo) => {
    e.preventDefault()
+   if(!isEmpty(this.state.error) || this.state.iserror){
+     this.setState({
+       iserror:false,
+       error:{},
+       errorMessage:"Missing fields or bad entry"
+     })
+   }
    this.setState({[e.target.name]: e.target.value})
     switch(type){
       case "email":
@@ -87,21 +106,35 @@ class Login extends React.Component {
   submit = (e) => {
     e.preventDefault();
     if(this.state.emailState === ""){
-      this.setState({emailState: "error"})
+      this.setState({
+        emailState: "error",
+        iserror:true
+    })
     }
    if(this.state.passwordState === ""){
-      this.setState({passwordState : "error"})
+      this.setState({
+        passwordState : "error",
+        iserror:true
+    })
     }
+
     else { 
       const userData = {
         email: this.state.email,
         password: this.state.password 
       }
-      if(this.state.emailState !== "" && this.state.passwordState !== ""){
+      if(!isEmpty(this.state.email) && !isEmpty(this.state.password)){
         this.setState({ 
-          isloading: true
+          isloading: true,
+          iserror:false
         })
         this.props.loginUser(userData)
+      }
+      else{
+        console.log("LOG N ERROR")
+        this.setState({
+          iserror: true
+        })
       }
     }
   }
@@ -110,8 +143,9 @@ class Login extends React.Component {
   
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES",this.props)
+    console.log("ERROR MESSAGE",this.props.auth.error.data)
     console.log(this.state.error)
+    console.log("ERROR STATE", this.state.iserror)
     if(this.props.auth.error !== null || this.props.auth.error !== "" ){ 
     }
     return (
@@ -119,9 +153,9 @@ class Login extends React.Component {
       <div style={{height:"80px"}}></div>
           <Snackbar
             place="tc"
-            color="danger"
             open={this.state.iserror}
-            message="An Error Occurred. Check Password or Email"
+            color="danger"
+            message={this.state.errorMessage}
             closeNotification={() => this.setState({
                iserror: false 
               })}
@@ -147,7 +181,7 @@ class Login extends React.Component {
                 <CardBody>
                   <CustomInput
                     success={this.state.emailState === "success"}
-                    error={this.state.emailState === "error"}
+                    error={this.state.emailState === "error" || this.state.iserror}
                     labelText="Email..."
                     id="email"
                     formControlProps={{
@@ -170,7 +204,7 @@ class Login extends React.Component {
                   />
                   <CustomInput
                     success={this.state.passwordState === "success"}
-                    error={this.state.passwordState === "error"}
+                    error={this.state.passwordState === "error" || this.state.iserror}
                     labelText="Password"
                     id="password"
                     formControlProps={{
