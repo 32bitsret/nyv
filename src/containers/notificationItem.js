@@ -18,6 +18,8 @@ import notify from "../variables/notificationData"
 import {connect} from "react-redux"
 import { getNotification } from "../redux/actions/notificationActions";
 import ReactTable from "./Table"
+// import Button from "components/CustomButtons/Button.jsx";
+import { getProfile } from "../redux/actions/dashboardAction"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -30,10 +32,12 @@ class Notifications extends React.Component {
       classicModal: false,
       noticeModal: false,
       smallModal: false,
+      message:{}
     };
   }
 
   componentDidMount(){
+    // this.props.getProfile()
     let data = {
         lga:"Wase",
         qualification:"DEGREE",
@@ -75,29 +79,52 @@ class Notifications extends React.Component {
     this.setState(x);
   }
   render() {
+    console.log("PROPS", this.props)
     const { classes } = this.props;
-    const notificationDisplay = notify.map( (one,key) =>(
-          <GridContainer justify="center" key={key} >
+    const notificationDisplay = //notify.map( (one,key) =>(
+          <GridContainer  >
             <GridItem
-              xs={12}
-              sm={12}
-              md={12}
+              xs={10}
+              sm={10}
+              md={10}
+              lg={12}
               className={classes.center}
             >
-              <SnackbarContent
-                onClick={() => this.setState({classicModal: true})}
-                message={one.message}
-                // icon={AddAlert}
-                color="success"
-              />
-                            
+            {/* <h3>TOPIC</h3> */}
+              <GridItem
+              xs={10}
+              sm={10}
+              md={10}
+              lg={8}
+              // className={classes.center}
+            >
+            <span>
+                <div className="actions-right">
+                  <p>
+                   TOPIC: Dramatically visualize customer directed convergence
+                  </p>
+                </div>
+                <hr/>
+              </span>    
+              </GridItem>   
             </GridItem>
+              {/* <div className="actions-right"> */}
+                  <Button
+                    justIcon={false}
+                    round
+                    simple
+                    color="info"
+                    className="like"
+                  >
+                    View
+                  </Button>{" "}
+                {/* </div> */}
           </GridContainer>
-        ))
+        // ))
     return (
       <div>
         <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={8}>
+          <GridItem xs={12} sm={12} md={8} lg={10}>
               <Dialog
                 classes={{
                   root: classes.center + " " + classes.modalRoot,
@@ -132,7 +159,7 @@ class Notifications extends React.Component {
                   className={classes.modalBody}
                 >
                   <p>
-                  {/* {one.message} */}
+                  
                   </p>
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
@@ -150,15 +177,14 @@ class Notifications extends React.Component {
               <CardBody>
                 <div>
                   <GridContainer justify="center">
-                    <GridItem xs={12}>
+                    <GridItem xs={12} md={10} lg={10}>
                       <div
                         className={classes.cardHeader + " " + classes.center}
                       >
                       </div>
                     </GridItem>
                   </GridContainer>
-                  {/* {notificationDisplay} */}
-                  {/* <ReactTable /> */}
+                {notificationDisplay}
                 </div>
               </CardBody>
             </Card>
@@ -175,4 +201,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {getNotification})(withStyles(notificationsStyle)(Notifications));
+export default connect(mapStateToProps, {getNotification,getProfile })(withStyles(notificationsStyle)(Notifications));
