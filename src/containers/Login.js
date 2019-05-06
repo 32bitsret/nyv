@@ -62,7 +62,9 @@ class Login extends React.Component {
         error: nextProps.auth.error,
         iserror: nextProps.auth.isError,
         errorMessage: nextProps.auth.error.data.message,
-        isloading:false
+        isloading:false,
+        // email: "",
+        password: ""
       })
     }
   }
@@ -186,6 +188,7 @@ class Login extends React.Component {
                       fullWidth: true
                     }}
                     inputProps={{
+                      value:this.state.email,
                       type:'email',
                       name:'email',
                       onChange: (e) => this.change(
@@ -209,6 +212,7 @@ class Login extends React.Component {
                       fullWidth: true
                     }}
                     inputProps={{
+                        value:this.state.password,
                         type: "password",
                         name: 'password',
                         onChange: (e) => this.change(
