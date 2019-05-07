@@ -27,10 +27,6 @@ class Notifications extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      classicModal: false,
-      noticeModal: false,
-      smallModal: false,
-      message:{},
       loading: true,
       getMessages: false,
       queryData:{}
@@ -53,13 +49,7 @@ class Notifications extends React.Component {
         }
       this.setState({
         queryData: {...data},
-        getMessages: true
-      })
-    }
-
-    if(!isEmpty(this.props.notification)){
-      this.setState({
-        getMessages:false
+        loading:false
       })
     }
   }
@@ -97,24 +87,27 @@ class Notifications extends React.Component {
   render() {
     const { classes } = this.props;
     console.log("QUERY DATA", this.state.queryData)
-    if(!isEmpty(this.state.queryData)){
-      // this.props.getNotification(this.state.queryData)
-    }
-    const notificationDisplay = false//this.state.loading 
+    const notificationDisplay = this.state.loading 
       ? 
       (
         <div>
           <GridContainer justify="center">
-            <div>
-              Loading user data...
+          {/* <GridItem xs={12} md={10} lg={10}>
+            <div
+              className={classes.cardHeader + " " + classes.center}
+            >
+              <div> */}
+                Loading user data...
+              {/* </div>
             </div>
+          </GridItem> */}
           </GridContainer>
         </div>
       )
       : 
       (
         <div>
-          <NotificationDisplay/>
+          <NotificationDisplay user={this.state.queryData}/>
         </div>
       )
     return (
@@ -124,6 +117,13 @@ class Notifications extends React.Component {
             <Heading
               title="Notifications"
               textAlign="center"
+              category={
+                <span>
+                  <a href="/notifications">
+                   refresh
+                  </a>
+                </span>
+              }
             />
             <Card>
               <CardBody>

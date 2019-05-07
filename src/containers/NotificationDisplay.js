@@ -29,18 +29,25 @@ class NotificationsDisplay extends React.Component {
       classicModal: false,
       noticeModal: false,
       smallModal: false,
-      message:{},
+      message:[],
       loadingMessages: true,
+      selectedMessage:{},
       queryData:{}
     };
   }
 
   componentDidMount(){
-    // this.props.getProfile(this.props.auth.user.phone)
+    this.props.getNotification({query:this.props.user})
   }
 
   componentWillReceiveProps(nextProps){
-
+     if(!isEmpty(nextProps.notification.notifications)){
+      let message = nextProps.notification.notifications
+      this.setState({
+        message: [...message],
+        loadingMessages: false
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -62,6 +69,17 @@ class NotificationsDisplay extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    console.log("MESSAGES FROM STATE", this.state.message)
+    const display = this.state.loadingMessages ? 
+    (
+      <GridContainer justify="center">
+        loading messages...
+      </GridContainer>
+    )
+    :
+    <GridContainer justify="center">
+      LIST OF MESSAGES
+    </GridContainer>
 
     return (
       <div>
@@ -101,7 +119,7 @@ class NotificationsDisplay extends React.Component {
                   className={classes.modalBody}
                 >
                   <p>
-                  
+                  {this.state.selectedMessage.title}
                   </p>
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
@@ -114,27 +132,8 @@ class NotificationsDisplay extends React.Component {
                   </Button>
                 </DialogActions>
               </Dialog>
-
-             <Card>
-                  {/* <Heading
-                    title="Notifications Display"
-                    textAlign="center"
-                  /> */}
-              <CardBody>
-                <div>
-                  <GridContainer justify="center">
-                    <GridItem xs={12} md={10} lg={10}>
-                      <div
-                        className={classes.cardHeader + " " + classes.center}
-                      >
-                      {}
-                      </div>
-                    </GridItem>
-                  </GridContainer>
-                </div>
-              </CardBody>
-            </Card>
-          </GridItem>
+              {display}
+           </GridItem>
         </GridContainer>
       </div>
     );
