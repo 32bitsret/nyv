@@ -257,7 +257,6 @@ class Step1 extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("FETCHED PROFILE", this.props.dashboard)
     const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>

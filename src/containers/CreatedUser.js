@@ -1,15 +1,8 @@
 import React, {Component} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import userProfileStyles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx";
 import { connect } from "react-redux"
 import { getProfile } from "../redux/actions/dashboardAction"
@@ -18,87 +11,23 @@ import {
   updateEducationalInfoA,
   updateContactInfoA,
 } from "../redux/actions/createActions"
-import SelectListGroup from "./components/Selector"
 import isEmpty from "../utils/isEmpty"
-import DocumentUploadA from "./components/DocumentUploadA"
-import ImageUploadA from "./components/ImageUploadA"
 
 class CreatedUser extends Component {
   state = {
-    firstname:"",
-    middlename:"",
-    lastname:"",
-    email:"",
-    DoB:"",
-    lga:"",
-    gender:"",
-    phone:"",
-
-    course:"",
-    institution:"",
-    year_of_graduation:"",
-    educational_qualification:"",
-    
-    employment_status:"",
-    marital_status:"",
-    disability:"",
-    type_of_work:"",
-    address:"",
-    resume:"",
-    photo:"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
-    state:"",
-   
-    id:"",
-    disable: true,
-    editing: this.onButtonClick,
     isLoading:  false,
     user: {},
-    isloadingNewUser: true,
-
-    openPersonal:false,
-    openEducation: false,
-    openContact: false,
-    openPhoto:false,
-    openUpload:false
+    isloadingNewUser: true
   }
 
   
   componentDidMount(){
-    console.log("PASSED IN USER", this.props.created.user.phone)
     this.props.getProfile(this.props.created.user.phone)
-    // this.setState({
-    //   user:this.props.getProfile(this.props.created.user.phone)
-    // })
-    // let data = this.props.created.user
-    // console.log(data)
-    // this.setState({
-    //   user: {...this.props.created.user},
-    //   firstname:isEmpty(data.firstname) ? "":data.firstname,
-    //   middlename: isEmpty(data.middlename)?"":data.middlename,
-    //   lastname: isEmpty(data.lastname)?"":data.lastname,
-    //   email:isEmpty(data.email)?"":data.email,
-    //   DoB:isEmpty(data.DoB)?"":data.DoB,
-    //   lga:isEmpty(data.lga)?"":data.lga,
-    //   gender:isEmpty(data.gender)?"":data.gender,
-    //   phone:isEmpty(data.phone)?"":data.phone,
-    //     course:isEmpty(data.education)?"":isEmpty(data.education.course)?"":data.education.course,
-    //     institution:isEmpty(data.education)?"":isEmpty(data.education.institution)?"":data.education.institution,
-    //     year_of_graduation:isEmpty(data.education)?"":isEmpty(data.education.year_of_graduation)?"":data.education.year_of_graduation,
-    //     educational_qualification:isEmpty(data.education)?"":isEmpty(data.education.educational_qualification)?"":data.education.qualification
-    // ,
-    //   employed:isEmpty(data.employed)?"":data.employed,
-    //   marital_status:isEmpty(data.marital_status)?"":data.marital_status,
-    //   disability:isEmpty(data.disability)?"":data.disability,
-    //   address:isEmpty(data.address)?"":data.address,
-    //   resume:isEmpty(data.resume)?"":data.resume,
-    //   photo:isEmpty(data.photo)?"https://www.gravatar.com/avatar/anything?s=200&d=mm" :data.photo,
-    // })
+ 
   }
 
   componentWillReceiveProps(nextProps){
     let data = nextProps.dashboard.dashboard
-
-    console.log("NEW CREATED USER",data)
     if(!isEmpty(data)){
       this.setState({
         user: {...data},
@@ -108,120 +37,22 @@ class CreatedUser extends Component {
     }
   }
 
-  onchange = (e) => {
-    e.preventDefault()
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  onDone = e => {
-    e.preventDefault()
+  onDone = () => {
     window.location.reload()
   }
-
-  handleSimple = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-//===========================MODAL OPS====================================
-  onClickPersonal = e => {
-    e.preventDefault()
-   this.setState({
-     openPersonal:!this.state.openPersonal
-   })
-  }
-
-  onClickContact = e => {
-    e.preventDefault()
-    this.setState({
-      openContact:!this.state.openContact
-    })
-  }
-
-  onClickEducation = e => {
-    e.preventDefault()
-    this.setState({
-      openEducation:!this.state.openEducation
-    })
-  }
-
-  onClickUpload = e => {
-    e.preventDefault()
-    this.setState({
-      openUpload: !this.state.openUpload
-    })
-  }
-
-  onClickPhoto = e => {
-    // e.preventDefault()
-    this.setState({
-      openPhoto: !this.state.openPhoto
-    })
-  }
-//============================END OF MODAL OPS======================================
-  
-//============================END OF MODAL OPS======================================
-//======================START OF SUBMISSION ROUTINES=============================
-onSubmitBasicInfo = e => {
-  e.preventDefault()
-  let query = {
-    _id: this.state.user._id
-  }
-  let update = {
-    gender: isEmpty(this.state.gender)?"":this.state.gender,
-    employement_status: isEmpty(this.state.employement_status)?"":this.state.employement_status,
-    marital_status: isEmpty(this.state.marital_status)?"":this.state.marital_status,
-    disability: isEmpty(this.state.diasbility)?"":this.state.diasbility,
-    DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
-    // type_of_work:"tailor"
-  }
-  let obj = {query, update}
-  console.log("BIG OBJECT", obj)
-  this.props.updateBasicInfoA({query,update})
-  this.setState({
-    openPersonal: !this.state.openPersonal
-  })
-}
-
-onSubmitContactInfo = e => {
-  e.preventDefault()
-  let query = {
-    _id: this.state.user._id
-  }
-  let update = {
-    address:isEmpty(this.state.address)?"": this.state.address,
-    lga:isEmpty(this.state.lga) ? "" : this.state.lga 
-  }
-  let obj = {query, update}
-  console.log("BIG OBJECT", obj)
-  this.props.updateContactInfoA({query,update})
-}
-
-onSubmitEducationalInfo = e => {
-  e.preventDefault()
-  let query = {
-    _id: this.state.user._id
-  }
-  let update ={
-    education:{
-      course:isEmpty(this.state.course)?"":this.state.course,
-      educational_qualification:isEmpty(this.state.educational_qualification)?"": this.state.educational_qualification,
-      institution: isEmpty(this.state.institution)?"":this.state.institution,
-      year_of_graduation:isEmpty(this.state.year_of_graduation)?"":this.state.year_of_graduation
-    }
-  }
-  let obj = {query, update}
-  console.log("BIG OBJECT", obj)
-  this.props.updateEducationalInfoA({query, update})
-}
-
+ 
   render(){
     const { classes } = this.props;    
     const display = this.state.isloadingNewUser 
     ?
-    <div>loading</div>
+    (
+    <GridContainer justify="center">
+      <div>loading profile...</div>
+    </GridContainer>
+    )
     :
-   (<div className="profile">
+    (
+    <div className="profile">
     <div className="container">
       <div className="row">
         <div className="col-md-12">

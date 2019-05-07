@@ -86,7 +86,6 @@ export const updatePhoto = (location, id) => dispatch => {
 
 
 export const updateDocument = (location, id) => dispatch => {
-    console.log("document uploadrunning...")
     let query = {
         _id: id
     }
@@ -102,11 +101,9 @@ export const updateDocument = (location, id) => dispatch => {
         }
     })
     .then(res => {
-        console.log("PHOTO UPDATE", res.data)
         window.location.reload()
     })
     .catch(err => {
-        console.log("ERROR FROM PHOTO UPDATE", err)
         dispatch({
             type:UPDATE_ERROR,
             payload: err
@@ -116,14 +113,12 @@ export const updateDocument = (location, id) => dispatch => {
 
 export const updateEducationalInfo = (data) => dispatch =>{
     //step3
-    console.log("STEP3", data)
     axios({
         method:"PUT",
         url:updateProfileURL,
         data: data
     })
     .then(res => {
-        console.log("EDUCATION UPDATED", res.data)
         window.location.reload()
     })
     .catch(err => {
@@ -142,12 +137,10 @@ export const uploadPicture = (data, id) => dispatch =>{
         data: data
     })
     .then(res => {
-        console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
-        dispatch(updatePhoto(res.data.Location, id))
+       dispatch(updatePhoto(res.data.Location, id))
     })
     .catch(err => {
-        console.log("ERROR FROM IMAGE UPLOAD")
-        dispatch({
+       dispatch({
             type:UPDATE_ERROR,
             payload:err
         })
@@ -163,7 +156,6 @@ export const updateContactInfo = data => dispatch => {
         data: data
     })
     .then(res => {
-        console.log("CONTACT UPDATE", res.data)
         window.location.reload()
     })
     .catch(err => {
@@ -176,14 +168,12 @@ export const updateContactInfo = data => dispatch => {
 
 export const uploadDocument = (data, id) => dispatch =>{
     //step4
-    console.log("DOCUMENT UPLOAD IN ROGRESS")
     axios({
         method:"POST",
         url:uploadImageURL,
         data: data
     })
     .then(res => {
-        console.log("DOCUMENT UPLOAD", res.data)
         dispatch(updateDocument(res.data.Location, id))
     })
     .catch(err => {
@@ -209,7 +199,6 @@ export const createUserByAdmin = (data) => dispatch => {
         data: data
     })
     .then(res => {
-        console.log("SUCCESSFUL", res.data)
         dispatch({
             type: DONE_CREATING,
             payload: res.data.result
@@ -217,7 +206,6 @@ export const createUserByAdmin = (data) => dispatch => {
         dispatch(fetchUser(res.data.result.phone))
     })
     .catch(err => {
-        console.log("ERROR", err)
         dispatch({
             type:ERROR,
             payload:err.response
@@ -228,7 +216,6 @@ export const createUserByAdmin = (data) => dispatch => {
 
 export const updateBasicInfoA = (data) => dispatch =>{
     //step3
-    console.log("UPDATED DATA", data)
     axios({
         method:"PUT",
         url: updateProfileURL,
@@ -236,17 +223,13 @@ export const updateBasicInfoA = (data) => dispatch =>{
     })
     .then(res => {
         // localStorage.setItem('user', res.data.data)
-        console.log("PERSONAL INFO UPDATED", res.data.data)
     })
     .catch(err => {
-        console.log("ERROR FOR UPDATING BASIC DATA ", err)
     })
 }
 
 
 export const updatePhotoA = (location, id) => dispatch => {
-    console.log("running... ID",id)
-    console.log("URL FOR PHOTO", location)
     let query = {
         _id: id
     }
