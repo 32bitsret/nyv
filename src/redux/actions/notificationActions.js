@@ -1,6 +1,7 @@
 import {
     GET_NOTIFICATIONS, 
-    GET_NOTIFICATION_ERROR
+    GET_NOTIFICATION_ERROR,
+    DONE_GETTING_NOTIFICATION
 } from "../Constants"
 import {findMessageByQueryURL} from "../../api/apiURL"
 import axios from "axios"
@@ -14,8 +15,16 @@ export const getNotification = (data) => dispatch => {
     })
     .then(res => {
         console.log("RESPONSE FROM SUCCESS NOTIFICATION", res.data.data)
+        dispatch({
+            type: DONE_GETTING_NOTIFICATION,
+            payload: res.data.data
+        })
     })
     .catch(err => {
         console.log("ERROR FROM NOTIFICATION FAILURE", err)
+        dispatch({
+            type: GET_NOTIFICATION_ERROR,
+            payload: err
+        })
     })
 }

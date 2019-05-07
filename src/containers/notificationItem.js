@@ -5,21 +5,18 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import AddAlert from "@material-ui/icons/AddAlert";
 import Close from "@material-ui/icons/Close";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import notificationsStyle from "assets/jss/material-dashboard-pro-react/views/notificationsStyle.jsx";
-import notify from "../variables/notificationData"
 import {connect} from "react-redux"
 import { getNotification } from "../redux/actions/notificationActions";
-import ReactTable from "./Table"
-// import Button from "components/CustomButtons/Button.jsx";
+import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
+import isEmpty from "../utils/isEmpty";
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -32,23 +29,33 @@ class Notifications extends React.Component {
       classicModal: false,
       noticeModal: false,
       smallModal: false,
-      message:{}
+      message:{},
+      loading: true
     };
   }
 
   componentDidMount(){
-    // this.props.getProfile()
-    let data = {
-        lga:"Mangu",
-        qualification:"MSC",
-        marital_status:"Widowed",
-        disability:"Disabled",
-        gender:"male"
-      }
-    this.props.getNotification({ query: data})
+    this.props.getProfile(this.props.state.auth.user.phone)
   }
 
-   componentWillUnmount() {
+  componentWillReceiveProps(nextProps){
+    console.log("USER PROFILE DETAILS", nextProps.state.dashboard.dashboard)
+    if(!isEmpty(nextProps.state.dashboard.dashboard)){
+      let user = nextProps.state.dashboard.dashboard
+    let data = {
+        lga:user.lga,
+        qualification:user.education.educational_qualification,
+        marital_status:user.marital_status,
+        disability:user.disability,
+        gender:user.gender
+      }
+
+      console.log("EXTRACTED DATA", data)
+    this.props.getNotification({ query: data})
+    }
+  }
+
+  componentWillUnmount() {
     var id = window.setTimeout(null, 0);
     while (id--) {
       window.clearTimeout(id);
@@ -79,48 +86,37 @@ class Notifications extends React.Component {
     this.setState(x);
   }
   render() {
-    console.log("PROPS", this.props)
     const { classes } = this.props;
-    const notificationDisplay = //notify.map( (one,key) =>(
-          <GridContainer  >
-            <GridItem
-              xs={10}
-              sm={10}
-              md={10}
-              lg={12}
-              className={classes.center}
-            >
-            {/* <h3>TOPIC</h3> */}
-              <GridItem
-              xs={10}
-              sm={10}
-              md={10}
-              lg={8}
-              // className={classes.center}
-            >
-            <span>
-                <div className="actions-right">
-                  <p>
-                   TOPIC: Dramatically visualize customer directed convergence
-                  </p>
-                </div>
-                <hr/>
-              </span>    
-              </GridItem>   
-            </GridItem>
-              {/* <div className="actions-right"> */}
-                  <Button
-                    justIcon={false}
-                    round
-                    simple
-                    color="info"
-                    className="like"
-                  >
-                    View
-                  </Button>{" "}
-                {/* </div> */}
+    const notificationDisplay = this.state.loading 
+      ? 
+      (
+        <div>
+          <GridContainer justify="center">
+            <div>
+              Loading Notifications...
+            </div>
           </GridContainer>
-        // ))
+        </div>
+      )
+      : 
+      (
+        <div>
+          <Heading
+            title="Notifications Results"
+            textAlign="center"
+            category={
+                <span>
+                    Total Notifications
+                </span>
+            }
+          />
+          <GridContainer justify="center">
+            <div>
+            Notifications
+            </div>
+          </GridContainer>
+        </div>
+      )
     return (
       <div>
         <GridContainer justify="center">
@@ -174,6 +170,10 @@ class Notifications extends React.Component {
               </Dialog>
 
             <Card>
+                  <Heading
+                    title="Notifications"
+                    textAlign="center"
+                  />
               <CardBody>
                 <div>
                   <GridContainer justify="center">
@@ -197,7 +197,7 @@ class Notifications extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    state
+    notification:state
   }
 }
 
