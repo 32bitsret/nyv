@@ -1,6 +1,7 @@
 import isEmpty from  '../../utils/isEmpty'
-import {GET_PROFILE,
-   GET_PROFILE_ERROR,
+import {
+  GET_PROFILE,
+  GET_PROFILE_ERROR,
   GET_ALLL_PROFILE,
   GET_RID_OF_WELCOME,
   START_WELCOME,
@@ -14,8 +15,9 @@ const initialState = {
     allMembers: [],
     searchMembers: [],
     isWelcome: true,
-    sidebarImage:"https://www.gravatar.com/avatar/anything?s=200&d=mm"
-};
+    sidebarImage:"https://www.gravatar.com/avatar/anything?s=200&d=mm",
+    isloadingCreatedUser: true
+  };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -34,7 +36,8 @@ export default (state = initialState, action) => {
       return{
         ...state,
         dashboard: action.payload,
-        isloading: isEmpty(action.payload)
+        isloading: isEmpty(action.payload),
+        isloadingCreatedUser: false
       } 
     case GET_RID_OF_WELCOME:
       return{

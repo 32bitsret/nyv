@@ -18,7 +18,6 @@ import {
 
 
 export const fetchUser = (phone) =>  dispatch => {
-//    console.log("TESTING TESTING", phone)
     dispatch({
         type:FETCHING_USER
     })
@@ -28,7 +27,6 @@ export const fetchUser = (phone) =>  dispatch => {
         data: {phone:phone}
     })
     .then(res => {
-        localStorage.setItem('ESAU', JSON.stringify(res.data.data))
         dispatch({
             type: FETCH_USER,
             payload: res.data.data
@@ -43,18 +41,15 @@ export const fetchUser = (phone) =>  dispatch => {
 //===================BY USER=====================================
 export const updateBasicInfo = (data) => dispatch =>{
     //step3
-    console.log("UPDATED DATA", data)
     axios({
         method:"PUT",
         url: updateProfileURL,
         data: data
     })
     .then(res => {
-        console.log("PERSONAL INFO UPDATED", res.data.data)
         window.location.reload()
     })
     .catch(err => {
-        console.log("ERROR FOR UPDATING BASIC DATA ", err)
         dispatch({
             type: UPDATE_ERROR,
             payload: err
@@ -64,7 +59,6 @@ export const updateBasicInfo = (data) => dispatch =>{
 
 
 export const updatePhoto = (location, id) => dispatch => {
-    console.log("running...")
     let query = {
         _id: id
     }
@@ -80,11 +74,9 @@ export const updatePhoto = (location, id) => dispatch => {
         }
     })
     .then(res => {
-        console.log("PHOTO UPDATE", res.data)
         window.location.reload()
     })
     .catch(err => {
-        console.log("ERROR FROM PHOTO UPDATE", err)
         dispatch({
             type: UPDATE_ERROR,
             payload: err
@@ -217,11 +209,12 @@ export const createUserByAdmin = (data) => dispatch => {
         data: data
     })
     .then(res => {
-        console.log("SUCCESSFUL")
+        console.log("SUCCESSFUL", res.data)
         dispatch({
             type: DONE_CREATING,
             payload: res.data.result
         })
+        dispatch(fetchUser(res.data.result.phone))
     })
     .catch(err => {
         console.log("ERROR", err)

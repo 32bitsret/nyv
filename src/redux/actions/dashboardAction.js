@@ -22,7 +22,6 @@ export const getProfile = (phone) => dispatch => {
         data: { phone}
     })
     .then(res => {
-        console.log("PROFILE", res.data)
         dispatch({
             type: GET_PROFILE,
             payload: res.data.data
@@ -35,7 +34,7 @@ export const getProfile = (phone) => dispatch => {
 
 
 //NOTE: PLEASE BEFORE YOU ALTER ANYTHING HERE, 
-//MAKE SURE YOU KNOW WHAT YOU'RE DOING, BECUASE I DIDN'T KNOW WHAT I WAS DOINGWHNE I WROTE THIS
+//MAKE SURE YOU KNOW WHAT YOU'RE DOING, BECAUSE I DIDN'T KNOW WHAT I WAS DOINGWHNE I WROTE THIS
 export const getProfileInit = (phone) => dispatch => {
     axios({
         method: "POST",

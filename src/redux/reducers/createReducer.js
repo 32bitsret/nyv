@@ -18,7 +18,8 @@ const initialState = {
     user:{},
     createdUser:false,
     creatingProfile:false,
-    isError: false
+    isError: false,
+    created: {}
 };
 
 export default (state = initialState, action) => {
@@ -57,7 +58,7 @@ export default (state = initialState, action) => {
         return {
             ...state,
             isloading: false,
-            user: action.payload,
+            created: action.payload,
             userExist: true
         }
     case UPDATE_ERROR:

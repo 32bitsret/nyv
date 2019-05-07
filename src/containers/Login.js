@@ -143,7 +143,7 @@ class Login extends React.Component {
   
   render() {
     const { classes } = this.props;
-    console.log("ERROR MESSAGE",this.props.auth.error.data)
+    // console.log("ERROR MESSAGE",this.props.auth.error.data)
     console.log(this.state.error)
     console.log("ERROR STATE", this.state.iserror)
     if(this.props.auth.error !== null || this.props.auth.error !== "" ){ 

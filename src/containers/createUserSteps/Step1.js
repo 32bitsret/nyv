@@ -36,6 +36,7 @@ import {
 }from "../../utils/validation"
 import { withRouter } from "react-router-dom"
 import isEmpty from "../../utils/isEmpty"
+import { getProfile } from "../../redux/actions/dashboardAction"
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Step1 extends React.Component {
       selectedEnabled: "b",
       isError: false,
       isCreating:false,
+
       firstname:"",
       middlename:"",
       lastname:"",
@@ -88,6 +90,7 @@ class Step1 extends React.Component {
         confirm_passwordState:""
       })
     }
+
   }
 
   handleChange(e) {
@@ -229,11 +232,14 @@ class Step1 extends React.Component {
         }
       
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""){
-        // console.log("REGISTRATION::::::",data)
         this.setState({
           isError:false
         })
         this.props.createUserByAdmin(data)
+        // if(this.props.createUser.userExist === true){
+        //   console.log("USER EXISTS HERE")
+          // this.props.getProfile(this.props.createUser.user.phone)
+        // }
       }
       else{
         this.setState({
@@ -251,6 +257,7 @@ class Step1 extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log("FETCHED PROFILE", this.props.dashboard)
     const display = 
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={12} lg={8}>
@@ -405,196 +412,6 @@ class Step1 extends React.Component {
                     </GridContainer>
                     <br/>
                     <GridContainer justify="center">
-                      {/* <GridItem xs={12} sm={6} md={5} lg={4}>
-                        <FormControl
-                          fullWidth
-                          className={classes.selectFormControl}
-                        >
-                          <InputLabel
-                            htmlFor="simple-select"
-                            className={classes.selectLabel}
-                          >
-                            LGA
-                          </InputLabel>
-                          <Select
-                            error={this.state.lgaState === "error" ? true: false}
-                            MenuProps={{
-                              className: classes.selectMenu
-                            }}
-                            classes={{
-                              select: classes.select
-                            }}
-                            value={this.state.lga}
-                            onChange={e => this.onChange(e, "lga", "lga")}
-                            inputProps={{
-                              name: "lga",
-                              id: "lga"
-                            }}
-                          >
-                            <MenuItem
-                              disabled
-                              classes={{
-                                root: classes.selectMenuItem
-                              }}
-                            >
-                              Choose 
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Barkin Ladi"
-                            >
-                              Barkin Ladi
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Bassa"
-                            >
-                              Bassa
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Bokkos"
-                            >
-                              Bokkos
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos East"
-                            >
-                              Jos East
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos North"
-                            >
-                              Jos North
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Jos South"
-                            >
-                              Jos South
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Kanam"
-                            >
-                              Kanam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Kanam"
-                            >
-                              Kanam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Langtang North"
-                            >
-                              Langtang North
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Langtang South"
-                            >
-                              Langtang South
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value=" Mangu"
-                            >
-                              Mangu
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value=" Mikang"
-                            >
-                              Mikang
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Pankshin"
-                            >
-                              Pankshin
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Qua'an Pan"
-                            >
-                              Qua'an Pan
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Riyom"
-                            >
-                              Riyom
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Shendam"
-                            >
-                              Shendam
-                            </MenuItem>
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value="Wase"
-                            >
-                              Wase
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                      </GridItem> */}
                               {"  "}
                       <GridItem xs={12} sm={6} md={5} lg={8}>
                         <FormControl
@@ -777,11 +594,12 @@ class Step1 extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    createUser: state.createUser
+    createUser: state.createUser,
+    dashboard: state.dashboard
   }
 }
 export default connect(mapStateToProps, {
   createUserByAdmin,
   fetchUser,
-  updateBasicInfo
+  getProfile
 })(withRouter(withStyles(regularFormsStyle)(Step1)));

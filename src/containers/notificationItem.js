@@ -39,10 +39,10 @@ class Notifications extends React.Component {
   componentDidMount(){
     // this.props.getProfile()
     let data = {
-        lga:"Wase",
-        qualification:"DEGREE",
-        marital_status:"Divorced",
-        disability:"Not Disabled",
+        lga:"Mangu",
+        qualification:"MSC",
+        marital_status:"Widowed",
+        disability:"Disabled",
         gender:"male"
       }
     this.props.getNotification({ query: data})

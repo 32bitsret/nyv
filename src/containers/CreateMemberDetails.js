@@ -7,6 +7,7 @@ import CreatedUser from "./CreatedUser"
 import {
   fetchUser
 } from "../redux/actions/createActions"
+import { getProfile } from "../redux/actions/dashboardAction"
 
 
 
@@ -23,7 +24,7 @@ class WizardView extends React.Component {
  
   render() {
     let user = this.state.user
-    const display = this.props.createUser.createdUser ? <CreatedUser /> : <Step1/> 
+    const display = this.props.createUser.userExist  ? <CreatedUser /> : <Step1/> 
       return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12} lg={12}>
@@ -33,6 +34,7 @@ class WizardView extends React.Component {
     );
   }
 }
+// this.props.createUser.createdUser
 
 const mapStateToProps = state => {
   return {
