@@ -14,6 +14,7 @@ import data from '../variables/data'
 import NotificationItem from './notificationItem'
 import User from '../variables/UserData'
 import image from "assets/img/sidebar-2.jpg";
+import { getProfile } from "../redux/actions/dashboardAction"
 
 var ps;
 
@@ -23,7 +24,8 @@ class Notifications extends React.Component {
     this.state = {
       mobileOpen: false,
       miniActive: false,
-      isAdmin: false
+      isAdmin: false,
+      user:{}
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
@@ -36,8 +38,14 @@ class Notifications extends React.Component {
       document.body.style.overflow = "hidden";
     }
     window.addEventListener("resize", this.resizeFunction);
+    this.props.getProfile(this.props.user.phone)
   }
-  componentWillUnmount() {
+
+  componentWillReceiveProps(nextProps){
+    console.log("NOTIFICATIONS:",nextProps)
+  }
+
+  omponentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
     }
@@ -104,7 +112,7 @@ class Notifications extends React.Component {
             handleDrawerToggle={this.handleDrawerToggle}
             {...rest}
           />
-        <div className={classes.content}>
+          <div className={classes.content}>
           {display}   
           </div>
         </div>
@@ -122,4 +130,4 @@ const mapStateToProps = state => {
     user:state.auth.user
   }
 }
-export default connect(mapStateToProps, {})(withStyles(appStyle)(Notifications));
+export default connect(mapStateToProps, {getProfile})(withStyles(appStyle)(Notifications));

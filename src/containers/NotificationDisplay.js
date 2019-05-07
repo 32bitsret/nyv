@@ -17,13 +17,12 @@ import { getNotification } from "../redux/actions/notificationActions";
 import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
-import NotificationDisplay from "./NotificationDisplay"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
 
-class Notifications extends React.Component {
+class NotificationsDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,37 +30,17 @@ class Notifications extends React.Component {
       noticeModal: false,
       smallModal: false,
       message:{},
-      loading: true,
-      getMessages: false,
+      loadingMessages: true,
       queryData:{}
     };
   }
 
   componentDidMount(){
-    this.props.getProfile(this.props.auth.user.phone)
+    // this.props.getProfile(this.props.auth.user.phone)
   }
 
   componentWillReceiveProps(nextProps){
-    if(!isEmpty(nextProps.dashboard.dashboard)){
-      let user = nextProps.dashboard.dashboard
-      let data = {
-          lga:user.lga,
-          qualification:user.education.educational_qualification,
-          marital_status:user.marital_status,
-          disability:user.disability,
-          gender:user.gender
-        }
-      this.setState({
-        queryData: {...data},
-        getMessages: true
-      })
-    }
 
-    if(!isEmpty(this.props.notification)){
-      this.setState({
-        getMessages:false
-      })
-    }
   }
 
   componentWillUnmount() {
@@ -70,20 +49,7 @@ class Notifications extends React.Component {
       window.clearTimeout(id);
     }
   }
-  showNotification(place) {
-    if (!this.state[place]) {
-      var x = [];
-      x[place] = true;
-      this.setState(x);
-      setTimeout(
-        function() {
-          x[place] = false;
-          this.setState(x);
-        }.bind(this),
-        6000
-      );
-    }
-  }
+
   handleClickOpen(modal) {
     var x = [];
     x[modal] = true;
@@ -96,36 +62,64 @@ class Notifications extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("QUERY DATA", this.state.queryData)
-    if(!isEmpty(this.state.queryData)){
-      // this.props.getNotification(this.state.queryData)
-    }
-    const notificationDisplay = false//this.state.loading 
-      ? 
-      (
-        <div>
-          <GridContainer justify="center">
-            <div>
-              Loading user data...
-            </div>
-          </GridContainer>
-        </div>
-      )
-      : 
-      (
-        <div>
-          <NotificationDisplay/>
-        </div>
-      )
+
     return (
       <div>
-        <GridContainer justify="center">                
+        <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8} lg={10}>
-            <Heading
-              title="Notifications"
-              textAlign="center"
-            />
-            <Card>
+              <Dialog
+                classes={{
+                  root: classes.center + " " + classes.modalRoot,
+                  paper: classes.modal
+                }}
+                open={this.state.classicModal}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={() => this.handleClose("classicModal")}
+                aria-labelledby="classic-modal-slide-title"
+                aria-describedby="classic-modal-slide-description"
+              >
+                <DialogTitle
+                  id="classic-modal-slide-title"
+                  disableTypography
+                  className={classes.modalHeader}
+                >
+                  <Button
+                    justIcon
+                    className={classes.modalCloseButton}
+                    key="close"
+                    aria-label="Close"
+                    color="transparent"
+                    onClick={() => this.handleClose("classicModal")}
+                  >
+                    <Close className={classes.modalClose} />
+                  </Button>
+                  <h4 className={classes.modalTitle}>Modal title</h4>
+                </DialogTitle>
+                <DialogContent
+                  id="classic-modal-slide-description"
+                  className={classes.modalBody}
+                >
+                  <p>
+                  
+                  </p>
+                </DialogContent>
+                <DialogActions className={classes.modalFooter}>
+                  <Button
+                    onClick={() => this.handleClose("classicModal")}
+                    color="danger"
+                    simple
+                  >
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
+             <Card>
+                  {/* <Heading
+                    title="Notifications Display"
+                    textAlign="center"
+                  /> */}
               <CardBody>
                 <div>
                   <GridContainer justify="center">
@@ -133,10 +127,10 @@ class Notifications extends React.Component {
                       <div
                         className={classes.cardHeader + " " + classes.center}
                       >
+                      {}
                       </div>
                     </GridItem>
                   </GridContainer>
-                {notificationDisplay}
                 </div>
               </CardBody>
             </Card>
@@ -155,4 +149,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {getNotification,getProfile })(withStyles(notificationsStyle)(Notifications));
+export default connect(mapStateToProps, {getNotification,getProfile })(withStyles(notificationsStyle)(NotificationsDisplay));
