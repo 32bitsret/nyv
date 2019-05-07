@@ -71,7 +71,6 @@ class UserProfile extends Component {
 
   componentWillReceiveProps(nextProps){
     let data = nextProps.dashboard.dashboard
-    console.log(data)
     this.setState({
       user: {...nextProps.dashboard.dashboard},
       firstname:isEmpty(data.firstname) ? "":data.firstname,
@@ -108,7 +107,6 @@ class UserProfile extends Component {
   handleSimple = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-//===========================MODAL OPS====================================
   onClickPersonal = e => {
     e.preventDefault()
    this.setState({
@@ -131,14 +129,12 @@ class UserProfile extends Component {
   }
 
   onClickUpload = e => {
-    // e.preventDefault()
     this.setState({
       openUpload: !this.state.openUpload
     })
   }
 
   onClickPhoto = e => {
-    // e.preventDefault()
     this.setState({
       openPhoto: !this.state.openPhoto
     })
@@ -158,8 +154,6 @@ class UserProfile extends Component {
     })
   }
 
-//============================END OF MODAL OPS======================================
-//======================START OF SUBMISSION ROUTINES=============================
   onSubmitBasicInfo = e => {
     e.preventDefault()
     this.setState({
@@ -201,7 +195,6 @@ class UserProfile extends Component {
       state: state//isEmpty(this.state.state) ?"": this.state.state 
     }
     let obj = {query, update}
-    console.log("BIG OBJECT", obj)
     this.props.updateContactInfo({query,update})
   }
 
@@ -222,7 +215,6 @@ class UserProfile extends Component {
       }
     }
     let obj = {query, update}
-    console.log("BIG OBJECT", obj)
     this.props.updateEducationalInfo({query, update})
   }
 
@@ -234,8 +226,6 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    console.log("USER DASHBOARD",this.props.created)
-    console.log("USER", this.state.user)
     const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
@@ -528,11 +518,7 @@ class UserProfile extends Component {
     (
     <div>
         <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={4}>
-            <div>
-              loading...
-            </div>
-          </GridItem>
+          loading...
         </GridContainer>
     </div>
     ) 

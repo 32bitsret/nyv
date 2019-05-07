@@ -1,5 +1,8 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Card from "components/Card/Card.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import CardFooter from "components/Card/CardFooter.jsx";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -9,14 +12,14 @@ import Close from "@material-ui/icons/Close";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
 import notificationsStyle from "assets/jss/material-dashboard-pro-react/views/notificationsStyle.jsx";
 import {connect} from "react-redux"
 import { getNotification } from "../redux/actions/notificationActions";
 import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
+import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
+
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -42,9 +45,9 @@ class NotificationsDisplay extends React.Component {
 
   componentWillReceiveProps(nextProps){
      if(!isEmpty(nextProps.notification.notifications)){
-      let message = nextProps.notification.notifications
+     
       this.setState({
-        message: [...message],
+        message: nextProps.notification.notifications,
         loadingMessages: false
       })
     }
@@ -69,7 +72,7 @@ class NotificationsDisplay extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("MESSAGES FROM STATE", this.state.message)
+    console.log("MESSAGES FROM STATE", this.props.notification.notifications)
     const display = this.state.loadingMessages ? 
     (
       <GridContainer justify="center">
@@ -78,8 +81,25 @@ class NotificationsDisplay extends React.Component {
     )
     :
     <GridContainer justify="center">
-      LIST OF MESSAGES
+      <GridItem xs={12} sm={12} md={6} lg={10}>
+        <Card>
+          <CardBody>
+          {
+            
+          }
+          </CardBody>
+        </Card>
+    </GridItem>
     </GridContainer>
+
+
+// this.props.notification.notifications.map(notifi => {
+//   <SnackbarContent
+//     message={notifi.message}
+//     close
+//     color="info"
+//   />
+// })
 
     return (
       <div>

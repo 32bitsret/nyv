@@ -4,30 +4,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PagesHeader from "./PagesHeader";
 import Footer from "./Footer";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
-import bgImage from "assets/img/riyo.jpg";
-// import Header from "./website/Header"
-import Landing from './Landing'
-import Aboutus from "./AboutusDetails"
+import {Redirect } from "react-router-dom";
 
 class Pages extends React.Component {
   componentDidMount() {
     document.body.style.overflow = "unset";
   }
   render() {
-    const { classes, ...rest } = this.props;
-    console.log("STYLES", classes)
+    const { classes} = this.props;
     return (
-      <div>
-          <PagesHeader {...rest} />
-          <div className={classes.wrapper} ref="wrapper">
-              <div
-                  className={classes.fullPage}
-                  style={{ backgroundImage: "url(" + bgImage + ")" }}
-              >
-              <Landing />
-              <Footer white/>
-            </div>
-          </div>
+      <div className={classes.wrapper} ref="wrapper">
+        <Redirect  to="https://pycnewwebsite.herokuapp.com/index.html" />
       </div>
     );
   }

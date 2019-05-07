@@ -125,21 +125,7 @@ class Notifications extends React.Component {
                 </span>
               }
             />
-            <Card>
-              <CardBody>
-                <div>
-                  <GridContainer justify="center">
-                    <GridItem xs={12} md={10} lg={10}>
-                      <div
-                        className={classes.cardHeader + " " + classes.center}
-                      >
-                      </div>
-                    </GridItem>
-                  </GridContainer>
-                {notificationDisplay}
-                </div>
-              </CardBody>
-            </Card>
+            {notificationDisplay}
           </GridItem>
         </GridContainer>
       </div>

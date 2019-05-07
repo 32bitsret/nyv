@@ -10,15 +10,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Hidden from "@material-ui/core/Hidden";
-import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
 import HeaderLinks from "./HeaderLinks";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
 import { connect } from "react-redux"
 import {getProfile} from  "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty"
-import store from '../store'; 
-import { profileURL } from "../api/apiURL";
 import defaultAvatar from "assets/img/placeholder.jpg";
 
 var ps;
