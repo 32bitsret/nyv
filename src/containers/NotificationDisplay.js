@@ -19,7 +19,7 @@ import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
 import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
-import notificationData from "../variables/notificationData"
+import _ from "lodash"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -34,7 +34,11 @@ class NotificationsDisplay extends React.Component {
       smallModal: false,
       message:[],
       loadingMessages: true,
-      selectedMessage:{},
+      selectedMessage:{
+        title:"Message from the plateau youth council",
+        body:"we are pleased to announce that you have been selected for annual conference holding at the zonal center",
+        time:"2019-12-12"
+      },
       queryData:{}
     };
   }
@@ -44,10 +48,12 @@ class NotificationsDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
+    let reversed = []
      if(!isEmpty(nextProps.notification.notifications)){
-     
+       reversed = _.reverse(nextProps.notification.notifications)
+      console.log("REVERSED MESSAGES ", reversed)
       this.setState({
-        message: nextProps.notification.notifications,
+        message: _.map(nextProps.notification.notifications),
         loadingMessages: false
       })
     }
@@ -72,36 +78,37 @@ class NotificationsDisplay extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("MESSAGES FROM STATE", this.props.notification.notifications)
+    console.log("MESSAGES FROM STATE", _.isArray(this.state.message))
+    if(!isEmpty(this.state.message)){
+      this.state.message.map(mess => {
+        console.log("MESS", mess.message)
+      })
+    }
     const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
         loading messages...
       </GridContainer>
       :
-      notificationData.map(dat => {
-        <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={6} lg={10}>
           <Card>
             <CardBody>
-              <div className={classes.cardHeader}>
-                <h4 className={classes.cardTitle}>Notifications Style</h4>
-              </div>
-              <br />
-              <SnackbarContent
-                message={"This is a plain notification"}
-                color="info"
-              />
-              <SnackbarContent
-                message={"This is a notification with close button."}
-                close
-                color="info"
-              />
+              <br /><br /><br /><br />
+              {
+                this.state.message.map((mess ,i)=> ( 
+                <div key={i}>  
+                  <SnackbarContent
+                    message={mess.title}
+                    color="success"
+                  />
+                </div>
+                ))  
+              }
             </CardBody>
           </Card>
         </GridItem>
         </GridContainer>
-      })
-          
+
     return (
       <div>
         <GridContainer justify="center">
@@ -111,7 +118,7 @@ class NotificationsDisplay extends React.Component {
                   root: classes.center + " " + classes.modalRoot,
                   paper: classes.modal
                 }}
-                open={this.state.classicModal}
+                open={true}//{this.state.classicModal}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={() => this.handleClose("classicModal")}
@@ -123,43 +130,40 @@ class NotificationsDisplay extends React.Component {
                   disableTypography
                   className={classes.modalHeader}
                 >
-                  <Button
-                    justIcon
-                    className={classes.modalCloseButton}
-                    key="close"
-                    aria-label="Close"
-                    color="transparent"
-                    onClick={() => this.handleClose("classicModal")}
-                  >
-                    <Close className={classes.modalClose} />
-                  </Button>
-                  <h4 className={classes.modalTitle}>Modal title</h4>
+                  <h5 className={classes.modalTitle}><strong>
+                  {
+                    this.state.selectedMessage.title
+                  }
+                  </strong></h5>
+                  <hr/>
                 </DialogTitle>
                 <DialogContent
                   id="classic-modal-slide-description"
                   className={classes.modalBody}
                 >
-                  <p>
-                  {this.state.selectedMessage.title}
-                  </p>
+                  <span>
+                    <h3>
+                      {this.state.selectedMessage.body}
+                    </h3>
+                  </span>
+                  <br/>
+                  {" "}
+                  {this.state.selectedMessage.time}
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
+                  
                   <Button
-                    onClick={() => this.handleClose("classicModal")}
-                    color="danger"
+                    color="success"
                     simple
+                    
                   >
-                    Close
+                    close
                   </Button>
                 </DialogActions>
               </Dialog>
               <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={6} lg={10}>
-                <Card>
-                  <CardBody>
-                    {display}
-                  </CardBody>
-                </Card>
+              <GridItem xs={12} sm={12} md={6} lg={12}>
+                {display}
             </GridItem>
             </GridContainer>
            </GridItem>
