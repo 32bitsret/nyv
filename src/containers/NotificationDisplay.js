@@ -19,7 +19,7 @@ import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
 import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
-
+import notificationData from "../variables/notificationData"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -74,33 +74,34 @@ class NotificationsDisplay extends React.Component {
     const { classes } = this.props;
     console.log("MESSAGES FROM STATE", this.props.notification.notifications)
     const display = this.state.loadingMessages ? 
-    (
       <GridContainer justify="center">
         loading messages...
       </GridContainer>
-    )
-    :
-    <GridContainer justify="center">
-      <GridItem xs={12} sm={12} md={6} lg={10}>
-        <Card>
-          <CardBody>
-          {
-            
-          }
-          </CardBody>
-        </Card>
-    </GridItem>
-    </GridContainer>
-
-
-// this.props.notification.notifications.map(notifi => {
-//   <SnackbarContent
-//     message={notifi.message}
-//     close
-//     color="info"
-//   />
-// })
-
+      :
+      notificationData.map(dat => {
+        <GridContainer>
+        <GridItem xs={12} sm={12} md={6}>
+          <Card>
+            <CardBody>
+              <div className={classes.cardHeader}>
+                <h4 className={classes.cardTitle}>Notifications Style</h4>
+              </div>
+              <br />
+              <SnackbarContent
+                message={"This is a plain notification"}
+                color="info"
+              />
+              <SnackbarContent
+                message={"This is a notification with close button."}
+                close
+                color="info"
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+        </GridContainer>
+      })
+          
     return (
       <div>
         <GridContainer justify="center">
@@ -152,7 +153,15 @@ class NotificationsDisplay extends React.Component {
                   </Button>
                 </DialogActions>
               </Dialog>
-              {display}
+              <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6} lg={10}>
+                <Card>
+                  <CardBody>
+                    {display}
+                  </CardBody>
+                </Card>
+            </GridItem>
+            </GridContainer>
            </GridItem>
         </GridContainer>
       </div>
