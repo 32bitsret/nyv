@@ -12,11 +12,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/dashboardStyle.jsx";
-import logo from "assets/img/logo.jpg";
+import logo from "assets/img/pyclogo.png";
 import data from '../variables/data'
 import User from '../variables/UserData'
 import SearchDetail from "./SearchDetail"
-import image from "assets/img/sidebar-2.jpg";
+import image from "assets/img/riyo.jpg";
 
 var ps;
 

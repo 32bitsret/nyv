@@ -15,7 +15,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import logoo from '../assets/img/logo.jpg'
+import logoo from '../assets/img/pyclogo.png'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 import {
   verifyEmail, 
@@ -268,7 +268,7 @@ class LoginPage extends React.Component {
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"
                     alt="100%x180"
-                    style={{ height: "180px", width: "180px", position:"center center" }}
+                    style={{ height: "180px", width: "180px", position:"center center", marginTop:"10px" }}
                     src={logoo}
                     data-holder-rendered="true"
                   />

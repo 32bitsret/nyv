@@ -20,7 +20,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import regularFormsStyle from "assets/jss/material-dashboard-pro-react/views/regularFormsStyle";
 import {connect} from "react-redux"
-import logoo from '../../assets/img/logo.jpg'
+import logoo from '../../assets/img/pyclogo.png'
 import Heading from "components/Heading/Heading.jsx";
 import Snackbar from "components/Snackbar/Snackbar.jsx";
 import {
@@ -276,7 +276,7 @@ class Step1 extends React.Component {
                   className={classes.cardImgTop}
                   data-src="holder.js/100px180/"
                   alt="100%x180"
-                  style={{ height: "180px", width: "180px", position:"center center" }}
+                  style={{ height: "180px", width: "180px", position:"center center", marginTop:"10px" }}
                   src={logoo}
                   data-holder-rendered="true"
                 />

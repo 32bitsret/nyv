@@ -12,7 +12,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { connect } from "react-redux"
-import logoo from '../assets/img/logo.jpg'
+import logoo from '../assets/img/pyclogo.png'
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 import { loginUser } from  "../redux/actions/authActions"
 import { withRouter } from "react-router-dom"
@@ -171,7 +171,7 @@ class Login extends React.Component {
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"
                     alt="100%x180"
-                    style={{ height: "180px", width: "180px", display: "block" }}
+                    style={{ height: "180px", width: "180px", display: "block", marginTop:"10px" }}
                     src={logoo}
                     data-holder-rendered="true"
                   />
