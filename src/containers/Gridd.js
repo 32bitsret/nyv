@@ -19,9 +19,7 @@ import {
   extractMaritalStatus,
   extractGender,
   extractEmployment,
-  extractEmploymentE
 } from "../utils/Gridd/Extraction"
-import chartsStyle from "assets/jss/material-dashboard-pro-react/views/chartsStyle.jsx";
 import isEmpty from "../utils/isEmpty";
 import _ from "lodash"
 
@@ -498,15 +496,12 @@ class Gridd extends Component {
         </GridItem>
         <GridItem xs={12} sm={12} md={6} lg={4}>
           <Card chart >
-
             <CardBody>
               <h1>{members.length}{" "}TOTAL</h1>
               <hr/>
               <h4>{!isEmpty(this.state.mobile)?_.uniq(this.state.mobile).length:"0"}{" "}(MOBILE USERS)</h4>
               <hr/>
               <h4>{!isEmpty(this.state.web)?_.uniq(this.state.web).length:"0"}{" "}(WEB USERS)</h4>
-              {/* <hr/>
-              <h4>{!isEmpty(this.state.admins)?_.uniq(this.state.admins).length:"0"}{" "}(ADMINS)</h4> */}
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -535,3 +530,5 @@ export default connect(mapStateToProps, {
   getProfile, 
   getAllProfile
 })(withStyles(dashboardStyle)(Gridd))
+
+

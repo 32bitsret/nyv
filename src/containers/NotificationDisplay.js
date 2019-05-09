@@ -8,19 +8,16 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import Close from "@material-ui/icons/Close";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import notificationsStyle from "assets/jss/material-dashboard-pro-react/views/notificationsStyle.jsx";
 import {connect} from "react-redux"
 import { getNotification } from "../redux/actions/notificationActions";
-import Heading from "components/Heading/Heading.jsx";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
 import _ from "lodash"
-import CardHeader from "components/Card/CardHeader.jsx";
+import moment from "moment"
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -89,8 +86,8 @@ class NotificationsDisplay extends React.Component {
           <Card>
             <CardBody>
               { 
-                // !isEmpty(this.state.message) ?
-                false ?
+                !isEmpty(this.state.message) 
+                ?
                 this.state.message.map((mess ,i)=> ( 
                   <div key={i}>  
                     <GridContainer>
@@ -99,16 +96,24 @@ class NotificationsDisplay extends React.Component {
                           <CardFooter chart>
                             <div className={classes.stats}>
                             <h3><strong>{mess.title}</strong></h3>
-                              {mess.time}
+                              {moment(mess.time).format('DD-MM-YYYY')}
+                              {"  "}
+                              {moment(mess.time).format('DD-MM-YYYY')}
                               {" "}
                               <Button
                                 justIcon={false}
                                 round
                                 simple
                                 color="success"
-                                onClick = {this.handleView}
+                                onClick = {() => {
+                                  let message = this.state.message.find(thisOne => thisOne._id === mess._id)
+                                  this.setState({
+                                    selectedMessage: message,
+                                    classicModal: true
+                                  })
+                                }}
                                 >
-                                view
+                                View
                               </Button>
                             </div>
                           </CardFooter>
@@ -161,19 +166,22 @@ class NotificationsDisplay extends React.Component {
                 >
                   <span>
                     <h3>
-                      {this.state.selectedMessage.body}
+                      {this.state.selectedMessage.message}
                     </h3>
                   </span>
                   <br/>
                   {" "}
-                  {this.state.selectedMessage.time}
+                  {moment(this.state.selectedMessage.time).format('DD-MM-YYYY')}
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
-                  
                   <Button
-                    color="success"
+                    color="danger"
                     simple
-                    
+                    onClick={() => {
+                      this.setState({
+                        classicModal: false
+                      })
+                    }}
                   >
                     close
                   </Button>

@@ -148,7 +148,7 @@ class SearchResult extends React.Component {
             }
         />
         <GridContainer >
-            <GridItem xs={12} lg={6}>
+            <GridItem xs={6} lg={6}>
             <Card>
                 <CardHeader color="success" icon>
                 <CardIcon color="success">
@@ -193,7 +193,7 @@ class SearchResult extends React.Component {
                 </CardBody>
             </Card>
             </GridItem>
-            <GridItem xs={6} md={6} xs={6} lg={6}>
+            <GridItem xs={3} md={6} lg={6}>
                {display}
             </GridItem>
         </GridContainer>

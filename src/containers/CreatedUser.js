@@ -68,6 +68,7 @@ class CreatedUser extends Component {
                     <img 
                       className="rounded-circle" 
                       style={{width: "200px",
+                        height:"200px",
                         left: "50%",
                         position: "relative",
                         transform: "translate(-50%,0)"}}
