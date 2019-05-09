@@ -35,11 +35,7 @@ class NotificationsDisplay extends React.Component {
       smallModal: false,
       message:[],
       loadingMessages: true,
-      selectedMessage:{
-        title:"Message from the plateau youth council",
-        body:"we are pleased to announce that you have been selected for annual conference holding at the zonal center",
-        time:"2019-12-12"
-      },
+      selectedMessage:{},
       queryData:{}
     };
   }
@@ -49,10 +45,7 @@ class NotificationsDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    let reversed = []
      if(!isEmpty(nextProps.notification.notifications)){
-       reversed = _.reverse(nextProps.notification.notifications)
-      console.log("REVERSED MESSAGES ", reversed)
       this.setState({
         message: _.map(nextProps.notification.notifications),
         loadingMessages: false
@@ -77,13 +70,14 @@ class NotificationsDisplay extends React.Component {
     x[modal] = false;
     this.setState(x);
   }
+
+  handleView = () => {
+
+  }
+
   render() {
     const { classes } = this.props;
-    console.log("MESSAGES FROM STATE", _.isArray(this.state.message))
     if(!isEmpty(this.state.message)){
-      this.state.message.map(mess => {
-        console.log("MESS", mess.message)
-      })
     }
     const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
@@ -94,27 +88,26 @@ class NotificationsDisplay extends React.Component {
         <GridItem xs={12} sm={12} md={6} lg={10}>
           <Card>
             <CardBody>
-              {/* <br/>
-              <br/>
-              <br/>
-              <br/> */}
-              {
+              { 
+                // !isEmpty(this.state.message) ?
+                false ?
                 this.state.message.map((mess ,i)=> ( 
                   <div key={i}>  
                     <GridContainer>
                       <GridItem xs={12} sm={12} md={12}>
                         <Card chart >
-                          {/* <CardBody>
-                          <h3>{mess.title}</h3>      <Button
-                              color="success">
-                                view
-                              </Button>
-                          </CardBody> */}
                           <CardFooter chart>
                             <div className={classes.stats}>
-                            <h3>{mess.title}</h3> 
+                            <h3><strong>{mess.title}</strong></h3>
+                              {mess.time}
+                              {" "}
                               <Button
-                              color="success">
+                                justIcon={false}
+                                round
+                                simple
+                                color="success"
+                                onClick = {this.handleView}
+                                >
                                 view
                               </Button>
                             </div>
@@ -124,6 +117,10 @@ class NotificationsDisplay extends React.Component {
                     </GridContainer>
                   </div>
                 ))  
+                :
+                <GridContainer justify="center">
+                 <h4>You have No Messages</h4> 
+                </GridContainer>
               }
             </CardBody>
           </Card>
@@ -151,11 +148,11 @@ class NotificationsDisplay extends React.Component {
                   disableTypography
                   className={classes.modalHeader}
                 >
-                  <h5 className={classes.modalTitle}><strong>
-                  {
-                    this.state.selectedMessage.title
-                  }
-                  </strong></h5>
+                  <h5 className={classes.modalTitle}>
+                    <strong>
+                      {this.state.selectedMessage.title}
+                    </strong>
+                  </h5>
                   <hr/>
                 </DialogTitle>
                 <DialogContent
