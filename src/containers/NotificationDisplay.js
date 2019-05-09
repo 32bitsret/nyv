@@ -20,6 +20,7 @@ import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
 import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
 import _ from "lodash"
+import CardHeader from "components/Card/CardHeader.jsx";
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -93,15 +94,35 @@ class NotificationsDisplay extends React.Component {
         <GridItem xs={12} sm={12} md={6} lg={10}>
           <Card>
             <CardBody>
-              <br /><br /><br /><br />
+              {/* <br/>
+              <br/>
+              <br/>
+              <br/> */}
               {
                 this.state.message.map((mess ,i)=> ( 
-                <div key={i}>  
-                  <SnackbarContent
-                    message={mess.title}
-                    color="success"
-                  />
-                </div>
+                  <div key={i}>  
+                    <GridContainer>
+                      <GridItem xs={12} sm={12} md={12}>
+                        <Card chart >
+                          {/* <CardBody>
+                          <h3>{mess.title}</h3>      <Button
+                              color="success">
+                                view
+                              </Button>
+                          </CardBody> */}
+                          <CardFooter chart>
+                            <div className={classes.stats}>
+                            <h3>{mess.title}</h3> 
+                              <Button
+                              color="success">
+                                view
+                              </Button>
+                            </div>
+                          </CardFooter>
+                        </Card>
+                      </GridItem>
+                    </GridContainer>
+                  </div>
                 ))  
               }
             </CardBody>
@@ -118,7 +139,7 @@ class NotificationsDisplay extends React.Component {
                   root: classes.center + " " + classes.modalRoot,
                   paper: classes.modal
                 }}
-                open={true}//{this.state.classicModal}
+                open={this.state.classicModal}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={() => this.handleClose("classicModal")}
