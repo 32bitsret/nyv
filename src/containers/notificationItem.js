@@ -33,11 +33,11 @@ class Notifications extends React.Component {
     if(!isEmpty(nextProps.dashboard.dashboard)){
       let user = nextProps.dashboard.dashboard
       let data = {
-          lga:user.lga,
-          qualification:user.education.educational_qualification,
-          marital_status:user.marital_status,
-          disability:user.disability,
-          gender:user.gender
+          lga:!isEmpty(user.lga)?user.lga:"",
+          qualification:!isEmpty(user.education)?user.education.educational_qualification:"",
+          marital_status:!isEmpty(user.marital_status)?user.marital_status:"",
+          disability:!isEmpty(user.disability)?user.disability:"",
+          gender:!isEmpty(user.gender)?user.gender:""
         }
       this.setState({
         queryData: {...data},
@@ -84,15 +84,7 @@ class Notifications extends React.Component {
       (
         <div>
           <GridContainer justify="center">
-          {/* <GridItem xs={12} md={10} lg={10}>
-            <div
-              className={classes.cardHeader + " " + classes.center}
-            >
-              <div> */}
                 Loading user data...
-              {/* </div>
-            </div>
-          </GridItem> */}
           </GridContainer>
         </div>
       )

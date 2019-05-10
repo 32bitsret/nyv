@@ -33,19 +33,27 @@ class NotificationsDisplay extends React.Component {
       message:[],
       loadingMessages: true,
       selectedMessage:{},
-      queryData:{}
+      queryData:{},
+      isempty: true
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.getNotification({query:this.props.user})
   }
 
   componentWillReceiveProps(nextProps){
      if(!isEmpty(nextProps.notification.notifications)){
+       console.log("MESSAGES ARRIVED")
       this.setState({
-        message: _.map(nextProps.notification.notifications),
+        message: nextProps.notification.notifications,//_.map(nextProps.notification.notifications),
+        isempty:false,
         loadingMessages: false
+      })
+    }
+    else{
+      this.setState({
+        isempty: true
       })
     }
   }
@@ -68,14 +76,10 @@ class NotificationsDisplay extends React.Component {
     this.setState(x);
   }
 
-  handleView = () => {
-
-  }
-
   render() {
     const { classes } = this.props;
-    if(!isEmpty(this.state.message)){
-    }
+    console.log("NOTIFICATION", this.props)
+    
     const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
         loading messages...
@@ -86,7 +90,8 @@ class NotificationsDisplay extends React.Component {
           <Card>
             <CardBody>
               { 
-                !isEmpty(this.state.message) 
+                // !isEmpty(this.props.notification.notifications)
+                !this.state.isempty 
                 ?
                 this.state.message.map((mess ,i)=> ( 
                   <div key={i}>  

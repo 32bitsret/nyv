@@ -199,7 +199,6 @@ class LoginPage extends React.Component {
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
         gender: this.state.gender,
-        // lga: this.state.lga,
         // role:"admin" 
       }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""&&this.state.emailState !== ""){

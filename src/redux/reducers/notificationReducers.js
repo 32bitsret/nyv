@@ -8,8 +8,8 @@ import isEmpty from "../../utils/isEmpty"
 const initialState = {
     isloading: true,
     notifications: [],
-    error: {}    
 }
+    error: {}    
 
 export default (state = initialState, action) => {
     switch(action.type){
