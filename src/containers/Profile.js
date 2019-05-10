@@ -240,7 +240,7 @@ class UserProfile extends Component {
     ];
 
     const optionsMaritalStatus = [
-      { label: 'choose', value: '' },
+      { label: '', value: '' },
       { label: 'Single', value: 'Single' },
       { label: 'Married', value: 'Married' },
       { label: 'Divorced', value: 'Divorced' },
@@ -248,7 +248,7 @@ class UserProfile extends Component {
     ];
 
     const optionsDisability = [
-      { label: 'choose', value: ''},
+      { label: '', value: ''},
       { label: 'Not Disabled', value: 'Not Disabled' },
       { label: 'Disabled', value: 'Disabled' }
     ];
@@ -276,7 +276,7 @@ class UserProfile extends Component {
     ];
 
     const optionsStates = [
-      { label: 'choose', value: '' },
+      { label: '', value: '' },
       { label : 'Abia State', value : 'Abia State' },
       { label : 'Adamawa State', value : 'Adamawa State' },
       { label : 'Akwa Ibom State', value : 'Akwa Ibom State' },
@@ -505,11 +505,12 @@ class UserProfile extends Component {
 
     const optionsQualification = [
       { label: '', value: '' },
-      { label: 'School Cert', value: 'CERT' },
-      { label: 'Olevel', value: 'OLEVEL' },
+      { label: 'CERT', value: 'CERT' },
+      { label: 'OLEVEL', value: 'OLEVEL' },
       { label: 'ND', value: 'ND' },
+      { label: 'NCE', value: 'NCE' },
       { label: 'HND', value: 'HND' },
-      { label: 'Degree', value: 'DEGREE' },
+      { label: 'DEGREE', value: 'DEGREE' },
       { label: 'MSC', value: 'MSC' },
       { label: 'PHD', value: 'PHD' }
     ];
