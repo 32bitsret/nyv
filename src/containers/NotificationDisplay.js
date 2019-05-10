@@ -49,10 +49,9 @@ class NotificationsDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-     if(!isEmpty(nextProps.notification.notifications)){
-       console.log("MESSAGES ARRIVED")
+    if(!isEmpty(nextProps.notification.notifications)){
       this.setState({
-        message: nextProps.notification.notifications,//_.map(nextProps.notification.notifications),
+        message: nextProps.notification.notifications,
         isempty:false,
         loadingMessages: false
       })
@@ -84,9 +83,7 @@ class NotificationsDisplay extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("NOTIFICATION IS EMPTY", isEmpty(this.props.notification.notifications))
-    
-      const display = this.state.loadingMessages ? 
+    const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
         loading messages...
       </GridContainer>
