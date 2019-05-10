@@ -34,12 +34,18 @@ class NotificationsDisplay extends React.Component {
       loadingMessages: true,
       selectedMessage:{},
       queryData:{},
-      isempty: true
+      isempty: true,
+      queryDataAvailable: false
     };
   }
 
   componentWillMount(){
-    this.props.getNotification({query:this.props.user})
+    if(!isEmpty(this.props.user.lga) && !isEmpty(this.props.user.qualification) && !isEmpty(this.props.user.marital_status) && !isEmpty(this.props.user.disability) && !isEmpty(this.props.user.gender)){
+      this.setState({
+        queryDataAvailable: true
+      })
+      this.props.getNotification({query:this.props.user})
+    }
   }
 
   componentWillReceiveProps(nextProps){
@@ -80,7 +86,7 @@ class NotificationsDisplay extends React.Component {
     const { classes } = this.props;
     console.log("NOTIFICATION", this.props)
     
-    const display = this.state.loadingMessages ? 
+      const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
         loading messages...
       </GridContainer>
@@ -103,7 +109,7 @@ class NotificationsDisplay extends React.Component {
                             <h3><strong>{mess.title}</strong></h3>
                               {moment(mess.time).format('DD-MM-YYYY')}
                               {"  "}
-                              {moment(mess.time).format('DD-MM-YYYY')}
+                              {/* {moment(mess.time).format('DD-MM-YYYY')} */}
                               {" "}
                               <Button
                                 justIcon={false}
@@ -136,6 +142,15 @@ class NotificationsDisplay extends React.Component {
           </Card>
         </GridItem>
         </GridContainer>
+
+        
+    const mainDisplay = this.state.queryDataAvailable 
+    ? 
+    display
+    :
+    <GridContainer justify="center">
+      <h4>Please Update Your Profile</h4> 
+    </GridContainer>
 
     return (
       <div>
@@ -194,7 +209,7 @@ class NotificationsDisplay extends React.Component {
               </Dialog>
               <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6} lg={12}>
-                {display}
+                {mainDisplay}
             </GridItem>
             </GridContainer>
            </GridItem>
