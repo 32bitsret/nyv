@@ -13,7 +13,8 @@ class ImageUpload extends React.Component {
       type:"",
       name:"",
       file: null,
-      imagePreviewUrl: this.props.avatar ? defaultAvatar : defaultImage
+      imagePreviewUrl: this.props.avatar ? defaultAvatar : defaultImage,
+      isUpdating: false
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +38,9 @@ class ImageUpload extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({
+      isUpdating: true
+    })
     const id = this.props.state.dashboard.dashboard._id
     const data = {
         type: this.state.type,
@@ -46,6 +50,7 @@ class ImageUpload extends React.Component {
      console.log("DATA",data)
      this.props.uploadPicture(data, id)
   }
+
   handleClick() {
     this.refs.fileInput.click();
   }
@@ -62,26 +67,40 @@ class ImageUpload extends React.Component {
     return (
       <div className="fileinput text-center">
         <input type="file" onChange={this.handleImageChange} ref="fileInput" />
-        <div className={"thumbnail" +" img-circle"}>
+        <div className={"thumbnail" +" img-circle"} style={{height:"100px", width:"100px"}}>
           <img src={this.state.imagePreviewUrl} alt="..." />
         </div>
         <div>
           {this.state.file === null ? (
-            <Button {...addButtonProps} onClick={() => this.handleClick()}>
+            <Button 
+               color="success"
+               onClick={() => this.handleClick()}>
               {"Add Photo"}
             </Button>
-          ) : (
-            <span>
-              <Button {...changeButtonProps} onClick={() =>cancel()}>
-                Cancel
-              </Button>
-              <Button
-                {...uploadButtonProps}
-                onClick={() => this.handleSubmit()}
-              >
-                Upload
-              </Button>
-            </span>
+             ) : (
+               this.state.isUpdating ? 
+               <span>
+               <Button 
+                color="warning"
+                disabled
+               >
+                 Updating...
+               </Button>
+              </span>
+               :
+              <span>
+                <Button 
+                  color="danger"
+                  onClick={() =>cancel()}>
+                  Cancel
+                </Button>
+                <Button
+                  color="success"
+                  onClick={() => this.handleSubmit()}
+                >
+                  Upload
+                </Button>
+              </span>
           )}
         </div>
       </div>

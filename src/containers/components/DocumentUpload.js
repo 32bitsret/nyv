@@ -10,6 +10,7 @@ class DocumentUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isUpdating: false,
       type:"",
       name:"",
       file: null,
@@ -37,6 +38,9 @@ class DocumentUpload extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({
+      isUpdating:true
+    })
     const id = this.props.state.dashboard.dashboard._id
     console.log("ID", id)
     const data = {
@@ -55,8 +59,6 @@ class DocumentUpload extends React.Component {
       console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
     var {
       addButtonProps,
-      changeButtonProps,
-      uploadButtonProps,
       cancel
     } = this.props;
     return (
@@ -64,16 +66,30 @@ class DocumentUpload extends React.Component {
         <input type="file" onChange={this.handleImageChange} ref="fileInput" />
         <div>
           {this.state.file === null ? (
-            <Button {...addButtonProps} onClick={() => this.handleClick()}>
+            <Button 
+              color="success"
+              onClick={() => this.handleClick()}>
               {"Add Document"}
             </Button>
           ) : (
+            this.state.isUpdating ?
             <span>
-              <Button {...changeButtonProps} onClick={() =>cancel()}>
+              <Button 
+                color="warning"
+                disabled
+              >
+                Updating...
+              </Button>
+            </span>
+            :
+            <span>
+              <Button 
+                color="danger"
+                onClick={() =>cancel()}>
                 Cancel
               </Button>
               <Button
-                {...uploadButtonProps}
+                color="success"
                 onClick={() => this.handleSubmit()}
               >
                 Upload

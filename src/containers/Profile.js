@@ -579,15 +579,15 @@ class UserProfile extends Component {
                           avatar 
                           addButtonProps={{
                             color: "success",
-                            round: true
+                            round: false
                           }}
                           changeButtonProps={{
                             color: "danger",
-                            round: true
+                            round: false
                           }}
                           uploadButtonProps={{
                             color: "success",
-                            round: true
+                            round: false
                           }}
                         />
                       </DialogContent>
@@ -722,7 +722,7 @@ class UserProfile extends Component {
                             Updating...
                           </Button>
                           </DialogActions>
-                        :
+                          :
                           <DialogActions>
                             <Button onClick={this.onClickPersonal} color="danger">
                               Cancel
@@ -993,13 +993,19 @@ class UserProfile extends Component {
                   </Button> 
                   ):
                   (
-                  <Button 
-                    className="btn bg-white text-success primary mb-3 float-right">
-                    <a href={this.props.dashboard.dashboard.resume} download>
-                    Download Document
-                    </a>
-                    
-                  </Button> 
+                  <span>
+                    <Button 
+                      className="btn bg-white text-success primary mb-3 float-right">
+                      <a href={this.props.dashboard.dashboard.resume} download>
+                      Download Document
+                      </a>
+                    </Button> 
+                    <Button 
+                      onClick={this.onClickUpload}
+                      className="btn bg-white text-success primary mb-3 float-right">
+                      Change Document
+                    </Button>
+                  </span>
                   )
                   :
                   ""
@@ -1013,7 +1019,7 @@ class UserProfile extends Component {
                     <DialogTitle id="form-dialog-title">UPLOAD DOCUMENT</DialogTitle>
                     <DialogContent>
                       <DialogContentText>
-                        change you Uploaded Document here
+                        change your CV 
                       </DialogContentText>
                       <br/>
                         <div className="form-group mb-8">
@@ -1022,7 +1028,6 @@ class UserProfile extends Component {
                           className="col-md-6 col-form-label">
                           Resume
                         </label>
-
                         <DocumentUpload
                           cancel={this.onClickUpload}
                         />
