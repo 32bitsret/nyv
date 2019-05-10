@@ -84,7 +84,7 @@ class NotificationsDisplay extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("NOTIFICATION", this.props)
+    console.log("NOTIFICATION IS EMPTY", isEmpty(this.props.notification.notifications))
     
       const display = this.state.loadingMessages ? 
       <GridContainer justify="center">
@@ -96,9 +96,12 @@ class NotificationsDisplay extends React.Component {
           <Card>
             <CardBody>
               { 
-                // !isEmpty(this.props.notification.notifications)
-                !this.state.isempty 
+                isEmpty(this.props.notification.notifications)
                 ?
+                <GridContainer justify="center">
+                 <h4>You have No Messages</h4> 
+                </GridContainer>
+                :
                 this.state.message.map((mess ,i)=> ( 
                   <div key={i}>  
                     <GridContainer>
@@ -109,8 +112,6 @@ class NotificationsDisplay extends React.Component {
                             <h3><strong>{mess.title}</strong></h3>
                               {moment(mess.time).format('DD-MM-YYYY')}
                               {"  "}
-                              {/* {moment(mess.time).format('DD-MM-YYYY')} */}
-                              {" "}
                               <Button
                                 justIcon={false}
                                 round
@@ -133,10 +134,6 @@ class NotificationsDisplay extends React.Component {
                     </GridContainer>
                   </div>
                 ))  
-                :
-                <GridContainer justify="center">
-                 <h4>You have No Messages</h4> 
-                </GridContainer>
               }
             </CardBody>
           </Card>

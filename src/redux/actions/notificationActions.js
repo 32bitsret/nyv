@@ -5,6 +5,7 @@ import {
 } from "../Constants"
 import {findMessageByQueryURL} from "../../api/apiURL"
 import axios from "axios"
+import isEmpty from "../../utils/isEmpty"
 
 export const getNotification = (data) => dispatch => {
     console.log("DATA TO QUERY SERVER WITH", data)
@@ -14,7 +15,7 @@ export const getNotification = (data) => dispatch => {
         data:data
     })
     .then(res => {
-        console.log("RESPONSE FROM SUCCESS NOTIFICATION", res.data.data)
+        console.log("RESPONSE FROM SUCCESS NOTIFICATION", isEmpty(res.data.data))
         dispatch({
             type: DONE_GETTING_NOTIFICATION,
             payload: res.data.data
