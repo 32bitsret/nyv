@@ -36,13 +36,13 @@ class Dashboard extends React.Component {
     this.resizeFunction = this.resizeFunction.bind(this);
   }
   componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.refs.mainPanel, {
-        suppressScrollX: true,
-        suppressScrollY: false
-      });
-      document.body.style.overflow = "hidden";
-    }
+    // if (navigator.platform.indexOf("Win") > -1) {
+    //   ps = new PerfectScrollbar(this.refs.mainPanel, {
+    //     suppressScrollX: true,
+    //     suppressScrollY: false
+    //   });
+    //   document.body.style.overflow = "hidden";
+    // }
     this.setState({isAdmin: this.checkUserRole(this.props.auth.user)})
     this.props.getProfile(this.props.auth.user.phone)
     this.setState({user:this.props.auth.user })
