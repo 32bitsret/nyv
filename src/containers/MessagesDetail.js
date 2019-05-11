@@ -71,10 +71,10 @@ class MessagesDetail extends React.Component {
         disability:[],
         marital_status:[],
         qualification:[]
-      }
+      },
+      filteredUniq :  []
     };
   }
-// expo_tokens:["ExponentPushToken[Rrg5q-KOa7Ax2smXaO1kHn]","ExponentPushToken[vAY3fcKfR3Qbcg3zCEmYIL]","ExponentPushToken[cGAJinGCkv9CY33yfs6ulp]","ExponentPushToken[_wXXX0N64evt0dCmjbgRs2]"],
 
   componentDidMount(){
    this.props.getAllProfile()
@@ -248,12 +248,20 @@ filterGender = (test, arr) => {
     }
     
     totalArr.map(o => {
-      this.filterLGA(o, obj.lga) 
-      this.filterGender(o, obj.gender)
-      this.filterDisability(o, obj.disability)
-      this.filterMartitalStatus(o, obj.marital_status)
-      this.filterQualification(o, obj.qualification)
+      this.filterLGA(o, this.state.lga) 
+      this.filterGender(o, this.state.gender)
+      this.filterDisability(o, this.state.disability)
+      this.filterMartitalStatus(o, this.state.marital_status)
+      this.filterQualification(o, this.state.qualification)
     })
+
+    // totalArr.map(o => {
+    //   this.filterLGA(o, obj.lga) 
+    //   this.filterGender(o, obj.gender)
+    //   this.filterDisability(o, obj.disability)
+    //   this.filterMartitalStatus(o, obj.marital_status)
+    //   this.filterQualification(o, obj.qualification)
+    // })
 
     lgaMembersUniq = _.uniq(this.state.fitleredMembersLGA)
     genderMembersUniq = _.uniq(this.state.filteredMembersGender)
@@ -262,8 +270,9 @@ filterGender = (test, arr) => {
     qualificationMembersUniq = _.uniq(this.state.filteredMembersEducation)
     
     totalNotUniq = _.concat([],lgaMembersUniq, genderMembersUniq, disabilityMembersUniq, maritalStatusMembersUniq, qualificationMembersUniq)
+
     totalUniq = _.uniq(totalNotUniq)
-    // console.log("TOTAL UNIQ", totalUniq)
+    
     totalUniq.map(o => {
       let count = 0
       for(let i = 0; i <totalNotUniq.length; i++ ){
@@ -280,6 +289,10 @@ filterGender = (test, arr) => {
         }
       }
     })
+  }
+
+  filterProfiles = () => {
+
   }
 
   onSend = e => {
@@ -302,8 +315,10 @@ filterGender = (test, arr) => {
   render() {
     const { classes } = this.props;
     const data = this.props.members.allMembers
-    this.extractExpoToken(this.state.allMembers)
+    this.extractExpoToken(data)
     // console.log("MESSAGES REDUX", this.props.message)
+    // this.extractExpoToken(this.state.allMembers)
+    console.log("TOTAL FILTERED PROFILES", this.state.filteredUniq)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">
@@ -368,53 +383,53 @@ filterGender = (test, arr) => {
               </CardHeader>
               <CardBody>
               <FormControl
-                    fullWidth
-                    className={classes.selectFormControl}
+                fullWidth
+                className={classes.selectFormControl}
+              >
+                <Select
+                  multiple
+                  disabled={this.state.allGender}
+                  MenuProps={{
+                    className: classes.selectMenu
+                  }}
+                  classes={{
+                    select: classes.select
+                  }}
+                  value={this.state.gender}
+                  onChange={this.handleSimple}
+                  inputProps={{
+                    name: "gender",
+                    id: "gender"
+                  }}
+                >
+                  <MenuItem
+                    disabled
+                    classes={{
+                      root: classes.selectMenuItem
+                    }}
                   >
-                    <Select
-                      multiple
-                      disabled={this.state.allGender}
-                      MenuProps={{
-                        className: classes.selectMenu
-                      }}
-                      classes={{
-                        select: classes.select
-                      }}
-                      value={this.state.gender}
-                      onChange={this.handleSimple}
-                      inputProps={{
-                        name: "gender",
-                        id: "gender"
-                      }}
-                    >
-                      <MenuItem
-                        disabled
-                        classes={{
-                          root: classes.selectMenuItem
-                        }}
-                      >
-                          select
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected
-                        }}
-                        value="female"
-                      >
-                        females
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected
-                        }}
-                        value="male"
-                      >
-                        males
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
+                      select
+                  </MenuItem>
+                  <MenuItem
+                    classes={{
+                      root: classes.selectMenuItem,
+                      selected: classes.selectMenuItemSelected
+                    }}
+                    value="female"
+                  >
+                    females
+                  </MenuItem>
+                  <MenuItem
+                    classes={{
+                      root: classes.selectMenuItem,
+                      selected: classes.selectMenuItemSelected
+                    }}
+                    value="male"
+                  >
+                    males
+                  </MenuItem>
+                </Select>
+              </FormControl>
               </CardBody>
             </Card>
           </GridItem>
