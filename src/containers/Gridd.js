@@ -28,6 +28,7 @@ let general
 let gender
 let education
 let employment
+let users
 
 class Gridd extends Component {
   constructor(props){
@@ -120,7 +121,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: 200,
+      high: members.length + 20,
       chartPadding: {
         top: 0,
         right: 5,
@@ -175,7 +176,61 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: 200,
+      high: members.length + 20,
+      chartPadding: {
+        top: 0,
+        right: 5,
+        bottom: 0,
+        left: 0
+      }
+    },
+    responsiveOptions: [
+      [
+        "screen and (max-width: 640px)",
+        {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function(value) {
+              return value[0];
+            }
+          }
+        }
+      ]
+    ],
+    animation: {
+      draw: function(data) {
+        if (data.type === "bar") {
+          data.element.animate({
+            opacity: {
+              begin: (data.index + 1) * 80,
+              dur: 500,
+              from: 0,
+              to: 1,
+              easing: "ease"
+            }
+          });
+        }
+      }
+    }
+  };
+
+  users = {
+    data: {
+      labels: [
+        "Mobile Users",
+        " Web Users",
+      ],
+      series: [[
+        _.uniq(this.state.mobile).length, 
+        _.uniq(this.state.web).length
+      ]]
+    },
+    options: {
+      axisX: {
+        showGrid: false
+      },
+      low: 0,
+      high: members.length + 20,
       chartPadding: {
         top: 0,
         right: 5,
@@ -244,7 +299,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: 200,
+      high: members.length + 20,
       chartPadding: {
         top: 0,
         right: 5,
@@ -330,7 +385,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: 10,
+      high: members.length + 20,
       chartPadding: {
         top: 0,
         right: 5,
@@ -381,7 +436,7 @@ class Gridd extends Component {
           textAlign="center"
           category={
             <span>
-                Click to <a href="/dashboard">Refresh</a>
+                <a href="/dashboard">Refresh</a>
             </span>
         }
         />
@@ -401,7 +456,7 @@ class Gridd extends Component {
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>GENERAL PROFILE SUMMARY</h4>
-                For 17 Local Government Areas
+                {/* For 17 Local Government Areas */}
               <p className={classes.cardCategory}>
               </p>
             </CardBody>
@@ -427,7 +482,7 @@ class Gridd extends Component {
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>GENERAL EDUCATION SUMMARY</h4>
-                For 17 Local Government Areas
+                {/* For 17 Local Government Areas */}
               <p className={classes.cardCategory}>
               </p>
             </CardBody>
@@ -456,7 +511,7 @@ class Gridd extends Component {
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>GENERAL POPULATION SUMMARY</h4>
-                For 17 Local Government Areas
+                {/* For 17 Local Government Areas */}
               <p className={classes.cardCategory}>
               </p>
             </CardBody>
@@ -469,7 +524,7 @@ class Gridd extends Component {
         </GridItem>
       </GridContainer>
       <GridContainer>
-          <GridItem xs={12} sm={12} md={6} lg={4}>
+        <GridItem xs={12} sm={12} md={6} lg={4}>
           <Card chart >
             <CardHeader color="danger" className={classes.cardHeaderHover}>
               <ChartistGraph
@@ -484,7 +539,7 @@ class Gridd extends Component {
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>EMPLOYMENT SUMMARY</h4>
-                For 17 Local Government Areas and others
+                {/* For 17 Local Government Areas and others */}
               <p className={classes.cardCategory}>
               </p>
             </CardBody>
@@ -502,6 +557,31 @@ class Gridd extends Component {
               <h4>{!isEmpty(this.state.mobile)?_.uniq(this.state.mobile).length:"0"}{" "}(MOBILE USERS)</h4>
               <hr/>
               <h4>{!isEmpty(this.state.web)?_.uniq(this.state.web).length:"0"}{" "}(WEB USERS)</h4>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={6} lg={4}>
+          <Card chart >
+            <CardHeader color="danger" className={classes.cardHeaderHover}>
+              <ChartistGraph
+                className="ct-chart-white-colors"
+                data={users.data}
+                type="Bar"
+                options={employment.options}
+                responsiveOptions={employment.responsiveOptions}
+                listener={employment.animation}
+              />
+              
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>USERS SUMMARY</h4>
+                {/* For 17 Local Government Areas and others */}
+              <p className={classes.cardCategory}>
+              </p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>

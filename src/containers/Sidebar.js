@@ -21,12 +21,12 @@ import defaultAvatar from "assets/img/placeholder.jpg";
 var ps;
 class SidebarWrapper extends React.Component {
   componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.refs.sidebarWrapper, {
-        suppressScrollX: true,
-        suppressScrollY: false
-      });
-    }    
+    // if (navigator.platform.indexOf("Win") > -1) {
+    //   ps = new PerfectScrollbar(this.refs.sidebarWrapper, {
+    //     suppressScrollX: true,
+    //     suppressScrollY: false
+    //   });
+    // }    
     this.setState({
       name: localStorage.f+" "+localStorage.l,
       pic: localStorage.pic

@@ -28,13 +28,13 @@ class Members extends React.Component {
     this.resizeFunction = this.resizeFunction.bind(this);
   }
   componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.refs.mainPanel, {
-        suppressScrollX: true,
-        suppressScrollY: false
-      });
-      document.body.style.overflow = "hidden";
-    }
+    // if (navigator.platform.indexOf("Win") > -1) {
+    //   ps = new PerfectScrollbar(this.refs.mainPanel, {
+    //     suppressScrollX: true,
+    //     suppressScrollY: false
+    //   });
+    //   document.body.style.overflow = "hidden";
+    // }
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
