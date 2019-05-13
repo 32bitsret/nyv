@@ -49,20 +49,20 @@ class Dashboard extends React.Component {
     window.addEventListener("resize", this.resizeFunction);
     // console.log("USER INSIDE STATE+++++++", this.props.auth.user)
   }
-  componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
-    }
-    window.removeEventListener("resize", this.resizeFunction);
-  }
-  componentDidUpdate(e) {
-    if (e.history.location.pathname !== e.location.pathname) {
-      this.refs.mainPanel.scrollTop = 0;
-      if (this.state.mobileOpen) {
-        this.setState({ mobileOpen: false });
-      }
-    }
-  }
+  // componentWillUnmount() {
+  //   if (navigator.platform.indexOf("Win") > -1) {
+  //     ps.destroy();
+  //   }
+  //   window.removeEventListener("resize", this.resizeFunction);
+  // }
+  // componentDidUpdate(e) {
+  //   if (e.history.location.pathname !== e.location.pathname) {
+  //     this.refs.mainPanel.scrollTop = 0;
+  //     if (this.state.mobileOpen) {
+  //       this.setState({ mobileOpen: false });
+  //     }
+  //   }
+  // }
 
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });

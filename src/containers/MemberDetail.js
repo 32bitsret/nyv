@@ -56,7 +56,7 @@ class MemberDetail extends React.Component {
           textAlign="center"
           category={
               <span>
-                click to  <a href="/statistics">Refresh</a>
+                <a href="/statistics">Refresh</a>
               </span>
           }
         />

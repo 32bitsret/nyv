@@ -242,7 +242,7 @@ class Gridd extends Component {
       [
         "screen and (max-width: 640px)",
         {
-          seriesBarDistance: 5,
+          seriesBarDistance: 3,
           axisX: {
             labelInterpolationFnc: function(value) {
               return value[0];
