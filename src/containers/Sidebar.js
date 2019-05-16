@@ -18,7 +18,6 @@ import {getProfile} from  "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty"
 import defaultAvatar from "assets/img/placeholder.jpg";
 
-var ps;
 class SidebarWrapper extends React.Component {
 
 

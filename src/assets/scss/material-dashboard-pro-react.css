@@ -361,7 +361,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
  * Container style
  */
 .ps {
-  overflow: hidden !important;
+  overflow: scroll;
   overflow-anchor: none;
   -ms-overflow-style: none;
   touch-action: auto;

@@ -50,7 +50,7 @@ const appStyle = theme => ({
     }
   },
   mainPanelWithPerfectScrollbar: {
-    overflow: "hidden !important"
+    overflow: "scroll"
   }
 });
 
