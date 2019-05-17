@@ -42,9 +42,9 @@ class Search extends React.Component {
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
-    }
+    // if (navigator.platform.indexOf("Win") > -1) {
+    //   ps.destroy();
+    // }
     window.removeEventListener("resize", this.resizeFunction);
   }
   componentDidUpdate(e) {
