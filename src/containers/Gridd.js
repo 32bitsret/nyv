@@ -121,7 +121,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: members.length + 20,
+      high: members.length / 2,
       chartPadding: {
         top: 0,
         right: 5,
@@ -176,7 +176,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: members.length + 20,
+      high: members.length / 2,
       chartPadding: {
         top: 0,
         right: 5,
@@ -230,7 +230,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: members.length + 20,
+      high: members.length + 5,
       chartPadding: {
         top: 0,
         right: 5,
@@ -571,7 +571,7 @@ class Gridd extends Component {
                 className="ct-chart-white-colors"
                 data={users.data}
                 type="Bar"
-                options={employment.options}
+                options={users.options}
                 responsiveOptions={employment.responsiveOptions}
                 listener={employment.animation}
               />
