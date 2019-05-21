@@ -36,3 +36,15 @@
     padding: 2px 2px;
     margin-top:10px;
 }
+
+@media (min-width: 960px){
+    .MuiGrid-grid-md-6-362 {
+        flex-grow: 0;
+        max-width: 100%!important;
+        flex-basis: 100%!important;
+    }
+    .MuiGrid-grid-md-8-364{
+        flex-basis: 100%!important;
+        max-width: 100%!important;
+    }
+}

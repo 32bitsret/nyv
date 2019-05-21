@@ -70,52 +70,52 @@ class ReactTables extends React.Component {
     return (
       <GridContainer>
          <Dialog
-                    classes={{
-                      root: notificationsStyle.center + " " + notificationsStyle.modalRoot,
-                      paper: notificationsStyle.modal
-                    }}
-                    open={false}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    // onClose={() => this.handleClose("classicModal")}
-                    aria-labelledby="classic-modal-slide-title"
-                    aria-describedby="classic-modal-slide-description"
-                  >
-                    <DialogTitle
-                      id="classic-modal-slide-title"
-                      disableTypography
-                      className={notificationsStyle.modalHeader}
-                    >
-                      <Button
-                        justIcon
-                        className={notificationsStyle.modalCloseButton}
-                        key="close"
-                        aria-label="Close"
-                        color="transparent"
-                        // onClick={() => this.handleClose("classicModal")}
-                      >
-                        <Close className={notificationsStyle.modalClose} />
-                      </Button>
-                      <h4 className={notificationsStyle.modalTitle}>Modal title</h4>
-                    </DialogTitle>
-                    <DialogContent
-                      id="classic-modal-slide-description"
-                      className={notificationsStyle.modalBody}
-                    >
-                      <p>
-                      {/* {one.message} */}we are here for entertainment
-                      </p>
-                    </DialogContent>
-                    <DialogActions className={notificationsStyle.modalFooter}>
-                      <Button
-                        // onClick={() => this.handleClose("classicModal")}
-                        color="danger"
-                        simple
-                      >
-                        Close
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
+            classes={{
+              root: notificationsStyle.center + " " + notificationsStyle.modalRoot,
+              paper: notificationsStyle.modal
+            }}
+            open={false}
+            TransitionComponent={Transition}
+            keepMounted
+            // onClose={() => this.handleClose("classicModal")}
+            aria-labelledby="classic-modal-slide-title"
+            aria-describedby="classic-modal-slide-description"
+          >
+            <DialogTitle
+              id="classic-modal-slide-title"
+              disableTypography
+              className={notificationsStyle.modalHeader}
+            >
+              <Button
+                justIcon
+                className={notificationsStyle.modalCloseButton}
+                key="close"
+                aria-label="Close"
+                color="transparent"
+                // onClick={() => this.handleClose("classicModal")}
+              >
+                <Close className={notificationsStyle.modalClose} />
+              </Button>
+              <h4 className={notificationsStyle.modalTitle}>Modal title</h4>
+            </DialogTitle>
+            <DialogContent
+              id="classic-modal-slide-description"
+              className={notificationsStyle.modalBody}
+            >
+              <p>
+              {/* {one.message} */}we are here for entertainment
+              </p>
+            </DialogContent>
+            <DialogActions className={notificationsStyle.modalFooter}>
+              <Button
+                // onClick={() => this.handleClose("classicModal")}
+                color="danger"
+                simple
+              >
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
         <ReactTable
           data={this.state.data}
           filterable
