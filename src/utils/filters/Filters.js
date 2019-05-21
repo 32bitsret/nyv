@@ -52,7 +52,7 @@ export const profileFilter = (testArr, dataArr) => {
 
 
 export const lgaFilter = (testArr, dataArr) => {
-    console.log("INSIDE EXTRACTION FUNCTION", testArr)
+    // console.log("INSIDE EXTRACTION FUNCTION", testArr)
      let lgaResult = []
 
      const list = [ 
@@ -229,8 +229,8 @@ export const maritalstatusFilter = (testArr, dataArr) => {
 
 export const filter = (test, arr) => {
     arr.map(name => {
-        console.log("NAME", name)
-        console.log("TEST", test)
+        // console.log("NAME", name)
+        // console.log("TEST", test)
         if(test === name){
             return{ 
                togg: true

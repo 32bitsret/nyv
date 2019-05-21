@@ -47,7 +47,7 @@ class ImageUpload extends React.Component {
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
-     console.log("DATA",data)
+    //  console.log("DATA",data)
      this.props.uploadPicture(data, id)
   }
 
@@ -56,7 +56,7 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-      console.log("IMAGE", this.props.state.dashboard.dashboard._id)
+      // console.log("IMAGE", this.props.state.dashboard.dashboard._id)
     var {
       avatar,
       addButtonProps,

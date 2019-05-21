@@ -78,7 +78,7 @@ class Notifications extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("QUERY DATA", this.state.queryData)
+    // console.log("QUERY DATA", this.state.queryData)
     const notificationDisplay = this.state.loading 
       ? 
       (

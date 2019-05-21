@@ -7,7 +7,7 @@ import {
 import { sendMessageURL } from "../../api/apiURL"
 
 export const sendMessage = (body) => dispatch => {
-    console.log("INSIDE MESSAGE ACTION", body)
+    // console.log("INSIDE MESSAGE ACTION", body)
     dispatch({
         type: SENDING_MESSAGE
     })
@@ -17,14 +17,14 @@ export const sendMessage = (body) => dispatch => {
         data: body
     })
     .then(res => {
-        console.log("FROM INSIDE MESSAGE CREATOR",res.data)
+        // console.log("FROM INSIDE MESSAGE CREATOR",res.data)
         dispatch({
             type:SEND_SUCCESS,
             payload: res.data
         })
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
         dispatch({
             type:SEND_MESSAGE_ERROR,
             payload: err

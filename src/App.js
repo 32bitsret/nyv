@@ -24,7 +24,7 @@ let user = ""
 if(localStorage.pyc_token){
     // setAuthToken(localStorage.pyc_token)
     user = jwt_decode(localStorage.pyc_token)
-    console.log("APP USER", user)
+    // console.log("APP USER", user)
     store.dispatch({
         type: SET_USER,
         payload: user

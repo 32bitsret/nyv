@@ -21,7 +21,7 @@ import headerStyle from "assets/jss/material-dashboard-pro-react/components/head
 
 function Header({ ...props }) {
   function makeBrand() {
-    console.log("HEADER", props)
+    // console.log("HEADER", props)
     var name;
     props.routes.map((prop, key) => {
       if (prop.collapse) {

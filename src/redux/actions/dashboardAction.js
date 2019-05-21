@@ -55,7 +55,7 @@ export const getProfileInit = (phone) => dispatch => {
 
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
     })
 }
 
@@ -67,10 +67,10 @@ export const updateProfile = () => dispatch =>{
         data: ""
     })
     .then(res => {
-        console.log(res)
+        // console.log(res)
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
     })
 }
 
@@ -89,6 +89,6 @@ export const getAllProfile = () => dispatch =>{
         })
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
     })
 }

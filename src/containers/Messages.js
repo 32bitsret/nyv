@@ -79,14 +79,14 @@ class Messages extends React.Component {
         return false
       }
     })
-    console.log("CONSOLE STATUS", status)
+    // console.log("CONSOLE STATUS", status)
     return status
   }
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("Messages",this.props.user.role)
+    // console.log(`${match.path}`+"/home")
+    // console.log("Messages",this.props.user.role)
     const mainPanel =
       classes.mainPanel +
       " " +

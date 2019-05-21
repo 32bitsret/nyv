@@ -16,7 +16,7 @@ import img4 from "../assets/img/img4.jpg"
 class Landing extends React.Component {
   render() {
     const { classes } = this.props;
-    console.log("LANDING", classes)
+    // console.log("LANDING", classes)
     return (
       <div className={classes.container}>
         <GridContainer justify="center">

@@ -216,7 +216,7 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.register)
+    // console.log(this.props.register)
     const { classes } = this.props;
     const display = this.props.register.isSuccess 
     ?

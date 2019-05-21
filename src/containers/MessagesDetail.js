@@ -318,7 +318,7 @@ filterGender = (test, arr) => {
     this.extractExpoToken(data)
     // console.log("MESSAGES REDUX", this.props.message)
     // this.extractExpoToken(this.state.allMembers)
-    console.log("TOTAL FILTERED PROFILES", this.state.filteredUniq)
+    // console.log("TOTAL FILTERED PROFILES", this.state.filteredUniq)
     const display = this.props.members.isloading ? 
       (
       <GridContainer justify="center">

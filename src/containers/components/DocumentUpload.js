@@ -56,7 +56,7 @@ class DocumentUpload extends React.Component {
   }
 
   render() {
-      console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
+      // console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
     var {
       addButtonProps,
       cancel

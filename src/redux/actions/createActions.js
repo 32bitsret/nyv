@@ -177,7 +177,7 @@ export const uploadDocument = (data, id) => dispatch =>{
         dispatch(updateDocument(res.data.Location, id))
     })
     .catch(err => {
-        console.log("DOCUMENT FAILURE", err)
+        // console.log("DOCUMENT FA/ILURE", err)
         dispatch({
             type: UPDATE_ERROR,
             payload: err
@@ -245,16 +245,16 @@ export const updatePhotoA = (location, id) => dispatch => {
         }
     })
     .then(res => {
-        console.log("PHOTO UPDATE", res.data)
+        // console.log("PHOTO UPDATE", res.data)
     })
     .catch(err => {
-        console.log("ERROR FROM PHOTO UPDATE", err)
+        // console.log("ERROR FROM PHOTO UPDATE", err)
     })
 }
 
 
 export const updateDocumentA = (location, id) => dispatch => {
-    console.log("document uploadrunning...")
+    // console.log("document uploadrunning...")
     let query = {
         _id: id
     }
@@ -270,23 +270,23 @@ export const updateDocumentA = (location, id) => dispatch => {
         }
     })
     .then(res => {
-        console.log("PHOTO UPDATE", res.data)
+        // console.log("PHOTO UPDATE", res.data)
     })
     .catch(err => {
-        console.log("ERROR FROM PHOTO UPDATE", err)
+        // console.log("ERROR FROM PHOTO UPDATE", err)
     })
 }
 
 export const updateEducationalInfoA = (data) => dispatch =>{
     //step3
-    console.log("STEP3", data)
+    // console.log("STEP3", data)
     axios({
         method:"PUT",
         url:updateProfileURL,
         data: data
     })
     .then(res => {
-        console.log("EDUCATION UPDATED", res.data)
+        // console.log("EDUCATION UPDATED", res.data)
     })
     .catch(err => {
         
@@ -301,11 +301,11 @@ export const uploadPictureA = (data, id) => dispatch =>{
         data: data
     })
     .then(res => {
-        console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
+        // console.log("RESPONSE FROM IMAGE UPLOAD", res.data.Location)
         dispatch(updatePhotoA(res.data.Location, id))
     })
     .catch(err => {
-        console.log("ERROR FROM IMAGE UPLOAD")
+        // console.log("ERROR FROM IMAGE UPLOAD")
     })
 }
 
@@ -318,7 +318,7 @@ export const updateContactInfoA = data => dispatch => {
         data: data
     })
     .then(res => {
-        console.log("CONTACT UPDATE", res.data)
+        // console.log("CONTACT UPDATE", res.data)
     })
     .catch(err => {
         
@@ -327,17 +327,17 @@ export const updateContactInfoA = data => dispatch => {
 
 export const uploadDocumentA = (data, id) => dispatch =>{
     //step4
-    console.log("DOCUMENT UPLOAD IN ROGRESS")
+    // console.log("DOCUMENT UPLOAD IN ROGRESS")
     axios({
         method:"POST",
         url:uploadImageURL,
         data: data
     })
     .then(res => {
-        console.log("DOCUMENT UPLOAD", res.data)
+        // console.log("DOCUMENT UPLOAD", res.data)
         dispatch(updateDocumentA(res.data.Location, id))
     })
     .catch(err => {
-        console.log("DOCUMENT FAILURE", err)
+        // console.log("DOCUMENT FAILURE", err)
     })
 }

@@ -86,8 +86,8 @@ class Search extends React.Component {
 
   render() {
     const { classes, match, ...rest } = this.props;
-    console.log(`${match.path}`+"/home")
-    console.log("Search",this.props.user.role)
+    // console.log(`${match.path}`+"/home")
+    // console.log("Search",this.props.user.role)
     const mainPanel =
       classes.mainPanel +
       " " +

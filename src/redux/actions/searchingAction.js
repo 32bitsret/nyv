@@ -12,13 +12,13 @@ export const getSpecificProfiles = (body) => dispatch => {
         data: body
     })
     .then(res => {
-        console.log("FROM INSIDE LGA SEARCH",res.data.data)
+        // console.log("FROM INSIDE LGA SEARCH",res.data.data)
         dispatch({
           type:FILTERATION_DONE,
           payload:res.data.data
         })
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
     })
 }

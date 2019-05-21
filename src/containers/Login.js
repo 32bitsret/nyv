@@ -131,7 +131,7 @@ class Login extends React.Component {
         this.props.loginUser(userData)
       }
       else{
-        console.log("LOG N ERROR")
+        // console.log("LOG N ERROR")
         this.setState({
           iserror: true
         })
@@ -144,8 +144,8 @@ class Login extends React.Component {
   render() {
     const { classes } = this.props;
     // console.log("ERROR MESSAGE",this.props.auth.error.data)
-    console.log(this.state.error)
-    console.log("ERROR STATE", this.state.iserror)
+    // console.log(this.state.error)
+    // console.log("ERROR STATE", this.state.iserror)
     if(this.props.auth.error !== null || this.props.auth.error !== "" ){ 
     }
     return (

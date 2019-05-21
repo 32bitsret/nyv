@@ -66,7 +66,7 @@ class ReactTables extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("FROM TABLE")
+    // console.log("FROM TABLE")
     return (
       <GridContainer>
          <Dialog

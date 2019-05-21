@@ -38,13 +38,13 @@ class DocumentUploadA extends React.Component {
 
   handleSubmit(e) {
     const id = this.props.state.dashboard.dashboard._id
-    console.log("ID", id)
+    // console.log("ID", id)
     const data = {
         type: this.state.type,
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
-     console.log("DATA",data)
+    //  console.log("DATA",data)
      this.props.uploadDocumentA(data, id)
   }
   handleClick() {
@@ -52,7 +52,7 @@ class DocumentUploadA extends React.Component {
   }
 
   render() {
-      console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
+      // console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
     var {
       addButtonProps,
       changeButtonProps,

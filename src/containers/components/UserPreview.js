@@ -53,7 +53,7 @@ class CreatedUser extends Component {
 
   render(){
     const { classes, user } = this.props;  
-    console.log("PROPS TO PREVIEW",user) 
+    // console.log("PROPS TO PREVIEW",user) 
     return (
         <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12} lg={12}>

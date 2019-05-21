@@ -23,7 +23,7 @@ export const registerUser = (userData, history) => dispatch => {
       payload: res.data
     })
   }).catch(err => {
-    console.log("LOGIN ERROR",err.response.data.message)
+    // console.log("LOGIN ERROR",err.response.data.message)
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -33,7 +33,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login - Get User Token
 export const loginUser = (user) => dispatch => {
-    console.log("USER OBJECT", user)
+    // console.log("USER OBJECT", user)
   axios({
     method: 'POST',
     url: loginURL,
@@ -49,7 +49,7 @@ export const loginUser = (user) => dispatch => {
       payload: res.data.payload
     })
   }).catch(err => {
-    console.log("LOGIN ERROR",err)
+    // console.log("LOGIN ERROR",err)
     dispatch({
       type: ERROR_LOGIN,
       payload: err.response

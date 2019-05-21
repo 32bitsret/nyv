@@ -42,7 +42,7 @@ class Notifications extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("NOTIFICATIONS:",nextProps)
+    // console.log("NOTIFICATIONS:",nextProps)
   }
 
   omponentWillUnmount() {

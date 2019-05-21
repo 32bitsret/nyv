@@ -116,7 +116,7 @@ class LgaTables extends React.Component {
 
   onViewClick = e => {
     e.preventDefault()
-    console.log("CURRENT TABLE NAME", this.state.tableData.name)
+    // console.log("CURRENT TABLE NAME", this.state.tableData.name)
     localStorage.setItem("ln",this.state.tableData.name)
     window.location.href="/search"
   }
