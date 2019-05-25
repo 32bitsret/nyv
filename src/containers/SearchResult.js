@@ -48,7 +48,7 @@ class SearchResult extends React.Component {
             }
            })
         .then(res => {
-            console.log("FROM INSIDE LGA SEARCH",res.data.data)
+            // console.log("FROM INSIDE LGA SEARCH",res.data.data)
             this.setState({
               arr : res.data.data
             })
