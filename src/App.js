@@ -7,6 +7,7 @@ import store from './store';
 import "assets/scss/material-dashboard-pro-react.css?v=1.4.0";
 import jwt_decode from "jwt-decode"
 import Dashboard from './containers/Dashboard'
+import Error from "./containers/Error";
 import Login from "./containers/Login";
 import Register from './containers/Register'
 import Home from './containers/Home'
@@ -119,7 +120,10 @@ class App extends Component {
                             component={Dashboard}
                         />
                     </Switch>
-
+                    <Route  
+                        path="/**" 
+                        component={Error}
+                    />
                 </div>
             </Router>
         </Provider>
