@@ -1,5 +1,5 @@
-export const BASE_URL = "https://plateauyc.herokuapp.com"
-
+// export const BASE_URL = "https://plateauyc.herokuapp.com"
+export const BASE_URL = "http://ec2-34-217-132-185.us-west-2.compute.amazonaws.com"
 //login API
 export const loginURL = `${BASE_URL}/pyc/loginUser` 
 
