@@ -47,4 +47,13 @@
         flex-basis: 100%!important;
         max-width: 100%!important;
     }
+    .jss362{
+        flex-basis: 100%!important;
+        max-width: 100%!important;
+    }
+    .jss364 {
+        flex-grow: 0;
+        max-width: 100%!important;
+        flex-basis: 100%!important;
+    }
 }
