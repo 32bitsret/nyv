@@ -40,7 +40,7 @@ class SearchResult extends React.Component {
     if(localStorage.ln){
         axios({
             method:"POST",
-            url: "https://plateauyc.herokuapp.com/pyc/profile/query/",
+            url: "https://api.plateauyouthcouncil.org/pyc/profile/query/",
             data:{
               query:{
                 lga:localStorage.ln
