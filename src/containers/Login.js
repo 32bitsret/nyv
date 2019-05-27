@@ -166,7 +166,7 @@ class Login extends React.Component {
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
                 <div className="center-style">
-                <a href="https://www.plateauyouthcouncil.com">
+                <a href="/">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"
