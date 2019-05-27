@@ -20,6 +20,13 @@ import { logoutUser } from "./redux/actions/authActions"
 import {SET_SIDEBAR} from './redux/Constants'
 import HomePage from './containers/home/HomePage';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import ContactPage from './containers/home/ContactPage';
+
+library.add(faStroopwafel)
+
 const hist = createBrowserHistory();
 let user = ""
 if(localStorage.pyc_token){
@@ -62,6 +69,11 @@ class App extends Component {
                         exact 
                         path="/" 
                         component={HomePage}
+                    />
+                    <Route
+                        exact
+                        path="/contact"
+                        component={ContactPage}
                     />
                     <Route
                          exact 
