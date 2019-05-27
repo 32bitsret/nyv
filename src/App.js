@@ -24,7 +24,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 import ContactPage from './containers/home/ContactPage';
-import About from './containers/home/About';
+import DocumentariesPage from './containers/home/DocumentariesPage';
+import AboutPage from './containers/home/AboutPage';
 
 library.add(faStroopwafel)
 
@@ -76,6 +77,11 @@ class App extends Component {
                         path="/contact"
                         component={ContactPage}
                     />
+                    <Route 
+                        exact
+                        path="/documentaries"
+                        component={DocumentariesPage}
+                    />
                     <Route
                          exact 
                          path="/login" 
@@ -89,7 +95,7 @@ class App extends Component {
                     <Route 
                         exact 
                         path="/about" 
-                        component={About} 
+                        component={AboutPage} 
                     />  
                     <Switch>
                         <ProtectedRoute 
