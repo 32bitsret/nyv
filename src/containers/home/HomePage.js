@@ -16,7 +16,6 @@ export default function HomePage() {
             <div className="line-preloader"></div>
           </div> */}
         <header className="header-area">
-
             <div className="top-header">
                 <div className="container">
                     <div className="row">
