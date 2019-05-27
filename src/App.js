@@ -19,12 +19,12 @@ import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
 import {SET_SIDEBAR} from './redux/Constants'
 import HomePage from './containers/home/HomePage';
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 import ContactPage from './containers/home/ContactPage';
 import DocumentariesPage from './containers/home/DocumentariesPage';
+import Gallery from './containers/home/Gallery';
 
 library.add(faStroopwafel)
 
@@ -80,6 +80,11 @@ class App extends Component {
                         exact
                         path="/documentaries"
                         component={DocumentariesPage}
+                    />
+                     <Route
+                        exact
+                        path="/gallery"
+                        component={Gallery}
                     />
                     <Route
                          exact 
