@@ -3,7 +3,6 @@ import cx from "classnames";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Header from "./Header";
@@ -15,7 +14,6 @@ import MemberDetail from './MemberDetail'
 import User from '../variables/UserData'
 import image from "assets/img/riyo.jpg";
 
-var ps;
 
 class Members extends React.Component {
   constructor(props) {

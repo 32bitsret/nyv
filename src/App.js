@@ -7,7 +7,6 @@ import store from './store';
 import "assets/scss/material-dashboard-pro-react.css?v=1.4.0";
 import jwt_decode from "jwt-decode"
 import Dashboard from './containers/Dashboard'
-import Error from "./containers/Error";
 import Login from "./containers/Login";
 import Register from './containers/Register'
 import Home from './containers/Home'
@@ -23,9 +22,7 @@ import {SET_SIDEBAR} from './redux/Constants'
 const hist = createBrowserHistory();
 let user = ""
 if(localStorage.pyc_token){
-    // setAuthToken(localStorage.pyc_token)
     user = jwt_decode(localStorage.pyc_token)
-    // console.log("APP USER", user)
     store.dispatch({
         type: SET_USER,
         payload: user
@@ -33,9 +30,7 @@ if(localStorage.pyc_token){
 
     const currentTime = Date.now() / 1000;
     if (user.exp < currentTime) {
-      // Logout user
        store.dispatch(logoutUser());
-    //   // Clear current Profile
       window.location.href = '/login';
     }
 }
@@ -54,7 +49,6 @@ if(localStorage.f && localStorage.pic){
     type: SET_SIDEBAR,
     payload: obj
   })
-//   window.location.reload()
 }
 
 class App extends Component {
@@ -120,10 +114,6 @@ class App extends Component {
                             component={Dashboard}
                         />
                     </Switch>
-                    <Route  
-                        path="/**" 
-                        component={Error}
-                    />
                 </div>
             </Router>
         </Provider>

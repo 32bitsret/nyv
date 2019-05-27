@@ -3,14 +3,10 @@ import PropTypes from "prop-types";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import img1 from "../../assets/img/img1.jpg"
 
 import pricingPageStyle from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle.jsx";
 

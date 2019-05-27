@@ -262,7 +262,7 @@ class LoginPage extends React.Component {
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
                 <div className={"center-style"}>
-                <a href="https://pycnewwebsite.herokuapp.com/index.html">
+                <a href="https://www.plateauyouthcouncil.com">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"

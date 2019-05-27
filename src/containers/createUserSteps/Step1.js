@@ -25,7 +25,6 @@ import Heading from "components/Heading/Heading.jsx";
 import Snackbar from "components/Snackbar/Snackbar.jsx";
 import {
   createUserByAdmin,
-  updateBasicInfo,
   fetchUser
 } from "../../redux/actions/createActions"
 import {

@@ -2,8 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-import PerfectScrollbar from "perfect-scrollbar";
+import { Redirect } from "react-router-dom";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Header from "./Header";
@@ -14,7 +13,6 @@ import data from '../variables/data'
 import CreateMemberDetail from "./CreateMemberDetails"
 import User from '../variables/UserData'
 import image from "assets/img/riyo.jpg";
-var ps;
 
 class CreateMember extends React.Component {
   constructor(props) {
@@ -27,20 +25,10 @@ class CreateMember extends React.Component {
     this.resizeFunction = this.resizeFunction.bind(this);
   }
   componentDidMount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
-    //   ps = new PerfectScrollbar(this.refs.mainPanel, {
-    //     suppressScrollX: true,
-    //     suppressScrollY: false
-    //   });
-    //   document.body.style.overflow = "hidden";
-    // }
     this.setState({isAdmin: this.checkUserRole(User)[0]})
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
-    //   ps.destroy();
-    // }
     window.removeEventListener("resize", this.resizeFunction);
   }
   componentDidUpdate(e) {

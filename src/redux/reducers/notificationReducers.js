@@ -9,7 +9,6 @@ const initialState = {
     isloading: true,
     notifications: [],
 }
-    error: {}    
 
 export default (state = initialState, action) => {
     switch(action.type){

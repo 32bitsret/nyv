@@ -48,7 +48,6 @@ class DocumentUpload extends React.Component {
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
-     console.log("DATA",data)
      this.props.uploadDocument(data, id)
   }
   handleClick() {
@@ -56,9 +55,7 @@ class DocumentUpload extends React.Component {
   }
 
   render() {
-      // console.log("DOCUMENT", this.props.state.dashboard.dashboard._id)
     var {
-      addButtonProps,
       cancel
     } = this.props;
     return (
