@@ -5,6 +5,8 @@ import $ from 'jquery';
 // import 'assets/home/js/bootstrap/popper.min.js';
 // import 'assets/home/js/bootstrap/bootstrap.min.js';
 // import 'assets/home/js/bootstrap/plugins.js';
+import Slider from 'react-animated-slider';
+import 'react-animated-slider/build/horizontal.css';
 
 export default function HomePage() {
   return (
@@ -101,37 +103,38 @@ export default function HomePage() {
             </div>
 
         </header>
-        <section className="hero-area hero-post-slides owl-carousel">
+            <section className="hero-area hero-post-slides owl-carousel">
+              <Slider autoplay={3000}>                 
               
-              <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/rock.jpg)' }}>
-                  
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="hero-slides-content">
-                            <h2 data-animation="fadeInUp" data-delay="100ms">Welcome to Plateau Youth Council</h2>
-                            <a href="about" className="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">About Us</a>
+
+                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/rock.jpg)' }}>
+                    
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="hero-slides-content">
+                                    <h2 data-animation="fadeInUp" data-delay="100ms">Welcome to Plateau Youth Council</h2>
+                                    <a href="about" className="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">About Us</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-              
-              <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/slider1.jpg)' }}>                  
-            <div className="container">
-                      <div className="row">
-                          <div className="col-12">
-                              <div className="hero-slides-content">
-                                  <h2 data-animation="fadeInUp" data-delay="100ms">Plateau Youth Council</h2>
-                                  <p data-animation="fadeInUp" data-delay="300ms">The Umbrella Body of All Youths on the Plateau Irrespective of Their political affiliations, Tribal Extractions or Religious Beliefs</p>
-                                  <a href="contact" className="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Contact Us</a>
+                </div>                
+                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/slider1.jpg)' }}>                  
+                <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="hero-slides-content">
+                                    <h2 data-animation="fadeInUp" data-delay="100ms">Plateau Youth Council</h2>
+                                    <p data-animation="fadeInUp" data-delay="300ms">The Umbrella Body of All Youths on the Plateau Irrespective of Their political affiliations, Tribal Extractions or Religious Beliefs</p>
+                                    <a href="contact" className="btn crose-btn" data-animation="fadeInUp" data-delay="500ms">Contact Us</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+              </Slider>
+            </section>
 
           <section className="about-area section-padding-100-0">
               <div className="container">
