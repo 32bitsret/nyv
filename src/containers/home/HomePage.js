@@ -7,10 +7,14 @@ import $ from 'jquery';
 // import 'assets/home/js/bootstrap/plugins.js';
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function HomePage() {
   return (
     <div>
+          {/* <div className="preloader d-flex align-items-center justify-content-center">
+            <div className="line-preloader"></div>
+          </div> */}
         <header className="header-area">
 
             <div className="top-header">
@@ -19,7 +23,10 @@ export default function HomePage() {
                         <div className="col-12">
                             <div className="top-header-content d-flex flex-wrap align-items-center justify-content-between">
                                 <div className="top-header-meta d-flex flex-wrap">
-                                    <a href="#" className="open" data-toggle="tooltip" data-placement="bottom" title="8 am to 4 pm"><i className="fa fa-clock-o" aria-hidden="true"></i> <span>Opening Hours - 8 am to 4 pm</span></a>
+                                    <a href="#" className="open" data-toggle="tooltip" data-placement="bottom" title="8 am to 4 pm">
+                                        {/* <i className="fa fa-clock-o" aria-hidden="true"></i>  */}
+                                          <FontAwesomeIcon icon="fa fa-clock-o" aria-hidden="true" />
+                                        <span>Opening Hours - 8 am to 4 pm</span></a>
                                     <div className="top-social-info">
                                         <a href="https://web.facebook.com/1PlateauYouthCouncil1/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
                                         <a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>
