@@ -33,7 +33,7 @@ export default function HomePage() {
                                         <a href="/login" className="open" data-toggle="tooltip" data-placement="bottom" title="Signin"> <span>Sign in</span></a>
                                         
                                         <div className="top-social-info">
-                                            <a href="/dashboard" className="open" data-toggle="tooltip" data-placement="bottom" title="Signup"> <span>Sign up</span></a>
+                                            <a href="/register" className="open" data-toggle="tooltip" data-placement="bottom" title="Signup"> <span>Sign up</span></a>
                                         
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@ export default function HomePage() {
                 </div>
                               </div>
                           </div>
-    </section>
+                </section>
                       
     <section className="call-to-action-area section-padding-100 bg-img bg-overlay" style={{ backgroundImage: 'url('+'img/gallery/zonal_summit/Asset_71icon.png'+')' }}>
                           <div className="container">
