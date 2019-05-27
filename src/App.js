@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode"
 import Dashboard from './containers/Dashboard'
 import Login from "./containers/Login";
 import Register from './containers/Register'
-import Home from './containers/Home'
+// import Home from './containers/Home'
 import Members from './containers/Members'
 import CreateMember from './containers/CreateMember'
 import Messages from './containers/Messages'
@@ -18,6 +18,7 @@ import Search from './containers/Search'
 import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
 import {SET_SIDEBAR} from './redux/Constants'
+import HomePage from './containers/home/HomePage';
 
 const hist = createBrowserHistory();
 let user = ""
@@ -60,7 +61,7 @@ class App extends Component {
                     <Route 
                         exact 
                         path="/" 
-                        component={Home}
+                        component={HomePage}
                     />
                     <Route
                          exact 
