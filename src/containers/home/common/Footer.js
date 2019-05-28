@@ -11,7 +11,6 @@ export default function Footer() {
             <div className="col-12 col-sm-6 col-lg-4">
               <div className="single-footer-widget mb-70">
                 <a href="https://play.google.com/store/apps/details?id=com.plateauyouthcouncil.www" target="_blank" className="footer-logo widget-title"><img src="img/playstore.png" alt="" width="200px" height="150px" /><br /> Get Our Mobile App</a>
-
               </div>
             </div>
 
@@ -20,11 +19,11 @@ export default function Footer() {
                 <h5 className="widget-title">Quick Links</h5>
                 <nav className="footer-menu">
                   <ul>
-                    <li><a href="/"><i className="fa fa-angle-double-righ" aria-hidden="true"></i> Home</a></li>
-                    <li><a href="about"><i className="fa fa-angle-double-righ" aria-hidden="true"></i> About</a></li>
-                    <li><a href="contact"><i className="fa fa-angle-double-righ" aria-hidden="true"></i>Contact</a></li>
-                    <li><a href="gallery"><i className="fa fa-angle-double-righ" aria-hidden="true"></i> Gallery</a></li>
-                    <li><a href="documentaries"><i className="fa fa-angle-double-right" aria-hidden="true"></i>Documents</a></li>
+                    <li><a href="/"><i className="fa fa-angle-double-right" aria-hidden="true"></i> Home</a></li>
+                    <li><a href="about"><i className="fa fa-angle-double-right" aria-hidden="true"></i> About</a></li>
+                    <li><a href="contact"><i className="fa fa-angle-double-right" aria-hidden="true"></i> Contact</a></li>
+                    <li><a href="gallery"><i className="fa fa-angle-double-right" aria-hidden="true"></i> Gallery</a></li>
+                    <li><a href="documentaries"><i className="fa fa-angle-double-right" aria-hidden="true"></i> Documents</a></li>
                   </ul>
                 </nav>
               </div>
@@ -35,15 +34,13 @@ export default function Footer() {
                 <h5 className="widget-title">Contact Us</h5>
 
                 <div className="contact-information">
-                  <p><i className="fa fa-map-marker" aria-hidden="true"></i>Azi Nyako Youth Centre Dadin Kowa, Jos</p>
+                  <p><i className="fa fa-map-marker" aria-hidden="true"></i> Azi Nyako Youth Centre Dadin Kowa, Jos</p>
                   <a href="callto:+234 703 349 5786"><i className="fa fa-phone" aria-hidden="true"></i> +234 703 349 5786, +234 810 128 3769</a>
-                  <a href="mailto:plateauyouthcouncil@gmail.com"><i className="fa fa-envelope" aria-hidden="true"></i> plateauyouthcouncil@gmail.com</a>
+                  <a href="mailto:plateauyouthcouncil@gmail.com"><i className="fa fa-envelope" aria-hidden="true"></i>  plateauyouthcouncil@gmail.com</a>
                   <p><i className="fa fa-clock-o" aria-hidden="true"></i> Mon - Fri: 08.00am - 4.00pm</p>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import $ from 'jquery';
 // import 'assets/home/js/bootstrap/plugins.js';
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from './common/Header';
 import Footer from './common/Footer';
 
