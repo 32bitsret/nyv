@@ -28,6 +28,12 @@ import Gallery from './containers/home/Gallery';
 import About from './containers/home/AboutPage';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
+import $ from 'jquery';
+// import '../src/assets/home/js/active';
+
+window.jQuery = $;
+window.$ = $;
+global.jQuery = $;
 
 library.add(faStroopwafel)
 
@@ -46,7 +52,6 @@ if(localStorage.pyc_token){
       window.location.href = '/login';
     }
 }
-
 
 let name = ""
 let pic =""
