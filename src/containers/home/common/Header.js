@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'font-awesome/css/font-awesome.min.css';
 
 export default function Header() {
@@ -12,10 +11,10 @@ export default function Header() {
             <div className="col-12">
               <div className="top-header-content d-flex flex-wrap align-items-center justify-content-between">
                 <div className="top-header-meta d-flex flex-wrap">
-                  <a href="#" className="open" data-toggle="tooltip" data-placement="bottom" title="8 am to 4 pm">
+                  <a href="#" className="open" data-toggle="tooltip" data-placement="bottom" title="8am to 4pm">
                     <i className="fa fa-clock-o" aria-hidden="true"></i> 
                     {/* <FontAwesomeIcon icon="fa fa-clock-o" aria-hidden="true" /> */}
-                    <span>Opening Hours - 8 am to 4 pm</span></a>
+                    <span>Opening Hours - 8am to 4pm</span></a>
                   <div className="top-social-info">
                     <a href="https://web.facebook.com/1PlateauYouthCouncil1/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
                     <a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a>

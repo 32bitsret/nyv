@@ -3,9 +3,205 @@ import 'assets/home/css/styles/style.css';
 import Header from "./common/Header"
 import Footer from "./common/Footer"
 import Slider from 'react-animated-slider';
+import ItemsCarousel from 'react-items-carousel';
+import range from 'lodash/range';
 
 export default class About extends Component {
-  render() {
+    componentWillMount() {
+        this.state = {
+          children: [
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className="row align-items-center upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: "105px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/chairabout.png)"}}>
+                            </div>
+                            <h6>Dr. Fabong J. Yildam</h6>
+                            <span>Chairman</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className="row align-items-center upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: "105px"}}>                      
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/deputychairman.png)"}}>
+                            </div>
+                            <h6>Othniel Gongden </h6>
+                            <span>Deputy Chairman</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              ,
+              <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+    `            <div className="row align-items-center upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: "105px"}}>    
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/azi.png)"}}>
+                            </div>
+                            <h6>Hafsat Azi Yakubu</h6>   
+                            <span> Secretary </span>
+                        </div>
+                    </div> 
+                </div>
+    `         </div>
+            ,
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/fabian.png)"}}>
+                            </div>
+                            <h6> Fabian Parlong </h6>           
+                            <span>Assistant Secretary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/finsec.png)"}}>
+                            </div>
+                            <h6>Saidu Raiyyanu </h6>
+                            <span>Financial Secretary </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/lot.png)"}}>
+                            </div>
+                            <h6 >Mangam Lot Adakson</h6>
+                            <span>Treasurer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center" >
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/dos.png)"}}>
+                            </div>
+                            <h6>Azi Aware </h6>
+                            <span>Director of Socials</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>,
+
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center" >
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/victorchuwang.png)"}}>
+                            </div>
+                            <h6>Victor Chuwang</h6>
+                            <span>Auditor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center" >
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/pro.png)"}}>
+                            </div>
+                            <h6>Sam datiri </h6>
+                            <span>Public Relations Officer </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ,
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center" >
+                <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-3">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/exofficio.png)"}}>
+                            </div>
+                            <h6>Sir Emmanuel Dashe Ksm</h6>
+                            <span>Ex Officio </span>
+                        </div>
+                    </div>
+                </div>
+            </div>,
+            <div className="single-slide">
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className="upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/fwet.png)"}}>
+                            </div>
+                            <h6>Mwadkon Fwet </h6>
+                            <span>Northern Zone Coordinator </span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            ,
+            <div className="single-slide">
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className="upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
+                    <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/rotgak.png)"}}>
+                            </div>
+                            <h6>Rotgak Danjuma  </h6>
+                            <span>Central Zone Coordinator</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            ,
+            <div className="single-slide">
+            <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
+                <div className="upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>                    
+                   <div className="col-12 col-sm-6 col-lg-4">
+                        <div className="single-team-members text-center mb-100">
+                            <div className="team-thumb" style={{backgroundImage: "url(img/excos/richardnyelong.png)"}}>
+                            </div>
+                            <h6>Richard Nyelong </h6>
+                            <span>Southern Zone Coordinator</span>
+                        </div>
+                    </div>                    
+                </div>
+                </div>
+            </div>,
+             
+          ]
+        };
+    
+        setTimeout(() => {
+          this.setState({
+            // children: createChildren(20),
+          })
+        }, 100);
+      }
+
+    render() {
+
+  
     return (
       <div>
           <Header/>
@@ -109,77 +305,16 @@ export default class About extends Component {
                     <div className="col-12">
                         <div className="upcoming-slides owl-carousel">
                             
-                            {/* <div className="single-slide"> */}
-                            <Slider autoplay={3000}>
-                            <div className="single-slide">
-                                <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
-                                    <div className="row align-items-center upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: "105px"}}>
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/chairabout.png)"}}>
-                                                </div>
-                                                <h6>Dr. Fabong J. Yildam</h6>
-                                                <span>Chairman</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/deputychairman.png)"}}>
-                                                </div>
-                                                <h6>Othniel Gongden </h6>
-                                                <span>Deputy Chairman</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/excos/azi.png)"}}>
-                                                </div>
-                                                <h6>Hafsat Azi Yakubu</h6>   
-                                                <span> Secretary </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
-                                    <div className=" upcoming-events-content d-flex flex-wrap align-items-center" style={{marginLeft: 105+"px"}}>
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/excos/fabian.png)"}}>
-                                                </div>
-                                                <h6> Fabian Parlong </h6>           
-                                                <span>Assistant Secretary</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/finsec.png)"}}>
-                                                </div>
-                                                <h6>Saidu Raiyyanu </h6>
-                                                <span>Financial Secretary </span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="col-12 col-sm-6 col-lg-4">
-                                            <div className="single-team-members text-center mb-100">
-                                                <div className="team-thumb" style={{backgroundImage: "url(img/excos/lot.png)"}}>
-                                                </div>
-                                                <h6>Mangam Lot Adakson</h6>
-                                                <span>Treasurer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                </div>
-                                </Slider>
-
-                                
-                            {/* </div> */}
+                            <ItemsCarousel
+                                 numberOfCards={3}
+                                 gutter={0}
+                                 showSlither={true}
+                                 firstAndLastGutter={true}
+                                 freeScrolling={true}
+                            >
+                            {this.state.children}
+                            </ItemsCarousel>
+                            {/*                         
                             
                             <div className="single-slide">
                                 <div className="single-upcoming-events-area d-flex flex-wrap align-items-center">
@@ -298,7 +433,7 @@ export default class About extends Component {
                                         
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

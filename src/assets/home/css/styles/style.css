@@ -11,7 +11,7 @@ Version: - v1.0.0
 /* :: 2.0 Import All CSS */
 @import url("../../css/bootstrap.min.css");
 @import url("../../css/classy-nav.css");
-/* @import url("../../css/owl.carousel.min.css"); */
+@import url("../../css/owl.carousel.min.css");
 @import url("../../css/animate.css");
 @import url("../../css/magnific-popup.css");
 @import url("../../css/font-awesome.min.css");
@@ -155,17 +155,17 @@ img {
   .section-heading h2 {
     font-size: 36px;
     text-transform: uppercase; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
+    @media only screen and (min-width: 810px) and (max-width: 991px) {
       .section-heading h2 {
         font-size: 30px; } }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 810px) {
       .section-heading h2 {
         font-size: 24px; } }
   .section-heading p {
     font-size: 16px;
     color: #636363;
     margin-bottom: 0; }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 810px) {
       .section-heading p {
         font-size: 14px; } }
   .section-heading.white h2,
@@ -316,12 +316,12 @@ img {
       .header-area .top-header .top-header-content .phone {
         font-size: 14px;
         color: #959595; }
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
+        @media only screen and (min-width: 810px) and (max-width: 991px) {
           .header-area .top-header .top-header-content .open,
           .header-area .top-header .top-header-content .email-address,
           .header-area .top-header .top-header-content .phone {
             font-size: 13px; } }
-        @media only screen and (max-width: 767px) {
+        @media only screen and (max-width: 810px) {
           .header-area .top-header .top-header-content .open span,
           .header-area .top-header .top-header-content .email-address span,
           .header-area .top-header .top-header-content .phone span {
@@ -337,7 +337,7 @@ img {
           color: #2c962f; }
       .header-area .top-header .top-header-content .email-address {
         margin-right: 30px; }
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
+        @media only screen and (min-width: 810px) and (max-width: 991px) {
           .header-area .top-header .top-header-content .email-address {
             margin-right: 15px; } }
       .header-area .top-header .top-header-content .top-social-info {
@@ -346,11 +346,11 @@ img {
         border-left: 2px solid #959595;
         margin-left: 30px;
         padding-left: 20px; }
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
+        @media only screen and (min-width: 810px) and (max-width: 991px) {
           .header-area .top-header .top-header-content .top-social-info {
             margin-left: 10px;
             padding-left: 5px; } }
-        @media only screen and (max-width: 767px) {
+        @media only screen and (max-width: 810px) {
           .header-area .top-header .top-header-content .top-social-info {
             margin-left: 10px;
             padding-left: 5px; } }
@@ -359,7 +359,7 @@ img {
           padding: 0 10px;
           font-size: 14px;
           color: #959595; }
-          @media only screen and (min-width: 768px) and (max-width: 991px) {
+          @media only screen and (min-width: 810px) and (max-width: 991px) {
             .header-area .top-header .top-header-content .top-social-info a {
               font-size: 13px;
               padding: 0 5px; } }
@@ -375,10 +375,10 @@ img {
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .header-area .crose-main-menu .classy-navbar .nav-brand {
           max-width: 120px; } }
-      @media only screen and (min-width: 768px) and (max-width: 991px) {
+      @media only screen and (min-width: 810px) and (max-width: 991px) {
         .header-area .crose-main-menu .classy-navbar .nav-brand {
           max-width: 120px; } }
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 810px) {
         .header-area .crose-main-menu .classy-navbar .nav-brand {
           max-width: 120px; } }
   .header-area .classynav ul li a {
@@ -949,7 +949,7 @@ img {
     display: flex;
     z-index: 50;
     line-height: 1; }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width:810px) {
       .upcoming-slides .owl-nav {
         top: -80px; } }
     .upcoming-slides .owl-nav .owl-prev,
@@ -976,7 +976,7 @@ img {
     width: 300px;
     border-radius: 5px;
     padding-left: 15px; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
+    @media only screen and (min-width: 810px) and (max-width: 991px) {
       .single-upcoming-events-area .upcoming-events-thumbnail {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -984,7 +984,7 @@ img {
         max-width: 100%;
         width: 100%;
         margin-bottom: 50px; } }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 810px) {
       .single-upcoming-events-area .upcoming-events-thumbnail {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -1004,14 +1004,14 @@ img {
     width: calc(100% - 300px);
     padding-left: 50px;
     padding-right: 15px; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
+    @media only screen and (min-width: 810px) and (max-width: 991px) {
       .single-upcoming-events-area .upcoming-events-content {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
         width: 100%; } }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 810px) {
       .single-upcoming-events-area .upcoming-events-content {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -1032,14 +1032,14 @@ img {
           flex: 0 0 60%;
           max-width: 60%;
           width: 60%; } }
-      @media only screen and (min-width: 768px) and (max-width: 991px) {
+      @media only screen and (min-width: 810px) and (max-width: 991px) {
         .single-upcoming-events-area .upcoming-events-content .events-text {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 60%;
           flex: 0 0 60%;
           max-width: 60%;
           width: 60%; } }
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 810px) {
         .single-upcoming-events-area .upcoming-events-content .events-text {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 100%;

@@ -71,7 +71,8 @@ class CreatedUser extends Component {
                             <div className="col-4 col-md-3 m-auto">
                                 <img 
                                 className="rounded-circle" 
-                                style={{width: "200px",
+                                style={{
+                                    width: "200px",
                                     height:"200px",
                                     left: "50%",
                                     position: "relative",
