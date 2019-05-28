@@ -53,9 +53,9 @@ export default function Footer() {
                 <p>
 
                   Copyright &copy;
-                                <script>
+                  <script>
                     document.write(new Date().getFullYear());
-                                </script>
+                  </script>
                   All rights reserved | This site is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://pictda.plateaustate.gov.ng/" target="_blank">PICTDA</a>
 
                 </p>

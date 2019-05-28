@@ -26,6 +26,8 @@ import ContactPage from './containers/home/ContactPage';
 import DocumentariesPage from './containers/home/DocumentariesPage';
 import Gallery from './containers/home/Gallery';
 import About from './containers/home/AboutPage';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
 
 library.add(faStroopwafel)
 
