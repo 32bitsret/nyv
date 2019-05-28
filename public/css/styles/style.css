@@ -1346,7 +1346,7 @@ img {
     @media only screen and (max-width: 767px) {
       .footer-area .copywrite-area {
         height: auto;
-        padding: 15px 0; } }
+        padding: 0px 0; } }
     .footer-area .copywrite-area .copywrite-text {
       position: relative;
       z-index: 1; }
