@@ -68,7 +68,7 @@ export default function HomePage() {
                       
                 <div className="col-12 col-md-6 col-lg-6">
                           <div className="about-us-content mb-100">
-                              
+                               
                         <div className="about-text">
                                       <h4>Vision</h4>
                                       <p>To grow to be a Council with global best standards providing Empowerment initiatives, Employment opportunities, Engagement templates, Global services and products with core interest in Education for sustainable future for the youth without compromising integrity and hard work while leveraging on partnerships for development.</p>
