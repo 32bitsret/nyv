@@ -2,7 +2,8 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="footer-area">
+    <footer className="footer-area" style={{ padding: '0px 0' }}>
+
       <div className="main-footer-area">
         <div className="container">
           <div className="row">

@@ -7,7 +7,7 @@ import $ from 'jquery';
 // import 'assets/home/js/bootstrap/plugins.js';
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from './common/Header';
 import Footer from './common/Footer';
 
@@ -90,7 +90,7 @@ export default function HomePage() {
                 </div>
                               </div>
                           </div>
-    </section>
+                </section>
                       
     <section className="call-to-action-area section-padding-100 bg-img bg-overlay" style={{ backgroundImage: 'url('+'img/gallery/zonal_summit/Asset_71icon.png'+')' }}>
                           <div className="container">

@@ -25,6 +25,7 @@ import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 import ContactPage from './containers/home/ContactPage';
 import DocumentariesPage from './containers/home/DocumentariesPage';
 import Gallery from './containers/home/Gallery';
+import About from './containers/home/AboutPage';
 
 library.add(faStroopwafel)
 
@@ -95,6 +96,11 @@ class App extends Component {
                         exact 
                         path="/register" 
                         component={Register} 
+                    />  
+                    <Route 
+                        exact 
+                        path="/about" 
+                        component={About} 
                     />  
                     <Switch>
                         <ProtectedRoute 
