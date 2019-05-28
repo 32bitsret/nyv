@@ -1,29 +1,33 @@
 import React from 'react';
 import 'assets/home/css/styles/style.css';
-// import 'assets/home/js/jquery/jquery-2.2.4.min.js';
-import $ from 'jquery';
-// import 'assets/home/js/bootstrap/popper.min.js';
-// import 'assets/home/js/bootstrap/bootstrap.min.js';
-// import 'assets/home/js/bootstrap/plugins.js';
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from './common/Header';
 import Footer from './common/Footer';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
+const options = {
+    items:1,
+    rewind: true,
+    autoplay: true,
+    slideBy: 1,
+    
+};
 
 export default function HomePage() {
+
   return (
     <div>
           {/* <div className="preloader d-flex align-items-center justify-content-center">
             <div className="line-preloader"></div>
           </div> */}
             <Header />
-            <section className="hero-area hero-post-slides owl-carousel">
-              <Slider autoplay={3000}>                 
-              
-
-                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/rock.jpg)' }}>
-                    
+            <section className="hero-area hero-post-slides">
+            <OwlCarousel loop  {...options} >
+                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{backgroundImage: 'url(img/rock.jpg)'}}>
                     <div className="container">
                         <div className="row">
                             <div className="col-12">
@@ -34,9 +38,9 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
-                </div>                
-                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{ backgroundImage: 'url(img/slider1.jpg)' }}>                  
-                <div className="container">
+                </div>
+                <div className="single-hero-slide bg-img bg-overlay d-flex align-items-center justify-content-center" style={{backgroundImage: 'url(img/slider1.jpg)'}}>
+                    <div className="container">
                         <div className="row">
                             <div className="col-12">
                                 <div className="hero-slides-content">
@@ -48,7 +52,7 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-              </Slider>
+                </OwlCarousel>
             </section>
 
           <section className="about-area section-padding-100-0">
