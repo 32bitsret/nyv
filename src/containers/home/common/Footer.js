@@ -56,13 +56,11 @@ export default function Footer() {
                   <script>
                     document.write(new Date().getFullYear());
                   </script>
-                  All rights reserved | This site is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://pictda.plateaustate.gov.ng/" target="_blank">PICTDA</a>
+                  All rights reserved | Made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://pictda.plateaustate.gov.ng/" target="_blank">PICTDA</a>
 
                 </p>
               </div>
             </div>
-
-
             <div className="col-12 col-md-6">
               <div className="footer-social-icon">
                 <a href="https://web.facebook.com/1PlateauYouthCouncil1/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
