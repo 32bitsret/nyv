@@ -2,8 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-import PerfectScrollbar from "perfect-scrollbar";
+import { Redirect } from "react-router-dom";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Header from "./Header";
@@ -16,7 +15,6 @@ import User from '../variables/UserData'
 import image from "assets/img/riyo.jpg";
 import { getProfile } from "../redux/actions/dashboardAction"
 
-var ps;
 
 class Notifications extends React.Component {
   constructor(props) {

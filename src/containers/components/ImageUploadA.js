@@ -38,13 +38,11 @@ class ImageUploadA extends React.Component {
 
   handleSubmit(e) {
     const id = this.props.user_id
-    // console.log("MY ID", id)
     const data = {
         type: this.state.type,
         name: this.state.name,
         photo: this.state.file.split(',')[1]
     }
-    //  console.log("DATA",data)
      this.props.uploadPictureA(data, id)
   }
   handleClick() {
@@ -52,7 +50,6 @@ class ImageUploadA extends React.Component {
   }
 
   render() {
-      // console.log("IMAGE", this.props.user_id)
     var {
       avatar,
       addButtonProps,

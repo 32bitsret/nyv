@@ -2,13 +2,8 @@ import React from "react";
 import cx from "classnames";
 import { connect} from 'react-redux'
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-// creates a beautiful scrollbar
-import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Gridd from './Gridd'
@@ -21,7 +16,6 @@ import { getProfile } from "../redux/actions/dashboardAction"
 
 import User from '../variables/UserData'
 
-var ps;
 
 let newLGA = []
 class Dashboard extends React.Component {
@@ -30,39 +24,17 @@ class Dashboard extends React.Component {
     this.state = {
       mobileOpen: false,
       miniActive: false,
-      isAdmin: false ,//this.checkUserRole(this.props.state.auth.user)
+      isAdmin: false ,
       user: {}
     };
     this.resizeFunction = this.resizeFunction.bind(this);
   }
   componentDidMount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
-    //   ps = new PerfectScrollbar(this.refs.mainPanel, {
-    //     suppressScrollX: true,
-    //     suppressScrollY: false
-    //   });
-    //   document.body.style.overflow = "hidden";
-    // }
     this.setState({isAdmin: this.checkUserRole(this.props.auth.user)})
     this.props.getProfile(this.props.auth.user.phone)
     this.setState({user:this.props.auth.user })
     window.addEventListener("resize", this.resizeFunction);
-    // console.log("USER INSIDE STATE+++++++", this.props.auth.user)
   }
-  // componentWillUnmount() {
-  //   if (navigator.platform.indexOf("Win") > -1) {
-  //     ps.destroy();
-  //   }
-  //   window.removeEventListener("resize", this.resizeFunction);
-  // }
-  // componentDidUpdate(e) {
-  //   if (e.history.location.pathname !== e.location.pathname) {
-  //     this.refs.mainPanel.scrollTop = 0;
-  //     if (this.state.mobileOpen) {
-  //       this.setState({ mobileOpen: false });
-  //     }
-  //   }
-  // }
 
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
@@ -80,7 +52,6 @@ class Dashboard extends React.Component {
   }
 
   checkUserRole = User => {
-    // console.log("CONSOLE", User)
       if(User.role === "Admin" || User.role === "admin"){
         return true
       }
@@ -92,7 +63,6 @@ class Dashboard extends React.Component {
   extract = (arr, value) => {
     arr.map(o => {
       if(o.lga === value){
-        // console.log(o)
         newLGA.push(o)
       }
     })

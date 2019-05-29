@@ -199,7 +199,7 @@ class LoginPage extends React.Component {
         phone: Number(this.state.phone),
         lastname:  this.state.lastname,
         gender: this.state.gender,
-        role:"admin" 
+        // role:"admin" 
       }
       if(this.state.firstnameState !== "" &&this.state.lastnameState !== ""&&this.state.middlenameState !== ""&&this.state.passwordState !== ""&&this.state.phoneState !== ""&& !isEmpty(this.state.gender) && this.state.confirm_passwordState !== ""&&this.state.emailState !== ""){
         this.setState({
@@ -262,7 +262,7 @@ class LoginPage extends React.Component {
             <form>
               <Card login className={classes[this.state.cardAnimaton]}>
                 <div className={"center-style"}>
-                <a href="https://pycnewwebsite.herokuapp.com/index.html">
+                <a href="/">
                   <img
                     className={classes.cardImgTop}
                     data-src="holder.js/100px180/"

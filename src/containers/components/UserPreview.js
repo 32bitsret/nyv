@@ -52,8 +52,7 @@ class CreatedUser extends Component {
   }
 
   render(){
-    const { classes, user } = this.props;  
-    // console.log("PROPS TO PREVIEW",user) 
+    const {  user } = this.props;  
     return (
         <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12} lg={12}>
@@ -72,7 +71,8 @@ class CreatedUser extends Component {
                             <div className="col-4 col-md-3 m-auto">
                                 <img 
                                 className="rounded-circle" 
-                                style={{width: "200px",
+                                style={{
+                                    width: "200px",
                                     height:"200px",
                                     left: "50%",
                                     position: "relative",

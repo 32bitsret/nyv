@@ -25,7 +25,7 @@ function Footer({ ...props }) {
       <div className={container}>
         <p className={classes.right}>
           &copy; {1900 + new Date().getYear()}{" "}
-          <a href="https://www.creative-tim.com" className={anchor}>
+          <a href="" className={anchor}>
             { "Created by PICTDA"}
           </a>
           { ", plateau state youth council"}

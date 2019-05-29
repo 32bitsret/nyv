@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 // javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
 import cx from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
@@ -71,7 +70,6 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const sidebarImage = this.props.dashboard.sidebarImage
     // console.log("################################", this.props.dashboard.dashboard.photo)
     const userName = this.props.auth.user
     const {
@@ -83,7 +81,6 @@ class Sidebar extends React.Component {
       routes,
       bgColor,
       rtlActive,
-      userData
     } = this.props;
     
     const itemText =
@@ -221,10 +218,10 @@ class Sidebar extends React.Component {
       });
     var brand = (
       <div className={logoClasses}>
-        <a href="https://pycnewwebsite.herokuapp.com/index.html" className={logoMini}>
+        <a href="https://www.plateauyouthcouncil.com" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
         </a>
-        <a href="https://pycnewwebsite.herokuapp.com/index.html" className={logoNormal}>
+        <a href="https://www.plateauyouthcouncil.com" className={logoNormal}>
           {logoText}
         </a>
       </div>

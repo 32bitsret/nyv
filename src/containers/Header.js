@@ -113,9 +113,9 @@ Header.propTypes = {
   rtlActive: PropTypes.bool
 };
 
-const mapStateToProps = state => {
-  return {
-    ...state
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     ...state
+//   }
+// }
 export default connect(null, {})(withStyles(headerStyle)(Header));

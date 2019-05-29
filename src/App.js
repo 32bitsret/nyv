@@ -7,10 +7,9 @@ import store from './store';
 import "assets/scss/material-dashboard-pro-react.css?v=1.4.0";
 import jwt_decode from "jwt-decode"
 import Dashboard from './containers/Dashboard'
-import Error from "./containers/Error";
 import Login from "./containers/Login";
 import Register from './containers/Register'
-import Home from './containers/Home'
+// import Home from './containers/Home'
 import Members from './containers/Members'
 import CreateMember from './containers/CreateMember'
 import Messages from './containers/Messages'
@@ -19,13 +18,29 @@ import Search from './containers/Search'
 import {SET_USER} from "./redux/Constants"
 import { logoutUser } from "./redux/actions/authActions"
 import {SET_SIDEBAR} from './redux/Constants'
+import HomePage from './containers/home/HomePage';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import ContactPage from './containers/home/ContactPage';
+import DocumentariesPage from './containers/home/DocumentariesPage';
+import Gallery from './containers/home/Gallery';
+import About from './containers/home/AboutPage';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
+import $ from 'jquery';
+// import '../src/assets/home/js/active';
+
+window.jQuery = $;
+window.$ = $;
+global.jQuery = $;
+
+library.add(faStroopwafel)
 
 const hist = createBrowserHistory();
 let user = ""
 if(localStorage.pyc_token){
-    // setAuthToken(localStorage.pyc_token)
     user = jwt_decode(localStorage.pyc_token)
-    // console.log("APP USER", user)
     store.dispatch({
         type: SET_USER,
         payload: user
@@ -33,13 +48,10 @@ if(localStorage.pyc_token){
 
     const currentTime = Date.now() / 1000;
     if (user.exp < currentTime) {
-      // Logout user
        store.dispatch(logoutUser());
-    //   // Clear current Profile
       window.location.href = '/login';
     }
 }
-
 
 let name = ""
 let pic =""
@@ -54,7 +66,6 @@ if(localStorage.f && localStorage.pic){
     type: SET_SIDEBAR,
     payload: obj
   })
-//   window.location.reload()
 }
 
 class App extends Component {
@@ -66,7 +77,22 @@ class App extends Component {
                     <Route 
                         exact 
                         path="/" 
-                        component={Home}
+                        component={HomePage}
+                    />
+                    <Route
+                        exact
+                        path="/contact"
+                        component={ContactPage}
+                    />
+                    <Route 
+                        exact
+                        path="/documentaries"
+                        component={DocumentariesPage}
+                    />
+                     <Route
+                        exact
+                        path="/gallery"
+                        component={Gallery}
                     />
                     <Route
                          exact 
@@ -77,6 +103,11 @@ class App extends Component {
                         exact 
                         path="/register" 
                         component={Register} 
+                    />  
+                    <Route 
+                        exact 
+                        path="/about" 
+                        component={About} 
                     />  
                     <Switch>
                         <ProtectedRoute 
@@ -120,10 +151,6 @@ class App extends Component {
                             component={Dashboard}
                         />
                     </Switch>
-                    <Route  
-                        path="/**" 
-                        component={Error}
-                    />
                 </div>
             </Router>
         </Provider>

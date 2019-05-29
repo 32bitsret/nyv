@@ -11,9 +11,9 @@ import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
 import NotificationDisplay from "./NotificationDisplay"
 
-function Transition(props) {
-  return <Slide direction="down" {...props} />;
-}
+// function Transition(props) {
+//   return <Slide direction="down" {...props} />;
+// }
 
 class Notifications extends React.Component {
   constructor(props) {

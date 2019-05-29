@@ -43,9 +43,6 @@ class MemberDetail extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-          {/* <GridItem xs={6} md={6} xs={6} lg={12}>
-              {display}
-          </GridItem> */}
         </GridContainer>
         :
         <LgaTables stat={this.props.dashboard}/>

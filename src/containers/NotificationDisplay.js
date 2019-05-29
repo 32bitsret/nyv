@@ -16,7 +16,6 @@ import {connect} from "react-redux"
 import { getNotification } from "../redux/actions/notificationActions";
 import { getProfile } from "../redux/actions/dashboardAction"
 import isEmpty from "../utils/isEmpty";
-import _ from "lodash"
 import moment from "moment"
 
 function Transition(props) {

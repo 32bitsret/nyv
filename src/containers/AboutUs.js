@@ -6,7 +6,6 @@ import Footer from "./Footer";
 import pagesStyle from "assets/jss/material-dashboard-pro-react/layouts/pagesStyle.jsx";
 import bgImage from "assets/img/riyo.jpg";
 
-import Landing from './Landing'
 import AboutusDetails from "./AboutusDetails"
 
 class AboutUs extends React.Component {

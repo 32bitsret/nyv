@@ -170,7 +170,6 @@ class UserProfile extends Component {
       DoB: isEmpty(this.state.DoB)?"":this.state.DoB,
       type_of_work:(!isEmpty(this.state.employment_status)&&this.state.employment_status === "Not Employed")?"":this.state.type_of_work
     }
-    let obj = {query, update}
     this.props.updateBasicInfo({query,update})
   }
 
@@ -192,9 +191,8 @@ class UserProfile extends Component {
     let update = {
       address:isEmpty(this.state.address)?"": this.state.address,
       lga:isEmpty(this.state.lga) ? "" : this.state.lga,
-      state: state//isEmpty(this.state.state) ?"": this.state.state 
+      state: state
     }
-    let obj = {query, update}
     this.props.updateContactInfo({query,update})
   }
 
@@ -214,7 +212,6 @@ class UserProfile extends Component {
         year_of_graduation:isEmpty(this.state.year_of_graduation)?"":this.state.year_of_graduation
       }
     }
-    let obj = {query, update}
     this.props.updateEducationalInfo({query, update})
   }
 
@@ -226,7 +223,6 @@ class UserProfile extends Component {
   }
 //============================END OF SUBMISSION ROUTINES===========================
   render(){
-    const { classes } = this.props;
     const userProfile = this.props.auth.user
     const optionsGender = [
       { label: 'Male', value: 'male' },

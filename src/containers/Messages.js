@@ -2,11 +2,8 @@ import React from "react";
 import cx from "classnames";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-// creates a beautiful scrollbar
-import PerfectScrollbar from "perfect-scrollbar";
+import { Redirect } from "react-router-dom";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -15,8 +12,6 @@ import image from "assets/img/riyo.jpg";
 import logo from "assets/img/pyclogo.png";
 import data from '../variables/data'
 import MessagesDetail from "./MessagesDetail"
-// import User from '../variables/UserData'
-var ps;
 
 class Messages extends React.Component {
   constructor(props) {
@@ -29,20 +24,9 @@ class Messages extends React.Component {
     this.resizeFunction = this.resizeFunction.bind(this);
   }
   componentDidMount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
-    //   ps = new PerfectScrollbar(this.refs.mainPanel, {
-    //     suppressScrollX: true,
-    //     suppressScrollY: false
-    //   });
-    //   document.body.style.overflow = "hidden";
-    // }
-    // this.setState({isAdmin: this.checkUserRole(User)[0]})
     window.addEventListener("resize", this.resizeFunction);
   }
   componentWillUnmount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
-    //   ps.destroy();
-    // }
     window.removeEventListener("resize", this.resizeFunction);
   }
   componentDidUpdate(e) {
@@ -79,14 +63,11 @@ class Messages extends React.Component {
         return false
       }
     })
-    // console.log("CONSOLE STATUS", status)
     return status
   }
 
   render() {
     const { classes, match, ...rest } = this.props;
-    // console.log(`${match.path}`+"/home")
-    // console.log("Messages",this.props.user.role)
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -110,7 +91,6 @@ class Messages extends React.Component {
           color="green"
           bgColor="black"
           miniActive={this.state.miniActive}
-          // userData={User}
           {...rest}
         />
         <div className={mainPanel} ref="mainPanel">
