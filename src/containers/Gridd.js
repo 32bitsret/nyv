@@ -176,7 +176,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: members.length / 2,
+      high: members.length + 5,
       chartPadding: {
         top: 0,
         right: 5,

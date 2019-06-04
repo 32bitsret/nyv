@@ -94,7 +94,6 @@ class SearchResult extends React.Component {
                     simple
                     onClick={() => {
                     let obj = this.state.arr.find(o => o._id === prop._id );
-                    console.log(obj) 
                     this.setState({
                             user:obj
                         })

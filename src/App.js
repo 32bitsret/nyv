@@ -26,6 +26,7 @@ import ContactPage from './containers/home/ContactPage';
 import DocumentariesPage from './containers/home/DocumentariesPage';
 import Gallery from './containers/home/Gallery';
 import About from './containers/home/AboutPage';
+import Settings from './containers/Settings';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import $ from 'jquery';
@@ -149,6 +150,13 @@ class App extends Component {
                             exact 
                             path="/dashboard" 
                             component={Dashboard}
+                        />
+                    </Switch>
+                     <Switch>
+                        <ProtectedRoute 
+                            exact 
+                            path="/settings" 
+                            component={Settings}
                         />
                     </Switch>
                 </div>

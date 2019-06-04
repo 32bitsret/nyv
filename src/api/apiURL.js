@@ -24,3 +24,7 @@ export const profileQuery =  `${BASE_URL}/pyc/profile/query/`
 
 //image
 export const uploadImageURL = `${BASE_URL}/pyc/upload`
+
+// /pyc/user/password_change
+// change password
+export const changePassword = `${BASE_URL}/pyc/user/password_change`

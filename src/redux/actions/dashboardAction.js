@@ -1,9 +1,7 @@
 import {
     GET_PROFILE, 
-    GET_PROFILE_ERROR, 
     GET_ALLL_PROFILE,
-    GET_RID_OF_WELCOME,
-    START_WELCOME
+    GET_RID_OF_WELCOME
 } from "../Constants"
 import { 
     profileURL,

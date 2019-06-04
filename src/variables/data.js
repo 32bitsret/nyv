@@ -5,6 +5,7 @@ import Email from "@material-ui/icons/Email"
 import Notifications from "@material-ui/icons/Notifications"
 import Person from "@material-ui/icons/Person"
 import Search from "@material-ui/icons/Search"
+import Settings from "@material-ui/icons/Settings"
 
 
 const dashAdmin = [
@@ -34,13 +35,13 @@ const dashAdmin = [
     state: "openPages",
     icon: Person
   },
-  // {
-  //   collapse: false,
-  //   path: "/search",
-  //   name: "Search",
-  //   state: "openPages",
-  //   icon: Search
-  // },
+  {
+    collapse: false,
+    path: "/settings",
+    name: "Settings",
+    state: "openPages",
+    icon: Settings
+  },
  
 ]
 
@@ -59,6 +60,13 @@ const dashUser = [
     name: "Notifications",
     state: "openPages",
     icon: Notifications
+  },
+  {
+    collapse: false,
+    path: "/settings",
+    name: "Settings",
+    state: "openPages",
+    icon: Settings
   },
 ]
 

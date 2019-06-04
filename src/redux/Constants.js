@@ -67,3 +67,6 @@ export const FILTERATION_DONE = "FILTERATION_DONE"
 
 //updating
 export const UPDATE_ERROR = "UPDATE_ERROR"
+
+// settings 
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD" 
