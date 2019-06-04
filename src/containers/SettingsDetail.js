@@ -12,7 +12,12 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import {connect} from "react-redux"
 import {getAllProfile} from "../redux/actions/dashboardAction"
-import Icon from "@material-ui/core/Icon";
+import Icon from "@material-ui/core/Icon";import {
+  verifyEmail, 
+  verifyLength
+}from "../utils/validation"
+import Snackbar from "components/Snackbar/Snackbar.jsx";
+import isEmpty from "../utils/isEmpty";
 
 const styles = {
   cardIconTitle: {
@@ -30,6 +35,14 @@ class LgaTables extends React.Component {
     this.state = {
       tableData: {},
       isloading: true,
+      email:"",
+      password: "",
+      emailState:"",
+      passwordState:"",
+      error:{},
+      isloading: false,
+      iserror:false,
+      errorMessage: "Missing fields or bad entry"
     };
   }
 
@@ -45,6 +58,35 @@ class LgaTables extends React.Component {
     // console.log("CURRENT TABLE NAME", this.state.tableData.name)
     localStorage.setItem("ln",this.state.tableData.name)
     window.location.href=""
+  }
+
+  change = (e, stateName, type, stateNameEqualTo) => {
+    e.preventDefault()
+    if(!isEmpty(this.state.error) || this.state.iserror){
+      this.setState({
+        iserror:false,
+        error:{},
+        errorMessage:"Missing fields or bad entry"
+      })
+    }
+    this.setState({[e.target.name]: e.target.value})
+     switch(type){
+       case "email":
+         if(verifyEmail(e.target.value)){
+           this.setState({[stateName + "State"]: "success"})
+         }
+         else {
+           this.setState({[stateName + "State"]: "error"})
+         }
+         break;
+       case "password":
+         if(verifyLength(e.target.value, 6)){
+           this.setState({[stateName + "State"]: "success"})
+         }
+         else {
+           this.setState({[stateName +"State"]: "error"})
+         }
+     }
   }
 
   render() {

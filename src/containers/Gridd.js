@@ -25,7 +25,7 @@ import _ from "lodash"
 
 
 let general
-let gender
+let lga
 let education
 let employment
 let users
@@ -337,7 +337,7 @@ class Gridd extends Component {
     }
   };
 
-  gender = {
+  lga = {
     data: {
       labels: [
         "B/Ladi",
@@ -385,7 +385,7 @@ class Gridd extends Component {
         showGrid: false
       },
       low: 0,
-      high: members.length + 20,
+      high: members.length / 5,
       chartPadding: {
         top: 0,
         right: 5,
@@ -501,11 +501,11 @@ class Gridd extends Component {
             <CardHeader color="warning" className={classes.cardHeaderHover}>
               <ChartistGraph
                 className="ct-chart-white-colors"
-                data={gender.data}
+                data={lga.data}
                 type="Bar"
-                options={education.options}
-                responsiveOptions={education.responsiveOptions}
-                listener={education.animation}
+                options={lga.options}
+                responsiveOptions={lga.responsiveOptions}
+                listener={lga.animation}
               />
               
             </CardHeader>
