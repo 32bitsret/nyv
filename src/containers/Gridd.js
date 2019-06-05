@@ -352,10 +352,10 @@ class Gridd extends Component {
         "Lang/S",
         "Mangu",
         "Mikang",
-        "Pankshin",
-        "Qua'an Pan",
+        "P'shin",
+        "Q/Pan",
         "Riyom",
-        "Shendam",
+        "S'dam",
         "Wase",
         "Other"
       ],
