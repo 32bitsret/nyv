@@ -70,3 +70,4 @@ export const UPDATE_ERROR = "UPDATE_ERROR"
 
 // settings 
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD" 
+export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR"

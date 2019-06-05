@@ -7,7 +7,8 @@ import {
   ERROR_LOGIN,
   REGISTER_SUCCESS,
   GET_ERRORS,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR
 } from '../Constants';
 
 const initialState = {
@@ -56,6 +57,17 @@ export default (state = initialState, action) => {
         isError:!isEmpty(action.payload)
       }
     case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isSuccess: !isEmpty(action.payload)
+      }
+    case CHANGE_PASSWORD_ERROR:
+      return {
+        ...state,
+        isError: !isEmpty(action.payload),
+        error: action.payload
+      }
+    case CHANGE_PASSWORD:
       return {
         ...state,
         isSuccess: !isEmpty(action.payload)

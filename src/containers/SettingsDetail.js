@@ -11,9 +11,11 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import {connect} from "react-redux"
-import {getAllProfile} from "../redux/actions/dashboardAction"
+import {changePassword} from "../redux/actions/authActions"
+import {getProfile} from "../redux/actions/dashboardAction"
 import Icon from "@material-ui/core/Icon";import {
-  verifyLength
+  verifyLength,
+  compare
 }from "../utils/validation"
 import Snackbar from "components/Snackbar/Snackbar.jsx";
 import isEmpty from "../utils/isEmpty";
@@ -43,22 +45,48 @@ class LgaTables extends React.Component {
       iserror:false,
       isSuccess: false,
       successMessage: "password successfully changed",
-      errorMessage: "Missing fields or bad entry"
+      errorMessage: "Missing fields or bad entry or password less than 8 characters",
+      user: {},
+      toggleButton: true
     };
+  }
+
+  componentDidMount(){
+    this.setState({
+      user:this.props.getProfile(this.props.auth.user.phone)
+    })
   }
 
 
   componentWillReceiveProps(nextProps){
     this.setState({
-
+      toggleButton: isEmpty(nextProps.dashboard.dashboard)
     })
+    if(!isEmpty(nextProps.auth.error)){
+      const mes = nextProps.auth.error.response.data.message
+      console.log("MESSAGE", mes)
+      this.setState({
+        errorMessage:mes,
+        error: nextProps.auth.error,
+        iserror: nextProps.auth.isError,
+        isloading: isEmpty(nextProps.auth.error)
+      })
+    }
+    if(nextProps.auth.isSuccess){
+      this.setState({
+        isloading:false,
+        isSuccess: true,
+        old_password:"",
+        new_password:"",
+        confirm_new_password:"",
+        confirm_new_passwordState:""
+      })
+    }
   }
 
   onViewClick = e => {
     e.preventDefault()
-    this.setState({
-      isloading: true
-    })
+    this.submit()
   }
 
   change = (e, stateName, type, stateNameEqualTo) => {
@@ -72,40 +100,58 @@ class LgaTables extends React.Component {
     }
     this.setState({[e.target.name]: e.target.value})
      switch(type){
-       case "password":
-         if(verifyLength(e.target.value, 6)){
-           this.setState({[stateName + "State"]: "success"})
-         }
-         else {
-           this.setState({[stateName +"State"]: "error"})
-         }
+        case "old_password":
+          if(verifyLength(e.target.value, 4)){
+            this.setState({[stateName + "State"]: "success"})
+          }
+          else {
+            this.setState({[stateName +"State"]: "error"})
+          }
+        case "new_password":
+          if(verifyLength(e.target.value, 8)){
+            this.setState({[stateName + "State"]: "success"})
+          }
+          else {
+            this.setState({[stateName +"State"]: "error"})
+          }
+        case "confirm_new_password":
+          if(compare(e.target.value,this.state[stateNameEqualTo])){
+            this.setState({[stateName+"State"]: "success"})
+          }else{
+            this.setState({[stateName+"State"]: "error"})
+          }
+          break;
      }
   }
 
-  submit = (e) => {
-    e.preventDefault();
-   if(this.state.passwordState === ""){
+  submit = () => {
+    if(this.state.old_passwordState === ""){
       this.setState({
-        passwordState : "error",
+        old_passwordState : "error",
         iserror:true
-    })
+      })
     }
-
+    else if(this.state.new_passwordState === ""){
+      this.setState({
+        new_passwordState : "error",
+        iserror:true
+      })
+    }
     else { 
       const userData = {
         oldPassword: this.state.old_password,
-        password: this.state.new_password,
-        id: this.state
+        newPassword: this.state.new_password,
+        id: this.props.auth.user.id
       }
-      if(!isEmpty(this.state.password) && !isEmpty(this.state.password) && !isEmpty(this.state.password)){
+
+      if(!isEmpty(this.state.old_password) && !isEmpty(this.state.new_password) && !isEmpty(this.state.confirm_new_password) && !isEmpty(userData.id)){
         this.setState({ 
           isloading: true,
           iserror:false
         })
-        // this.props.loginUser(userData)
+        this.props.changePassword(userData)
       }
       else{
-        // console.log("LOG N ERROR")
         this.setState({
           iserror: true
         })
@@ -115,7 +161,7 @@ class LgaTables extends React.Component {
 
   render() {
     const { classes } = this.props;
-   
+    console.log("PROPERTIES", this.props)
     return (
       <GridContainer>
          <Snackbar
@@ -145,21 +191,22 @@ class LgaTables extends React.Component {
             </CardHeader>
             <CardBody>
           <CustomInput
-            success={this.state.old_passwordState === "success"}
-            error={this.state.old_passwordState === "error" || this.state.iserror}
+            disabled={this.state.toggleButton}
+            // success={this.state.old_passwordState === "success"}
+            // error={this.state.old_passwordState === "error" || this.state.iserror}
             labelText="Old Password"
             id="old_password"
             formControlProps={{
               fullWidth: true
             }}
             inputProps={{
-                value:this.state.password,
+                value:this.state.old_password,
                 type: "password",
                 name: 'old_password',
                 onChange: (e) => this.change(
                   e,
-                  "password",
-                  "password"
+                  "old_password",
+                  "old_password"
                 ),
               endAdornment: (
                 <InputAdornment position="end">
@@ -171,8 +218,9 @@ class LgaTables extends React.Component {
             }}
           />    
         <CustomInput
-            success={this.state.new_passwordState === "success"}
-            error={this.state.new_passwordState === "error" || this.state.iserror}
+            disabled={this.state.toggleButton}
+            // success={this.state.new_passwordState === "success"}
+            // error={this.state.new_passwordState === "error" || this.state.iserror}
             labelText="New Password"
             id="new_password"
             formControlProps={{
@@ -184,8 +232,8 @@ class LgaTables extends React.Component {
                 name: 'new_password',
                 onChange: (e) => this.change(
                   e,
-                  "password",
-                  "password"
+                  "new_password",
+                  "new_password"
                 ),
               endAdornment: (
                 <InputAdornment position="end">
@@ -197,8 +245,9 @@ class LgaTables extends React.Component {
             }}
           />   
           <CustomInput
-            success={this.state.emailState === "success"}
-            error={this.state.emailState === "error" || this.state.iserror}
+            disabled={this.state.toggleButton}
+            success={this.state.confirm_new_passwordState === "success"}
+            error={this.state.confirm_new_passwordState === "error"}
             labelText="Confirm New Password"
             id="confirm_new_password"
             formControlProps={{
@@ -210,8 +259,9 @@ class LgaTables extends React.Component {
               name:'confirm_new_password',
               onChange: (e) => this.change(
                 e,
-                "password",
-                "password"
+                "confirm_new_password",
+                "confirm_new_password",
+                "new_password"
               ),
               endAdornment: (
                 <InputAdornment position="end">
@@ -223,37 +273,37 @@ class LgaTables extends React.Component {
             }}
           />
         </CardBody>
-        
-              <CardFooter stats className={classes.cardFooter}>
-                  <i className={classes.danger} /> {` `}              
-                  {
-                    this.state.isloading
-                    ?
-                    <Button
-                      className={classes.danger} 
-                      justIcon={false}
-                      round
-                      simple
-                      color="warning"
-                      className="like"
-                      onClick={this.onViewClick}
-                    >
-                      changing password...
-                    </Button>
-                  :
-                    <Button
-                      className={classes.danger} 
-                      justIcon={false}
-                      round
-                      simple
-                      color="success"
-                      className="like"
-                      onClick={this.onViewClick}
-                    >
-                      Change password
-                    </Button>
-                  }
-                </CardFooter>
+        <CardFooter stats className={classes.cardFooter}>
+            <i className={classes.danger} /> {` `}              
+            {
+              this.state.isloading
+              ?
+              <Button
+                className={classes.danger} 
+                justIcon={false}
+                round
+                simple
+                color="warning"
+                className="like"
+                onClick={this.onViewClick}
+              >
+                changing...
+              </Button>
+            :
+              <Button
+                disabled={this.state.toggleButton}
+                className={classes.danger} 
+                justIcon={false}
+                round
+                simple
+                color="success"
+                className="like"
+                onClick={this.onViewClick}
+              >
+                Change password
+              </Button>
+            }
+          </CardFooter>
           </Card>
         </GridItem>
         <GridItem lg={6} md={6} xs={12}>
@@ -265,7 +315,8 @@ class LgaTables extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    dashboard: state.dashboard
+    dashboard: state.dashboard,
+    auth: state.auth
   }
 }
-export default connect(mapStateToProps, {getAllProfile})(withStyles(styles)(LgaTables));
+export default connect(mapStateToProps, {changePassword, getProfile})(withStyles(styles)(LgaTables));

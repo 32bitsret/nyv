@@ -6,13 +6,14 @@ import {
   changePasswordURL
 } from "../../api/apiURL"
 import {
-   GET_ERRORS, 
-   SET_CURRENT_USER,
+  GET_ERRORS, 
+  SET_CURRENT_USER,
   LOGIN_SUCCESS,
   LOGOUT,
   ERROR_LOGIN,
   REGISTER_SUCCESS,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR
   } from '../Constants';
 import {getProfileInit} from "./dashboardAction"
 
@@ -44,7 +45,6 @@ export const loginUser = (user) => dispatch => {
     url: loginURL,
     data: user
   }).then(res => {
-    // console.log(res)
     const {token} = res.data
     const user = jwt_decode(token)
     localStorage.setItem("pyc_token", token)
@@ -54,7 +54,6 @@ export const loginUser = (user) => dispatch => {
       payload: res.data.payload
     })
   }).catch(err => {
-    // console.log("LOGIN ERROR",err)
     dispatch({
       type: ERROR_LOGIN,
       payload: err.response
@@ -82,19 +81,24 @@ export const logoutUser = () => dispatch => {
 };
 
 export const changePassword = data => dispatch => {
+  console.log("FROM CHANGE PASSWORD", data)
   axios({
     method:"PUT",
     url: changePasswordURL,
     data: data
   })
   .then(res => {
-     console.log("RESPONSE", res.data)
+     console.log("RESPONSE", res.data.message)
+     dispatch({
+      type:CHANGE_PASSWORD,
+      payload: res.data.message
+     })
   })
   .catch(err => {
     console.log("ERROR", err)
-    // dispatch({
-    //   type: UPDATE_ERROR,
-    //   payload: err
-    // })
+    dispatch({
+      type:CHANGE_PASSWORD_ERROR,
+      payload: err
+    })
 })
 }
