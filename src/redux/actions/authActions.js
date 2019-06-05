@@ -1,13 +1,18 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import {loginURL, registerURL} from "../../api/apiURL"
+import {
+  loginURL, 
+  registerURL, 
+  changePasswordURL
+} from "../../api/apiURL"
 import {
    GET_ERRORS, 
    SET_CURRENT_USER,
   LOGIN_SUCCESS,
   LOGOUT,
   ERROR_LOGIN,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  CHANGE_PASSWORD
   } from '../Constants';
 import {getProfileInit} from "./dashboardAction"
 
@@ -75,3 +80,21 @@ export const logoutUser = () => dispatch => {
    });
   
 };
+
+export const changePassword = data => dispatch => {
+  axios({
+    method:"PUT",
+    url: changePasswordURL,
+    data: data
+  })
+  .then(res => {
+     console.log("RESPONSE", res.data)
+  })
+  .catch(err => {
+    console.log("ERROR", err)
+    // dispatch({
+    //   type: UPDATE_ERROR,
+    //   payload: err
+    // })
+})
+}

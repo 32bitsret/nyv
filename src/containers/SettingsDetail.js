@@ -13,7 +13,6 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import {connect} from "react-redux"
 import {getAllProfile} from "../redux/actions/dashboardAction"
 import Icon from "@material-ui/core/Icon";import {
-  verifyEmail, 
   verifyLength
 }from "../utils/validation"
 import Snackbar from "components/Snackbar/Snackbar.jsx";
@@ -33,15 +32,17 @@ class LgaTables extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableData: {},
-      isloading: true,
-      email:"",
-      password: "",
-      emailState:"",
-      passwordState:"",
+      old_password: "",
+      old_passwordState:"",
+      new_password: "",
+      new_passwordState:"",
+      confirm_new_password: "",
+      confirm_new_passwordState:"",
       error:{},
       isloading: false,
       iserror:false,
+      isSuccess: false,
+      successMessage: "password successfully changed",
       errorMessage: "Missing fields or bad entry"
     };
   }
@@ -55,9 +56,9 @@ class LgaTables extends React.Component {
 
   onViewClick = e => {
     e.preventDefault()
-    // console.log("CURRENT TABLE NAME", this.state.tableData.name)
-    localStorage.setItem("ln",this.state.tableData.name)
-    window.location.href=""
+    this.setState({
+      isloading: true
+    })
   }
 
   change = (e, stateName, type, stateNameEqualTo) => {
@@ -71,14 +72,6 @@ class LgaTables extends React.Component {
     }
     this.setState({[e.target.name]: e.target.value})
      switch(type){
-       case "email":
-         if(verifyEmail(e.target.value)){
-           this.setState({[stateName + "State"]: "success"})
-         }
-         else {
-           this.setState({[stateName + "State"]: "error"})
-         }
-         break;
        case "password":
          if(verifyLength(e.target.value, 6)){
            this.setState({[stateName + "State"]: "success"})
@@ -89,11 +82,62 @@ class LgaTables extends React.Component {
      }
   }
 
+  submit = (e) => {
+    e.preventDefault();
+   if(this.state.passwordState === ""){
+      this.setState({
+        passwordState : "error",
+        iserror:true
+    })
+    }
+
+    else { 
+      const userData = {
+        oldPassword: this.state.old_password,
+        password: this.state.new_password,
+        id: this.state
+      }
+      if(!isEmpty(this.state.password) && !isEmpty(this.state.password) && !isEmpty(this.state.password)){
+        this.setState({ 
+          isloading: true,
+          iserror:false
+        })
+        // this.props.loginUser(userData)
+      }
+      else{
+        // console.log("LOG N ERROR")
+        this.setState({
+          iserror: true
+        })
+      }
+    }
+  }
+
   render() {
     const { classes } = this.props;
    
     return (
       <GridContainer>
+         <Snackbar
+            place="tc"
+            open={this.state.iserror}
+            color="danger"
+            message={this.state.errorMessage}
+            closeNotification={() => this.setState({
+               iserror: false 
+              })}
+            close
+          />
+          <Snackbar
+            place="tc"
+            open= {this.state.isSuccess}
+            color="success"
+            message={this.state.successMessage}
+            closeNotification={() => this.setState({
+               isSuccess: false 
+              })}
+            close
+          />
         <GridItem lg={6} md={6} xs={12}>
           <Card>
             <CardHeader color="primary" icon>
@@ -101,8 +145,8 @@ class LgaTables extends React.Component {
             </CardHeader>
             <CardBody>
           <CustomInput
-            success={this.state.passwordState === "success"}
-            error={this.state.passwordState === "error" || this.state.iserror}
+            success={this.state.old_passwordState === "success"}
+            error={this.state.old_passwordState === "error" || this.state.iserror}
             labelText="Old Password"
             id="old_password"
             formControlProps={{
@@ -111,7 +155,7 @@ class LgaTables extends React.Component {
             inputProps={{
                 value:this.state.password,
                 type: "password",
-                name: 'password',
+                name: 'old_password',
                 onChange: (e) => this.change(
                   e,
                   "password",
@@ -127,17 +171,17 @@ class LgaTables extends React.Component {
             }}
           />    
         <CustomInput
-            success={this.state.passwordState === "success"}
-            error={this.state.passwordState === "error" || this.state.iserror}
+            success={this.state.new_passwordState === "success"}
+            error={this.state.new_passwordState === "error" || this.state.iserror}
             labelText="New Password"
             id="new_password"
             formControlProps={{
               fullWidth: true
             }}
             inputProps={{
-                value:this.state.password,
+                value:this.state.new_password,
                 type: "password",
-                name: 'password',
+                name: 'new_password',
                 onChange: (e) => this.change(
                   e,
                   "password",
@@ -161,9 +205,9 @@ class LgaTables extends React.Component {
               fullWidth: true
             }}
             inputProps={{
-              value:this.state.password,
+              value:this.state.confirm_new_password,
               type:'password',
-              name:'password',
+              name:'confirm_new_password',
               onChange: (e) => this.change(
                 e,
                 "password",
@@ -182,17 +226,33 @@ class LgaTables extends React.Component {
         
               <CardFooter stats className={classes.cardFooter}>
                   <i className={classes.danger} /> {` `}              
-                  <Button
-                    className={classes.danger} 
-                    justIcon={false}
-                    round
-                    simple
-                    color="info"
-                    className="like"
-                    onClick={this.onViewClick}
-                  >
-                    CHANGE PASSWORD
-                  </Button>
+                  {
+                    this.state.isloading
+                    ?
+                    <Button
+                      className={classes.danger} 
+                      justIcon={false}
+                      round
+                      simple
+                      color="warning"
+                      className="like"
+                      onClick={this.onViewClick}
+                    >
+                      changing password...
+                    </Button>
+                  :
+                    <Button
+                      className={classes.danger} 
+                      justIcon={false}
+                      round
+                      simple
+                      color="success"
+                      className="like"
+                      onClick={this.onViewClick}
+                    >
+                      Change password
+                    </Button>
+                  }
                 </CardFooter>
           </Card>
         </GridItem>

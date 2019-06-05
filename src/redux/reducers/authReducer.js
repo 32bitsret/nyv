@@ -6,7 +6,8 @@ import {
   SET_USER,
   ERROR_LOGIN,
   REGISTER_SUCCESS,
-  GET_ERRORS
+  GET_ERRORS,
+  CHANGE_PASSWORD
 } from '../Constants';
 
 const initialState = {
