@@ -161,7 +161,6 @@ class LgaTables extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("PROPERTIES", this.props)
     return (
       <GridContainer>
          <Snackbar

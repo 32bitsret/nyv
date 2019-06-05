@@ -81,21 +81,19 @@ export const logoutUser = () => dispatch => {
 };
 
 export const changePassword = data => dispatch => {
-  console.log("FROM CHANGE PASSWORD", data)
+ 
   axios({
     method:"PUT",
     url: changePasswordURL,
     data: data
   })
   .then(res => {
-     console.log("RESPONSE", res.data.message)
      dispatch({
       type:CHANGE_PASSWORD,
       payload: res.data.message
      })
   })
   .catch(err => {
-    console.log("ERROR", err)
     dispatch({
       type:CHANGE_PASSWORD_ERROR,
       payload: err
