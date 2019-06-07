@@ -264,5 +264,3 @@ const mapStateToProps = state => {
   }
 }
 export default connect(mapStateToProps, {loginUser})(withRouter(withStyles(loginPageStyle)(Login)));
-
-connect()()
