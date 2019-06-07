@@ -273,14 +273,14 @@ class Gridd extends Component {
     data: {
       labels: [
         "Total",
-        "Males",
-        "Females",
-        "Disabled",
-        "Not Disabled",
-        "Divorced",
-        "Single",
-        "Widowed",
-        "Married",
+        "Male",
+        "F/male",
+        "Dis",
+        "N/Dis",
+        "Divrcd",
+        "Sngle",
+        "Wdow'd",
+        "Marr'd",
       ],
       series: [[
         members.length, 
