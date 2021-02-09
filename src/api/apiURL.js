@@ -1,7 +1,10 @@
 // export const BASE_URL = "https://plateauyc.herokuapp.com"
 // export const BASE_URL = "http://ec2-34-217-132-185.us-west-2.compute.amazonaws.com"
-export const BASE_URL = "https://api.plateauyouthcouncil.org"
+// export const BASE_URL = "https://api.plateauyouthcouncil.org"
 // https://api.plateauyouthcouncil.org/apidoc/
+
+export const BASE_URL = "http://localhost:3000"
+
 //login API
 export const loginURL = `${BASE_URL}/pyc/loginUser` 
 
